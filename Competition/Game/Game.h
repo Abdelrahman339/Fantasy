@@ -9,9 +9,8 @@ class footballPlayer
 {
     string name;
     float rate;
-    vector<int> goals;
-    vector<int> assists;
+    int goals;
+    int assists;
     bool redCard;
     bool yellowCard;
-
 };
