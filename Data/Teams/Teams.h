@@ -12,8 +12,9 @@ class Footballer
     int age;
     string position;
     float price;
-    vector <int> goals; // per season
-    vector<int> assists; // per season
-    vector<int> redCard; // per season
+    bool captin;
+    vector<int> goals;      // per season
+    vector<int> assists;    // per season
+    vector<int> redCard;    // per season
     vector<int> yellowCard; // per season
 };
