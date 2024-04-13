@@ -17,7 +17,7 @@ invalid:
 }
 bool UserValidiation::fullnameCheck(string fullName)
 {
-    regex pattern(R"([A-Za-z]+(?: [A-Za-z]+)*)");
+    regex pattern(R"([A-z]+(?: [A-z]+)*)");
     bool result = regex_match(fullName, pattern);
     if (!result)
     {
