@@ -10,5 +10,5 @@ public:
     bool static emailAddressCheck(string emailAddress){};
     bool static passwordCheck(string password){};
     bool static usernameCheck(string username){};
-    void static signupinfo(User *newUser, string point, bool (*Check)(string), void (User::*set)(string)){};
+    void static signupinfo(User *newUser, string info, bool (*Check)(string), void (User::*set)(string)){};
 };

@@ -2,11 +2,24 @@
 #include <regex>
 #include <iostream>
 using namespace std;
+void static signupinfo(User *newUser, string info, bool (*Check)(string), void (User::*set)(string))
+{
+    string input;
+invalid:
+    cout << "Enter you " << info << ": " << endl;
+    cin.ignore();
+    getline(cin, input);
+    (newUser->*set)(input);
+    if (Check(input) == false)
+    {
+        goto invalid;
+    }
+}
 bool UserValidiation::fullnameCheck(string fullName)
 {
-    regex pattern(R"([^a-zA-Z\s])");
-    bool result = regex_search(fullName, pattern);
-    if (result)
+    regex pattern(R"([A-Za-z]+(?: [A-Za-z]+)*)");
+    bool result = regex_match(fullName, pattern);
+    if (!result)
     {
         cout << "You must provide a valid Fullname with no numbers or special character ." << endl;
         return false;
@@ -18,16 +31,11 @@ bool UserValidiation::fullnameCheck(string fullName)
 };
 bool UserValidiation::phoneNumberCheck(string phoneNumber)
 {
-    regex pattern(R"([a-zA-Z])?|[^a-zA-Z0-9])");
-    bool result = regex_search(phoneNumber, pattern);
-    if (phoneNumber.length() < 11)
+    regex pattern(R"(\d{11})");
+    bool result = regex_match(phoneNumber, pattern);
+    if (!result)
     {
-        cout << "You must provide a valid phone number that contain 11 digits." << endl;
-        return false;
-    }
-    else if (result)
-    {
-        cout << "You must provide a valid phone number with no letters." << endl;
+        cout << "You must provide a valid phone number with no letters and contain 11 digits." << endl;
         return false;
     }
     else
@@ -37,7 +45,7 @@ bool UserValidiation::phoneNumberCheck(string phoneNumber)
 };
 bool UserValidiation::passwordCheck(string password)
 {
-    regex pattern(R"([^a-zA-Z]|)");
+    regex pattern(R"([^a-zA-Z0-9]+)");
     bool result = regex_search(password, pattern);
     if (password.length() < 8)
     {
@@ -50,19 +58,19 @@ bool UserValidiation::passwordCheck(string password)
         return true;
     }
 };
-bool UserValidiation::usernameCheck(string username){return true;};
+bool UserValidiation::usernameCheck(string username) { return true; };
 
-bool UserValidiation::emailAddressCheck(string emailAddress){return true;};
-void static signupinfo(User *newUser, string point, bool (*Check)(string), void (User::*set)(string))
+bool UserValidiation::emailAddressCheck(string emailAddress)
 {
-    string input;
-point:
-    cout << "Enter you" << point << ": " << endl;
-    getline(cin, input);
-    (newUser->*set)(input);
-    cin >> ws;
-    if (Check == false)
+    regex pattern(R"([A-z0-9\.]+@[A-z0-9]+\.[A-z]+)");
+    bool result = regex_match(emailAddress, pattern);
+    if (!result)
     {
-        goto point;
+        cout << "You must provide a valid Email Address." << endl;
+        return false;
     }
-}
+    else
+    {
+        return true;
+    }
+};
