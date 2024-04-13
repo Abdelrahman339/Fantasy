@@ -7,8 +7,7 @@ void static signupinfo(User *newUser, string info, bool (*Check)(string), void (
     string input;
 invalid:
     cout << "Enter you " << info << ": " << endl;
-    cin.ignore();
-    getline(cin, input);
+    getline(cin >> ws, input);
     (newUser->*set)(input);
     if (Check(input) == false)
     {
@@ -45,20 +44,52 @@ bool UserValidiation::phoneNumberCheck(string phoneNumber)
 };
 bool UserValidiation::passwordCheck(string password)
 {
-    regex pattern(R"([^a-zA-Z0-9]+)");
-    bool result = regex_search(password, pattern);
+    regex specialChar_pattern(R"([!@#$%^&*-_=+<>])");
+    regex numberandchar_pattern(R"([\d\w])");
+
     if (password.length() < 8)
     {
-        cout << "Too short password" << endl;
-        cout << "You must provide a valid password with length greater than 8." << endl;
+        cout << "Too short password!." << endl;
+        cout << "You must provide a valid password with leanght greater than 8" << endl;
         return false;
     }
-    else if (result)
+
+    else if (!regex_search(password, specialChar_pattern))
+    {
+        cout << "Too easy password!" << endl;
+        cout << "You must provide a valid password with atleast 1 special charachter" << endl;
+        return false;
+    }
+    else if (!regex_search(password, numberandchar_pattern))
+    {
+        cout << "Too easy password!" << endl;
+        cout << "You must provide a valid password with atleast 1 charachter and number" << endl;
+        return false;
+    }
+    else
     {
         return true;
     }
 };
-bool UserValidiation::usernameCheck(string username) { return true; };
+bool UserValidiation::usernameCheck(unordered_map<string, User> users, User newuser)
+{
+    string input;
+invalid:
+    cout << "Enter you "<< "Username"<< ": " << endl;
+    getline(cin >> ws, input);
+    auto it = users.find(input);
+    newuser.SetUsername(input);
+    if (it == users.end())
+    {
+        return true;
+    }
+    else
+    {
+        cout << "Username already in use!" << endl;
+        cout << "Please enter another username" << endl;
+        goto invalid;
+    }
+};
 
 bool UserValidiation::emailAddressCheck(string emailAddress)
 {

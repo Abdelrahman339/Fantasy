@@ -84,7 +84,7 @@ void User::signup(unordered_map<string, User> &Users)
     User newUser;
     cout << "Sign up" << endl;
     UserValidiation::signupinfo(&newUser, "fullname", UserValidiation::fullnameCheck, &User::SetFullName);
-    UserValidiation::signupinfo(&newUser, "userName", UserValidiation::usernameCheck, &User::SetUsername);
+    UserValidiation::usernameCheck(Users,newUser);
     UserValidiation::signupinfo(&newUser, "Password", UserValidiation::passwordCheck, &User::SetPassword);
     UserValidiation::signupinfo(&newUser, "PhoneNumber", UserValidiation::phoneNumberCheck, &User::SetPhoneNumber);
     UserValidiation::signupinfo(&newUser, "EmailAddress", UserValidiation::emailAddressCheck, &User::SetEmail);
