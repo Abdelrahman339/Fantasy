@@ -71,16 +71,16 @@ bool UserValidiation::passwordCheck(string password)
         return true;
     }
 };
-bool UserValidiation::usernameCheck(unordered_map<string, User> users, User newuser)
+bool UserValidiation::usernameCheck(unordered_map<string, User> users, User &newuser)
 {
     string input;
 invalid:
     cout << "Enter you "<< "Username"<< ": " << endl;
     getline(cin >> ws, input);
     auto it = users.find(input);
-    newuser.SetUsername(input);
     if (it == users.end())
     {
+    newuser.SetUsername(input);
         return true;
     }
     else

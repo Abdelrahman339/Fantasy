@@ -58,7 +58,7 @@ public:
     User login(unordered_map<string, User> &users, string username, string password);
     void signup(unordered_map<string, User> &Users);
     string hidePassword(string username);
-    void userMenu(User *currentUser);
+    void userMenu(User &currentUser);
     void squatForamt(int choice);
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////

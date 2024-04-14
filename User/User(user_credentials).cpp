@@ -39,7 +39,7 @@ choice:
             {
                 system("pause");
                 system("cls");
-                userMenu(&CurrentUser);
+                userMenu(CurrentUser);
             }
             else
             {
@@ -90,7 +90,7 @@ void User::signup(unordered_map<string, User> &Users)
     UserValidiation::signupinfo(&newUser, "EmailAddress", UserValidiation::emailAddressCheck, &User::SetEmail);
     Users.insert_or_assign(newUser.username, newUser);
 }
-void User::userMenu(User *currentUser)
+void User::userMenu(User &currentUser)
 {
     int choice;
 choice:
