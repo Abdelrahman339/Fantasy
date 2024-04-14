@@ -43,9 +43,9 @@ void User::SetPoints(int points)
     this->points = points;
 }
 
-void User::SetBalncae(float balncae)
+void User::SetBalance(float balance)
 {
-    this->balncae = balncae;
+    this->balance = balance;
 }
 
 void User::SetSquad(list<Footballer> squad)
@@ -91,9 +91,9 @@ int User::GetPoints()
     return points;
 }
 
-float User::GetBalncae()
+float User::GetBalance()
 {
-    return balncae;
+    return balance;
 }
 
 list<Footballer> User::GetSquad()

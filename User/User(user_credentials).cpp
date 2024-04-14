@@ -34,12 +34,12 @@ choice:
             cin >> user;
             cout << "Password(Press '+' to show password): " << endl;
             pass = hidePassword(user);
-            User CruentUser = login(Users, user, pass);
+            User CurrentUser = login(Users, user, pass);
             if (loginstat == true)
             {
                 system("pause");
                 system("cls");
-                userMenu(&CruentUser);
+                userMenu(&CurrentUser);
             }
             else
             {

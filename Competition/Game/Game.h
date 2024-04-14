@@ -8,9 +8,9 @@ class Game
 class footballPlayer
 {
     string name;
-    float rate;
+    float rating;
     int goals;
     int assists;
-    bool redCard;
-    bool yellowCard;
+    bool redCards;
+    bool yellowCards;
 };

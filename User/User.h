@@ -17,7 +17,7 @@ protected:
     int id;
     int rank;
     int points;
-    float balncae;
+    float balance;
     list<Footballer> squad;
     queue<Game> userGames;
 
@@ -33,7 +33,7 @@ public:
     void SetId(int id);
     void SetRank(int rank);
     void SetPoints(int points);
-    void SetBalncae(float balncae);
+    void SetBalance(float balance);
     void SetSquad(list<Footballer> squad);
     string GetFullName();
     string GetUsername();
@@ -43,7 +43,7 @@ public:
     int GetId();
     int GetRank();
     int GetPoints();
-    float GetBalncae();
+    float GetBalance();
     list<Footballer> GetSquad();
     queue<Game> GetUserGames();
     User ();
