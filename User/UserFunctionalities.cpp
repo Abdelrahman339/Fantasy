@@ -1,6 +1,9 @@
 ﻿#include <iostream>
 #include "User.h"
 #include "Teams.h"
+#include <fcntl.h>
+#include <io.h>
+
 using namespace std;
 void User::Squad(vector <Footballer> MainSquad, vector <Footballer> SubstitutionSquad) {
 	int choice;
@@ -123,6 +126,7 @@ void User::squadForamt(int choice, vector <Footballer> MainSquad) {
 
 };
 void User::fomat433(vector <Footballer> MainSquad){
+	_setmode(_fileno(stdout), _O_U16TEXT);
 	cout << MainSquad.at(0).GetName();
 			wcout << L"①" << endl;
 			for ( int i = 1; i < 5; i++)
@@ -143,6 +147,7 @@ void User::fomat433(vector <Footballer> MainSquad){
 
 };
 void User::fomat343(vector <Footballer> MainSquad){
+	_setmode(_fileno(stdout), _O_U16TEXT);
 	cout << MainSquad.at(0).GetName();
 	wcout << L"①" << endl;
 	for (int i = 1; i < 3; i++)
@@ -162,6 +167,7 @@ void User::fomat343(vector <Footballer> MainSquad){
 	wcout << L"⑨     ⑩     ⑪      " << endl;
 };
 void User::fomat442(vector <Footballer> MainSquad){
+	_setmode(_fileno(stdout), _O_U16TEXT);
 	wcout << L"①" << endl;
 	wcout << L"②     ③     ④   ⑤ " << endl;
 	wcout << L"⑥     ⑦     ⑧   ⑨    " << endl;
