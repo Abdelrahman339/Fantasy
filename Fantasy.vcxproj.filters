@@ -18,10 +18,16 @@
     <ClCompile Include="Main\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="User\User.cpp">
+    <ClCompile Include="User\UserValidiation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="User\UserValidiation.cpp">
+    <ClCompile Include="User\User_Credentialscpp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User\User(getter_setter).cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User\UserFunctionalities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -104,6 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>I:\FantasyProject\Fantasy\User;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -118,6 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>I:\FantasyProject\Fantasy\User;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,12 +130,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main\main.cpp" />
+    <ClCompile Include="User\User(getter_setter).cpp" />
+    <ClCompile Include="User\UserFunctionalities.cpp" />
     <ClCompile Include="User\UserValidiation.cpp" />
-    <ClCompile Include="User\User.cpp" />
+    <ClCompile Include="User\User_Credentialscpp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="User\UserValidiation.h" />
     <ClInclude Include="User\User.h" />
+    <ClInclude Include="User\UserValidiation.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
