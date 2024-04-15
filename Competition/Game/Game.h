@@ -8,11 +8,11 @@ protected:
 
     void static UpdateFootballerPoints(/*FootballerName  ,*/ int CurrentGoals, int CurrentAssists, bool redCard, bool yellowCard, bool cleanSheet) {};
     void static UpdateFootballerPrice() {};//based on points
-    bool checkPosition(footballPlayer& player) {
+    bool checkPosition(FootballerInTheMatch& player) {
     
     };
 };
-class footballPlayer
+class FootballerInTheMatch //the team that will play the match (11 footballer from the same team)
 {
     string name;
     string position;
