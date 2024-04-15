@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "list"
 #include "queue"
 #include "unordered_map"
+#include "Teams.h"
 using namespace std;
 
 class User
@@ -17,6 +19,8 @@ protected:
     int rank;
     int points;
     float balance;
+    vector <Footballer >ThemainSquad[11];
+    vector <Footballer >Substitution[4];
 
 public:
     // getter and setter and constructor
@@ -31,6 +35,7 @@ public:
     void SetRank(int rank);
     void SetPoints(int points);
     void SetBalance(float balance);
+    bool SetFootballer(Footballer footbaler);
     string GetFullName();
     string GetUsername();
     string GetPassword();
@@ -52,7 +57,12 @@ public:
     void signup(unordered_map<string, User>& Users);
     string hidePassword(string username);
     void userMenu(User& currentUser);
-    void squatForamt(int choice);
+    void squadForamt(int choice, vector <Footballer> squad);
+    void fomat433(vector <Footballer> squad);
+    void fomat343(vector <Footballer> squad);
+    void fomat442(vector <Footballer> squad);
+    void Squad(vector <Footballer> squad);
+    void showPlayerInfo(vector <Footballer> squad);
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
 };

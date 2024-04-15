@@ -48,6 +48,9 @@
     <ClCompile Include="Data\fileManpulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Data\Teams\TeamsGetterSetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User\User.h">

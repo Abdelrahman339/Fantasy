@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>I:\FantasyProject\Fantasy\User;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>I:\FantasyProject\Fantasy\User;I:\FantasyProject\Fantasy\Data\Teams;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -119,7 +119,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>I:\FantasyProject\Fantasy\User;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>I:\FantasyProject\Fantasy\User;I:\FantasyProject\Fantasy\Data\Teams;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,6 +135,7 @@
     <ClCompile Include="Data\fileManpulation.cpp" />
     <ClCompile Include="Data\Leagues\Leagues.cpp" />
     <ClCompile Include="Data\Teams\Teams.cpp" />
+    <ClCompile Include="Data\Teams\TeamsGetterSetter.cpp" />
     <ClCompile Include="Main\main.cpp" />
     <ClCompile Include="User\User(getter_setter).cpp" />
     <ClCompile Include="User\UserFunctionalities.cpp" />
