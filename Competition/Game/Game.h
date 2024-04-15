@@ -5,11 +5,7 @@ using namespace std;
 class Game
 {
 
-    void static UpdateFootballerPoints(/*FootballerName  ,*/ int CurrentGoals, int CurrentAssists, bool redCard, bool yellowCard, bool cleanSheet) {};
-    void static UpdateFootballerPrice() {};//based on points
-    bool checkPosition(FootballerInTheMatch& player) {
-    
-    };
+   
 };
 class FootballerInTheMatch //the team that will play the match (11 footballer from the same team)
 {
