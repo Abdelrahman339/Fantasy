@@ -10,8 +10,6 @@ protected:
     void static UpdateFootballerPrice() {};//based on points
     bool checkPosition(footballPlayer& player) {
     
-    };
-};
 class footballPlayer
 {
     string name;
