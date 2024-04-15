@@ -5,6 +5,11 @@
 using namespace std;
 class Game
 {
+protected:
+
+    void static UpdateFootballerPoints(/*FootballerName  ,*/ int CurrentGoals, int CurrentAssists, bool redCard, bool yellowCard, bool cleanSheet) {};
+    void static UpdateFootballerPrice() {};//based on points
+    bool checkPosition() {};//will be used in  UpdateFootballerPoints function
 };
 class footballPlayer
 {
@@ -14,4 +19,5 @@ class footballPlayer
     int assists;
     bool redCards;
     bool yellowCards;
+    bool cleanSheets; // For updating goalKeepers and defenders points
 };
