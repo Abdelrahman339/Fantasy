@@ -61,8 +61,9 @@ public:
     void fomat433(vector <Footballer> squad);
     void fomat343(vector <Footballer> squad);
     void fomat442(vector <Footballer> squad);
-    void Squad(vector <Footballer> squad);
-    void showPlayerInfo(vector <Footballer> squad);
+    void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
+    void showPlayerInfo(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
+    void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
 };
