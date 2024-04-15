@@ -129,6 +129,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Admin\Admin.cpp" />
+    <ClCompile Include="Competition\Competition.cpp" />
+    <ClCompile Include="Competition\Game\Game.cpp" />
+    <ClCompile Include="Data\fileManpulation.cpp" />
+    <ClCompile Include="Data\Leagues\Leagues.cpp" />
+    <ClCompile Include="Data\Teams\Teams.cpp" />
     <ClCompile Include="Main\main.cpp" />
     <ClCompile Include="User\User(getter_setter).cpp" />
     <ClCompile Include="User\UserFunctionalities.cpp" />
@@ -136,6 +142,12 @@
     <ClCompile Include="User\User_Credentialscpp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Admin\Admin.h" />
+    <ClInclude Include="Competition\Competition.h" />
+    <ClInclude Include="Competition\Game\Game.h" />
+    <ClInclude Include="Data\fileManpulation.h" />
+    <ClInclude Include="Data\Leagues\Leagues.h" />
+    <ClInclude Include="Data\Teams\Teams.h" />
     <ClInclude Include="User\User.h" />
     <ClInclude Include="User\UserValidiation.h" />
   </ItemGroup>
