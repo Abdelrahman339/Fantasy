@@ -8,13 +8,13 @@ class Teams
     int points;
 };
 
-class Footballer
+class Footballer //the squad that the user own's
 {
     string name;
     int age;
     string position;
     float price;
-    bool captin;
+    bool captain;
     int goals;      // per season
     int assists;    // per season
     int redCard;    // per season
