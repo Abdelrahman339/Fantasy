@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,11 +8,14 @@ protected:
 
     void static UpdateFootballerPoints(/*FootballerName  ,*/ int CurrentGoals, int CurrentAssists, bool redCard, bool yellowCard, bool cleanSheet) {};
     void static UpdateFootballerPrice() {};//based on points
-    bool checkPosition() {};//will be used in  UpdateFootballerPoints function
+    bool checkPosition(footballPlayer& player) {
+    
+    };
 };
 class footballPlayer
 {
     string name;
+    string position;
     float rating;
     int goals;
     int assists;
