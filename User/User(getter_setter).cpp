@@ -57,15 +57,15 @@ string User::GetFullName()
 
 bool User::SetFootballer(Footballer footballer)
 {
-    if (ThemainSquad.size()<11)
+    if (TheMainSquad.size()<11)
     {
 
-    ThemainSquad.push_back(footballer);
+    TheMainSquad.push_back(footballer);
     }
-    else if(ThemainSquad.size() == 11&& SubstitutionSquad.size()< 4){
+    else if(TheMainSquad.size() == 11&& SubstitutionSquad.size()< 4){
         SubstitutionSquad.push_back(footballer);
     }
-    else if (ThemainSquad.size() == 11&& SubstitutionSquad.size()==4)
+    else if (TheMainSquad.size() == 11&& SubstitutionSquad.size()==4)
     {
         cout << "Your team is full!" << endl;
         cout << "Buy or replace players to add new players" << endl;

@@ -107,7 +107,7 @@ choice:
     }
     else if (choice == 2)
     {
-        Squad(currentUser.ThemainSquad, currentUser.SubstitutionSquad);
+        Squad(currentUser.TheMainSquad, currentUser.SubstitutionSquad);
     }
     else if (choice == 3)
     {

@@ -21,7 +21,7 @@ protected:
     float balance;
 
 public:
-    vector <Footballer >ThemainSquad;
+    vector <Footballer >TheMainSquad;
     vector <Footballer >SubstitutionSquad;
     // getter and setter and constructor
     ///////////////////////////////////////////////////////////////////////////////////
