@@ -4,6 +4,7 @@
 #include "Teams.h"
 #include <fcntl.h>
 #include <io.h>
+#include <iomanip>
 
 using namespace std;
 void User::Squad(vector <Footballer> MainSquad, vector <Footballer> SubstitutionSquad) {
@@ -190,7 +191,7 @@ void User::editInfo(User currentUser, unordered_map<string, User>& Users) {
 void User::squadFormat(int choice, vector <Footballer> MainSquad) {
 	if (choice==1)
 	{
-		User::Format343(MainSquad);
+		//User::Format343(MainSquad);
 	}
 	else if (choice == 2) {
 		User::Format433(MainSquad);
@@ -206,46 +207,45 @@ void User::squadFormat(int choice, vector <Footballer> MainSquad) {
 
 };
 void User::Format433(vector <Footballer> MainSquad){
-	//cout << MainSquad.at(0).GetName();
-			//wcout << L"①" << endl;
-			////for ( int i = 1; i < 5; i++)
-			////{
-			////	cout << MainSquad.at(i).GetName() << "     ";
-			////}
-			//wcout << L"②     ③     ④      ⑤" << endl;
-			////for (int i = 5; i < 7; i++)
-			////{
-			////	cout << MainSquad.at(i).GetName() << "     ";
-			////}
-			//wcout << L"⑥     ⑦     ⑧      " << endl;
-			////for (int i = 8; i < 10; i++)
-			////{
-			////	cout << MainSquad.at(i).GetName() << "     ";
-			////}
-			//wcout << L"⑨     ⑩     ⑪      " << endl;
-	cout << "format";
+	cout << MainSquad.at(0).GetAge();
+			wcout << L"①" << endl;
+			for ( int i = 1; i < 5; i++)
+			{
+				cout << MainSquad.at(i).GetAge() << "     ";
+			}
+			wcout << L"②     ③     ④      ⑤" << endl;
+			for (int i = 5; i < 7; i++)
+			{
+				cout << MainSquad.at(i).GetAge() << "     ";
+			}
+			wcout << L"⑥     ⑦     ⑧      " << endl;
+			for (int i = 8; i < 10; i++)
+			{
+				cout << MainSquad.at(i).GetAge() << "     ";
+			}
+			wcout << L"⑨     ⑩     ⑪      " << endl;
 
 };
-void User::Format343(vector <Footballer> MainSquad){
-	////_setmode(_fileno(stdout), _O_U16TEXT);
-	////cout << MainSquad.at(0).GetName();
-	//wcout << L"①" << endl;
-	////for (int i = 1; i < 3; i++)
-	////{
-	////	cout << MainSquad.at(i).GetName() << "     ";
-	////}
-	//wcout << L"②     ③     ④   " << endl;
-	////for (int i = 4; i < 7; i++)
-	////{
-	////	cout << MainSquad.at(i).GetName() << "     ";
-	////}
-	//wcout << L"⑤     ⑥     ⑦     ⑧      " << endl;
-	////for (int i = 8; i < 10; i++)
-	////{
-	////	cout << MainSquad.at(i).GetName() << "     ";
-	////}
-	//wcout << L"⑨     ⑩     ⑪      " << endl;
-	cout << "format";
+void User::Format343(){
+	_setmode(_fileno(stdout), _O_U16TEXT);
+	//cout << MainSquad.at(0).GetName();
+	//for (int i = 1; i < 3; i++)
+	//{
+	//	cout << MainSquad.at(i).GetName() << "     ";
+	//}
+	//for (int i = 4; i < 7; i++)
+	//{
+	//	cout << MainSquad.at(i).GetName() << "     ";
+	//}
+	//for (int i = 8; i < 10; i++)
+	//{
+	//	cout << MainSquad.at(i).GetName() << "     ";
+	//}
+	//cout << "format";
+	wcout << setw(22)<< L"⑨     ⑩     ⑪      \n\n" << endl;
+	wcout << setw(20)<< L"⑤     ⑥     ⑦     ⑧      \n\n" << endl;
+	wcout << setw(20)<< L"②     ③     ④   \n\n" << endl;
+	wcout << setw(10)<< L"①\n\n" << endl;
 };
 void User::Format442(vector <Footballer> MainSquad){
 	//_setmode(_fileno(stdout), _O_U16TEXT);

@@ -59,7 +59,7 @@ public:
     void userMenu(User& currentUser, unordered_map<string, User>& Users);
     void squadFormat(int choice, vector <Footballer> squad);
     void Format433(vector <Footballer> squad);
-    void Format343(vector <Footballer> squad);
+    void Format343();
     void Format442(vector <Footballer> squad);
     void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
     void showPlayerInfo(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);

@@ -1,8 +1,8 @@
-#include "UserValidiation.h"
+#include "UserValidations.h"
 #include <regex>
 #include <iostream>
 using namespace std;
-void UserValidiation::signupinfo(User* newUser, string info, bool (*Check)(string), void (User::* set)(string))
+void UserValidations::signupinfo(User* newUser, string info, bool (*Check)(string), void (User::* set)(string))
 {
     string input;
 invalid:
@@ -14,7 +14,7 @@ invalid:
         goto invalid;
     }
 }
-bool UserValidiation::fullnameCheck(string fullName)
+bool UserValidations::fullnameCheck(string fullName)
 {
     regex pattern(R"([A-z]+(?: [A-z]+)*)");
     bool result = regex_match(fullName, pattern);
@@ -28,7 +28,7 @@ bool UserValidiation::fullnameCheck(string fullName)
         return true;
     }
 };
-bool UserValidiation::phoneNumberCheck(string phoneNumber)
+bool UserValidations::phoneNumberCheck(string phoneNumber)
 {
     regex pattern(R"(\d{11})");
     bool result = regex_match(phoneNumber, pattern);
@@ -42,7 +42,7 @@ bool UserValidiation::phoneNumberCheck(string phoneNumber)
         return true;
     }
 };
-bool UserValidiation::passwordCheck(string password)
+bool UserValidations::passwordCheck(string password)
 {
     regex specialChar_pattern(R"([!@#$%^&*-_=+<>])");
     regex numberandchar_pattern(R"([\d\w])");
@@ -50,20 +50,20 @@ bool UserValidiation::passwordCheck(string password)
     if (password.length() < 8)
     {
         cout << "Too short password!." << endl;
-        cout << "You must provide a valid password with leanght greater than 8" << endl;
+        cout << "You must provide a valid password with length greater than 8" << endl;
         return false;
     }
 
     else if (!regex_search(password, specialChar_pattern))
     {
         cout << "Too easy password!" << endl;
-        cout << "You must provide a valid password with atleast 1 special charachter" << endl;
+        cout << "You must provide a valid password with at least 1 special character" << endl;
         return false;
     }
     else if (!regex_search(password, numberandchar_pattern))
     {
         cout << "Too easy password!" << endl;
-        cout << "You must provide a valid password with atleast 1 charachter and number" << endl;
+        cout << "You must provide a valid password with at least 1 character and number" << endl;
         return false;
     }
     else
@@ -71,7 +71,7 @@ bool UserValidiation::passwordCheck(string password)
         return true;
     }
 };
-bool UserValidiation::usernameCheck(unordered_map<string, User> users, User& newuser)
+bool UserValidations::usernameCheck(unordered_map<string, User> users, User& Newser)
 {
     string input;
 invalid:
@@ -80,7 +80,7 @@ invalid:
     auto it = users.find(input);
     if (it == users.end())
     {
-        newuser.SetUsername(input);
+        Newser.SetUsername(input);
         return true;
     }
     else
@@ -91,7 +91,7 @@ invalid:
     }
 };
 
-bool UserValidiation::emailAddressCheck(string emailAddress)
+bool UserValidations::emailAddressCheck(string emailAddress)
 {
     regex pattern(R"([A-z0-9\.]+@[A-z0-9]+\.[A-z]+)");
     bool result = regex_match(emailAddress, pattern);
