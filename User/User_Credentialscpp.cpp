@@ -86,11 +86,11 @@ void User::signup(unordered_map<string, User>& Users)
 {
     User newUser;
     cout << "Sign up" << endl;
-    UserValidiation::signupinfo(&newUser, "fullname", UserValidiation::fullnameCheck, &User::SetFullName);
-    UserValidiation::usernameCheck(Users, newUser);
-    UserValidiation::signupinfo(&newUser, "Password", UserValidiation::passwordCheck, &User::SetPassword);
-    UserValidiation::signupinfo(&newUser, "PhoneNumber", UserValidiation::phoneNumberCheck, &User::SetPhoneNumber);
-    UserValidiation::signupinfo(&newUser, "EmailAddress", UserValidiation::emailAddressCheck, &User::SetEmail);
+    UserValidations::signupinfo(&newUser, "Fullname", UserValidations::fullnameCheck, &User::SetFullName);
+    UserValidations::usernameCheck(Users, newUser);
+    UserValidations::signupinfo(&newUser, "Password", UserValidations::passwordCheck, &User::SetPassword);
+    UserValidations::signupinfo(&newUser, "PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
+    UserValidations::signupinfo(&newUser, "EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
     Users.insert_or_assign(newUser.username, newUser);
 }
 void User::userMenu(User& currentUser, unordered_map<string, User>& Users)
@@ -98,7 +98,7 @@ void User::userMenu(User& currentUser, unordered_map<string, User>& Users)
     int choice;
 choice:
     cout << "Main Menu" << endl;
-    cout << "1-Profle \n 2-Squad \n 3-Market \n 4-Play \n 5-logout" << endl;
+    cout << "1-Profile \n 2-Squad \n 3-Market \n 4-Play \n 5-logout" << endl;
     cout << "Enter you option..." << endl;
     cin >> choice;
     if (choice == 1)

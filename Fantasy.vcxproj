@@ -139,7 +139,7 @@
     <ClCompile Include="Main\main.cpp" />
     <ClCompile Include="User\User(getter_setter).cpp" />
     <ClCompile Include="User\UserFunctionalities.cpp" />
-    <ClCompile Include="User\UserValidiation.cpp" />
+    <ClCompile Include="User\UserValidations.cpp" />
     <ClCompile Include="User\User_Credentialscpp.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,7 +150,7 @@
     <ClInclude Include="Data\Leagues\Leagues.h" />
     <ClInclude Include="Data\Teams\Teams.h" />
     <ClInclude Include="User\User.h" />
-    <ClInclude Include="User\UserValidiation.h" />
+    <ClInclude Include="User\UserValidations.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

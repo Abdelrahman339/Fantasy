@@ -57,10 +57,10 @@ public:
     void signup(unordered_map<string, User>& Users);
     string hidePassword(string username);
     void userMenu(User& currentUser, unordered_map<string, User>& Users);
-    void squadForamt(int choice, vector <Footballer> squad);
-    void fomat433(vector <Footballer> squad);
-    void fomat343(vector <Footballer> squad);
-    void fomat442(vector <Footballer> squad);
+    void squadFormat(int choice, vector <Footballer> squad);
+    void Format433(vector <Footballer> squad);
+    void Format343(vector <Footballer> squad);
+    void Format442(vector <Footballer> squad);
     void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
     void showPlayerInfo(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
     void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);

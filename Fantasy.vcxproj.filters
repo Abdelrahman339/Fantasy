@@ -18,7 +18,7 @@
     <ClCompile Include="Main\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="User\UserValidiation.cpp">
+    <ClCompile Include="User\UserValidations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="User\User_Credentialscpp.cpp">
@@ -56,7 +56,7 @@
     <ClInclude Include="User\User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="User\UserValidiation.h">
+    <ClInclude Include="User\UserValidations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Admin\Admin.h">

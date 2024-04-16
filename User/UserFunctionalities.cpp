@@ -9,7 +9,7 @@ using namespace std;
 void User::Squad(vector <Footballer> MainSquad, vector <Footballer> SubstitutionSquad) {
 	int choice;
 	cout << "your fantasy squad" << endl;
-	squadForamt(2, MainSquad);
+	squadFormat(2, MainSquad);
 	choice:
 	cout<<"1-Show information about your players\n2-Change your format\n3-Substitution\n4-Go back " << endl;
 	cin >> choice;
@@ -24,14 +24,14 @@ void User::Squad(vector <Footballer> MainSquad, vector <Footballer> Substitution
 		cin >> choice;
 		if (choice==1)
 		{
-			squadForamt(1, MainSquad);
+			squadFormat(1, MainSquad);
 		}
 		else if (choice == 2) {
-			squadForamt(2, MainSquad);
+			squadFormat(2, MainSquad);
 		}		
 		
 	else if (choice == 3) {
-		squadForamt(3, MainSquad);
+		squadFormat(3, MainSquad);
 	}
 		}
 	else if (choice==3)
@@ -76,7 +76,7 @@ void User::showPlayerInfo(vector <Footballer> MainSquad, vector <Footballer> Sub
 	}
 	else if (choice==2)
 	{
-		system("paues");
+		system("pause");
 		system("cls");
 		Squad(MainSquad,SubstitutionSquad);
 	}
@@ -100,7 +100,7 @@ void User::Substitution(vector <Footballer> mainSquad, vector <Footballer> Subst
 	mainSquad.at(choice1 - 1) = SubstitutionSquad.at(choice2 - 1);
 	SubstitutionSquad.at(choice1 - 1) = tempPlayer;
 	cout << "Player in your main squad now" << endl;
-	system("paues");
+	system("pause");
 	system("cls");
 	Squad(mainSquad, SubstitutionSquad);
 };
@@ -110,7 +110,7 @@ void User::profile(User currentUser, unordered_map<string, User>& Users) {
 	cout << "profile" << endl;
 	cout << "Name:" << currentUser.GetFullName() << endl;;
 	cout << "Username:" << currentUser.GetUsername() << endl;
-	cout << "Email Adrress:" << currentUser.GetEmail()<<endl;
+	cout << "Email Address:" << currentUser.GetEmail()<<endl;
 	cout << "Phone number:" << currentUser.GetPhoneNumber() << endl;
 	cout << "Password:" << currentUser.GetPassword() << endl;
 	//cout << "Id:" << currentUser.GetId() << endl;
@@ -134,36 +134,36 @@ void User::editInfo(User currentUser, unordered_map<string, User>& Users) {
 	int choice;
 	invalid:
 	cout << "What info you want to update:" << endl;
-	cout << "1-Fullname\n2-Username\n3-Email Adrress\n4-Phone number\n5-Password\n6-Go back" << endl;
+	cout << "1-Fullname\n2-Username\n3-Email Address\n4-Phone number\n5-Password\n6-Go back" << endl;
 	cin >> choice;
 	if (choice==1)
 	{
 		
-		UserValidiation::signupinfo(&currentUser, "new Fullname", UserValidiation::fullnameCheck, &User::SetFullName);
-		cout << "full name udpated sucssfully" << endl;
+		UserValidations::signupinfo(&currentUser, "new Fullname", UserValidations::fullnameCheck, &User::SetFullName);
+		cout << "full name updated successfully" << endl;
 		system("pause");
 		system("cls");
 		profile(currentUser, Users);
 	}
 	else if (choice==2)
 	{
-		UserValidiation::usernameCheck(Users, currentUser);
-		cout << "Username updated sucssfully" << endl;
+		UserValidations::usernameCheck(Users, currentUser);
+		cout << "Username updated successfully" << endl;
 		system("pause");
 		system("cls");
 		profile(currentUser, Users);
 	}	else if (choice==3)
 	{
-		UserValidiation::signupinfo(&currentUser, "new EmailAddress", UserValidiation::emailAddressCheck, &User::SetEmail);
-		cout << "EmailAddress updated sucssfully" << endl;
+		UserValidations::signupinfo(&currentUser, "new EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
+		cout << "EmailAddress updated successfully" << endl;
 		system("pause");
 		system("cls");
 		profile(currentUser, Users);
 	}	else if (choice==4)
 	{
 		
-		UserValidiation::signupinfo(&currentUser, "new PhoneNumber", UserValidiation::phoneNumberCheck, &User::SetPhoneNumber);
-		cout << "PhoneNumber updated sucssfully" << endl;
+		UserValidations::signupinfo(&currentUser, "new PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
+		cout << "PhoneNumber updated successfully" << endl;
 		system("pause");
 		system("cls");
 		profile(currentUser, Users);
@@ -171,8 +171,8 @@ void User::editInfo(User currentUser, unordered_map<string, User>& Users) {
 
 	else if (choice==5)
 	{
-		UserValidiation::signupinfo(&currentUser, "new Password", UserValidiation::passwordCheck, &User::SetPassword);
-		cout << "Password updated sucssfully" << endl;
+		UserValidations::signupinfo(&currentUser, "new Password", UserValidations::passwordCheck, &User::SetPassword);
+		cout << "Password updated successfully" << endl;
 		system("pause");
 		system("cls");
 		profile(currentUser, Users);
@@ -182,30 +182,30 @@ void User::editInfo(User currentUser, unordered_map<string, User>& Users) {
 		profile(currentUser, Users);
 	}
 	else {
-		cout << "invlaid input.Please select a valid option" << endl;
+		cout << "invalid input.Please select a valid option" << endl;
 		goto invalid;
 	}
 };
 
-void User::squadForamt(int choice, vector <Footballer> MainSquad) {
+void User::squadFormat(int choice, vector <Footballer> MainSquad) {
 	if (choice==1)
 	{
-		User::fomat343(MainSquad);
+		User::Format343(MainSquad);
 	}
 	else if (choice == 2) {
-		User::fomat433(MainSquad);
+		User::Format433(MainSquad);
 	}
 	else if (choice == 3) {
-		User::fomat442(MainSquad);
+		User::Format442(MainSquad);
 	}
 	else {
-		cout << "invlaid input!" << endl;
+		cout << "invalid input!" << endl;
 		cout << "Please select from the available formats." << endl;
 
 	}
 
 };
-void User::fomat433(vector <Footballer> MainSquad){
+void User::Format433(vector <Footballer> MainSquad){
 	//cout << MainSquad.at(0).GetName();
 			//wcout << L"①" << endl;
 			////for ( int i = 1; i < 5; i++)
@@ -226,7 +226,7 @@ void User::fomat433(vector <Footballer> MainSquad){
 	cout << "format";
 
 };
-void User::fomat343(vector <Footballer> MainSquad){
+void User::Format343(vector <Footballer> MainSquad){
 	////_setmode(_fileno(stdout), _O_U16TEXT);
 	////cout << MainSquad.at(0).GetName();
 	//wcout << L"①" << endl;
@@ -247,7 +247,7 @@ void User::fomat343(vector <Footballer> MainSquad){
 	//wcout << L"⑨     ⑩     ⑪      " << endl;
 	cout << "format";
 };
-void User::fomat442(vector <Footballer> MainSquad){
+void User::Format442(vector <Footballer> MainSquad){
 	//_setmode(_fileno(stdout), _O_U16TEXT);
 	//wcout << L"①" << endl;
 	//wcout << L"②     ③     ④   ⑤ " << endl;
