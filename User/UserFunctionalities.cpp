@@ -7,6 +7,10 @@
 #include <iomanip>
 
 using namespace std;
+void User::spacing(int spacing, char character) {
+	string space(spacing, character);
+	cout << space;
+};
 void User::Squad(vector <Footballer> MainSquad, vector <Footballer> SubstitutionSquad) {
 	int choice;
 	cout << "your fantasy squad" << endl;
