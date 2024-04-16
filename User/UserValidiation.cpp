@@ -21,7 +21,7 @@ bool UserValidiation::fullnameCheck(string fullName)
     if (!result)
     {
         cout << "You must provide a valid Fullname with no numbers or special character ." << endl;
-        return false;
+        return false;   
     }
     else
     {

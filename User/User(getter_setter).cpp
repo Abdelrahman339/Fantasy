@@ -1,6 +1,7 @@
 #include <iostream>
 #include "UserValidiation.h"
 #include "User.h"
+#include "Teams.h"
 using namespace std;
 
 void User::SetFullName(string fullName)
@@ -51,6 +52,25 @@ void User::SetBalance(float balance)
 string User::GetFullName()
 {
     return fullName;
+}
+
+
+bool User::SetFootballer(Footballer footballer)
+{
+    if (ThemainSquad.size()<11)
+    {
+
+    ThemainSquad.push_back(footballer);
+    }
+    else if(ThemainSquad.size() == 11&& SubstitutionSquad.size()< 4){
+        SubstitutionSquad.push_back(footballer);
+    }
+    else if (ThemainSquad.size() == 11&& SubstitutionSquad.size()==4)
+    {
+        cout << "Your team is full!" << endl;
+        cout << "Buy or replace players to add new players" << endl;
+        return false;
+    }
 }
 
 string User::GetUsername()

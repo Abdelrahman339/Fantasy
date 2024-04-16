@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "list"
 #include "queue"
 #include "unordered_map"
+#include "Teams.h"
 using namespace std;
 
 class User
@@ -19,6 +21,8 @@ protected:
     float balance;
 
 public:
+    vector <Footballer >ThemainSquad;
+    vector <Footballer >SubstitutionSquad;
     // getter and setter and constructor
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
@@ -31,6 +35,7 @@ public:
     void SetRank(int rank);
     void SetPoints(int points);
     void SetBalance(float balance);
+    bool SetFootballer(Footballer footbaler);
     string GetFullName();
     string GetUsername();
     string GetPassword();
@@ -51,8 +56,16 @@ public:
     User login(unordered_map<string, User>& users, string username, string password);
     void signup(unordered_map<string, User>& Users);
     string hidePassword(string username);
-    void userMenu(User& currentUser);
-    void squatForamt(int choice);
+    void userMenu(User& currentUser, unordered_map<string, User>& Users);
+    void squadForamt(int choice, vector <Footballer> squad);
+    void fomat433(vector <Footballer> squad);
+    void fomat343(vector <Footballer> squad);
+    void fomat442(vector <Footballer> squad);
+    void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
+    void showPlayerInfo(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
+    void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);
+    void profile(User currentUser, unordered_map<string, User>& Users);
+    void editInfo(User currentUser, unordered_map<string, User>& Users);
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
 };
