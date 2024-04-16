@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-bool Competetion::checkPosition(string& footballerName, queue<Game>& GameHighlights) //To check if the player is a defender or a goalkeeper (For adding cleansheet points)
+bool Competition::checkPosition(string& footballerName, queue<Game>& GameHighlights) //To check if the player is a defender or a goalkeeper (For adding cleansheet points)
 {
 
 
@@ -19,7 +19,7 @@ bool Competetion::checkPosition(string& footballerName, queue<Game>& GameHighlig
 
 }
 
-void Competetion::UpdateFootballerPoints(queue<Game>& GameHighlights, int CurrentGoals, int CurrentAssists, bool redCard, bool yellowCard, bool cleanSheet) {
+void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights, int CurrentGoals, int CurrentAssists, bool redCard, bool yellowCard, bool cleanSheet) {
 
 
 
