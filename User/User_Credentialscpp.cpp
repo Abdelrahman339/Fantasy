@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <conio.h>
-#include "UserValidiation.h"
+#include "UserValidations.h"
 #include "User.h"
 using namespace std;
 bool loginstat = false;
