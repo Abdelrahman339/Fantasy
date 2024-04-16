@@ -13,7 +13,7 @@ void User::homePage(unordered_map<string, User>& Users)
 choice:
     cout << "Welcome to Fantasy game!" << endl;
     cout << "It's time for another season of fantasy football glory!" << endl;
-    cout << "1-Admin \n 2- login \n 3-sign up" << endl;
+    cout << "1-Admin \n 2- login \n 3-sign up\n4-Exit" << endl;
     cout << "Enter your option" << endl;
     cin >> choice;
     if (choice == 1)
@@ -39,7 +39,7 @@ choice:
             {
                 system("pause");
                 system("cls");
-                userMenu(CurrentUser);
+                userMenu(CurrentUser, Users);
             }
             else
             {
@@ -55,6 +55,9 @@ choice:
         signup(Users);
         system("pause");
         goto login;
+    }    else if (choice == 4)
+    {
+        system("exit");
     }
     else
     {
@@ -90,7 +93,7 @@ void User::signup(unordered_map<string, User>& Users)
     UserValidiation::signupinfo(&newUser, "EmailAddress", UserValidiation::emailAddressCheck, &User::SetEmail);
     Users.insert_or_assign(newUser.username, newUser);
 }
-void User::userMenu(User& currentUser)
+void User::userMenu(User& currentUser, unordered_map<string, User>& Users)
 {
     int choice;
 choice:
@@ -100,11 +103,11 @@ choice:
     cin >> choice;
     if (choice == 1)
     {
-        // profile function
+        profile(currentUser, Users);
     }
     else if (choice == 2)
     {
-        // squad function
+        Squad(currentUser.ThemainSquad, currentUser.SubstitutionSquad);
     }
     else if (choice == 3)
     {
@@ -116,7 +119,7 @@ choice:
     }
     else if (choice == 5)
     {
-        // logout function
+        currentUser.homePage(Users);
     }
     else
     {

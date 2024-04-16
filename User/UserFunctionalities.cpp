@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "User.h"
+#include "UserValidiation.h"
 #include "Teams.h"
 #include <fcntl.h>
 #include <io.h>
@@ -104,8 +105,87 @@ void User::Substitution(vector <Footballer> mainSquad, vector <Footballer> Subst
 	Squad(mainSquad, SubstitutionSquad);
 };
 
+void User::profile(User currentUser, unordered_map<string, User>& Users) {
+	int choice;
+	cout << "profile" << endl;
+	cout << "Name:" << currentUser.GetFullName() << endl;;
+	cout << "Username:" << currentUser.GetUsername() << endl;
+	cout << "Email Adrress:" << currentUser.GetEmail()<<endl;
+	cout << "Phone number:" << currentUser.GetPhoneNumber() << endl;
+	cout << "Password:" << currentUser.GetPassword() << endl;
+	//cout << "Id:" << currentUser.GetId() << endl;
+	//cout << "Balance:" << currentUser.GetBalance() << endl;
+	//cout << "Points:" << currentUser.GetPoints() << endl;
+	//cout << "Rank:" << currentUser.GetRank() << endl;
+	cout << "--------------------------------------------------------------------------------\n" << endl;
+	cout << "1-Edit information.\n2-Go back" << endl;
+	cin >> choice;
+	if (choice==1)
+	{
+		editInfo(currentUser, Users);
+	}
+	else if (choice==2)
+	{
+		userMenu(currentUser,Users);
+	}
+};
 
+void User::editInfo(User currentUser, unordered_map<string, User>& Users) {
+	int choice;
+	invalid:
+	cout << "What info you want to update:" << endl;
+	cout << "1-Fullname\n2-Username\n3-Email Adrress\n4-Phone number\n5-Password\n6-Go back" << endl;
+	cin >> choice;
+	if (choice==1)
+	{
+		
+		UserValidiation::signupinfo(&currentUser, "new Fullname", UserValidiation::fullnameCheck, &User::SetFullName);
+		cout << "full name udpated sucssfully" << endl;
+		system("pause");
+		system("cls");
+		profile(currentUser, Users);
+	}
+	else if (choice==2)
+	{
+		UserValidiation::usernameCheck(Users, currentUser);
+		cout << "Username updated sucssfully" << endl;
+		system("pause");
+		system("cls");
+		profile(currentUser, Users);
+	}	else if (choice==3)
+	{
+		UserValidiation::signupinfo(&currentUser, "new EmailAddress", UserValidiation::emailAddressCheck, &User::SetEmail);
+		cout << "EmailAddress updated sucssfully" << endl;
+		system("pause");
+		system("cls");
+		profile(currentUser, Users);
+	}	else if (choice==4)
+	{
+		
+		UserValidiation::signupinfo(&currentUser, "new PhoneNumber", UserValidiation::phoneNumberCheck, &User::SetPhoneNumber);
+		cout << "PhoneNumber updated sucssfully" << endl;
+		system("pause");
+		system("cls");
+		profile(currentUser, Users);
+	}	
 
+	else if (choice==5)
+	{
+		UserValidiation::signupinfo(&currentUser, "new Password", UserValidiation::passwordCheck, &User::SetPassword);
+		cout << "Password updated sucssfully" << endl;
+		system("pause");
+		system("cls");
+		profile(currentUser, Users);
+	}	
+	else if (choice==6)
+	{
+		profile(currentUser, Users);
+	}
+	else {
+		cout << "invlaid input.Please select a valid option" << endl;
+		goto invalid;
+	}
+};
 
 void User::squadForamt(int choice, vector <Footballer> MainSquad) {
 	if (choice==1)
@@ -126,50 +206,52 @@ void User::squadForamt(int choice, vector <Footballer> MainSquad) {
 
 };
 void User::fomat433(vector <Footballer> MainSquad){
-	_setmode(_fileno(stdout), _O_U16TEXT);
-	cout << MainSquad.at(0).GetName();
-			wcout << L"①" << endl;
-			for ( int i = 1; i < 5; i++)
-			{
-				cout << MainSquad.at(i).GetName() << "     ";
-			}
-			wcout << L"②     ③     ④      ⑤" << endl;
-			for (int i = 5; i < 7; i++)
-			{
-				cout << MainSquad.at(i).GetName() << "     ";
-			}
-			wcout << L"⑥     ⑦     ⑧      " << endl;
-			for (int i = 8; i < 10; i++)
-			{
-				cout << MainSquad.at(i).GetName() << "     ";
-			}
-			wcout << L"⑨     ⑩     ⑪      " << endl;
+	//cout << MainSquad.at(0).GetName();
+			//wcout << L"①" << endl;
+			////for ( int i = 1; i < 5; i++)
+			////{
+			////	cout << MainSquad.at(i).GetName() << "     ";
+			////}
+			//wcout << L"②     ③     ④      ⑤" << endl;
+			////for (int i = 5; i < 7; i++)
+			////{
+			////	cout << MainSquad.at(i).GetName() << "     ";
+			////}
+			//wcout << L"⑥     ⑦     ⑧      " << endl;
+			////for (int i = 8; i < 10; i++)
+			////{
+			////	cout << MainSquad.at(i).GetName() << "     ";
+			////}
+			//wcout << L"⑨     ⑩     ⑪      " << endl;
+	cout << "format";
 
 };
 void User::fomat343(vector <Footballer> MainSquad){
-	_setmode(_fileno(stdout), _O_U16TEXT);
-	cout << MainSquad.at(0).GetName();
-	wcout << L"①" << endl;
-	for (int i = 1; i < 3; i++)
-	{
-		cout << MainSquad.at(i).GetName() << "     ";
-	}
-	wcout << L"②     ③     ④   " << endl;
-	for (int i = 4; i < 7; i++)
-	{
-		cout << MainSquad.at(i).GetName() << "     ";
-	}
-	wcout << L"⑤     ⑥     ⑦     ⑧      " << endl;
-	for (int i = 8; i < 10; i++)
-	{
-		cout << MainSquad.at(i).GetName() << "     ";
-	}
-	wcout << L"⑨     ⑩     ⑪      " << endl;
+	////_setmode(_fileno(stdout), _O_U16TEXT);
+	////cout << MainSquad.at(0).GetName();
+	//wcout << L"①" << endl;
+	////for (int i = 1; i < 3; i++)
+	////{
+	////	cout << MainSquad.at(i).GetName() << "     ";
+	////}
+	//wcout << L"②     ③     ④   " << endl;
+	////for (int i = 4; i < 7; i++)
+	////{
+	////	cout << MainSquad.at(i).GetName() << "     ";
+	////}
+	//wcout << L"⑤     ⑥     ⑦     ⑧      " << endl;
+	////for (int i = 8; i < 10; i++)
+	////{
+	////	cout << MainSquad.at(i).GetName() << "     ";
+	////}
+	//wcout << L"⑨     ⑩     ⑪      " << endl;
+	cout << "format";
 };
 void User::fomat442(vector <Footballer> MainSquad){
-	_setmode(_fileno(stdout), _O_U16TEXT);
-	wcout << L"①" << endl;
-	wcout << L"②     ③     ④   ⑤ " << endl;
-	wcout << L"⑥     ⑦     ⑧   ⑨    " << endl;
-	wcout << L"    ⑩     ⑪      " << endl;
+	//_setmode(_fileno(stdout), _O_U16TEXT);
+	//wcout << L"①" << endl;
+	//wcout << L"②     ③     ④   ⑤ " << endl;
+	//wcout << L"⑥     ⑦     ⑧   ⑨    " << endl;
+	//wcout << L"    ⑩     ⑪      " << endl;
+	cout << "format";
 };
