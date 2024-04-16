@@ -9,7 +9,9 @@ using namespace std;
 
 
 
-bool Competetion::checkPosition(string& footballerName, queue<Game>& GameHighlights) {
+bool Competetion::checkPosition(string& footballerName, queue<Game>& GameHighlights) //To check if the player is a defender or a goalkeeper (For adding cleansheet points)
+{
+
 
 
 
