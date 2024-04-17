@@ -222,27 +222,82 @@ void User::Format433(vector <string> MainSquad){
 	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0] << User::spacing(25, ' ');
 };
 void User::Format343(vector <string> MainSquad){
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8], 0, false, MainSquad[8]), ' ') << "9"; cout << User::spacing(User::Formatdistance(MainSquad[9], 12, true, MainSquad[8]), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10], 12, true, MainSquad[9]), ' ') << "11" << endl;
-	cout << User::spacing(20, ' '); cout << MainSquad[8] << User::spacing(13, ' ') << MainSquad[9] << User::spacing(13, ' ') << MainSquad[10] << "\n\n";
 
-	cout << User::spacing(User::Formatdistance(MainSquad[4], 13, false, MainSquad[4]), ' ') << "5"; cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5], 0, true, MainSquad[4]), ' ') << "6"; cout << User::spacing(User::Formatdistance(MainSquad[6], 13, true, MainSquad[5]), ' ') << "7"; cout << User::spacing(User::Formatdistance(MainSquad[7], 13, true, MainSquad[6]), ' ') << "8"<<endl;
-	cout << User::spacing(13, ' ') << MainSquad[4]; cout << User::spacing(20, ' '); cout << MainSquad[5] << User::spacing(13, ' ') << MainSquad[6] << User::spacing(13, ' ') << MainSquad[7] << endl;
 
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1], 0, false, MainSquad[1]), ' ') << "2"; cout << User::spacing(User::Formatdistance(MainSquad[2], 13, true, MainSquad[1]), ' ') << "3"; cout << User::spacing(User::Formatdistance(MainSquad[3], 13, true, MainSquad[2]), ' ') << "4" << endl;
-	cout << User::spacing(20, ' '); cout << MainSquad[1] << User::spacing(13, ' ') << MainSquad[2] << User::spacing(13, ' ') << MainSquad[3] << "\n\n";
 
+
+	cout << User::spacing(28, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8], 0, false, MainSquad[8]), ' ') << "9";
+	for (int i = 8; i < 10; i++)
+	{
+		cout << User::spacing(User::Formatdistance(MainSquad[i + 1], 13, true, MainSquad[i]), ' ') << i + 2;
+	}
+	cout << endl;
+	////////////////////////////////////////////////////////
+	cout << User::spacing(28, ' ') << MainSquad[8];
+	for (int i = 9; i < 11; i++)
+	{
+		cout << User::spacing(13, ' ') << MainSquad[i];
+	}
+	cout << "\n\n";
+
+	cout << User::spacing(User::Formatdistance(MainSquad[4], 20, false, MainSquad[4]), ' ') << "5";
+	for (int i = 4; i < 7; i++)
+	{
+		cout << User::spacing(User::Formatdistance(MainSquad[i + 1], 13, true, MainSquad[i]), ' ') << i + 2;
+	}
+	cout << endl;
+
+	//////////////////////////////////////////////////
+	cout << User::spacing(20, ' ') << MainSquad[4];
+	for (int i = 5; i < 8; i++)
+	{
+		cout << User::spacing(13, ' ') << MainSquad[i];
+	}
+	cout << "\n\n";
+	cout << User::spacing(28, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1], 0, false, MainSquad[1]), ' ') << "2";
+	for (int i = 1; i < 3; i++)
+	{
+		cout << User::spacing(User::Formatdistance(MainSquad[i + 1], 13, true, MainSquad[i]), ' ') << i + 2;
+	}
+	cout << endl;
+	cout << User::spacing(28, ' '); cout << MainSquad[1];
+	for (int i = 2; i < 4; i++)
+	{
+		cout << User::spacing(13, ' ') << MainSquad[i];
+	}
+	cout << "\n\n" << endl;
 	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << endl;
 	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0] << User::spacing(25, ' ');
 };
 void User::Format442(vector <string> MainSquad){
+
 	cout << User::spacing(38, ' '); cout << User::spacing(User::Formatdistance(MainSquad[9], 0, false, MainSquad[9]), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10], 9, true, MainSquad[9]), ' ') << "11"<<endl;
 	cout << User::spacing(38, ' '); cout << MainSquad[9] << User::spacing(10, ' ') << MainSquad[10] << "\n\n";
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5], 0, false, MainSquad[5]), ' ') << "6"; cout << User::spacing(User::Formatdistance(MainSquad[6], 13, true, MainSquad[5]), ' ') << "7"; cout << User::spacing(User::Formatdistance(MainSquad[7], 13, true, MainSquad[6]), ' ') << "8";cout << User::spacing(User::Formatdistance(MainSquad[8], 13, true, MainSquad[7]), ' ') << "9" << endl;
-	cout << User::spacing(20, ' '); cout << MainSquad[5] << User::spacing(13, ' ') << MainSquad[6] << User::spacing(13, ' ') << MainSquad[7] << User::spacing(13, ' ') << MainSquad[8] << "\n\n";
 
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1], 0, false, MainSquad[1]), ' ') << "2";cout << User::spacing(User::Formatdistance(MainSquad[2], 13, true, MainSquad[1]), ' ') << "3"; cout << User::spacing(User::Formatdistance(MainSquad[3], 13, true, MainSquad[2]), ' ') << "4"; cout << User::spacing(User::Formatdistance(MainSquad[4], 13, true, MainSquad[3]), ' ') << "5" << endl;
-	cout << User::spacing(20, ' '); cout << MainSquad[1] << User::spacing(13, ' ') << MainSquad[2] << User::spacing(13, ' ') << MainSquad[3] << User::spacing(13, ' ') << MainSquad[4] << "\n\n";
-	
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5], 0, false, MainSquad[5]), ' ') << "6";
+	for (int i = 5; i < 8; i++)
+	{
+		cout << User::spacing(User::Formatdistance(MainSquad[i + 1], 13, true, MainSquad[i]), ' ') << i + 2;
+	}
+	cout << endl;
+	cout << User::spacing(20, ' ') << MainSquad[5];
+	for (int i = 6; i < 9; i++)
+	{
+		cout << User::spacing(13, ' ') << MainSquad[i];
+	}
+	cout << "\n\n";
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1], 0, false, MainSquad[1]), ' ') << "2";
+	for (int i = 1; i < 4; i++)
+	{
+		cout << User::spacing(User::Formatdistance(MainSquad[i+1], 13, true, MainSquad[i]), ' ') <<i+2;
+	}	
+	cout << endl;
+	cout << User::spacing(20, ' '); cout << MainSquad[1];
+	for (int i = 2; i < 5; i++)
+	{
+		cout << User::spacing(13, ' ') << MainSquad[i];
+	}
+	cout << "\n\n" << endl;
 	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << endl;
 	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0] << User::spacing(25, ' ');
 };
