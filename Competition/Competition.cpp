@@ -24,11 +24,12 @@ bool Competition::checkPosition( queue<Game>& GameHighlights, vector<FootballerI
 
 void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights,vector<FootballerInTheMatch>&players ) //for both squads of the match
 {
+	Game currentGame = GameHighlights.front();
+	GameHighlights.pop();
 
 	while (!GameHighlights.empty()) {
 
-		Game currentGame = GameHighlights.front();
-		GameHighlights.pop();
+		
 
 		for (FootballerInTheMatch& player : players) {
 			player.points += ( competition.goalPoints * player.goals);
