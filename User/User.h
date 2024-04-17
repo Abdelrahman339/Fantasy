@@ -52,16 +52,17 @@ public:
     // user functions
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
-    void spacing(int spaces,char character);
+    string static spacing(int spaces,char character);
     void homePage(unordered_map<string, User>& Users);
     User login(unordered_map<string, User>& users, string username, string password);
     void signup(unordered_map<string, User>& Users);
     string hidePassword(string username);
     void userMenu(User& currentUser, unordered_map<string, User>& Users);
     void squadFormat(int choice, vector <Footballer> squad);
-    void Format433(vector <Footballer> squad);
-    void Format343();
-    void Format442(vector <Footballer> squad);
+    void Format433(vector <string> squad);
+    void Format343(vector <string> MainSquad);
+    void Format442(vector <string> squad);
+    int Formatdistance(string name, int space, bool remaining,string prev);
     void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
     void showPlayerInfo(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
     void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);
