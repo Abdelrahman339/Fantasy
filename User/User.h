@@ -54,6 +54,8 @@ public:
     ///////////////////////////////////////////////////////////////////////////////////
     string static spacing(int spaces,char character);
     void homePage(unordered_map<string, User>& Users);
+
+    void toLogin(unordered_map<string, User> Users);
     User login(unordered_map<string, User>& users, string username, string password);
     void signup(unordered_map<string, User>& Users);
     string hidePassword(string username);
@@ -68,6 +70,9 @@ public:
     void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);
     void profile(User currentUser, unordered_map<string, User>& Users);
     void editInfo(User currentUser, unordered_map<string, User>& Users);
+    void displayFormat(vector <string> players, User currentUser);
+    void Market();
+    void Play();
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
 };

@@ -51,6 +51,9 @@
     <ClCompile Include="Data\Teams\TeamsGetterSetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="User\User(play_Market).cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User\User.h">

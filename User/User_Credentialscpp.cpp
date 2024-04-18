@@ -22,39 +22,14 @@ choice:
     }
     else if (choice == 2)
     {
-    login:
-        int count = 0;
-        string user;
-        string pass;
-        system("cls");
-        do
-        {
-            cout << "Log-in\n------------\n\n";
-            cout << "Username: ";
-            cin >> user;
-            cout << "Password(Press '+' to show password): " << endl;
-            pass = hidePassword(user);
-            User CurrentUser = login(Users, user, pass);
-            if (loginstat == true)
-            {
-                system("pause");
-                system("cls");
-                userMenu(CurrentUser, Users);
-            }
-            else
-            {
-                count++;
-                cout << "Try again..\t" << count << " / 3\n";
-                system("pause");
-                system("cls");
-            }
-        } while (count != 3);
+    
     }
     else if (choice == 3)
     {
         signup(Users);
         system("pause");
-        goto login;
+        toLogin(Users);
+        return;
     }    else if (choice == 4)
     {
         system("exit");
@@ -65,6 +40,36 @@ choice:
         goto choice;
     }
 };
+
+
+void User::toLogin(unordered_map<string,User> Users) {
+    int count = 0;
+    string user;
+    string pass;
+    system("cls");
+    do
+    {
+        cout << "Log-in\n------------\n\n";
+        cout << "Username: ";
+        cin >> user;
+        cout << "Password(Press '+' to show password): " << endl;
+        pass = hidePassword(user);
+        User CurrentUser = login(Users, user, pass);
+        if (loginstat == true)
+        {
+            system("pause");
+            system("cls");
+            userMenu(CurrentUser, Users);
+        }
+        else
+        {
+            count++;
+            cout << "Try again..\t" << count << " / 3\n";
+            system("pause");
+            system("cls");
+        }
+    } while (count != 3);
+}
 
 User User::login(unordered_map<string, User>& users, string username, string password)
 {
@@ -120,6 +125,7 @@ choice:
     else if (choice == 5)
     {
         currentUser.homePage(Users);
+        return;
     }
     else
     {

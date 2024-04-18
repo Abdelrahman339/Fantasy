@@ -318,6 +318,17 @@ int User::Formatdistance(string name, int space, bool remaining,string prev) {
 	return distance-1;
 };
 
+void User::displayFormat(vector <string> players, User currentUser) {
+
+	cout << User::spacing(38, ' ') << "Player" << endl;
+	cout << User::spacing(20, ' ') << "--------        --------       --------"<< endl<<endl;
+	Format433(players);
+	cout << endl<<endl;
+	cout << User::spacing(67, ' ') << User::spacing(currentUser.GetFullName().size(), '_')<<endl;
+	cout << User::spacing(60, ' ')<<"coach: " << "|" << currentUser.GetFullName() << "|" << endl;
+	cout << User::spacing(67, ' ') << User::spacing(currentUser.GetFullName().size(), '_')<< endl;
+
+};
 
 
 
