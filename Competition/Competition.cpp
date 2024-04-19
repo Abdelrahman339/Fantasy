@@ -11,8 +11,8 @@ using namespace std;
 
 
 
-bool Competition::checkPosition(queue<Game>& GameHighlights, string& footballerPosition) {
-	string& currentPosition = footballerPosition;
+bool Competition::checkPosition(queue<Game>& GameHighlights, string footballerPosition) {
+	string currentPosition = footballerPosition;
 	
 	if (currentPosition == "defender" || currentPosition == "goalkeeper") {
 		return true;
@@ -23,83 +23,40 @@ bool Competition::checkPosition(queue<Game>& GameHighlights, string& footballerP
 
 }
 
+string Competition::priceCalculation(list<FootballerInTheMatch>& player) {
 
+	FootballerInTheMatch& currentFootballer = player;
+	int currentPoints = currentFootballer.getPoints();
 
-void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights, list<FootballerInTheMatch>& players) //for both squads of the match
-{
-	
-		
-			queue <Game> currentGame = GameHighlights;
-			GameHighlights.pop();
-
-			int numPlayersCalculated=0;
-			auto next = players.begin();
-
-			while (numPlayersCalculated < competition->numOfPlayers) {
-				FootballerInTheMatch& player = *next;
-
-				int GoalPoints = ((competition->goalPoints) * player.getGoals()) + player.getPoints();
-				int AssistPoints= ((competition->assistPoints) * player.getAssists() + player.getPoints();
-				int yellowCardPenalty = 0;
-				int redCardPenalty = 0;
-				int cleanSheetPoints = 0;
-				
-
-				if (player.getYellowCards()) {
-					yellowCardPenalty= player.getPoints()-(competition->yellowCardDeduction) ;
-				}
-
-				if (player.getRedCard()) {
-					redCardPenalty = player.getPoints() - (competition->redCardDeduction);
-				}
-
-				//check if the player is a defender or a goalkeeper to add cleansheet bonus
-				if(player.getCleanSheets()==true){
-				if ( checkPosition(currentGame, player.getPosition() ) ) {
-					cleanSheetPoints=player.getPoints()+(competition->cleanSheetPoints);
-				}
-				}
-
-				int totalPoints = GoalPoints + AssistPoints + yellowCardPenalty + redCardPenalty + cleanSheetPoints;
-				player.setPoints(totalPoints);
-
-
-				
+	if (currentPoints < 3) {
+		return "No tier";
+	}
+	else if (currentPoints < 6) {
+		return "tier1";
+	}
+	else if (currentPoints < 9) {
+		return "tier2";
+	}
+	else if (currentPoints < 12) {
+		return "tier3";
+	}
+	else if (currentPoints < 15) {
+		return "tier4";
+	}
+	else {
+		return "tier5";
+	}
 
 
 
 
-
-
-
-
-
-				auto tmp = next;
-				next++;
-				players.erase(tmp);
-
-
-			}
-		
-
-
-
-		
-	
 
 }
-
-
-
-
-
-
-
 
 void Competition::UpdateFootballerPrice(list<FootballerInTheMatch>& player) // for all the players
 {
 	FootballerInTheMatch& currentFootballer = player;
-	string tier = priceCalculation(currentFootballer);
+	string tier = competition::priceCalculation(currentFootballer);
 	float priceChange;
 
 	switch (tier) {
@@ -132,10 +89,59 @@ void Competition::UpdateFootballerPrice(list<FootballerInTheMatch>& player) // f
 	currentFootballer.setPrice(priceChange);
 
 
-	}
+}
+
+void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights, list<FootballerInTheMatch>& players) //for both squads of the match
+{
+	
+		
+			queue <Game> currentGame = GameHighlights;
+			
+
+			int numPlayersCalculated=0;
+			auto next = players.begin();
+			
+			while (numPlayersCalculated < competition::numOfPlayers) {
+				FootballerInTheMatch& player = *next;
+
+				int GoalPoints = ((competition::goalPoints) * player.getGoals()) + player.getPoints();
+				int AssistPoints= ((competition::assistPoints) * player.getAssists() + player.getPoints();
+				int yellowCardPenalty = 0;
+				int redCardPenalty = 0;
+				int cleanSheetPoints = 0;
+				
+
+				if (player.getYellowCards()) {
+					yellowCardPenalty = player.getPoints() - (competition::yellowCardDeduction);
+				}
+
+				if (player.getRedCard()) {
+					redCardPenalty = player.getPoints() - (competition::redCardDeduction);
+				}
+
+				//check if the player is a defender or a goalkeeper to add cleansheet bonus
+				if(player.getCleanSheets()==true){
+				if ( competition::checkPosition(currentGame, player.getPosition() ) ) {
+					cleanSheetPoints=player.getPoints()+(competition::cleanSheetPoints);
+				}
+				}
+
+				int totalPoints = GoalPoints + AssistPoints + yellowCardPenalty + redCardPenalty + cleanSheetPoints;
+				player.setPoints(totalPoints);
+
+				competition::UpdateFootballerPrice(player);
 
 
+				auto tmp = next;
+				next++;
+				players.erase(tmp);
+				numPlayersCalculated++;
 
+
+			}
+		
+
+}
 
 
 

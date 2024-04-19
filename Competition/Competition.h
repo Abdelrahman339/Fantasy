@@ -19,11 +19,11 @@ protected:
 
 
 
-    void static UpdateFootballerPoints(queue<Game>& GameHighlights, list<FootballerInTheMatch>& players) ; // updating all the players in a game
-    void static UpdateFootballerPrice() ;//based on points for EVERY player (even if not in user's squad)
-    bool checkPosition(queue<Game>& GameHighlights,string& footballerPosition) ;
-    void addPointsToMOTM(queue<Game>& GameHighlights) ; //Adds extra points to the man of the match
-    string priceCalculation(list<FootballerInTheMatch>& player); //containing five tiers for changing the players price 
+    static void  UpdateFootballerPoints(queue<Game>& GameHighlights, list<FootballerInTheMatch>& players) ; // updating all the players in a game
+    static void  UpdateFootballerPrice() ;//based on points for EVERY player (even if not in user's squad)
+    static bool  checkPosition(queue<Game>& GameHighlights,string& footballerPosition) ;
+    static void  addPointsToMOTM(queue<Game>& GameHighlights) ; //Adds extra points to the man of the match
+    static string  priceCalculation(list<FootballerInTheMatch>& player); //containing five tiers for changing the players price 
     
     
 };
