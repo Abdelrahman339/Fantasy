@@ -6,21 +6,36 @@ using namespace std;
 class Teams
 {
     int points;
+    string name;
+    string id;
+    //vector of footballer size[11];
 };
 
 class Footballer //the squad that the user own's
 {
 protected:
+    //static
     string name;
     int age;
-    string position;
-    float price;
-    bool captain;
     string team;
-    int goals;      // per season
-    int assists;    // per season
-    int redCard;    // per season
-    int yellowCard; // per season
+    string position;
+    //dynamic
+    float price;
+    float rating;
+    bool captain;
+    // per season
+    int totalGoals;      
+    int totalAssists;    
+    int totalRedCard;    
+    int totalYellowCard; 
+    int totalCleansheets;
+    //per match 
+    int goals;
+    int points; // footballer points should be intialized as 1 as he starts in the starting eleven
+    int assists;
+    bool redCards;
+    bool yellowCards;
+    bool cleanSheets; // For updating goalKeepers and defenders points
 public:
     void SetName(string name);
     void SetAge(int age);
