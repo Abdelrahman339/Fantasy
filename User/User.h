@@ -2,9 +2,12 @@
 #include <iostream>
 #include <vector>
 #include "list"
-#include "queue"
+#include <deque>
+#include <stack>
 #include "unordered_map"
 #include "Teams.h"
+#include "Game.h"
+
 using namespace std;
 
 class User
@@ -19,10 +22,9 @@ protected:
     int rank;
     int points;
     float balance;
-
-public:
     vector <Footballer >TheMainSquad;
     vector <Footballer >SubstitutionSquad;
+public:
     // getter and setter and constructor
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
@@ -64,15 +66,16 @@ public:
     void Format433(vector <string> squad);
     void Format343(vector <string> MainSquad);
     void Format442(vector <string> squad);
+	void showSubstitutions(vector <string> substitutionList);
     int Formatdistance(string name, int space, bool remaining,string prev);
     void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
     void showPlayerInfo(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
     void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);
     void profile(User currentUser, unordered_map<string, User>& Users);
     void editInfo(User currentUser, unordered_map<string, User>& Users);
-    void displayFormat(vector <string> players, User currentUser);
     void Market();
-    void Play();
+    deque<Game>Play(vector<Game> allGames,User currentUser);
+    void findDuplicates(stack<string>& userTeams);
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
 };
