@@ -5,10 +5,12 @@ using namespace std;
 class Game
     
 {
+    //obj of team
     string score;
     string manOfTheMatch;
     string statistics;
     string highlightsOfTheMatch; //goals , assists , cards , etc...
+    
 
     void displayCurrentGame(queue<Game>& Gamehighlights);
 };
