@@ -4,7 +4,7 @@
 #include "Game/Game.h"
 using namespace std;
 
-class competition {
+class Competition {
 
 protected:
 
@@ -19,11 +19,11 @@ protected:
 
 
 
-    static void  UpdateFootballerPoints(queue<Game>& GameHighlights, list<FootballerInTheMatch>& players) ; // updating all the players in a game
-    static void  UpdateFootballerPrice() ;//based on points for EVERY player (even if not in user's squad)
-    static bool  checkPosition(queue<Game>& GameHighlights,string& footballerPosition) ;
-    static void  addPointsToMOTM(queue<Game>& GameHighlights) ; //Adds extra points to the man of the match
-    static string  priceCalculation(list<FootballerInTheMatch>& player); //containing five tiers for changing the players price 
+    void static UpdateFootballerPoints(queue<Game>& GameHighlights, list<FootballerInTheMatch>& players) ; // updating all the players in a game
+    void static UpdateFootballerPrice(FootballerInTheMatch& player) ;//based on points for EVERY player (even if not in user's squad)
+    bool static checkPosition(queue<Game>& GameHighlights,string footballerPosition) ;
+    void static addPointsToMOTM(queue<Game>& GameHighlights) ; //Adds extra points to the man of the match
+    char static priceCalculation(FootballerInTheMatch& player); //containing five tiers for changing the players price 
     
     
 };

@@ -36,25 +36,50 @@ protected:
     bool redCards;
     bool yellowCards;
     bool cleanSheets; // For updating goalKeepers and defenders points
+
+
+    ////////////////////////////////////////////////////////////////////////
+    /////////////////// setters and getters ////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////
 public:
     void SetName(string name);
     void SetAge(int age);
     void SetPosition(string position);
     void SetPrice(float price);
     void SetCaptain(bool Captaine);
-    void SetGoals(int goals);
-    void SetAssists(int assists);
-    void SetRedCard(int redCard);
-    void SetYellowCard(int yellowCard);
+    void SetTotalGoals(int goals);
+    void SetTotalAssists(int assists);
+    void SetTotalRedCard(int redCard);
+    void SetTotalCleansheets(int yellowCard);
     void SetTeam(string team);
+    //per match
+    void setGoals(int goals);
+    void setAssists(int assists);
+    void setYellowCards(bool card);
+    void setRedCard(bool card);
+    void setCleanSheets(bool cleanSheet);
+    void setPrice(float price);
+    void setPoints(int points);
+
+
+
     string GetName();
     int GetAge();
     string GetPosition();
     float GetPrice();
     bool GetCaptain();
-    int GetGoals();
-    int GetAssists();
-    int GetRedCard();
-    int GetYellowCard();
+    int GetTotalGoals();
+    int GetTotalAssists();
+    int GetTotalRedCard();
+    int GetTotalYellowCard();
     string GetTeam();
+
+    int getGoals();
+    int getAssists();
+    bool getYellowCards();
+    bool getRedCard();
+    bool getCleanSheets();
+    float getPrice();
+    int getPoints();
+
 };
