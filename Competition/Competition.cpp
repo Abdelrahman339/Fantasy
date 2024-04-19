@@ -29,9 +29,14 @@ void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights,vector<Foot
 
 	while (!GameHighlights.empty()) {
 
+	
 		
+		int i = 0;
+		while(i <competition.numOfPlayers ) {
 
-		for (FootballerInTheMatch& player : players) {
+
+			FootballerInTheMatch& player = players[0];
+
 			player.points += ( competition.goalPoints * player.goals);
 			player.points += (competition.assistPoints * player.assist);
 
@@ -48,14 +53,18 @@ void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights,vector<Foot
 				player.points += competition.cleanSheetPoints;
 			}
 
+			players.erase(players.begin());
+			
+			i++;
 		}
 
-
+		
 	}
+	
 
 }
 
-void Competition::UpdateFootballerPrice()
+void Competition::UpdateFootballerPrice() // for all the players
 {
-	//the code
+	
 }

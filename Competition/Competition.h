@@ -14,6 +14,7 @@ protected:
     const static int cleanSheetPoints = 3;
     const static int redCardDeduction = 2;
     const static int yellowCardDeduction = 1;
+    const static int numOfPlayers = 22;
 
 
 
