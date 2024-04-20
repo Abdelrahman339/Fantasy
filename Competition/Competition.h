@@ -25,5 +25,8 @@ protected:
     void static addPointsToMOTM(queue<Game>& GameHighlights) ; //Adds extra points to the man of the match
     char static priceCalculation(Footballer& player); //containing five tiers for changing the players price 
     
+    void static updateUserPoints(queue<Game>& GameHighlights);
+
+	void showAllGameHighlights();
     
 };

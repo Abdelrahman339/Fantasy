@@ -5,9 +5,7 @@
 using namespace std;
 class Teams
 {
-	int points;
-	string name;
-	string id;
+
 	//vector of footballer size[11];
 };
 
