@@ -66,10 +66,10 @@ void User::showPlayerInfo(vector <Footballer> MainSquad, vector <Footballer> Sub
 	cout << "Position:" << MainSquad.at(choice - 1).GetPosition();
 	cout << "Price:" << MainSquad.at(choice - 1).GetPrice();
 	cout << "Team:" << MainSquad.at(choice - 1).GetTeam();
-	cout << "Total goals this season:" << MainSquad.at(choice - 1).GetGoals();
-	cout << "Total assists this season:" << MainSquad.at(choice - 1).GetAssists();
-	cout << "Total yellow card this season:" << MainSquad.at(choice - 1).GetYellowCard();
-	cout << "Total red card this season:" << MainSquad.at(choice - 1).GetRedCard();
+	cout << "Total goals this season:" << MainSquad.at(choice - 1).GetTotalGoals();
+	cout << "Total assists this season:" << MainSquad.at(choice - 1).GetTotalAssists();
+	cout << "Total yellow card this season:" << MainSquad.at(choice - 1).GetTotalYellowCard();
+	cout << "Total red card this season:" << MainSquad.at(choice - 1).GetTotalRedCard();
 	cout << "--------------------------------------------------------------------------------\n" << endl;
 choice:
 	cout << "1-Sell this player\n2-Go back" << endl;

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <queue>
 #include<list>
-#include "Game.h"
 #include "Competition.h"
+#include "Teams.h"
 
 using namespace std;
 
@@ -23,9 +23,9 @@ bool Competition::checkPosition(queue<Game>& GameHighlights, string footballerPo
 
 }
 
-char Competition::priceCalculation(FootballerInTheMatch& player) {
+char Competition::priceCalculation(Footballer& player) {
 
-	int currentPoints = player.getPoints();
+	int currentPoints = player.GetPoints();
 
 	if (currentPoints < 3) {
 		return '0';
@@ -48,7 +48,7 @@ char Competition::priceCalculation(FootballerInTheMatch& player) {
 
 }
 
-void Competition::UpdateFootballerPrice(FootballerInTheMatch& player) // for all the players
+void Competition::UpdateFootballerPrice(Footballer& player) // for all the players
 {
 	char tier = Competition::priceCalculation(player);
 	float priceChange;
@@ -56,36 +56,36 @@ void Competition::UpdateFootballerPrice(FootballerInTheMatch& player) // for all
 	switch (tier) {
 
 	case '1':
-		priceChange = player.getPrice() + 0.5;
+		priceChange = player.GetPrice() + 0.5;
 		break;
 
 	case '2':
-		priceChange = player.getPrice() + 1;
+		priceChange = player.GetPrice() + 1;
 		break;
 
 	case '3':
-		priceChange = player.getPrice() + 1.5;
+		priceChange = player.GetPrice() + 1.5;
 		break;
 
 	case '4':
-		priceChange = player.getPrice() + 2;
+		priceChange = player.GetPrice() + 2;
 		break;
 
 	case '5':
-		priceChange = player.getPrice() + 3;
+		priceChange = player.GetPrice() + 3;
 		break;
 
 	default:
 		//if the player doesn't perfom with any of the tiers
-		priceChange = player.getPrice() - 0.2;
+		priceChange = player.GetPrice() - 0.2;
 	}
 
-	player.setPrice(priceChange);
+	player.SetPrice(priceChange);
 
 
 }
 
-void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights, list<FootballerInTheMatch>& players) //for both squads of the match
+void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights, list<Footballer>& players) //for both squads of the match
 {
 
 
@@ -96,21 +96,21 @@ void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights, list<Footb
 	auto next = players.begin();
 
 	while (numPlayersCalculated < Competition::numOfPlayers) {
-		FootballerInTheMatch& player = *next;
+		Footballer& player = *next;
 
-		int GoalPoints = ((Competition::goalPoints)*player.getGoals()) + player.getPoints();
-		int AssistPoints = ((Competition::assistPoints)*player.getAssists() + player.getPoints());
+		int GoalPoints = ((Competition::goalPoints)*player.GetGoals()) + player.GetPoints();
+		int AssistPoints = ((Competition::assistPoints)*player.GetAssists() + player.GetPoints());
 		int yellowCardPenalty = 0;
 		int redCardPenalty = 0;
 		int cleanSheetPoints = 0;
 
 
-		if (player.getYellowCards()) {
-			yellowCardPenalty = player.getPoints() - (Competition::yellowCardDeduction);
+		if (player.GetYellowCards()) {
+			yellowCardPenalty = player.GetPoints() - (Competition::yellowCardDeduction);
 		}
 
-		if (player.getRedCard()) {
-			redCardPenalty = player.getPoints() - (Competition::redCardDeduction);
+		if (player.GetRedCard()) {
+			redCardPenalty = player.GetPoints() - (Competition::redCardDeduction);
 		}
 
 		//check if the player is a defender or a goalkeeper to add cleansheet bonus

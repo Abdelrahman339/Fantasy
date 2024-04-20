@@ -4,16 +4,17 @@
 #include <queue>
 #include "Teams.h"
 using namespace std;
-class Game
+class Game {
 
-{
-	Teams awayTeam;
-	Teams homeTeam;
-	string score;
-	string manOfTheMatch;
-	string statistics;
-	string highlightsOfTheMatch; //goals , assists , cards , etc...
+	protected:
+		Teams awayTeam;
+		Teams homeTeam;
+		string score;
+		string manOfTheMatch;
+		string statistics;
+		string highlightsOfTheMatch; //goals , assists , cards , etc...
 
+	public:
+		void displayCurrentGame(queue<Game>& Gamehighlights);
 
-	void displayCurrentGame(queue<Game>& Gamehighlights);
 };

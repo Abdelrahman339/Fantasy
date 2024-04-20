@@ -16,6 +16,13 @@ void Footballer::SetAge(int age) {
 	this->age = age;
 }
 
+void Footballer::SetTeam(string team) {
+	this->team = team;
+}
+
+string Footballer::GetTeam() {
+	return team;
+}
 string Footballer::GetPosition() {
 	return position;
 }
@@ -71,11 +78,7 @@ bool Footballer::GetYellowCards() {
 void Footballer::setYellowCards(bool yellowCard) {
 	this->yellowCards = yellowCard;
 }
-void Footballer::SetTeam(string team) {
-	this->team = team;
-}string Footballer::GetTeam() {
-	return team;
-}
+
 bool  Footballer::GetCleanSheets() {
 	return cleanSheets;
 }

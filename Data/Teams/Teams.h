@@ -109,8 +109,8 @@ public:
 	int GetAssists();
 	bool GetYellowCards();
 	bool GetRedCard();
+
 	bool  GetCleanSheets();
-	float GetPrice();
 	int GetPoints();
 
 };
