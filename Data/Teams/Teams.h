@@ -5,9 +5,10 @@
 using namespace std;
 class Teams
 {
-	//score
+	int score;
+	vector<Footballer> footballPlayers[11];
 
-	//vector of footballer size[11];
+	
 };
 
 class Footballer //the squad that the user own's
