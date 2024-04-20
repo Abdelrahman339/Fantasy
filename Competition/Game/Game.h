@@ -16,15 +16,8 @@ protected:
 	string highlightsOfTheMatch; //goals , assists , cards , etc...
 	string date;//the date of the match (or the round in league)
 
-public:
-	//void displayCurrentGame(queue<Game>& Gamehighlights);
-	Teams getAwayTeam();		
-	Teams getHomeTeam();
-	string getScore();
-	string getManOfTheMatch();
-	string getStatistics();
-	string getHighlightsOfTheMatch();
-	string getDate();
+	public:
+		//void displayCurrentGame(queue<Game>& Gamehighlights);
 
 
 	// Setters
@@ -40,3 +33,4 @@ public:
 
 
 
+};

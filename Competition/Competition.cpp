@@ -3,15 +3,20 @@
 #include<list>
 #include "Competition.h"
 #include "Teams.h"
+#include"Game.h"
 
 using namespace std;
 
 
 
+bool Competition::IsManOfTheMatch(Game& currentGame,Footballer& player)
+{
+	return (currentGame.getManOfTheMatch() == player.GetName());
+}
 
 
+bool Competition::checkPosition(string footballerPosition) {
 
-bool Competition::checkPosition(queue<Game>& GameHighlights, string footballerPosition) {
 	string currentPosition = footballerPosition;
 
 	if (currentPosition == "defender" || currentPosition == "goalkeeper") {
@@ -51,33 +56,34 @@ char Competition::priceCalculation(Footballer& player) {
 void Competition::UpdateFootballerPrice(Footballer& player) // for all the players
 {
 	char tier = Competition::priceCalculation(player);
+	float currentPlayerPrice = player.GetPrice();
 	float priceChange;
 
 	switch (tier) {
 
 	case '1':
-		priceChange = player.GetPrice() + 0.5;
-		break;
-
-	case '2':
-		priceChange = player.GetPrice() + 1;
-		break;
-
-	case '3':
-		priceChange = player.GetPrice() + 1.5;
-		break;
-
-	case '4':
-		priceChange = player.GetPrice() + 2;
-		break;
-
-	case '5':
-		priceChange = player.GetPrice() + 3;
-		break;
+		priceChange = currentPlayerPrice + 0.5;
+		break;		
+					
+	case '2':		
+		priceChange = currentPlayerPrice + 1;
+		break;		
+					
+	case '3':		
+		priceChange = currentPlayerPrice + 1.5;
+		break;		
+					
+	case '4':		
+		priceChange = currentPlayerPrice + 2;
+		break;		
+					
+	case '5':		
+		priceChange = currentPlayerPrice + 3;
+		break;				 
 
 	default:
 		//if the player doesn't perfom with any of the tiers
-		priceChange = player.GetPrice() - 0.2;
+		priceChange = currentPlayerPrice - 0.2;
 	}
 
 	player.SetPrice(priceChange);
@@ -85,11 +91,12 @@ void Competition::UpdateFootballerPrice(Footballer& player) // for all the playe
 
 }
 
-void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights, list<Footballer>& players) //for both squads of the match
+void Competition::UpdateFootballerPoints(list<Game> CurrentGame) //for both squads of the match
 {
 
 
-	queue<Game> currentGame=GameHighlights;
+	Game g;
+	g.getAwayTeamInfo.
 
 
 	int numPlayersCalculated = 0;
