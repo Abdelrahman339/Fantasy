@@ -132,6 +132,7 @@
     <ClCompile Include="Admin\Admin.cpp" />
     <ClCompile Include="Competition\Competition.cpp" />
     <ClCompile Include="Competition\Game\Game.cpp" />
+    <ClCompile Include="Competition\Game\GameGetterSetter.cpp" />
     <ClCompile Include="Data\fileManpulation.cpp" />
     <ClCompile Include="Data\Leagues\Leagues.cpp" />
     <ClCompile Include="Data\Teams\Teams.cpp" />

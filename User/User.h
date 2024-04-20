@@ -74,7 +74,9 @@ public:
     void profile(User currentUser, unordered_map<string, User>& Users);
     void editInfo(User currentUser, unordered_map<string, User>& Users);
     void Market();
-    deque<Game>Play(vector<Game> allGames,User currentUser);
+    deque<Game>FilteringTeams(list<Game> allGames,User currentUser);
+
+    deque<Game> insertToDeque(deque<Game> UserGames,list<Game> allGames,stack<string>userTeams);
     void findDuplicates(stack<string>& userTeams);
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
