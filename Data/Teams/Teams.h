@@ -12,23 +12,33 @@ class Teams
 class Footballer //the squad that the user own's
 {
 protected:
-	//static
+	//static datatypes --> constant per season
 	string name;
 	int age;
 	string team;
 	string position;
-	//dynamic
+
+	//dynamic datatypes --> changes throughout the season
 	float price;
 	float rating;
 	bool captain;
-	// per season
+
+
+	/////////////////////////////////////////////
+	//per season ////////////////////////////////
+	/////////////////////////////////////////////
+
 	int totalGoals;
 	int totalAssists;
 	int totalRedCard;
 	int totalYellowCard;
 	int totalCleansheets;
 	int totalPoints;
-	//per match 
+
+	/////////////////////////////////////////////
+	//per match//////////////////////////////////
+	/////////////////////////////////////////////
+
 	int goals;
 	int points; // footballer points should be intialized as 1 as he starts in the starting eleven
 	int assists;
@@ -37,17 +47,25 @@ protected:
 	bool cleanSheets; // For updating goalKeepers and defenders points
 
 
+
+
+
+public:
+
+
 	////////////////////////////////////////////////////////////////////////
 	/////////////////// setters ////////////////////////////////////////////
 	////////////////////////////////////////////////////////////////////////
-public:
+
+
+
 	void SetName(string name);
 	void SetAge(int age);
 
 	void SetTeam(string team);
 	void SetPosition(string position);
 	void SetPrice(float price);
-	void SetCaptain(bool Captaine);
+	void SetCaptain(bool Captain);
 
 	void SetRating(int rating);
 
@@ -62,11 +80,12 @@ public:
 	void SetTotalRedCard(int redCard);
 	void SetTotalCleansheets(int yellowCard);
 
-	void SetTotalpoints(int potins);
+	void SetTotalpoints(int points);
 
 	////////////////////////////////
 	///////////per match////////////
 	////////////////////////////////
+
 	void setGoals(int goals);
 	void setAssists(int assists);
 	void setYellowCards(bool card);
@@ -75,6 +94,12 @@ public:
 	void setCleanSheets(bool cleanSheet);
 	void setPoints(int points);
 
+
+
+	//---------------------------------------------------------------------------------------------------------------------
+
+
+
 	/////////////////////////////////////////////////
 	/////////////////Getter//////////////////////////
 	/////////////////////////////////////////////////
@@ -82,7 +107,6 @@ public:
 	string GetName();
 	int GetAge();
 	string GetPosition();
-
 	string GetTeam();
 	float GetPrice();
 	bool GetCaptain();
@@ -90,13 +114,12 @@ public:
 	////////////////////////////////
 	/////per season/////////////////
 	////////////////////////////////
+
 	int GetTotalGoals();
 	int GetTotalAssists();
 	int GetTotalRedCard();
 	int GetTotalYellowCard();
-
 	int GetTotalCleansheets();
-
 	int GetTotalpoints();
 
 	////////////////////////////////
@@ -107,7 +130,6 @@ public:
 	int GetAssists();
 	bool GetYellowCards();
 	bool GetRedCard();
-
 	bool  GetCleanSheets();
 	int GetPoints();
 

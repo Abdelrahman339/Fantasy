@@ -89,7 +89,7 @@ void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights, list<Footb
 {
 
 
-	queue <Game> currentGame = GameHighlights;
+	queue<Game> currentGame=GameHighlights;
 
 
 	int numPlayersCalculated = 0;
@@ -114,11 +114,12 @@ void Competition::UpdateFootballerPoints(queue<Game>& GameHighlights, list<Footb
 		}
 
 		//check if the player is a defender or a goalkeeper to add cleansheet bonus
-		//if (player.getCleanSheets() == true) {
-		//	if (Competition::checkPosition(currentGame, player.getPosition())) {
-		//		cleanSheetPoints = player.getPoints() + (Competition::cleanSheetPoints);
-		//	}
-		//}
+
+		if (player.GetCleanSheets() == true) {
+			if (Competition::checkPosition(currentGame, player.GetPosition())) {
+				cleanSheetPoints = player.GetPoints() + (Competition::cleanSheetPoints);
+			}
+		}
 
 		int totalPoints = GoalPoints + AssistPoints + yellowCardPenalty + redCardPenalty + cleanSheetPoints;
 		player.setPoints(totalPoints);
