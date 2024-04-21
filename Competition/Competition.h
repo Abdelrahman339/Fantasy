@@ -24,7 +24,7 @@ protected:
     void static UpdateFootballerPoints(list<Game>currentGame) ; // updating all the players in a game
     void static UpdateFootballerPrice(Footballer& player) ;//based on points for EVERY player (even if not in user's squad)
     bool static checkPosition(string footballerPosition) ;
-    bool static IsManOfTheMatch(Game& currentGame, Footballer& player) ; //checks if the player is the MOTM
+    bool static IsManOfTheMatch(Game& currentGame, string playerName) ; //checks if the player is the MOTM
     char static priceCalculation(Footballer& player); //containing five tiers for changing the players price 
     
 

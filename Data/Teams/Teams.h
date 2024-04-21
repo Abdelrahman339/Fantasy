@@ -5,11 +5,12 @@
 using namespace std;
 class Teams
 {
+protected:
 	int score;
 	vector<Footballer> footballPlayers[11];
 
 public :
-	vector<Footballer>& getFootballPlayer(int index);
+	vector<Footballer> getFootballPlayer(int index);
 	
 };
 

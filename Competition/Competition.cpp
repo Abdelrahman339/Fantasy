@@ -93,51 +93,57 @@ void Competition::UpdateFootballerPrice(Footballer& player) // for all the playe
 
 void Competition::UpdateFootballerPoints(list<Game> CurrentGame) //for both squads of the match
 {
+	Game game;
+	Footballer CurrentPlayer;
+	int numPlayersCalculated = 0;
+	int index = 0;
 
-
-	Game g;
 	
 
-
-	int numPlayersCalculated = 0;
-	auto next = players.begin();
+	
 
 	while (numPlayersCalculated < Competition::numOfPlayers) {
-		Footballer& player = *next;
 
-		int GoalPoints = ((Competition::goalPoints)*player.GetGoals()) + player.GetPoints();
-		int AssistPoints = ((Competition::assistPoints)*player.GetAssists() + player.GetPoints());
+		if (numPlayersCalculated < 11) {
+			CurrentPlayer = game.getHomeTeam().getFootballPlayer(index).at(index);
+		}
+		else {
+			CurrentPlayer = game.getAwayTeam().getFootballPlayer(index).at(index);
+		}
+
+
+		int GoalPoints = ((Competition::goalPoints)*CurrentPlayer.GetGoals()) + CurrentPlayer.GetPoints();
+		int AssistPoints = ((Competition::assistPoints)*CurrentPlayer.GetAssists() + CurrentPlayer.GetPoints());
 		int yellowCardPenalty = 0;
 		int redCardPenalty = 0;
 		int cleanSheetPoints = 0;
 
 
-		if (player.GetYellowCards()) {
-			yellowCardPenalty = player.GetPoints() - (Competition::yellowCardDeduction);
+		if (CurrentPlayer.GetYellowCards()) {
+			yellowCardPenalty = CurrentPlayer.GetPoints() - (Competition::yellowCardDeduction);
 		}
 
-		if (player.GetRedCard()) {
-			redCardPenalty = player.GetPoints() - (Competition::redCardDeduction);
+		if (CurrentPlayer.GetRedCard()) {
+			redCardPenalty = CurrentPlayer.GetPoints() - (Competition::redCardDeduction);
 		}
 
 		//check if the player is a defender or a goalkeeper to add cleansheet bonus
 
-		if (player.GetCleanSheets() == true) {
-			if (Competition::checkPosition(currentGame, player.GetPosition())) {
-				cleanSheetPoints = player.GetPoints() + (Competition::cleanSheetPoints);
+		if (CurrentPlayer.GetCleanSheets() == true) {
+			if (Competition::checkPosition(CurrentPlayer.GetPosition())) {
+				cleanSheetPoints = CurrentPlayer.GetPoints() + (Competition::cleanSheetPoints);
 			}
 		}
 
 		int totalPoints = GoalPoints + AssistPoints + yellowCardPenalty + redCardPenalty + cleanSheetPoints;
-		player.setPoints(totalPoints);
+		CurrentPlayer.setPoints(totalPoints);
 
-		Competition::UpdateFootballerPrice(player);
+		Competition::UpdateFootballerPrice(CurrentPlayer);
 
 
-		auto tmp = next;
-		next++;
-		players.erase(tmp);
+	
 		numPlayersCalculated++;
+		index++;
 
 
 	}
