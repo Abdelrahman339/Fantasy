@@ -22,6 +22,7 @@ public :
 	/////////////////////////
 
 	vector<Footballer> getFootballPlayer(int index);
+	int getScore();
 
 	
 };

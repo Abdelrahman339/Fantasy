@@ -119,13 +119,13 @@ void Competition::UpdateFootballerPoints(list<Game> CurrentGame) //for both squa
 		{
 			CurrentPlayer = game.getHomeTeam().getFootballPlayer(index).at(index);
 			if (homeTeamScore > awayTeamScore) {
-				isMatchWinner == true;
+				isMatchWinner = true;
 			}
 		}
 		else {
 			CurrentPlayer = game.getAwayTeam().getFootballPlayer(index).at(index);
 			if (homeTeamScore < awayTeamScore) {
-				isMatchWinner == true;
+				isMatchWinner = true;
 			}
 		}
 
