@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition\Game;$(SolutionDir)\Competition;$(SolutionDir)\Data;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)\User;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition;$(SolutionDir)\Competition\Game;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)\Data;$(SolutionDir)\User</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -128,7 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition;$(SolutionDir)\Competition\Game;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)\Data;$(SolutionDir)\User;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition;$(SolutionDir)\Competition\Game;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)\Data;$(SolutionDir)\User</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
