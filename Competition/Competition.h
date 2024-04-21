@@ -29,7 +29,10 @@ protected:
     void static UpdateFootballerPrice(Footballer& player) ;//based on points for EVERY player (even if not in user's squad)
     bool static checkPosition(string footballerPosition) ; // checks if the player is a goalkeeper or a defender
     bool static IsManOfTheMatch(string currentMOTM, string playerName) ; //checks if the player is the MOTM
+    bool static IsMatchWinner(); // checks if the player won the match
     char static priceCalculation(Footballer& player); //containing five tiers for changing the players price 
+
+
     
 
     void static updateUserPoints(queue<Game>& GameHighlights);

@@ -129,10 +129,14 @@ int Footballer::GetTotalpoints() {
 void Footballer::SetTotalCleansheets(int cleanSheets) {
 	this->totalCleansheets = cleanSheets;
 };
-void Footballer::SetTotalpoints(int potins) {
+void Footballer::SetTotalpoints(int points) {
 	this->totalPoints = points;
 };
 
 vector<Footballer> Teams::getFootballPlayer(int index) {
 	return footballPlayers[index];
+}
+
+int Teams::getScore() {
+	return score;
 }
