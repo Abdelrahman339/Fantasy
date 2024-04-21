@@ -9,17 +9,15 @@ using namespace std;
 
 
 
-bool Competition::IsManOfTheMatch(Game& currentGame,Footballer& player)
+bool Competition::IsManOfTheMatch(string currentMOTM,string playerName)
 {
-	return (currentGame.getManOfTheMatch() == player.GetName());
+	return (currentMOTM == playerName);
 }
 
 
 bool Competition::checkPosition(string footballerPosition) {
 
-	string currentPosition = footballerPosition;
-
-	if (currentPosition == "defender" || currentPosition == "goalkeeper") {
+	if (footballerPosition == "defender" || footballerPosition == "goalkeeper") {
 		return true;
 	}
 
@@ -62,28 +60,28 @@ void Competition::UpdateFootballerPrice(Footballer& player) // for all the playe
 	switch (tier) {
 
 	case '1':
-		priceChange = currentPlayerPrice + 0.5;
+		priceChange = currentPlayerPrice + 0.5f;
 		break;		
 					
 	case '2':		
-		priceChange = currentPlayerPrice + 1;
+		priceChange = currentPlayerPrice + 1.0f;
 		break;		
 					
 	case '3':		
-		priceChange = currentPlayerPrice + 1.5;
+		priceChange = currentPlayerPrice + 1.5f;
 		break;		
 					
 	case '4':		
-		priceChange = currentPlayerPrice + 2;
+		priceChange = currentPlayerPrice + 2.0f;
 		break;		
 					
 	case '5':		
-		priceChange = currentPlayerPrice + 3;
+		priceChange = currentPlayerPrice + 2.5f;
 		break;				 
 
 	default:
 		//if the player doesn't perfom with any of the tiers
-		priceChange = currentPlayerPrice - 0.2;
+		priceChange = currentPlayerPrice - 0.2f;
 	}
 
 	player.SetPrice(priceChange);
@@ -97,6 +95,8 @@ void Competition::UpdateFootballerPoints(list<Game> CurrentGame) //for both squa
 	Footballer CurrentPlayer;
 	int numPlayersCalculated = 0;
 	int index = 0;
+	string currentMOTM = game.getManOfTheMatch();
+
 
 	
 
@@ -117,6 +117,7 @@ void Competition::UpdateFootballerPoints(list<Game> CurrentGame) //for both squa
 		int yellowCardPenalty = 0;
 		int redCardPenalty = 0;
 		int cleanSheetPoints = 0;
+		int ManOfTheMatchPoints = 0;
 
 
 		if (CurrentPlayer.GetYellowCards()) {
@@ -135,13 +136,21 @@ void Competition::UpdateFootballerPoints(list<Game> CurrentGame) //for both squa
 			}
 		}
 
-		int totalPoints = GoalPoints + AssistPoints + yellowCardPenalty + redCardPenalty + cleanSheetPoints;
+		if (Competition::IsManOfTheMatch(currentMOTM, CurrentPlayer.GetName()) == true) {
+			ManOfTheMatchPoints = Competition::MOTM_Bonus;
+		}
+
+
+		int totalPoints = GoalPoints + AssistPoints + yellowCardPenalty + redCardPenalty + cleanSheetPoints +ManOfTheMatchPoints;
 		CurrentPlayer.setPoints(totalPoints);
 
+
+
+		
 		Competition::UpdateFootballerPrice(CurrentPlayer);
 
 
-	
+		
 		numPlayersCalculated++;
 		index++;
 

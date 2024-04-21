@@ -91,7 +91,7 @@ void Footballer::setCleanSheets(bool cleanSheet) {
 void Footballer::setPoints(int points) {
 	this->points = points;
 };
-void Footballer::SetRating(int rating) {
+void Footballer::SetRating(float rating) {
 	this->rating = rating;
 };
 void Footballer::SetTotalGoals(int goals) {

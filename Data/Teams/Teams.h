@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Teams.h"
+
 using namespace std;
 class Teams
 {
@@ -10,7 +12,17 @@ protected:
 	vector<Footballer> footballPlayers[11];
 
 public :
+	///////////////////////////
+	//setters//////////////////
+	///////////////////////////
+
+
+	//////////////////////////
+	//getters////////////////
+	/////////////////////////
+
 	vector<Footballer> getFootballPlayer(int index);
+
 	
 };
 
@@ -72,7 +84,7 @@ public:
 	void SetPrice(float price);
 	void SetCaptain(bool Captain);
 
-	void SetRating(int rating);
+	void SetRating(float rating);
 
 	////////////////////////////////
 	/////per season/////////////////
