@@ -134,10 +134,4 @@ void Footballer::SetTotalpoints(int points) {
 	this->totalPoints = points;
 };
 
-vector<Footballer> Teams::getFootballPlayer(int index) {
-	return footballPlayers[index];
-}
 
-int Teams::getScore() {
-	return score;
-}
