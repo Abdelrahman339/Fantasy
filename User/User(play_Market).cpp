@@ -42,7 +42,7 @@ void User::findDuplicates(stack<string>& userTeams)
 	userTeams.swap(temp);
 
 }
-deque<Game> User::insertToDeque(deque<Game> UserGames, list<Game> allGames, stack<string>userTeams) {
+deque<Game> User::insertToDeque(deque<Game> UserGames, list<Game> allGames, stack<string>userTeams) {}
 
 	while (!userTeams.empty())
 	{
