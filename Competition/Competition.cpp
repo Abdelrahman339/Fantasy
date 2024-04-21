@@ -96,7 +96,7 @@ void Competition::UpdateFootballerPoints(list<Game> CurrentGame) //for both squa
 
 
 	Game g;
-	g.getAwayTeamInfo.
+	
 
 
 	int numPlayersCalculated = 0;

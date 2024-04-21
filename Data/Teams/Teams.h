@@ -8,6 +8,8 @@ class Teams
 	int score;
 	vector<Footballer> footballPlayers[11];
 
+public :
+	vector<Footballer>& getFootballPlayer(int index);
 	
 };
 

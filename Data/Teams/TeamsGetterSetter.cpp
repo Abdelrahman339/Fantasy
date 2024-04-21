@@ -132,3 +132,7 @@ void Footballer::SetTotalCleansheets(int cleanSheets) {
 void Footballer::SetTotalpoints(int potins) {
 	this->totalPoints = points;
 };
+
+vector<Footballer>& Teams::getFootballPlayer(int index) {
+	return footballPlayers[index];
+}
