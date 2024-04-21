@@ -3,18 +3,7 @@
 #include <string>
 #include <vector>
 using namespace std;
-class Teams
-{
-protected:
-	int score;
-	vector<Footballer> footballPlayers[11];
-
-public :
-	vector<Footballer> getFootballPlayer(int index);
-	
-};
-
-class Footballer //the squad that the user own's
+class Footballer //The squad that the user owns
 {
 protected:
 	//static datatypes --> constant per season
@@ -139,3 +128,15 @@ public:
 	int GetPoints();
 
 };
+
+class Teams
+{
+protected:
+	int score;
+	vector<Footballer> footballPlayers[11];
+
+public:
+	vector<Footballer> getFootballPlayer(int index);
+
+};
+

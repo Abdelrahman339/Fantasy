@@ -1,5 +1,6 @@
 #include <iostream>	
 #include "Teams.h"
+#include <vector>
 string Footballer::GetName() {
 	return this->name;
 }
