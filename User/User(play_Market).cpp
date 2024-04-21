@@ -47,7 +47,7 @@ deque<Game> User::insertToDeque(deque<Game> UserGames, list<Game> allGames, stac
 	while (!userTeams.empty())
 	{
 		for (auto it = allGames.begin(); it != allGames.end(); ++it) {
-	/*		if (userTeams.top()==it->getAwayTeam().getname() || userTeams.top() == it->getHomeTeam().getname())*/
+			//if (userTeams.top() == it->getAwayTeam().getname() || userTeams.top() == it->getHomeTeam().getname())
 			{
 				Game game = *it;
 				UserGames.push_back(game);
@@ -55,3 +55,5 @@ deque<Game> User::insertToDeque(deque<Game> UserGames, list<Game> allGames, stac
 		}
 
 	};
+	return UserGames;
+}

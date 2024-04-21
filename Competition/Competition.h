@@ -11,16 +11,13 @@ protected:
 
     const static int numOfPlayers = 22;
 
-    //Basic points 
     const static int goalPoints = 4;
     const static int assistPoints = 2;
     const static int cleanSheetPoints = 3;
     const static int redCardDeduction = 2;
     const static int yellowCardDeduction = 1;
-
-    //Bonus points
+    const static int numOfPlayers = 22;
     const static int MOTM_Bonus = 3;
-    const static int WinBonus = 2;
 
 
 
@@ -36,5 +33,5 @@ protected:
 
     void static updateUserPoints(queue<Game>& GameHighlights);
 	void showAllGameHighlights();
-    
+
 };
