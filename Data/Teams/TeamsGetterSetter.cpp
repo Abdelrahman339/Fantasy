@@ -92,7 +92,7 @@ void Footballer::setCleanSheets(bool cleanSheet) {
 void Footballer::setPoints(int points) {
 	this->points = points;
 };
-void Footballer::SetRating(int rating) {
+void Footballer::SetRating(float rating) {
 	this->rating = rating;
 };
 void Footballer::SetTotalGoals(int goals) {
@@ -130,10 +130,14 @@ int Footballer::GetTotalpoints() {
 void Footballer::SetTotalCleansheets(int cleanSheets) {
 	this->totalCleansheets = cleanSheets;
 };
-void Footballer::SetTotalpoints(int potins) {
+void Footballer::SetTotalpoints(int points) {
 	this->totalPoints = points;
 };
 
 vector<Footballer> Teams::getFootballPlayer(int index) {
 	return footballPlayers[index];
+}
+
+int Teams::getScore() {
+	return score;
 }

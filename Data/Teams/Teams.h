@@ -2,8 +2,32 @@
 #include <iostream>
 #include <string>
 #include <vector>
+
+
 using namespace std;
-class Footballer //The squad that the user owns
+class Teams
+{
+protected:
+	int score;
+	vector<Footballer> footballPlayers[11];
+
+public :
+	///////////////////////////
+	//setters//////////////////
+	///////////////////////////
+
+
+	//////////////////////////
+	//getters////////////////
+	/////////////////////////
+
+	vector<Footballer> getFootballPlayer(int index);
+	int getScore();
+
+	
+};
+
+class Footballer //the squad that the user own's
 {
 protected:
 	//static datatypes --> constant per season
@@ -61,7 +85,7 @@ public:
 	void SetPrice(float price);
 	void SetCaptain(bool Captain);
 
-	void SetRating(int rating);
+	void SetRating(float rating);
 
 	////////////////////////////////
 	/////per season/////////////////
