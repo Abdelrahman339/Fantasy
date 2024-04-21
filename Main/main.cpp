@@ -16,8 +16,8 @@ int main()
 		Connection* con;
 
 		driver = get_mysql_driver_instance();
-		con = driver->connect("localhost",
-			"", "");
+		con = driver->connect("127.0.0.1",
+			"root", "password");
 
 		con->setSchema("test"); // your database name 
 
