@@ -11,56 +11,59 @@ using namespace mysql;
 
 int main()
 {
-	try {
-		MySQL_Driver* driver;
-		Connection* con;
 
-		driver = get_mysql_driver_instance();
-		con = driver->connect("127.0.0.1",
-			"root", "password");
 
-		con->setSchema("test"); // your database name 
 
-		Statement* stmt;
-		stmt = con->createStatement();
+	//try {
+	//	MySQL_Driver* driver;
+	//	Connection* con;
 
-		// SQL query to create a table 
-		string createTableSQL
-			= "CREATE TABLE IF NOT EXISTS GFGCourses ("
-			"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
-			"courses VARCHAR(255) NOT NULL"
-			")";
+	//	driver = get_mysql_driver_instance();
+	//	con = driver->connect("127.0.0.1",
+	//		"root", "password");
 
-		stmt->execute(createTableSQL);
+	//	con->setSchema("test"); // your database name 
 
-		string insertDataSQL
-			= "INSERT INTO GFGCourses (courses) VALUES "
-			"('DSA'),('C++'),('JAVA'),('PYTHON')";
+	//	Statement* stmt;
+	//	stmt = con->createStatement();
 
-		stmt->execute(insertDataSQL);
+	//	// SQL query to create a table 
+	//	string createTableSQL
+	//		= "CREATE TABLE IF NOT EXISTS GFGCourses ("
+	//		"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
+	//		"courses VARCHAR(255) NOT NULL"
+	//		")";
 
-		// SQL query to retrieve data from the table 
-		string selectDataSQL = "SELECT * FROM GFGCourses";
+	//	stmt->execute(createTableSQL);
 
-		ResultSet* res
-			= stmt->executeQuery(selectDataSQL);
+	//	string insertDataSQL
+	//		= "INSERT INTO GFGCourses (courses) VALUES "
+	//		"('DSA'),('C++'),('JAVA'),('PYTHON')";
 
-		// Loop through the result set and display data 
-		int count = 0;
-		while (res->next()) {
-			cout << " Course " << ++count << ": "
-				<< res->getString("courses") << endl;
-		}
+	//	stmt->execute(insertDataSQL);
 
-		delete res;
-		delete stmt;
-		delete con;
-	}
-	catch (SQLException& e) {
-		std::cerr << "SQL Error: " << e.what() << std::endl;
-	}
+	//	// SQL query to retrieve data from the table 
+	//	string selectDataSQL = "SELECT * FROM GFGCourses";
 
-	return 0;
+	//	ResultSet* res
+	//		= stmt->executeQuery(selectDataSQL);
+
+	//	// Loop through the result set and display data 
+	//	int count = 0;
+	//	while (res->next()) {
+	//		cout << " Course " << ++count << ": "
+	//			<< res->getString("courses") << endl;
+	//	}
+
+	//	delete res;
+	//	delete stmt;
+	//	delete con;
+	//}
+	//catch (SQLException& e) {
+	//	std::cerr << "SQL Error: " << e.what() << std::endl;
+	//}
+
+	//return 0;
 }
 
 
