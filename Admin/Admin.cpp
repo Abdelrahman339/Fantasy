@@ -14,7 +14,7 @@ void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string
 	int choice;
 	cout << "\t\t\tAdmin Menu" << endl;
 Menu:
-	cout << "1-About Users \n 2-About Teams \n 3-About Leagues \n 4-Go Back" << endl;
+	cout << "1-About Users \n2-About Teams \n3-About Leagues \n4-Go Back" << endl;
 	cout << "Enter your choice: ";
 	cin >> choice;
 	if (choice == 1)
@@ -44,15 +44,16 @@ void Admin::AboutUsers(unordered_map<string, User>& Users/*, unordered_map<strin
 {
 	User NewUser;
 	int choice;
-	DisplayAllUsers(Users);
+	cout << "Displaying All Users..." << endl;
 Choose:
-	cout << "1-Add New User \n 2-About User \n 3-User Squad And Players\n 4-Delete User \n 5-Go Back" << endl;
+	DisplayAllUsers(Users);
+	cout << "1-Add New User \n2-About User \n3-User Squad And Players\n4-Delete User \n5-Go Back" << endl;
 	cout << "Enter your choice: ";
 	cin >> choice;
 	if (choice == 1)
 	{
 		NewUser.signup(Users);
-		cout << "Successfully Added New User " << endl;
+		cout << "Successfully Added " << NewUser.GetUsername() << " As A New User " << endl;
 		PauseAndClear();
 		goto Choose;
 	}
@@ -89,17 +90,16 @@ Choose:
 
 void Admin::DisplayAllUsers(unordered_map<string, User>& Users)
 {
-	int counter = 1;
-	cout << "Displaying All Users..." << endl;
+	int counter = 0;
 	Sleep(300);
-	cout << "\t Full Name\t\t| User Name" << endl << endl;
-	cout << "---------------------------------------------";
+	cout << "\t| Full Name\t| User Name" << endl;
+	cout << "---------------------------------------------" << endl;
 	for (auto it = Users.begin(); it != Users.end(); ++it)
 	{
-		cout << counter << "\t|" << Users.at(it->first).GetFullName() << "\t\t|" << it->first << endl;
+		cout << counter + 1 << "\t|" << Users.at(it->first).GetFullName() << "\t\t|" << it->first << endl;
 		counter++;
 	}
-	cout << "---------------------------------------------";
+	cout << "---------------------------------------------" << endl;
 	cout << "Total Number of Users: " << counter << endl;
 }
 
@@ -108,7 +108,7 @@ void Admin::ShowAndEditUser(unordered_map<string, User>& Users)
 	int choice;
 	User CurrentUser;
 	string userName;
-	cout << "Enter Username To Show User Information: ";
+	cout << "Enter Username To Show User Information: "<<endl;
 	cout << "Username: ";
 	cin >> userName;
 	if (Users.find(userName) == Users.end())
@@ -118,9 +118,12 @@ void Admin::ShowAndEditUser(unordered_map<string, User>& Users)
 	}
 	else
 	{
-		Users[userName].profile(CurrentUser, Users);// lma y5osh gowa function profile w das go back hyro7 fe 7ta tnya 8er el AboutUsers function
+		CurrentUser = Users.at(userName);
+		CurrentUser.SetUsername(userName);
+		CurrentUser.profile(CurrentUser, Users); // lma y5osh gowa function profile w das go back hyro7 fe 7ta tnya 8er el AboutUsers function
+		 
 		//lsa feh func t5leh y2dr y8yr el user balance, points, rank
-		cout << "1-User Squad And Players\n 2-Delete User \n 3-Go Back" << endl;
+		cout << "1-User Squad And Players\n2-Delete User \n3-Go Back" << endl;
 		cout << "Enter your choice: ";
 		cin >> choice;
 		if (choice == 1)
@@ -143,7 +146,7 @@ void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
 	{
 		User CurrentUser;
 		string userName;
-		cout << "Enter Username To Display User Squad: ";
+		cout << "Enter Username To Display User Squad: "<<endl;
 		cout << "Username: ";
 		cin >> userName;
 		if (Users.find(userName) == Users.end())
@@ -153,6 +156,7 @@ void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
 		}
 		else
 		{
+			CurrentUser = Users.at(userName);
 			//Users[userName].Squad(CurrentUser.TheMainSquad, CurrentUser.SubstitutionSquad);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 8er el AboutUsers function
 			cout << "aaa";
 		}
@@ -162,13 +166,13 @@ void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
 		cout << "test";////////////////////////////////
 	}
 	answer = false;
-}
+};
 
 void Admin::DeleteUser(unordered_map<string, User>& Users)
 {
 	User CurrentUser;
 	string userName;
-	cout << "Enter Username To Delete User: ";
+	cout << "Enter Username To Delete User: "<<endl;
 	cout << "Username: ";
 	cin >> userName;
 	if (Users.find(userName) == Users.end())
@@ -178,7 +182,9 @@ void Admin::DeleteUser(unordered_map<string, User>& Users)
 	}
 	else
 	{
-		CurrentUser.GetUsername() = userName;
+		CurrentUser = Users.at(userName);
+		CurrentUser.SetUsername(userName);
+		//CurrentUser.GetUsername() = userName;
 		Deletion(Users, CurrentUser);
 	}
 }
@@ -186,13 +192,14 @@ void Admin::DeleteUser(unordered_map<string, User>& Users)
 void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 {
 	cout << "Are you sure you want to delete " << CurrentUser.GetUsername() << "?" << endl;
-	cout << "1. Yes \n 2. No" << endl;
+	cout << "1. Yes \n2. No" << endl;
 	int choice;
 	cin >> choice;
 	if (choice == 1)
 	{
 		Users.erase(CurrentUser.GetUsername());
 		cout << "Successfully Deleted User " << CurrentUser.GetUsername() << endl;
+		//DisplayAllUsers(Users);
 	}
 	else if (choice == 2)
 	{
