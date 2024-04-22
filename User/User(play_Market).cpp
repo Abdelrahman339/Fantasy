@@ -10,21 +10,16 @@ void User::Market() {
 };
 deque<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
 
-	deque<Game> UserGames;
 	stack<string> userTeams;
 	for (int i = 0; i < currentUser.TheMainSquad.size(); i++)
 	{
 		userTeams.push(currentUser.TheMainSquad.at(i).GetName());
 	}
 	findDuplicates(userTeams);
-	while (!userTeams.empty())
-	{
-		cout << userTeams.top() << endl;
-		userTeams.pop();
-	}
+
+	deque<Game> UserGames=insertToDeque(allGames,userTeams);
 
 	return UserGames;
-
 }
 void User::findDuplicates(stack<string>& userTeams)
 {
@@ -43,18 +38,20 @@ void User::findDuplicates(stack<string>& userTeams)
 	userTeams.swap(temp);
 
 }
-//deque<Game> User::insertToDeque(deque<Game> UserGames, list<Game> allGames, stack<string>userTeams) {}
-//
-//	while (!userTeams.empty())
-//	{
-//		for (auto it = allGames.begin(); it != allGames.end(); ++it) {
-//			//if (userTeams.top() == it->getAwayTeam().getname() || userTeams.top() == it->getHomeTeam().getname())
-//			{
-//				Game game = *it;
-//				UserGames.push_back(game);
-//			}
-//		}
-//
-//	};
-//	return UserGames;
-//}
+deque<Game> User::insertToDeque(list<Game> allGames, stack<string>userTeams) {
+
+	deque<Game> UserGames;
+
+	while (!userTeams.empty())
+	{
+		for (auto it = allGames.begin(); it != allGames.end(); ++it) {
+			//if (userTeams.top() == it->getAwayTeam().getname() || userTeams.top() == it->getHomeTeam().getname())
+			{
+				Game game = *it;
+				UserGames.push_back(game);
+			}
+		}
+		userTeams.pop();	
+	};
+	return UserGames;
+}

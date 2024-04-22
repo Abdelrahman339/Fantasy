@@ -76,7 +76,7 @@ public:
     void Market();
     deque<Game>FilteringTeams(list<Game> allGames,User currentUser);
 
-    deque<Game> insertToDeque(deque<Game> UserGames,list<Game> allGames,stack<string>userTeams);
+    deque<Game> insertToDeque(list<Game> allGames,stack<string>userTeams);
     void findDuplicates(stack<string>& userTeams);
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
