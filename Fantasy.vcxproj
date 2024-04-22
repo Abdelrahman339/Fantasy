@@ -70,6 +70,14 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\lib64\vs14;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IncludePath>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\lib64\vs14;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -102,13 +110,14 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>I:\FantasyProject\Fantasy\User;I:\FantasyProject\Fantasy\Data\Teams;C:\Users\abdul\projects\User;C:\Users\abdul\projects\Data\Teams;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition;$(SolutionDir)\Competition\Game;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)\Data;$(SolutionDir)\User</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>mysqlcppconn.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -117,27 +126,34 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>I:\FantasyProject\Fantasy\User;I:\FantasyProject\Fantasy\Data\Teams;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition;$(SolutionDir)\Competition\Game;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)\Data;$(SolutionDir)\User</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>mysqlcppconn.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin\Admin.cpp" />
     <ClCompile Include="Competition\Competition.cpp" />
     <ClCompile Include="Competition\Game\Game.cpp" />
+    <ClCompile Include="Competition\Game\GameGetterSetter.cpp" />
     <ClCompile Include="Data\fileManpulation.cpp" />
     <ClCompile Include="Data\Leagues\Leagues.cpp" />
     <ClCompile Include="Data\Teams\Teams.cpp" />
     <ClCompile Include="Data\Teams\TeamsGetterSetter.cpp" />
     <ClCompile Include="Main\main.cpp" />
     <ClCompile Include="User\User(getter_setter).cpp" />
+    <ClCompile Include="User\User(play_Market).cpp" />
     <ClCompile Include="User\UserFunctionalities.cpp" />
     <ClCompile Include="User\UserValidations.cpp" />
     <ClCompile Include="User\User_Credentialscpp.cpp" />
