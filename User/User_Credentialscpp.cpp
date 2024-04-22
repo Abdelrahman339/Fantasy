@@ -43,7 +43,7 @@ choice:
 };
 
 
-void User::toLogin(unordered_map<string, User> Users) {
+void User::toLogin(unordered_map<string, User> &Users) {
 	int count = 0;
 	string user;
 	string pass;
