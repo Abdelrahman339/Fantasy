@@ -1,14 +1,24 @@
-﻿#include <cppconn/driver.h> 
+﻿#include <iostream> 
+using namespace std;
+//files
+#include "User.h"
+#include "Competition.h"
+#include "Admin.h"
+#include "Game.h"
+
+//data structures
+#include <unordered_map>
+
+//databse
+#include <cppconn/driver.h> 
 #include <cppconn/exception.h> 
 #include <cppconn/statement.h> 
-#include <iostream> 
 #include <mysql_connection.h> 
 #include <mysql_driver.h>
 #include<Admin.h>
 #include<User.h>
 #include<unordered_map>
 
-using namespace std;
 using namespace sql;
 using namespace mysql;
 

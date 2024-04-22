@@ -6,6 +6,7 @@
 using namespace std;
 void User::Market() {
 
+
 };
 deque<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
 

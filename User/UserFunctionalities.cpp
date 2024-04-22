@@ -109,7 +109,7 @@ void User::Substitution(vector <Footballer> mainSquad, vector <Footballer> Subst
 	Squad(mainSquad, SubstitutionSquad);
 };
 
-void User::profile(User currentUser, unordered_map<string, User>& Users) {
+void User::profile(User &currentUser, unordered_map<string, User>& Users) {
 	int choice;
 	cout << "profile" << endl;
 	cout << "Name:" << currentUser.GetFullName() << endl;;
@@ -134,7 +134,7 @@ void User::profile(User currentUser, unordered_map<string, User>& Users) {
 	}
 };
 
-void User::editInfo(User currentUser, unordered_map<string, User>& Users) {
+void User::editInfo(User &currentUser, unordered_map<string, User>& Users) {
 	int choice;
 invalid:
 	cout << "What info you want to update:" << endl;
