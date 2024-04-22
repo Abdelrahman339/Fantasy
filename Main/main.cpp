@@ -24,15 +24,6 @@ using namespace mysql;
 
 int main()
 {
-	unordered_map <string, User>users;
-	User user1, user2, user3;
-	user1.SetFullName("user1"); user2.SetFullName("user2"); user3.SetFullName("user3");
-	users.insert_or_assign("user1", user1);
-	users.insert_or_assign("user2", user2);
-	users.insert_or_assign("user3", user3);
-	Admin admin;
-	admin.AdminMenu(users);
-
 	//try {
 	//	MySQL_Driver* driver;
 	//	Connection* con;
