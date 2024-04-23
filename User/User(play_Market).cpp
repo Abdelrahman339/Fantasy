@@ -4,12 +4,57 @@
 #include "User.h"
 #include <set>
 using namespace std;
+
+void play(list<Game> allGames, User currentUser) {
+	int choice;
+	char ans;
+	deque<Game>UserGames=User::FilteringTeams(allGames, currentUser);
+	invalid:
+	cout << "1-Play the current match \n 2-show the Games Highlights of the week\n 3-Go back" << endl;
+	cin >> choice;
+	if (choice==1)
+	{
+		User::showCurrentMatch(UserGames);
+		cout << "ready to play the current match? (y/n)" << endl;
+		cin >> ans;
+		if (ans=='y')
+		{
+			//comp functions
+		}
+		else if (ans=='n')
+		{
+			User::play(allGames, currentUser);
+		}
+	}
+	else if (choice==2)
+	{
+
+	}
+	else if (choice == 3) {
+		User::userMenu();
+	}
+	else {
+		cout << "Invalid option please select a valid option" << endl;
+		goto invalid;
+	}
+	//comp func
+
+};
 void User::Market() {
 
 
+}
+void User::showtopPlayer(vector<Footballer> TopPlayer)
+{
+	//User::Format433();
 };
+void User::showCurrentMatch(deque<Game>& UserGames)
+{
+	cout << " Current match " << endl;
+	UserGames.front().getHomeTeam(); UserGames.front().getAwayTeam();
+}
 deque<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
-
+	deque<Game> UserGames;
 	stack<string> userTeams;
 	for (int i = 0; i < currentUser.TheMainSquad.size(); i++)
 	{
@@ -17,9 +62,9 @@ deque<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
 	}
 	findDuplicates(userTeams);
 
-	deque<Game> UserGames=insertToDeque(allGames,userTeams);
-
+	insertToDeque(allGames,userTeams,UserGames);
 	return UserGames;
+	
 }
 void User::findDuplicates(stack<string>& userTeams)
 {
@@ -38,9 +83,9 @@ void User::findDuplicates(stack<string>& userTeams)
 	userTeams.swap(temp);
 
 }
-deque<Game> User::insertToDeque(list<Game> allGames, stack<string>userTeams) {
+void User::insertToDeque(list<Game> allGames, stack<string>userTeams, deque<Game> &UserGames) {
 
-	deque<Game> UserGames;
+
 
 	while (!userTeams.empty())
 	{
@@ -53,5 +98,13 @@ deque<Game> User::insertToDeque(list<Game> allGames, stack<string>userTeams) {
 		}
 		userTeams.pop();	
 	};
-	return UserGames;
+	
 }
+
+void User::sell(User& currentUser) {
+
+};
+void User::buy(User& currentUser) {
+};
+void User::replace(User& currentUser) {
+};

@@ -2,11 +2,13 @@
 #include <unordered_map>
 #include <string>
 #include"Teams.h"
+#include <vector>
 using namespace std;
 
 class League {
 private:
-    unordered_map<string, Teams > teams;
+	string name;
+	vector <Teams> teams;
 
 public:
     League() {}
@@ -14,9 +16,9 @@ public:
 
     void displayTeams();
 
-    void updatePoints(string teamName, int points);
+    void updatePoints();
 
-    void displayPointTable();
+    void displayPointTable(vector <Teams> teamlist);
 
     ~League();
 };

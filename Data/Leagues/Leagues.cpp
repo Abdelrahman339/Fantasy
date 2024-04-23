@@ -4,6 +4,7 @@
 #include "Leagues.h"
 #include <algorithm>
 #include"Teams.h"
+#include "Game.h"
 using namespace std;
 
 void League::displayTeams()
@@ -16,14 +17,14 @@ void League::displayTeams()
     
 }
 
-void League::updatePoints(string teamName, int points)
+void League::updatePoints(vector <Teams>allteams, list<Game> allgames)
 {
     
     teams[teamName]->points += points;
     
 }
 
-void League::displayPointTable()
+void League::displayPointTable(vector <Teams> teamlist
 {
     {
         cout << "Point table:" << endl;

@@ -134,7 +134,11 @@ public:
 class Teams
 {
 protected:
-	int score;
+	int points;
+	int wins;
+	int lose;
+	int draw;
+
 	vector<Footballer> footballPlayers[11];
 
 public:
