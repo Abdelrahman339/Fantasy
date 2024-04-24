@@ -32,20 +32,6 @@ protected:
 	int totalCleansheets;
 	int totalPoints;
 
-	/////////////////////////////////////////////
-	//per match//////////////////////////////////
-	/////////////////////////////////////////////
-
-	int goals;
-	int points; // footballer points should be intialized as 1 as he starts in the starting eleven
-	int assists;
-	bool redCards;
-	bool yellowCards;
-	bool cleanSheets; // For updating goalKeepers and defenders points
-
-
-
-
 
 public:
 
@@ -79,19 +65,6 @@ public:
 
 	void SetTotalpoints(int points);
 
-	////////////////////////////////
-	///////////per match////////////
-	////////////////////////////////
-
-	void setGoals(int goals);
-	void setAssists(int assists);
-	void setYellowCards(bool card);
-	void setRedCard(bool card);
-
-	void setCleanSheets(bool cleanSheet);
-	void setPoints(int points);
-
-
 
 	//---------------------------------------------------------------------------------------------------------------------
 
@@ -119,16 +92,6 @@ public:
 	int GetTotalCleansheets();
 	int GetTotalpoints();
 
-	////////////////////////////////
-	///////////per match////////////
-	////////////////////////////////
-
-	int GetGoals();
-	int GetAssists();
-	bool GetYellowCards();
-	bool GetRedCard();
-	bool  GetCleanSheets();
-	int GetPoints();
 
 };
 

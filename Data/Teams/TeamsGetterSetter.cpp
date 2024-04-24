@@ -48,50 +48,7 @@ void Footballer::SetCaptain(bool captain) {
 	this->captain = captain;
 }
 
-int Footballer::GetGoals() {
-	return goals;
-}
 
-void Footballer::setGoals(int goals) {
-	this->goals = goals;
-}
-
-int Footballer::GetAssists() {
-	return assists;
-}
-
-void Footballer::setAssists(int assists) {
-	this->assists = assists;
-}
-
-bool Footballer::GetRedCard() {
-	return redCards;
-}
-
-void Footballer::setRedCard(bool redCard) {
-	this->redCards = redCard;
-}
-
-bool Footballer::GetYellowCards() {
-	return yellowCards;
-}
-
-void Footballer::setYellowCards(bool yellowCard) {
-	this->yellowCards = yellowCard;
-}
-
-bool  Footballer::GetCleanSheets() {
-	return cleanSheets;
-}
-int Footballer::GetPoints() {
-	return points;
-}
-void Footballer::setCleanSheets(bool cleanSheet) {
-	this->cleanSheets = cleanSheet;
-};
-void Footballer::setPoints(int points) {
-	this->points = points;
-};
 void Footballer::SetRating(float rating) {
 	this->rating = rating;
 };
