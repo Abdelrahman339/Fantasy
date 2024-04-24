@@ -9,60 +9,48 @@ using namespace std;
 using namespace sql;
 using namespace mysql;
 
-int main()
-{
+int main() {
 	try {
-		MySQL_Driver* driver;
+		Driver* driver;
 		Connection* con;
 
+		string host = "tcp://127.0.0.1:3306";
+		string user = "root";
+		string password = "admin";
+		string database = "fantasy";
+
 		driver = get_mysql_driver_instance();
-		con = driver->connect("127.0.0.1",
-			"root", "password");
+		con = driver->connect(host, user, password);
 
-		con->setSchema("test"); // your database name 
+		if (con) {
+			cout << "Connected to MySQL database server successfully!" << endl;
 
-		Statement* stmt;
-		stmt = con->createStatement();
+			// Create a statement object
+			Statement* stmt = con->createStatement();
 
-		// SQL query to create a table 
-		string createTableSQL
-			= "CREATE TABLE IF NOT EXISTS GFGCourses ("
-			"id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,"
-			"courses VARCHAR(255) NOT NULL"
-			")";
+			// SQL statement to create the table
+			string query = "INSERT INTO fantasy.soccer_league (rankf, team_name, matches_played, wins, draws, losses, goals_for, goals_against, points) VALUES(14, 'Elche', 38, 11, 9, 18, 40, 52, 42),(15, 'Getafe', 38, 8, 15, 15, 33, 41, 39),(16, 'Mallorca', 38, 10, 9, 19, 36, 63, 39),(17, 'Cadiz CF', 38, 8, 15, 15, 35, 51, -16),(18, 'Granada CF', 38, 8, 14, 16, -46, -17, -38),(19, 'Levante', 38, 8, -11, -19, -57, -25, -35),(20, 'Alaves', 38, -8, -7, -23, -31, -65, -34); ";
 
-		stmt->execute(createTableSQL);
+			// Execute the query
+			stmt->execute(query);
 
-		string insertDataSQL
-			= "INSERT INTO GFGCourses (courses) VALUES "
-			"('DSA'),('C++'),('JAVA'),('PYTHON')";
+			//cout << "Table 'fantasy' created successfully!" << endl;
 
-		stmt->execute(insertDataSQL);
-
-		// SQL query to retrieve data from the table 
-		string selectDataSQL = "SELECT * FROM GFGCourses";
-
-		ResultSet* res
-			= stmt->executeQuery(selectDataSQL);
-
-		// Loop through the result set and display data 
-		int count = 0;
-		while (res->next()) {
-			cout << " Course " << ++count << ": "
-				<< res->getString("courses") << endl;
+			delete stmt;
 		}
+		
+		else
+			cout << "Failed to connect to database!" << endl;
 
-		delete res;
-		delete stmt;
 		delete con;
+
 	}
 	catch (SQLException& e) {
-		std::cerr << "SQL Error: " << e.what() << std::endl;
+		cout << "An error occurred: " << e.what() << endl;
 	}
 
 	return 0;
 }
-
 
 /*
 *
