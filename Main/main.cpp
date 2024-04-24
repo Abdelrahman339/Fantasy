@@ -1,9 +1,22 @@
-﻿#include <cppconn/driver.h> 
+﻿#include <iostream> 
+//files
+#include "User.h"
+#include "Competition.h"
+#include "Admin.h"
+#include "Game.h"
+
+//data structures
+#include <unordered_map>
+
+//databse
+#include <cppconn/driver.h> 
 #include <cppconn/exception.h> 
 #include <cppconn/statement.h> 
-#include <iostream> 
 #include <mysql_connection.h> 
-#include <mysql_driver.h> 
+#include <mysql_driver.h>
+#include<Admin.h>
+#include<User.h>
+#include<unordered_map>
 
 using namespace std;
 using namespace sql;
@@ -49,7 +62,7 @@ int main() {
 		cout << "An error occurred: " << e.what() << endl;
 	}
 
-	return 0;
+	//return 0;
 }
 
 /*
@@ -62,7 +75,7 @@ int main() {
 
  vecotr of Footballers: this vector will have a 11 player from the same team .the data of footballers will be stored in TeamFile.txt . this file will have the information about each team and the info for the footballers in this team.This vector will be in class "team".
 
- deque of Games: this deque will contain mtaches but it will  depend on the user squad . this deque will be different for each user.
+ queue of Games: this deque will contain mtaches but it will  depend on the user squad . this queue will be different for each user.
 
  stack of string and set:internal usage in functions.
 
