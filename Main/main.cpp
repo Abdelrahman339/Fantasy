@@ -87,7 +87,7 @@ int main()
 
  vecotr of Footballers: this vector will have a 11 player from the same team .the data of footballers will be stored in TeamFile.txt . this file will have the information about each team and the info for the footballers in this team.This vector will be in class "team".
 
- deque of Games: this deque will contain mtaches but it will  depend on the user squad . this deque will be different for each user.
+ queue of Games: this deque will contain mtaches but it will  depend on the user squad . this queue will be different for each user.
 
  stack of string and set:internal usage in functions.
 

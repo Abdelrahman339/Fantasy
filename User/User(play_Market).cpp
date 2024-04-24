@@ -8,7 +8,7 @@ using namespace std;
 void play(list<Game> allGames, User currentUser) {
 	int choice;
 	char ans;
-	deque<Game>UserGames=User::FilteringTeams(allGames, currentUser);
+	queue <Game>UserGames=User::FilteringTeams(allGames, currentUser);
 	invalid:
 	cout << "1-Play the current match \n 2-show the Games Highlights of the week\n 3-Go back" << endl;
 	cin >> choice;
@@ -31,7 +31,7 @@ void play(list<Game> allGames, User currentUser) {
 
 	}
 	else if (choice == 3) {
-		User::userMenu();
+		//User::userMenu();
 	}
 	else {
 		cout << "Invalid option please select a valid option" << endl;
@@ -48,13 +48,13 @@ void User::showtopPlayer(vector<Footballer> TopPlayer)
 {
 	//User::Format433();
 };
-void User::showCurrentMatch(deque<Game>& UserGames)
+void User::showCurrentMatch(queue<Game>& UserGames)
 {
 	cout << " Current match " << endl;
 	UserGames.front().getHomeTeam(); UserGames.front().getAwayTeam();
 }
-deque<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
-	deque<Game> UserGames;
+queue<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
+	queue<Game> UserGames;
 	stack<string> userTeams;
 	for (int i = 0; i < currentUser.TheMainSquad.size(); i++)
 	{
@@ -62,7 +62,7 @@ deque<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
 	}
 	findDuplicates(userTeams);
 
-	insertToDeque(allGames,userTeams,UserGames);
+	insertToQueue(allGames,userTeams,UserGames);
 	return UserGames;
 	
 }
@@ -83,7 +83,7 @@ void User::findDuplicates(stack<string>& userTeams)
 	userTeams.swap(temp);
 
 }
-void User::insertToDeque(list<Game> allGames, stack<string>userTeams, deque<Game> &UserGames) {
+void User::insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game> &UserGames) {
 
 
 
@@ -93,7 +93,7 @@ void User::insertToDeque(list<Game> allGames, stack<string>userTeams, deque<Game
 			//if (userTeams.top() == it->getAwayTeam().getname() || userTeams.top() == it->getHomeTeam().getname())
 			{
 				Game game = *it;
-				UserGames.push_back(game);
+				UserGames.push(game);
 			}
 		}
 		userTeams.pop();	

@@ -52,6 +52,40 @@ char Competition::priceCalculation(Footballer& player) {
 
 }
 
+void Competition::updateUserPoints(string footballerName,User &currentUser)
+{
+
+}
+
+void Competition::updateUserbalance(int totalpoints, User &currentUser)
+{
+	float totalBalance = totalpoints * 3;
+	currentUser.addBalance(totalBalance);
+}
+
+void Competition::findPlayers(queue<Game>& UserGames, User &currentUser)
+{
+	Game currentGame = UserGames.front();
+	while (!currentGame.getPlayersScoredGoals().empty())
+	{
+
+		string currentPlayerScored = currentGame.getPlayersScoredGoals().top();
+		for (int i = 0; i < currentUser.GetMainSquad().size(); i++)
+		{
+			if (currentPlayerScored == currentUser.GetMainSquad().at(i).GetName()) {
+				updateUserPoints(currentPlayerScored, currentUser);
+			}
+		}
+
+
+		currentGame.getPlayersScoredGoals().pop();
+	}
+
+
+	//The end of the match
+	UserGames.pop();
+}
+
 void Competition::UpdateFootballerPrice(Footballer& player) // for all the players
 {
 	char tier = Competition::priceCalculation(player);

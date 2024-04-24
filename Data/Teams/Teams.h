@@ -18,6 +18,7 @@ protected:
 	float price;
 	float rating;
 	bool captain;
+	bool matchWinner;
 
 
 	/////////////////////////////////////////////

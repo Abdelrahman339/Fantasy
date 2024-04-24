@@ -49,6 +49,11 @@ void User::SetBalance(float balance)
     this->balance = balance;
 }
 
+void User::addBalance(float balance)
+{
+    this->balance += balance;
+}
+
 string User::GetFullName()
 {
     return fullName;
@@ -110,4 +115,9 @@ int User::GetPoints()
 float User::GetBalance()
 {
     return balance;
+}
+
+vector<Footballer> User::GetMainSquad()
+{
+    return this->TheMainSquad;
 }

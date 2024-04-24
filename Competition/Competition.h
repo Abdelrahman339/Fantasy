@@ -3,6 +3,7 @@
 #include <vector>
 #include<list>
 #include "Game.h"
+#include "User.h"
 using namespace std;
 
 class Competition {
@@ -30,7 +31,9 @@ protected:
 
     
 
-    void static updateUserPoints(queue<Game>& GameHighlights);
+    void static updateUserPoints(string footballerName, User &currentUser);
+    void static updateUserbalance(int totalpoints, User &currentUser);
+    void static findPlayers(queue<Game>& UserGames, User &currentUser);
 	void showAllGameHighlights();
 
 };

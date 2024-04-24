@@ -37,6 +37,7 @@ public:
     void SetRank(int rank);
     void SetPoints(int points);
     void SetBalance(float balance);
+	void addBalance(float balance);
     bool SetFootballer(Footballer footbaler);
     string GetFullName();
     string GetUsername();
@@ -47,6 +48,7 @@ public:
     int GetRank();
     int GetPoints();
     float GetBalance();
+	vector<Footballer> GetMainSquad();
 
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
@@ -80,10 +82,10 @@ public:
 	void replace(User& currentUser);
 
     void static play(list<Game> allGames, User currentUser);
-    void static showCurrentMatch( deque<Game> &UserGames);
-    deque<Game>static FilteringTeams(list<Game> allGames,User currentUser);
+    void static showCurrentMatch( queue<Game> &UserGames);
+    queue<Game>static FilteringTeams(list<Game> allGames,User currentUser);
 
-    void static insertToDeque(list<Game> allGames,stack<string>userTeams, deque<Game> &UserGames);
+    void static insertToQueue(list<Game> allGames,stack<string>userTeams, queue<Game> &UserGames);
     void static findDuplicates(stack<string>& userTeams);
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
