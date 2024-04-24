@@ -22,6 +22,8 @@ public:
 	void AboutUsers(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/);
 	void DisplayAllUsers(unordered_map<string, User>& Users);
 	void ShowAndEditUser(unordered_map<string, User>& Users);
+	void ViewProfile(unordered_map<string, User>& Users, User CurrentUser);
+	void EditProfile(unordered_map<string, User>& Users, User CurrentUser);
 	void UserSquadAndPlayers(unordered_map<string, User>& Users);
 	void DeleteUser(unordered_map<string, User>& Users);
 	void Deletion(unordered_map<string, User>& Users, User DeletedUser);
