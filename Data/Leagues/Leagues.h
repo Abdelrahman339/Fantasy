@@ -11,14 +11,14 @@ private:
 	vector <Teams> teams;
 
 public:
-    League() {}
+    League();
 
 
     void displayTeams();
 
-    void updatePoints();
+    void updatePoints(vector <Teams>allteams, list<Game> allgames);
 
     void displayPointTable(vector <Teams> teamlist);
 
-    ~League();
+  
 };

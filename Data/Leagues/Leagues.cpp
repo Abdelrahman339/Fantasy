@@ -7,47 +7,45 @@
 #include "Game.h"
 using namespace std;
 
-void League::displayTeams()
-{
-        cout << "Teams in the league:" << endl;
-        for (auto const& pair : teams) {
-            cout << pair.first << endl;
-        }
-   
-    
+void League::displayTeams() {
+    cout << "Teams in the league:" << endl;
+    for ( auto& team : teams) {
+        cout << team.getName()<< endl;
+    }
 }
 
-void League::updatePoints(vector <Teams>allteams, list<Game> allgames)
-{
-    
-    teams[teamName]->points += points;
-    
-}
 
-void League::displayPointTable(vector <Teams> teamlist
-{
-    {
-        cout << "Point table:" << endl;
-        // Convert to vector for sorting
-        vector<Teams*> teamList;
-        for (auto const& pair : teams) {
-            teamList.push_back(pair.second);
-        }
-        // Sort teams by points
-        sort(teamList.begin(), teamList.end(), [](const Teams* a, const Teams* b) {
-            return a->points > b->points;
-            });
-        // Display point table
-        for (int i = 0; i < teamList.size(); ++i) {
-            cout << i + 1 << ". " << teamList[i]->name << ": " << teamList[i]->points << " points" << endl;
+void League::updatePoints(vector<Teams> allteams, list<Game> allgames) {
+ 
+    // Update points based on games played
+    for ( auto& game : allgames) {
+        for (auto& team : allteams) {
+            if (team.getName() == game.getwinningTeam()) {
+                team.addPoints(3);
+            }
+            else if ((team.getName() == game.getHomeTeam().getName() || team.getName() == game.getAwayTeam().getName()) && game.getwinningTeam() == "draw") {
+                team.addPoints(1);
+            }
         }
     }
 }
 
-League::~League()
-{
-        for (auto const& pair : teams) {
-            delete pair.second;
-        }
     
+
+
+void League::displayPointTable(vector <Teams> teamlist)
+{
+    {
+        cout << "Point table:" << endl;
+        // Sort teams by points
+        sort(teamlist.begin(), teamlist.end(), []( Teams& a,  Teams& b) {
+            return a.getPoints() > b.getPoints();
+            });
+        // Display point table
+        for (int i = 0; i < teamlist.size(); ++i) {
+            cout << i + 1 << ". " << teamlist[i].getName() << ": " << teamlist[i].getPoints() << " points" <<","<< teamlist[i].getwins()<<"wins"<<"," << teamlist[i].getlose()<< "lose" <<"," << teamlist[i].getdraw()<<"draw" << endl;
+        }
+    }
 }
+
+

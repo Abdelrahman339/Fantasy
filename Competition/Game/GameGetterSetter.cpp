@@ -10,6 +10,11 @@ string Game::getStatistics() { return statistics; }
 string Game::getHighlightsOfTheMatch() { return highlightsOfTheMatch; }
 string Game::getDate() { return date; }
 
+string Game::getwinningTeam()
+{
+    return winningTeam;
+}
+
 // Setters
 void Game::setAwayTeam(Teams team) { awayTeam = team; }
 void Game::setHomeTeam(Teams team) { homeTeam = team; }

@@ -46,6 +46,7 @@ protected:
 		string getStatistics();
 		string getHighlightsOfTheMatch();
 		string getDate();
+		string getwinningTeam();
 
 //usefull website for games data --> (moved it to README.md becuase of an occuring error)
 
