@@ -134,11 +134,22 @@ public:
 class Teams
 {
 protected:
-	int score;
+	string name;
+	int points;
+	int wins;
+	int lose;
+	int draw;
+
 	vector<Footballer> footballPlayers[11];
 
 public:
 	vector<Footballer> getFootballPlayer(int index);
-
+	string getName();
+	int getwins();
+	int getlose();
+	int getdraw();
+	int getPoints();
+	void SetPoints(int num);
+	void addPoints(int num);
 };
 

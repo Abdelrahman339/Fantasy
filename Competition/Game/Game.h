@@ -11,6 +11,7 @@ class Game {
 protected:
 	Teams awayTeam;
 	Teams homeTeam;
+	string winningTeam;	
 	string score;
 	string manOfTheMatch;
 	string statistics;
@@ -38,13 +39,14 @@ protected:
 		///////////// getters ///////////////////
 		/////////////////////////////////////////
 
-		Teams& getAwayTeam();
-		Teams& getHomeTeam();
+		Teams getAwayTeam();
+		Teams getHomeTeam();
 		string getScore();
 		string getManOfTheMatch();
 		string getStatistics();
 		string getHighlightsOfTheMatch();
 		string getDate();
+		string getwinningTeam();
 
 //usefull website for games data --> (moved it to README.md becuase of an occuring error)
 

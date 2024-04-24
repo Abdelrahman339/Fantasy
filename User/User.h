@@ -74,10 +74,17 @@ public:
     void static profile(User &currentUser, unordered_map<string, User>& Users);
     void static editInfo(User &currentUser, unordered_map<string, User>& Users);
     void Market();
-    deque<Game>FilteringTeams(list<Game> allGames,User currentUser);
+    void showtopPlayer(vector<Footballer> TopPlayer);
+    void sell(User& currentUser);
+	void buy(User& currentUser);
+	void replace(User& currentUser);
 
-    deque<Game> insertToDeque(deque<Game> UserGames,list<Game> allGames,stack<string>userTeams);
-    void findDuplicates(stack<string>& userTeams);
+    void static play(list<Game> allGames, User currentUser);
+    void static showCurrentMatch( deque<Game> &UserGames);
+    deque<Game>static FilteringTeams(list<Game> allGames,User currentUser);
+
+    void static insertToDeque(list<Game> allGames,stack<string>userTeams, deque<Game> &UserGames);
+    void static findDuplicates(stack<string>& userTeams);
     ///////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////
 };
