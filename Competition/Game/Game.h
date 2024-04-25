@@ -58,8 +58,5 @@ public:
 
 	//usefull website for games data --> (moved it to README.md becuase of an occuring error)
 
-	bool operator==(const Game& other){
-		return (GameId == other.GameId);
-	}
 
 };

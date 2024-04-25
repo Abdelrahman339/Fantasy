@@ -151,6 +151,7 @@
     <ClCompile Include="Competition\Competition.cpp" />
     <ClCompile Include="Competition\Game\Game.cpp" />
     <ClCompile Include="Competition\Game\GameGetterSetter.cpp" />
+    <ClCompile Include="Competition\Game\HighlightsOfTheMatch.cpp" />
     <ClCompile Include="Data\fileManpulation.cpp" />
     <ClCompile Include="Data\Leagues\Leagues.cpp" />
     <ClCompile Include="Data\Teams\Teams.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="Admin\Admin.h" />
     <ClInclude Include="Competition\Competition.h" />
     <ClInclude Include="Competition\Game\Game.h" />
+    <ClInclude Include="Competition\Game\HighlightsOfTheMatch.h" />
     <ClInclude Include="Data\fileManpulation.h" />
     <ClInclude Include="Data\Leagues\Leagues.h" />
     <ClInclude Include="Data\Teams\Teams.h" />

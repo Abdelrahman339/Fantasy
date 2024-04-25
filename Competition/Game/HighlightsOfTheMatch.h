@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 using namespace std;
 
@@ -17,5 +18,4 @@ public:
 	string getViolation();
 };
 
-//2 soulutions 1- add all the 22 players in this class to know whos players scored goals and who didn't using contributes attribute  
-//2- use stack to store players that scored goals and compare it with the original squads in both teams
+//add all the 22 players in this class to know whos players scored goals and who didn't using contributes attribute  

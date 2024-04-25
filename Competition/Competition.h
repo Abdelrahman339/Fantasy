@@ -4,6 +4,7 @@
 #include<list>
 #include "Game.h"
 #include "User.h"
+#include "Teams.h"
 using namespace std;
 
 class Competition {
@@ -30,12 +31,16 @@ protected:
 
 
 
-	void static removeCurrentGame(queue<Game>& UserGames, list<Game>& allGames);//use this function before updating all the players points. to prevent duplicate games between UserGames and allGames
+	void static removeCurrentGame(queue<Game> UserGames, list<Game>& allGames);//use this function before updating all the players points. to prevent duplicate games between UserGames and allGames
 
 	void static ReduceUserPoints(string footballerName, User& currentUser, string contributes);//this function used to reduce user points,balance and footballer points
 
-	void static updateUserPoints(string footballerName, User& currentUser, string contributes);//this function used to update user points,balance and footballer points
-	void static findPlayers(queue<Game>& UserGames, User& currentUser);
+	void static updatePoints(string footballerName, User& currentUser, string contributes, string status, Teams& team);//this function used to update user points,balance and footballer points
+	void static addPoints(string contributes, User currentUser, string footballerName,int numPerpoints,string status,Teams &team); // goals or assits
+	void static addGoalsAssistPoints(string contributes, User currentUser, string footballerName, string status, Teams& team);
+	void static findPlayers(queue<Game>& UserGames, User& currentUser, string status, Teams& team);
+
+
 	void showAllGameHighlights(queue<Game>Usergames,list <Game> &allGames);// show all the games that played in this week or round.
 
 };

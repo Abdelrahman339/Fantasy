@@ -57,6 +57,9 @@
     <ClCompile Include="Competition\Game\GameGetterSetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Competition\Game\HighlightsOfTheMatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User\User.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Data\fileManpulation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Competition\Game\HighlightsOfTheMatch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

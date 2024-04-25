@@ -5,6 +5,7 @@
 #include "Teams.h"
 #include"Game/Game.h"
 #include <unordered_map>
+#include <regex>
 
 
 using namespace std;
@@ -54,19 +55,20 @@ bool Competition::checkPosition(string footballerPosition) {
 //
 //}
 
-//void Competition::removeCurrentGame(queue<Game>& UserGames, list<Game>& allGames)
-//{
-//	while (!UserGames.empty())
-//	{
-//
-//		for (Game game : allGames) {
-//			if (UserGames.front() == game)
-//			{
-//				allGames.remove(game);
-//			}
-//		}
-//	}
-//}
+void Competition::removeCurrentGame(queue<Game> UserGames, list<Game>& allGames)
+{
+	while (!UserGames.empty())
+	{
+
+		for (Game game : allGames) {
+			if (UserGames.front().getGameId() == game.getGameId())
+			{
+				allGames.remove(game);
+			}
+		}
+		UserGames.pop();
+	}
+}
 
 void Competition::ReduceUserPoints(string footballerName, User& currentUser, string violence)
 {
@@ -89,45 +91,97 @@ void Competition::ReduceUserPoints(string footballerName, User& currentUser, str
 
 }
 
-void Competition::updateUserPoints(string footballerName, User& currentUser, string contributes)
+void Competition::updatePoints(string footballerName, User& currentUser, string contributes, string status, Teams& team)
 {
-	if (contributes == "Goal")
-	{
-		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(4);
-		currentUser.AddPoints(4);
-		currentUser.addBalance(12);
+	//"golas 5 & assits 6"
+	regex pattern(R"(&)");
+	int numberofGoals;
+	if (regex_match(contributes, pattern)) { // if the player scord and did assist
 
+		addGoalsAssistPoints(contributes, currentUser, footballerName, status, team);
 	}
-	else if (contributes == "Assist") {
-		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(2);
-		currentUser.AddPoints(2);
-		currentUser.addBalance(6);
-	}
-	else if (contributes == "Goal&Assist") {
-		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(6);
-		currentUser.AddPoints(6);
-		currentUser.addBalance(18);
-	}
-	else if (contributes == "cleanSheets")
-	{
-		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(3);
-		currentUser.AddPoints(3);
-		currentUser.addBalance(10);
 
+	else if (!regex_match(contributes, pattern))
+	{
+		regex Goalpattern(R"(Goal)");
+		regex Assistpattern(R"(Assist)");
+		if (regex_match(contributes, Goalpattern)) {
+
+			addPoints(contributes, currentUser, footballerName, 4, status, team);
+		}
+		else if (regex_match(contributes, Assistpattern)) {
+
+			addPoints(contributes, currentUser, footballerName, 3, status, team);
+		}
+		else {
+			currentUser.GetMainSquad().at(footballerName).AddTotalpoints(3);
+			currentUser.AddPoints(3);
+			currentUser.addBalance(10);
+		}
 	}
-	else if (contributes == "null")
+	else
 	{
 		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(-10);
 		currentUser.AddPoints(-10);
 	}
-	else
-	{
-		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(0);
-	}
 
 }
 
-void Competition::findPlayers(queue<Game>& UserGames, User& currentUser)
+
+void Competition::addPoints(string contributes, User currentUser, string footballerName, int numPerpoints, string status, Teams& team)
+{
+	int nmuberOfcontributes;
+	regex pattern(R"(\d+)");
+
+	smatch match;
+
+	if (regex_search(contributes, match, pattern)) {
+		nmuberOfcontributes = stoi(match[0]);
+
+	}
+	if (status == "footballer") {
+		team.getFootballPlayer().at(footballerName).AddTotalpoints(numPerpoints * nmuberOfcontributes);
+	}
+	else {
+		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(numPerpoints * nmuberOfcontributes);
+		currentUser.AddPoints(numPerpoints * nmuberOfcontributes);
+		currentUser.addBalance(numPerpoints * nmuberOfcontributes);
+	}
+}
+
+
+
+void Competition::addGoalsAssistPoints(string contributes, User currentUser, string footballerName, string status, Teams& team)
+{
+	regex pattern(R"(\d+)");
+
+	smatch matches;
+	int goalsnum, assistsnum;
+
+	int foundNumbers = 0;
+
+	while (regex_search(contributes, matches, pattern)) {
+		if (foundNumbers == 0) {
+			goalsnum = std::stoi(matches[0]);
+		}
+		else {
+			assistsnum = std::stoi(matches[0]);
+		}
+		contributes = matches.suffix().str();
+		foundNumbers++;
+	}
+	int totalPoints = (goalsnum * 4) + (assistsnum * 3);
+	if (status == "footballer") {
+		team.getFootballPlayer().at(footballerName).AddTotalpoints(totalPoints);
+	}
+	else {
+		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(totalPoints);
+		currentUser.AddPoints(totalPoints);
+		currentUser.addBalance(totalPoints * 3);
+	}
+}
+
+void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string status, Teams& team)
 {
 
 	Game currentGame = UserGames.front();
@@ -139,8 +193,8 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser)
 			string footballerName = kv.first;
 			if (footballerName == currentPlayerinMatch)
 			{
-				updateUserPoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions());
-				ReduceUserPoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getViolence());
+				updatePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team);
+				ReduceUserPoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getViolation());
 
 			}
 		}
@@ -154,7 +208,7 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser)
 	UserGames.pop();
 }
 
-void Competition::showAllGameHighlights(queue<Game>Usergames,list <Game> &allGame)
+void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGame)
 {
 	char ans;
 	removeCurrentGame(Usergames, allGame);

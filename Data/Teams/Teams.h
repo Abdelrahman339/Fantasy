@@ -105,10 +105,10 @@ protected:
 	int lose;
 	int draw;
 
-	vector<Footballer> footballPlayers[11];
+	unordered_map<string, Footballer> players;
 
 public:
-	vector<Footballer> getFootballPlayer(int index);
+	unordered_map<string, Footballer>getFootballPlayer();
 	string getName();
 	int getwins();
 	int getlose();
