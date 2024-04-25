@@ -22,9 +22,9 @@ protected:
 	stack<HighlightsOfTheMatch> highlightsOfTheMatch;
 	string date;//the date of the match (or the round in league)
 	int GameId;
-public:
-	//void displayCurrentGame(queue<Game>& Gamehighlights);
 
+public:
+	
 
 /////////////////////////////////////////
 ///////////// Setters ///////////////////

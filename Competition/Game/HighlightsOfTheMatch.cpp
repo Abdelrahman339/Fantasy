@@ -10,9 +10,9 @@ void HighlightsOfTheMatch::setContributions(string contributors)
 	this->contributes = contributors;
 }
 
-void HighlightsOfTheMatch::setViolence(string violation)
+void HighlightsOfTheMatch::setViolation(string violation)
 {
-	this->violence = violation;
+	this->violation = violation;
 }
 
 string HighlightsOfTheMatch::getName()
@@ -25,7 +25,7 @@ string HighlightsOfTheMatch::getContributions()
 	return contributes;
 }
 
-string HighlightsOfTheMatch::getViolence()
+string HighlightsOfTheMatch::getViolation()
 {
-	return violence;
+	return violation;
 }
