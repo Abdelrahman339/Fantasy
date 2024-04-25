@@ -67,10 +67,10 @@ public:
 	string static hidePassword(string username);
 	void static userMenu(User& currentUser, unordered_map<string, User>& Users);
 	void squadFormat(int choice, vector <Footballer> squad);
-	void Format433(vector <string> squad);
-	void Format343(vector <string> MainSquad);
-	void Format442(vector <string> squad);
-	void showSubstitutions(vector <string> substitutionList);
+	void Format433(vector <Footballer> squad);
+	void Format343(vector <Footballer> MainSquad);
+	void Format442(vector <Footballer> squad);
+	void showSubstitutions(vector <Footballer> substitutionList);
 	int Formatdistance(string name, int space, bool remaining, string prev);
 	void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
 	void showPlayerInfo(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);

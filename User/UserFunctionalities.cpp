@@ -117,10 +117,10 @@ void User::profile(User &currentUser, unordered_map<string, User>& Users) {
 	cout << "Email Address:" << currentUser.GetEmail() << endl;
 	cout << "Phone number:" << currentUser.GetPhoneNumber() << endl;
 	cout << "Password:" << currentUser.GetPassword() << endl;
-	//cout << "Id:" << currentUser.GetId() << endl;
-	//cout << "Balance:" << currentUser.GetBalance() << endl;
-	//cout << "Points:" << currentUser.GetPoints() << endl;
-	//cout << "Rank:" << currentUser.GetRank() << endl;
+	cout << "Id:" << currentUser.GetId() << endl;
+	cout << "Balance:" << currentUser.GetBalance() << endl;
+	cout << "Points:" << currentUser.GetPoints() << endl;
+	cout << "Rank:" << currentUser.GetRank() << endl;
 	cout << "--------------------------------------------------------------------------------\n" << endl;
 	cout << "1-Edit information.\n2-Go back" << endl;
 	cin >> choice;
@@ -211,21 +211,21 @@ void User::squadFormat(int choice, vector <Footballer> MainSquad) {
 	}
 
 };
-void User::Format433(vector <string> MainSquad) {
+void User::Format433(vector <Footballer> MainSquad) {
 
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n\n";
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8], 0, false, MainSquad[8]), ' ') << "9"; cout << User::spacing(User::Formatdistance(MainSquad[9], 12, true, MainSquad[8]), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10], 12, true, MainSquad[9]), ' ') << "11" << endl;
-	cout << User::spacing(20, ' '); cout << MainSquad[8] << User::spacing(13, ' ') << MainSquad[9] << User::spacing(13, ' ') << MainSquad[10] << "\n\n";
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8].GetName(), 0, false, MainSquad[8].GetName()), ' ') << "9"; cout << User::spacing(User::Formatdistance(MainSquad[9].GetName(), 12, true, MainSquad[8].GetName()), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10].GetName(), 12, true, MainSquad[9].GetName()), ' ') << "11" << endl;
+	cout << User::spacing(20, ' '); cout << MainSquad[8].GetName() << User::spacing(13, ' ') << MainSquad[9].GetName() << User::spacing(13, ' ') << MainSquad[10].GetName() << "\n\n";
 
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1], 0, false, MainSquad[1]), ' ') << "2"; cout << User::spacing(User::Formatdistance(MainSquad[2], 13, true, MainSquad[1]), ' ') << "3"; cout << User::spacing(User::Formatdistance(MainSquad[3], 13, true, MainSquad[2]), ' ') << "4" << endl;
-	cout << User::spacing(20, ' '); cout << MainSquad[1] << User::spacing(13, ' ') << MainSquad[2] << User::spacing(13, ' ') << MainSquad[3] << "\n\n";
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1].GetName(), 0, false, MainSquad[1].GetName()), ' ') << "2"; cout << User::spacing(User::Formatdistance(MainSquad[2].GetName(), 13, true, MainSquad[1].GetName()), ' ') << "3"; cout << User::spacing(User::Formatdistance(MainSquad[3].GetName(), 13, true, MainSquad[2].GetName()), ' ') << "4" << endl;
+	cout << User::spacing(20, ' '); cout << MainSquad[1].GetName() << User::spacing(13, ' ') << MainSquad[2].GetName() << User::spacing(13, ' ') << MainSquad[3].GetName() << "\n\n";
 
-	cout << User::spacing(User::Formatdistance(MainSquad[4], 13, false, MainSquad[4]), ' ') << "5"; cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5], 0, true, MainSquad[4]), ' ') << "6"; cout << User::spacing(User::Formatdistance(MainSquad[6], 13, true, MainSquad[5]), ' ') << "7"; cout << User::spacing(User::Formatdistance(MainSquad[7], 13, true, MainSquad[6]), ' ') << "8" << endl;
-	cout << User::spacing(13, ' ') << MainSquad[4]; cout << User::spacing(20, ' '); cout << MainSquad[5] << User::spacing(13, ' ') << MainSquad[6] << User::spacing(13, ' ') << MainSquad[7] << endl;
+	cout << User::spacing(User::Formatdistance(MainSquad[4].GetName(), 13, false, MainSquad[4].GetName()), ' ') << "5"; cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5].GetName(), 0, true, MainSquad[4].GetName()), ' ') << "6"; cout << User::spacing(User::Formatdistance(MainSquad[6].GetName(), 13, true, MainSquad[5].GetName()), ' ') << "7"; cout << User::spacing(User::Formatdistance(MainSquad[7].GetName(), 13, true, MainSquad[6].GetName()), ' ') << "8" << endl;
+	cout << User::spacing(13, ' ') << MainSquad[4].GetName(); cout << User::spacing(20, ' '); cout << MainSquad[5].GetName() << User::spacing(13, ' ') << MainSquad[6].GetName() << User::spacing(13, ' ') << MainSquad[7].GetName() << endl;
 
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << endl;
-	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0] << User::spacing(25, ' ');
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << endl;
+	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0].GetName() << User::spacing(25, ' ');
 };
 
 
@@ -236,53 +236,53 @@ void User::Format433(vector <string> MainSquad) {
 
 
 
-void User::Format343(vector <string> MainSquad) {
+void User::Format343(vector <Footballer> MainSquad) {
 
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
 
-	cout << User::spacing(28, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8], 0, false, MainSquad[8]), ' ') << "9";
+	cout << User::spacing(28, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8].GetName(), 0, false, MainSquad[8].GetName()), ' ') << "9";
 	for (int i = 8; i < 10; i++)
 	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1], 13, true, MainSquad[i]), ' ') << i + 2;
+		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
 	}
 	cout << endl;
 	////////////////////////////////////////////////////////
-	cout << User::spacing(28, ' ') << MainSquad[8];
+	cout << User::spacing(28, ' ') << MainSquad[8].GetName();
 	for (int i = 9; i < 11; i++)
 	{
-		cout << User::spacing(13, ' ') << MainSquad[i];
+		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
 	}
 	cout << "\n\n";
 
-	cout << User::spacing(User::Formatdistance(MainSquad[4], 20, false, MainSquad[4]), ' ') << "5";
+	cout << User::spacing(User::Formatdistance(MainSquad[4].GetName(), 20, false, MainSquad[4].GetName()), ' ') << "5";
 	for (int i = 4; i < 7; i++)
 	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1], 13, true, MainSquad[i]), ' ') << i + 2;
+		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
 	}
 	cout << endl;
 
 	//////////////////////////////////////////////////
-	cout << User::spacing(20, ' ') << MainSquad[4];
+	cout << User::spacing(20, ' ') << MainSquad[4].GetName();
 	for (int i = 5; i < 8; i++)
 	{
-		cout << User::spacing(13, ' ') << MainSquad[i];
+		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
 	}
 	cout << "\n\n";
-	cout << User::spacing(28, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1], 0, false, MainSquad[1]), ' ') << "2";
+	cout << User::spacing(28, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1].GetName(), 0, false, MainSquad[1].GetName()), ' ') << "2";
 	for (int i = 1; i < 3; i++)
 	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1], 13, true, MainSquad[i]), ' ') << i + 2;
+		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
 	}
 	cout << endl;
-	cout << User::spacing(28, ' '); cout << MainSquad[1];
+	cout << User::spacing(28, ' '); cout << MainSquad[1].GetName();
 	for (int i = 2; i < 4; i++)
 	{
-		cout << User::spacing(13, ' ') << MainSquad[i];
+		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
 	}
 	cout << "\n\n" << endl;
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << endl;
-	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0] << User::spacing(25, ' ');
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << endl;
+	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0].GetName() << User::spacing(25, ' ');
 };
 
 
@@ -290,44 +290,44 @@ void User::Format343(vector <string> MainSquad) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void User::Format442(vector <string> MainSquad) {
+void User::Format442(vector <Footballer> MainSquad) {
 
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
 
-	cout << User::spacing(38, ' '); cout << User::spacing(User::Formatdistance(MainSquad[9], 0, false, MainSquad[9]), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10], 9, true, MainSquad[9]), ' ') << "11" << endl;
-	cout << User::spacing(38, ' '); cout << MainSquad[9] << User::spacing(10, ' ') << MainSquad[10] << "\n\n";
+	cout << User::spacing(38, ' '); cout << User::spacing(User::Formatdistance(MainSquad[9].GetName(), 0, false, MainSquad[9].GetName()), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10].GetName(), 9, true, MainSquad[9].GetName()), ' ') << "11" << endl;
+	cout << User::spacing(38, ' '); cout << MainSquad[9].GetName() << User::spacing(10, ' ') << MainSquad[10].GetName() << "\n\n";
 
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5], 0, false, MainSquad[5]), ' ') << "6";
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5].GetName(), 0, false, MainSquad[5].GetName()), ' ') << "6";
 	for (int i = 5; i < 8; i++)
 	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1], 13, true, MainSquad[i]), ' ') << i + 2;
+		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
 	}
 	cout << endl;
-	cout << User::spacing(20, ' ') << MainSquad[5];
+	cout << User::spacing(20, ' ') << MainSquad[5].GetName();
 	for (int i = 6; i < 9; i++)
 	{
-		cout << User::spacing(13, ' ') << MainSquad[i];
+		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
 	}
 	cout << "\n\n";
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1], 0, false, MainSquad[1]), ' ') << "2";
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1].GetName(), 0, false, MainSquad[1].GetName()), ' ') << "2";
 	for (int i = 1; i < 4; i++)
 	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1], 13, true, MainSquad[i]), ' ') << i + 2;
+		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
 	}
 	cout << endl;
-	cout << User::spacing(20, ' '); cout << MainSquad[1];
+	cout << User::spacing(20, ' '); cout << MainSquad[1].GetName();
 	for (int i = 2; i < 5; i++)
 	{
-		cout << User::spacing(13, ' ') << MainSquad[i];
+		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
 	}
 	cout << "\n\n" << endl;
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << endl;
-	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0] << User::spacing(25, ' ');
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << endl;
+	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0].GetName() << User::spacing(25, ' ');
 }
 
 
-void User::showSubstitutions(vector<string> substitutionList)
+void User::showSubstitutions(vector<Footballer> substitutionList)
 {
 
 	cout<< User::spacing(28, ' ') << "                   substitutions" << endl;
@@ -335,7 +335,7 @@ void User::showSubstitutions(vector<string> substitutionList)
 	cout << User::spacing(20, ' ');
 	for (int i = 0; i < substitutionList.size(); i++)
 	{
-		cout<< i + 1 << "- " << substitutionList.at(i) << User::spacing(10, ' ');
+		cout<< i + 1 << "- " << substitutionList.at(i).GetName() << User::spacing(10, ' ');
 	}
 };
 
