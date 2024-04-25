@@ -60,7 +60,7 @@ void Competition::removeCurrentGame(queue<Game>& UserGames, list<Game>& allGames
 	{
 
 		for (Game game : allGames) {
-			if (UserGames.front() ==game)
+			if (UserGames.front() == game)
 			{
 				allGames.remove(game);
 			}
@@ -137,7 +137,7 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser)
 		string currentPlayerinMatch = currentGame.getHighlightsOfTheMatch().top().getName();
 		for (auto& kv : currentUser.GetMainSquad()) {
 			string footballerName = kv.first;
-			if (footballerName== currentPlayerinMatch)
+			if (footballerName == currentPlayerinMatch)
 			{
 				updateUserPoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions());
 				ReduceUserPoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getViolence());
@@ -152,6 +152,17 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser)
 
 	//The end of the match
 	UserGames.pop();
+}
+
+void Competition::showAllGameHighlights(queue<Game>Usergames,list <Game> &allGame)
+{
+	char ans;
+	removeCurrentGame(Usergames, allGame);
+	cout << "Highlights of the week" << endl;
+	for (Game game : allGame) {
+		cout << game.getAwayTeam().getName() << User::spacing(10, ' ') << game.getHomeTeam().getName() << endl;
+		cout << game.getScore() << endl;
+	}
 }
 
 void Competition::UpdateFootballerPrice(Footballer& player) // for all the players

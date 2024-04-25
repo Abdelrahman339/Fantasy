@@ -30,11 +30,12 @@ protected:
 
 
 
-	void static removeCurrentGame(queue<Game>& UserGames, list<Game>& allGames);
+	void static removeCurrentGame(queue<Game>& UserGames, list<Game>& allGames);//use this function before updating all the players points. to prevent duplicate games between UserGames and allGames
+
 	void static ReduceUserPoints(string footballerName, User& currentUser, string contributes);//this function used to reduce user points,balance and footballer points
 
 	void static updateUserPoints(string footballerName, User& currentUser, string contributes);//this function used to update user points,balance and footballer points
 	void static findPlayers(queue<Game>& UserGames, User& currentUser);
-	void showAllGameHighlights();
+	void showAllGameHighlights(queue<Game>Usergames,list <Game> &allGames);// show all the games that played in this week or round.
 
 };
