@@ -54,19 +54,19 @@ bool Competition::checkPosition(string footballerPosition) {
 //
 //}
 
-void Competition::removeCurrentGame(queue<Game>& UserGames, list<Game>& allGames)
-{
-	while (!UserGames.empty())
-	{
-
-		for (Game game : allGames) {
-			if (UserGames.front() == game)
-			{
-				allGames.remove(game);
-			}
-		}
-	}
-}
+//void Competition::removeCurrentGame(queue<Game>& UserGames, list<Game>& allGames)
+//{
+//	while (!UserGames.empty())
+//	{
+//
+//		for (Game game : allGames) {
+//			if (UserGames.front() == game)
+//			{
+//				allGames.remove(game);
+//			}
+//		}
+//	}
+//}
 
 void Competition::ReduceUserPoints(string footballerName, User& currentUser, string violence)
 {

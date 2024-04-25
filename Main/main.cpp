@@ -23,44 +23,46 @@ using namespace sql;
 using namespace mysql;
 
 int main() {
-	try {
-		Driver* driver;
-		Connection* con;
 
-		string host = "tcp://127.0.0.1:3306";
-		string user = "root";
-		string password = "admin";
-		string database = "fantasy";
 
-		driver = get_mysql_driver_instance();
-		con = driver->connect(host, user, password);
+	//try {
+	//	Driver* driver;
+	//	Connection* con;
 
-		if (con) {
-			cout << "Connected to MySQL database server successfully!" << endl;
+	//	string host = "tcp://127.0.0.1:3306";
+	//	string user = "root";
+	//	string password = "admin";
+	//	string database = "fantasy";
 
-			// Create a statement object
-			Statement* stmt = con->createStatement();
+	//	driver = get_mysql_driver_instance();
+	//	con = driver->connect(host, user, password);
 
-			// SQL statement to create the table
-			string query = "INSERT INTO fantasy.soccer_league (rankf, team_name, matches_played, wins, draws, losses, goals_for, goals_against, points) VALUES(14, 'Elche', 38, 11, 9, 18, 40, 52, 42),(15, 'Getafe', 38, 8, 15, 15, 33, 41, 39),(16, 'Mallorca', 38, 10, 9, 19, 36, 63, 39),(17, 'Cadiz CF', 38, 8, 15, 15, 35, 51, -16),(18, 'Granada CF', 38, 8, 14, 16, -46, -17, -38),(19, 'Levante', 38, 8, -11, -19, -57, -25, -35),(20, 'Alaves', 38, -8, -7, -23, -31, -65, -34); ";
+	//	if (con) {
+	//		cout << "Connected to MySQL database server successfully!" << endl;
 
-			// Execute the query
-			stmt->execute(query);
+	//		// Create a statement object
+	//		Statement* stmt = con->createStatement();
 
-			//cout << "Table 'fantasy' created successfully!" << endl;
+	//		// SQL statement to create the table
+	//		string query = "INSERT INTO fantasy.soccer_league (rankf, team_name, matches_played, wins, draws, losses, goals_for, goals_against, points) VALUES(14, 'Elche', 38, 11, 9, 18, 40, 52, 42),(15, 'Getafe', 38, 8, 15, 15, 33, 41, 39),(16, 'Mallorca', 38, 10, 9, 19, 36, 63, 39),(17, 'Cadiz CF', 38, 8, 15, 15, 35, 51, -16),(18, 'Granada CF', 38, 8, 14, 16, -46, -17, -38),(19, 'Levante', 38, 8, -11, -19, -57, -25, -35),(20, 'Alaves', 38, -8, -7, -23, -31, -65, -34); ";
 
-			delete stmt;
-		}
-		
-		else
-			cout << "Failed to connect to database!" << endl;
+	//		// Execute the query
+	//		stmt->execute(query);
 
-		delete con;
+	//		//cout << "Table 'fantasy' created successfully!" << endl;
 
-	}
-	catch (SQLException& e) {
-		cout << "An error occurred: " << e.what() << endl;
-	}
+	//		delete stmt;
+	//	}
+	//	
+	//	else
+	//		cout << "Failed to connect to database!" << endl;
+
+	//	delete con;
+
+	//}
+	//catch (SQLException& e) {
+	//	cout << "An error occurred: " << e.what() << endl;
+	//}
 
 	//return 0;
 }
