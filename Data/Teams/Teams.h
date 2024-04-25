@@ -64,6 +64,7 @@ public:
 	void SetTotalCleansheets(int yellowCard);
 
 	void SetTotalpoints(int points);
+	void AddTotalpoints(int points);
 
 
 	//---------------------------------------------------------------------------------------------------------------------

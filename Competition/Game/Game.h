@@ -21,7 +21,7 @@ protected:
 	string statistics;
 	stack<HighlightsOfTheMatch> highlightsOfTheMatch;
 	string date;//the date of the match (or the round in league)
-
+	int GameId;
 public:
 	//void displayCurrentGame(queue<Game>& Gamehighlights);
 
@@ -38,6 +38,7 @@ public:
 	void setHighlightsOfTheMatch( HighlightsOfTheMatch newHighlights);
 	void setDate(string newDate);
 
+	void setGameId(int id);
 
 
 	/////////////////////////////////////////
@@ -52,10 +53,13 @@ public:
 	stack<HighlightsOfTheMatch> getHighlightsOfTheMatch();
 	string getDate();
 	string getwinningTeam();
+	int getGameId();
 
 
 	//usefull website for games data --> (moved it to README.md becuase of an occuring error)
 
-
+	bool operator==(const Game& other){
+		return (GameId == other.GameId);
+	}
 
 };

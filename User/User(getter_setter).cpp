@@ -44,6 +44,11 @@ void User::SetPoints(int points)
     this->points = points;
 }
 
+void User::AddPoints(int points)
+{
+    this->points += points;
+}
+
 void User::SetBalance(float balance)
 {
     this->balance = balance;
@@ -65,10 +70,10 @@ bool User::SetFootballer(Footballer footballer)
     if (TheMainSquad.size()<11)
     {
 
-    TheMainSquad.push_back(footballer);
+    TheMainSquad.insert_or_assign(footballer.GetName(), footballer);
     }
     else if(TheMainSquad.size() == 11&& SubstitutionSquad.size()< 4){
-        SubstitutionSquad.push_back(footballer);
+        SubstitutionSquad.insert_or_assign(footballer.GetName(),footballer);
     }
     else if (TheMainSquad.size() == 11&& SubstitutionSquad.size()==4)
     {
@@ -117,7 +122,7 @@ float User::GetBalance()
     return balance;
 }
 
-vector<Footballer> User::GetMainSquad()
+unordered_map<string,Footballer> User::GetMainSquad()
 {
     return this->TheMainSquad;
 }

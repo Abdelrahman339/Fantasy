@@ -89,6 +89,11 @@ void Footballer::SetTotalCleansheets(int cleanSheets) {
 };
 void Footballer::SetTotalpoints(int points) {
 	this->totalPoints = points;
-};
+}
+void Footballer::AddTotalpoints(int points)
+{
+	this->totalPoints += points;
+}
+;
 
 

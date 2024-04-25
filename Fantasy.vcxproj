@@ -131,6 +131,8 @@
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition;$(SolutionDir)\Competition\Game;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)\Data;$(SolutionDir)\User</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

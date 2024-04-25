@@ -14,7 +14,12 @@ string Game::getDate() { return date; }
 
 string Game::getwinningTeam()
 {
-    return winningTeam;
+	return winningTeam;
+}
+
+int Game::getGameId()
+{
+	return this->GameId;
 }
 
 
@@ -25,6 +30,11 @@ void Game::setHomeTeam(Teams team) { homeTeam = team; }
 void Game::setScore(string newScore) { score = newScore; }
 void Game::setManOfTheMatch(string newManOfTheMatch) { this->manOfTheMatch = newManOfTheMatch; }
 void Game::setStatistics(string newStatistics) { statistics = newStatistics; }
-void Game::setHighlightsOfTheMatch(HighlightsOfTheMatch newHighlights) { highlightsOfTheMatch.push(newHighlights) ; }
+void Game::setHighlightsOfTheMatch(HighlightsOfTheMatch newHighlights) { highlightsOfTheMatch.push(newHighlights); }
 void Game::setDate(string newDate) { date = newDate; }
+
+void Game::setGameId(int id)
+{
+	this->GameId = id;
+}
 
