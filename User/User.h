@@ -59,6 +59,10 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
 	string static spacing(int spaces, char character);
+
+	///////////////////////////////////////////////////////////////////////////////////
+	//User credentials
+	///////////////////////////////////////////////////////////////////////////////////
 	void static homePage(unordered_map<string, User>& Users);
 
 	void static toLogin(unordered_map<string, User>& Users);
@@ -66,6 +70,11 @@ public:
 	void static signup(unordered_map<string, User>& Users);
 	string static hidePassword(string username);
 	void static userMenu(User& currentUser, unordered_map<string, User>& Users);
+
+	///////////////////////////////////////////////////////////////////////////////////
+	//User Squad and Format
+	///////////////////////////////////////////////////////////////////////////////////
+
 	void squadFormat(int choice, vector <Footballer> squad);
 	void Format433(vector <Footballer> squad);
 	void Format343(vector <Footballer> MainSquad);
@@ -73,16 +82,27 @@ public:
 	void showSubstitutions(vector <Footballer> substitutionList);
 	int Formatdistance(string name, int space, bool remaining, string prev);
 	void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
-	void showPlayerInfo(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
+	void showPlayerInfo(unordered_map<string, Footballer> players, string name);
 	void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);
+	///////////////////////////////////////////////////////////////////////////////////
+	//User Information
+	///////////////////////////////////////////////////////////////////////////////////
 	void static profile(User& currentUser, unordered_map<string, User>& Users);
 	void static editInfo(User& currentUser, unordered_map<string, User>& Users);
-	void Market();
-	void showtopPlayer(vector<Footballer> TopPlayer);
-	void sell(User& currentUser);
-	void buy(User& currentUser);
-	void replace(User& currentUser);
+	///////////////////////////////////////////////////////////////////////////////////
+	//Market functions
+	///////////////////////////////////////////////////////////////////////////////////
+	void Market(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+	void showtopPlayer(unordered_map<string, Footballer> TopPlayer, User& currentUser, unordered_map<string, User>& Users, Teams& team);
 
+	void sell(User& currentUser, Teams& team);
+	void buy(User& currentUser, Teams& team);
+	void replace(User& currentUser, Teams& team);
+
+	void search();
+	///////////////////////////////////////////////////////////////////////////////////
+	//Play game functions
+	///////////////////////////////////////////////////////////////////////////////////
 	void static play(list<Game> allGames, User currentUser);
 	void static showCurrentMatch(queue<Game>& UserGames);
 	queue<Game>static FilteringTeams(list<Game> allGames, User currentUser);

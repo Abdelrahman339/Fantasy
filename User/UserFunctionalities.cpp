@@ -18,7 +18,7 @@ choice:
 	cin >> choice;
 	if (choice == 1)
 	{
-		showPlayerInfo(MainSquad, SubstitutionSquad);
+		//showPlayerInfo(MainSquad, SubstitutionSquad);
 	}
 	else if (choice == 2) {
 		cout << "Available formats:" << endl;
@@ -55,40 +55,23 @@ choice:
 }
 
 
-void User::showPlayerInfo(vector <Footballer> MainSquad, vector <Footballer> SubstitutionSquad) {
-	int choice;
-	cout << "Choose your footballer to show his information.(use the index)" << endl;
-	cin >> choice;
+void User::showPlayerInfo(unordered_map<string, Footballer> players, string name) {
 	cout << "--------------------------------------------------------------------------------" << endl;
-	cout << "Name:" << MainSquad.at(choice - 1).GetName();
-	cout << "Age:" << MainSquad.at(choice - 1).GetAge();
-	cout << "Captain:" << MainSquad.at(choice - 1).GetCaptain();
-	cout << "Position:" << MainSquad.at(choice - 1).GetPosition();
-	cout << "Price:" << MainSquad.at(choice - 1).GetPrice();
-	cout << "Team:" << MainSquad.at(choice - 1).GetTeam();
-	cout << "Total goals this season:" << MainSquad.at(choice - 1).GetTotalGoals();
-	cout << "Total assists this season:" << MainSquad.at(choice - 1).GetTotalAssists();
-	cout << "Total yellow card this season:" << MainSquad.at(choice - 1).GetTotalYellowCard();
-	cout << "Total red card this season:" << MainSquad.at(choice - 1).GetTotalRedCard();
+	cout << "Name:" << players.at(name).GetName();
+	cout << "Age:" << players.at(name).GetAge();
+	cout << "Captain:" << players.at(name).GetCaptain();
+	cout << "Position:" << players.at(name).GetPosition();
+	cout << "Price:" << players.at(name).GetPrice();
+	cout << "Team:" << players.at(name).GetTeam();
+	cout << "Total goals this season:" << players.at(name).GetTotalGoals();
+	cout << "Total assists this season:" << players.at(name).GetTotalAssists();
+	if (players.at(name).GetPosition() == "Gk") {
+		cout << "Total Clean sheets this season:" << players.at(name).GetTotalCleansheets();
+	}
+	cout << "Total yellow card this season:" << players.at(name).GetTotalYellowCard();
+	cout << "Total red card this season:" << players.at(name).GetTotalRedCard();
 	cout << "--------------------------------------------------------------------------------\n" << endl;
-choice:
-	cout << "1-Sell this player\n2-Go back" << endl;
-	cin >> choice;
-	if (choice == 1)
-	{
-		//sell func
-	}
-	else if (choice == 2)
-	{
-		system("pause");
-		system("cls");
-		Squad(MainSquad, SubstitutionSquad);
-	}
-	else
-	{
-		cout << "Invalid choice.Please enter a valid choice" << endl;
-		goto choice;
-	}
+
 };
 
 
@@ -109,7 +92,7 @@ void User::Substitution(vector <Footballer> mainSquad, vector <Footballer> Subst
 	Squad(mainSquad, SubstitutionSquad);
 };
 
-void User::profile(User &currentUser, unordered_map<string, User>& Users) {
+void User::profile(User& currentUser, unordered_map<string, User>& Users) {
 	int choice;
 	cout << "profile" << endl;
 	cout << "Name:" << currentUser.GetFullName() << endl;;
@@ -134,7 +117,7 @@ void User::profile(User &currentUser, unordered_map<string, User>& Users) {
 	}
 };
 
-void User::editInfo(User &currentUser, unordered_map<string, User>& Users) {
+void User::editInfo(User& currentUser, unordered_map<string, User>& Users) {
 	int choice;
 invalid:
 	cout << "What info you want to update:" << endl;
@@ -330,12 +313,12 @@ void User::Format442(vector <Footballer> MainSquad) {
 void User::showSubstitutions(vector<Footballer> substitutionList)
 {
 
-	cout<< User::spacing(28, ' ') << "                   substitutions" << endl;
-	cout<<User::spacing(28, ' ') << "_____________     ________________    _____________" << "\n\n\n";
+	cout << User::spacing(28, ' ') << "                   substitutions" << endl;
+	cout << User::spacing(28, ' ') << "_____________     ________________    _____________" << "\n\n\n";
 	cout << User::spacing(20, ' ');
 	for (int i = 0; i < substitutionList.size(); i++)
 	{
-		cout<< i + 1 << "- " << substitutionList.at(i).GetName() << User::spacing(10, ' ');
+		cout << i + 1 << "- " << substitutionList.at(i).GetName() << User::spacing(10, ' ');
 	}
 };
 
