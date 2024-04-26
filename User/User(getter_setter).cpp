@@ -126,3 +126,8 @@ unordered_map<string,Footballer> User::GetMainSquad()
 {
     return this->TheMainSquad;
 }
+
+unordered_map<string, Footballer> User::GetSubstitutionSquad()
+{
+    return this->SubstitutionSquad;
+}
