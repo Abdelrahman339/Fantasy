@@ -28,6 +28,8 @@ protected:
 	bool static checkPosition(string footballerPosition); // checks if the player is a goalkeeper or a defender
 	bool static IsManOfTheMatch(string currentMOTM, string playerName); //checks if the player is the MOTM
 	char static priceCalculation(int points); //containing five tiers for changing the players price 
+	
+
 
 
 
