@@ -24,7 +24,9 @@ protected:
 	int GameId;
 
 public:
-	
+	void displayGameStatisitics(queue<Game>currentGame);
+
+
 
 /////////////////////////////////////////
 ///////////// Setters ///////////////////
