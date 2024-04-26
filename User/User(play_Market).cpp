@@ -76,6 +76,8 @@ void User::showCurrentMatch(queue<Game>& UserGames)
 	cout << " Current match " << endl;
 	UserGames.front().getHomeTeam(); UserGames.front().getAwayTeam();
 }
+
+
 queue<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
 	queue<Game> UserGames;
 	stack<string> userTeams;
@@ -130,7 +132,7 @@ void User::Market(User& currentUser, Teams& team, unordered_map<string, Football
 {
 	cout << "Fatntasy Market" << endl;
 	int choice;
-	User::showtopPlayer(TopPlayer,currentUser,Users,team);
+	User::showtopPlayer(TopPlayer, currentUser, Users, team);
 invalid:
 	cout << "1-search.\n2-Choose Top player.\n3-Sell your players.\n4-Go back." << endl;
 	if (choice == 1) {
@@ -151,9 +153,56 @@ invalid:
 	}
 };
 void User::sell(User& currentUser, Teams& team) {
+	string footballerName;
+invalid:
+	cout << "Enter the name of your wanted player to sell.\n";
+	cin >> footballerName;
+	int it = currentUser.GetMainSquad().count(footballerName);
+	int it2 = currentUser.GetSubstitutionSquad().count(footballerName);
+	if (it > 0)
+	{
+		currentUser.GetMainSquad().erase(footballerName);
+		cout << "Player sold successfully." << endl;
+	}
+	else if (it2 > 0) {
+		currentUser.GetSubstitutionSquad().erase(footballerName);
+		cout << "Player sold successfully." << endl;
+	}
+	else {
+		cout << "You enterd a worng player name.Please enter a valid onw";
+		goto invalid;
+	}
 
 };
 void User::buy(User& currentUser, Teams& team) {
+	string footballerName;
+invalid:
+	cout << "Enter the name of your wanted player to buy.\n";
+	cin >> footballerName;
+	int exist = team.getFootballPlayer().count(footballerName);
+	if (exist > 0)
+	{
+		char ans;
+		cout << "Are you sure you want to buy " << footballerName << " ?(y/n)" << endl;
+		cin >> ans;
+		if (ans == 'y')
+		{
+			cout << "Player bought successfully." << endl;
+			currentUser.addBalance(-(team.getFootballPlayer().at(footballerName).GetPrice()));
+
+		}
+		else if (ans == 'n') {
+			//Market();
+		}
+		else {
+
+		}
+	}
+
+	else {
+	}
+
+
 };
 void User::replace(User& currentUser, Teams& team) {
 };

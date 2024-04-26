@@ -6,7 +6,7 @@ class HighlightsOfTheMatch {
 protected:
 
 	string name; // the name of the footballer
-	string contributes;// the type of contribution (goals ,assists ,clean sheets) goal 3 & assist 2
+	string contributes;// the type of contribution (goals ,assists ,clean sheets) goals 2 & assist 1
 	string violation; // the type of violence action (red cards,yellow cards)
 
 public:

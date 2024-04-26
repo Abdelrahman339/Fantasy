@@ -78,7 +78,7 @@ invalid:
     cout << "Enter you " << "Username" << ": " << endl;
     getline(cin >> ws, input);
     auto it = users.find(input);
-    if (it == users.end())
+    if (it != users.end())
     {
         Newser.SetUsername(input);
         return true;

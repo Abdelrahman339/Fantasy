@@ -1,0 +1,35 @@
+Premier League
+Manchester United
+Manchester City
+Liverpool
+Chelsea
+Arsenal
+Tottenham Hotspur
+Leicester City
+Everton
+West Ham United
+Wolverhampton Wanderers
+-
+La Liga
+Real Madrid
+Barcelona
+Atletico Madrid
+Sevilla
+Valencia
+Real Sociedad
+Villarreal
+Athletic Bilbao
+Real Betis
+Celta Vigo
+-
+Serie A
+Juventus
+Inter Milan
+AC Milan
+AS Roma
+Napoli
+Lazio
+Atalanta
+Fiorentina
+Sampdoria
+Udinese
