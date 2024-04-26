@@ -33,21 +33,21 @@ bool Competition::checkPosition(string footballerPosition) {
 
 char Competition::priceCalculation(int points) {
 
-	;
+	
 
 	if (points < 3) {
 		return '0';
 	}
-	else if (currentPoints < 6) {
+	else if (points< 6) {
 		return '1';
 	}
-	else if (currentPoints < 9) {
+	else if (points < 9) {
 		return '2';
 	}
-	else if (currentPoints < 12) {
+	else if (points < 12) {
 		return '3';
 	}
-	else if (currentPoints < 15) {
+	else if (points < 15) {
 		return '4';
 	}
 	else {
@@ -108,11 +108,11 @@ void Competition::updatePoints(string footballerName, User& currentUser, string 
 		regex Assistpattern(R"(Assist)");
 		if (regex_match(contributes, Goalpattern)) {
 
-			addPoints(contributes, currentUser, footballerName, 4, status, team);
+			addPoints(contributes, currentUser, footballerName, Competition::goalPoints, status, team);
 		}
 		else if (regex_match(contributes, Assistpattern)) {
 
-			addPoints(contributes, currentUser, footballerName, 3, status, team);
+			addPoints(contributes, currentUser, footballerName, Competition::assistPoints, status, team);
 		}
 		else {
 			currentUser.GetMainSquad().at(footballerName).AddTotalpoints(3);
@@ -131,22 +131,22 @@ void Competition::updatePoints(string footballerName, User& currentUser, string 
 
 void Competition::addPoints(string contributes, User currentUser, string footballerName, int numPerpoints, string status, Teams& team)
 {
-	int nmuberOfcontributes;
+	int numberOfcontributes;
 	regex pattern(R"(\d+)");
 
 	smatch match;
 
 	if (regex_search(contributes, match, pattern)) {
-		nmuberOfcontributes = stoi(match[0]);
+		numberOfcontributes = stoi(match[0]);
 
 	}
 	if (status == "footballer") {
-		team.getFootballPlayer().at(footballerName).AddTotalpoints(numPerpoints * nmuberOfcontributes);
+		team.getFootballPlayer().at(footballerName).AddTotalpoints(numPerpoints * numberOfcontributes);
 	}
 	else {
-		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(numPerpoints * nmuberOfcontributes);
-		currentUser.AddPoints(numPerpoints * nmuberOfcontributes);
-		currentUser.addBalance(numPerpoints * nmuberOfcontributes);
+		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(numPerpoints * numberOfcontributes);
+		currentUser.AddPoints(numPerpoints * numberOfcontributes);
+		currentUser.addBalance(numPerpoints * numberOfcontributes);
 	}
 }
 
@@ -222,7 +222,7 @@ void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGa
 
 void Competition::UpdateFootballerPrice(Footballer& player) // for all the players
 {
-	char tier = Competition::priceCalculation(player);
+	char tier = Competition::priceCalculation(player.GetTotalpoints());
 	float currentPlayerPrice = player.GetPrice();
 	float priceChange;
 
@@ -262,11 +262,9 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames,list<Game> Curren
 {
 	removeCurrentGame(UserGames, CurrentGame);
 
-	Game game;
-	User currentUser;
+	Game game=UserGames.front();
 	Teams team;
-
-
+	User currentUser;
 
 	
 	string currentMOTM = game.getManOfTheMatch();
@@ -274,53 +272,86 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames,list<Game> Curren
 	auto HomeFootballPlayers = game.getHomeTeam().getFootballPlayer();
 	string status = "footballer";
 
-  for(auto& kv : AwayFootballPlayers) {
+	while (!game.getHighlightsOfTheMatch().empty()) {
+		for (auto& kv : AwayFootballPlayers) {
 
-	  string playerName = kv.first;
-	  Footballer& currentFootballer = kv.second;
+			string playerName = kv.first;
+			Footballer& currentFootballer = kv.second;
+			HighlightsOfTheMatch highlights = game.getHighlightsOfTheMatch().top();
+
+			int yellowCardPenalty = 0;
+			int redCardPenalty = 0;
+			int cleanSheetPoints = 0;
+			int ManOfTheMatchPoints = 0;
+			string contributions = highlights.getContributions();
+
+
+
+			if (Competition::IsManOfTheMatch(currentMOTM, currentFootballer.GetName()) == true) {
+				ManOfTheMatchPoints = Competition::MOTM_Bonus;
+			}
+
+			if (highlights.getViolation() == "red") {
+				redCardPenalty = -(Competition::redCardDeduction);
+			}
+			if (highlights.getViolation() == "yellow") {
+				yellowCardPenalty = -(Competition::yellowCardDeduction);
+			}
+
+			Competition::updatePoints(playerName, currentUser, contributions, status, team);
+
+			int totalPoints = yellowCardPenalty + redCardPenalty + cleanSheetPoints + ManOfTheMatchPoints + currentFootballer.GetTotalpoints();
+
+			currentFootballer.SetTotalpoints(totalPoints);
+
+
+
+
+			Competition::UpdateFootballerPrice(currentFootballer);
+			
+		}
+
+	}
+
+
+	for (auto& kv : HomeFootballPlayers) {
+
+		string playerName = kv.first;
+		Footballer& currentFootballer = kv.second;
+		HighlightsOfTheMatch highlights = game.getHighlightsOfTheMatch().top();
 
 		int yellowCardPenalty = 0;
 		int redCardPenalty = 0;
 		int cleanSheetPoints = 0;
 		int ManOfTheMatchPoints = 0;
-		string contributions = game.getHighlightsOfTheMatch().top().getContributions();
-		
+		string contributions = highlights.getContributions();
+
 
 
 		if (Competition::IsManOfTheMatch(currentMOTM, currentFootballer.GetName()) == true) {
 			ManOfTheMatchPoints = Competition::MOTM_Bonus;
 		}
 
-		if (game.getHighlightsOfTheMatch().top().getViolation() == "red") {
+		if (highlights.getViolation() == "red") {
 			redCardPenalty = -(Competition::redCardDeduction);
 		}
-		if (game.getHighlightsOfTheMatch().top().getViolation() == "yellow") {
+		if (highlights.getViolation() == "yellow") {
 			yellowCardPenalty = -(Competition::yellowCardDeduction);
 		}
 
-		Competition::addGoalsAssistPoints(contributions,currentUser,playerName,status,team);
+		Competition::updatePoints(playerName, currentUser, contributions, status, team);
 
+		int totalPoints = yellowCardPenalty + redCardPenalty + cleanSheetPoints + ManOfTheMatchPoints + currentFootballer.GetTotalpoints();
 
-		
-
-
-
-		int totalPoints =  yellowCardPenalty + redCardPenalty + cleanSheetPoints +ManOfTheMatchPoints ;
-		
+		currentFootballer.SetTotalpoints(totalPoints);
 
 
 
-		
-		Competition::UpdateFootballerPrice(CurrentPlayer);
 
-		
-		
-	
-		
-
+		Competition::UpdateFootballerPrice(currentFootballer);
 
 	}
 
-
+	game.getHighlightsOfTheMatch().pop();
 }
 
