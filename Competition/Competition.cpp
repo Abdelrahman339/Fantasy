@@ -163,10 +163,10 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, str
 
 	while (regex_search(contributes, matches, pattern)) {
 		if (foundNumbers == 0) {
-			goalsnum = std::stoi(matches[0]);
+			goalsnum = stoi(matches[0]);
 		}
 		else {
-			assistsnum = std::stoi(matches[0]);
+			assistsnum = stoi(matches[0]);
 		}
 		contributes = matches.suffix().str();
 		foundNumbers++;
