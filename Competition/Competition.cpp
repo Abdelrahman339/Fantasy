@@ -33,9 +33,9 @@ bool Competition::checkPosition(string footballerPosition) {
 
 char Competition::priceCalculation(int points) {
 
-	int currentPoints = points;
+	;
 
-	if (currentPoints < 3) {
+	if (points < 3) {
 		return '0';
 	}
 	else if (currentPoints < 6) {

@@ -18,14 +18,16 @@ protected:
 	string winningTeam;
 	string score;
 	string manOfTheMatch;
-	string statistics;
+	string statistics; // (shots-shotsOnTarget-possesion-passes-pass accuracy) preferably written like this -->("shots: 10, shotsOnTarget: 7, possession: 55%, passes: 300, pass accuracy: 85%")
 	stack<HighlightsOfTheMatch> highlightsOfTheMatch;
 	string date;//the date of the match (or the round in league)
 	int GameId;
 
 public:
-	void displayGameStatisitics(queue<Game>currentGame);
-
+	void displayGameOverview(queue<Game>currentGame);
+	void displayTeamsAndScore(Game currentGame);
+	void displayBorder(int type);
+	void displayHighlights(Game CurrentGame);
 
 
 /////////////////////////////////////////

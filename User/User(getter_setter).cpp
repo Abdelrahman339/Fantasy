@@ -78,7 +78,7 @@ bool User::SetFootballer(Footballer footballer)
     else if (TheMainSquad.size() == 11&& SubstitutionSquad.size()==4)
     {
         cout << "Your team is full!" << endl;
-        cout << "Buy or replace players to add new players" << endl;
+        cout << "You can only replace players to add new players" << endl;
         return false;
     }
 }
