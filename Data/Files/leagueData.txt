@@ -9,7 +9,7 @@ Leicester City
 Everton
 West Ham United
 Wolverhampton Wanderers
--
+----
 La Liga
 Real Madrid
 Barcelona
@@ -21,7 +21,7 @@ Villarreal
 Athletic Bilbao
 Real Betis
 Celta Vigo
--
+----
 Serie A
 Juventus
 Inter Milan
@@ -33,3 +33,4 @@ Atalanta
 Fiorentina
 Sampdoria
 Udinese
+----
