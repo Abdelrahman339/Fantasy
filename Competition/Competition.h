@@ -26,6 +26,7 @@ protected:
 	void static UpdateFootballerPoints(queue<Game> UserGames, list<Game> CurrentGame); // updating all the players in a game
 	void static UpdateFootballerPrice(Footballer& player);//based on points for EVERY player (even if not in user's squad)
 	bool static checkPosition(string footballerPosition); // checks if the player is a goalkeeper or a defender
+	void static searchTeamInMatch(unordered_map<string, Footballer> TeamType,Game game); 
 	bool static IsManOfTheMatch(string currentMOTM, string playerName); //checks if the player is the MOTM
 	char static priceCalculation(int points); //containing five tiers for changing the players price 
 
