@@ -25,7 +25,20 @@ string User::avoidTypos(string footballerName, Teams team, User currentUser, str
 		int it2 = currentUser.GetSubstitutionSquad().count(footballerName);
 		if (it > 0)
 		{
-			return "exist";
+			return "existMain";
+		}
+		else if (it2 > 0) {
+			return "existSub";
+		}
+		else
+		{
+
+			if (!CheckingPlayer("sellMain", team, currentUser, footballerName).empty()) {
+				return CheckingPlayer("sellMain", team, currentUser, footballerName);
+			}
+			else {
+				return CheckingPlayer("sellSub", team, currentUser, footballerName);
+			}
 		}
 
 	}
@@ -41,35 +54,31 @@ string User::avoidTypos(string footballerName, Teams team, User currentUser, str
 		}
 		else // the player doesn't exist in the map . try to find the best similar name
 		{
-			int minErrors = 10000;
-			string matchedPlayer;
-			for (auto kv : team.getFootballPlayer()) {
+			return CheckingPlayer("buy", team, currentUser, footballerName);
 
-				string currentPlayerName = kv.first;
-				int errors = 0;
-				for (int i = 0; i < min(LowercaseName.size(), currentPlayerName.size()); ++i) {
-					if (LowercaseName[i] != currentPlayerName[i]) {
-						errors++;
-						if (errors > 2) {
-							break;
-						}
-					}
-				}
-				if (errors < minErrors) {
-					minErrors = errors;
-					matchedPlayer = currentPlayerName;
-				}
-			}
-			return matchedPlayer;
 		}
 	}
 }
-void User::CheckingPlayer(string status, Teams team, User currenUser, string inputName)
+string User::CheckingPlayer(string status, Teams team, User currentUser, string inputName)
 {
+	unordered_map<string, Footballer> currentsquad;
+	if (status == "sellMain")
+	{
+		currentsquad = currentUser.GetMainSquad();
+	}
+	else if (status == "sellSub")
+	{
+		currentsquad = currentUser.GetSubstitutionSquad();
+	}
+	else
+	{
+		currentsquad = team.getFootballPlayer();
+	}
+
 
 	int minErrors = 10000;
 	string matchedPlayer;
-	for (auto kv : team.getFootballPlayer()) {
+	for (auto kv : currentsquad) {
 
 		string currentPlayerName = kv.first;
 		int errors = 0;
@@ -86,7 +95,7 @@ void User::CheckingPlayer(string status, Teams team, User currenUser, string inp
 			matchedPlayer = currentPlayerName;
 		}
 	}
-
+	return matchedPlayer;
 }
 ;
 

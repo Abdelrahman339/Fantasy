@@ -111,11 +111,19 @@ invalid:
 	cin >> footballerName;
 	string playerExist = User::avoidTypos(footballerName, team, currentUser, "sell");
 
-	if (playerExist == "exist") {
+	if (playerExist == "existMain") {
 		cout << "Player sold successfully.." << endl;
 		currentUser.GetMainSquad().erase(footballerName);
 
 		float FootballerPrice = currentUser.GetMainSquad().at(footballerName).GetPrice();
+
+		currentUser.addBalance(FootballerPrice);
+	}
+	else if ("existSub")
+	{
+		currentUser.GetSubstitutionSquad().erase(footballerName);
+
+		float FootballerPrice = currentUser.GetSubstitutionSquad().at(footballerName).GetPrice();
 
 		currentUser.addBalance(FootballerPrice);
 	}
