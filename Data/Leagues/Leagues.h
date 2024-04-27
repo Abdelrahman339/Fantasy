@@ -21,5 +21,5 @@ public:
 
 	void displayPointTable(vector <Teams> teamlist);
 
-
+	map<string, Teams> getTeams();
 };

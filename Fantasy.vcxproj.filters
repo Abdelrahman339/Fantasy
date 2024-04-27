@@ -48,7 +48,7 @@
     <ClCompile Include="Data\Teams\TeamsGetterSetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="User\User(play_Market).cpp">
+    <ClCompile Include="User\UserPlay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main\main.cpp">
@@ -58,6 +58,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Competition\Game\HighlightsOfTheMatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User\UserMarket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

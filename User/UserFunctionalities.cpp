@@ -2,13 +2,97 @@
 #include "User.h"
 #include "UserValidations.h"
 #include "Teams.h"
+#include <algorithm>
 
 
 using namespace std;
 string User::spacing(int spacing, char character) {
 	string space(spacing, character);
 	return space;
-};
+}
+
+
+
+string User::avoidTypos(string footballerName, Teams team, User currentUser, string status)
+{
+
+	string LowercaseName = footballerName;
+	transform(LowercaseName.begin(), LowercaseName.end(), LowercaseName.begin(), ::tolower);
+
+	//checking if the name exist or not in sell function cause i use the user squad not the team squad
+	if (status == "sell") {
+		int it = currentUser.GetMainSquad().count(footballerName);
+		int it2 = currentUser.GetSubstitutionSquad().count(footballerName);
+		if (it > 0)
+		{
+			return "exist";
+		}
+
+	}
+
+	//checking if the name exist or not 
+	else
+	{
+
+		auto it = team.getFootballPlayer().count(LowercaseName);
+		if (it > 0)
+		{
+			return "exist";
+		}
+		else // the player doesn't exist in the map . try to find the best similar name
+		{
+			int minErrors = 10000;
+			string matchedPlayer;
+			for (auto kv : team.getFootballPlayer()) {
+
+				string currentPlayerName = kv.first;
+				int errors = 0;
+				for (int i = 0; i < min(LowercaseName.size(), currentPlayerName.size()); ++i) {
+					if (LowercaseName[i] != currentPlayerName[i]) {
+						errors++;
+						if (errors > 2) {
+							break;
+						}
+					}
+				}
+				if (errors < minErrors) {
+					minErrors = errors;
+					matchedPlayer = currentPlayerName;
+				}
+			}
+			return matchedPlayer;
+		}
+	}
+}
+void User::CheckingPlayer(string status, Teams team, User currenUser, string inputName)
+{
+
+	int minErrors = 10000;
+	string matchedPlayer;
+	for (auto kv : team.getFootballPlayer()) {
+
+		string currentPlayerName = kv.first;
+		int errors = 0;
+		for (int i = 0; i < min(inputName.size(), currentPlayerName.size()); ++i) {
+			if (inputName[i] != currentPlayerName[i]) {
+				errors++;
+				if (errors > 2) {
+					break;
+				}
+			}
+		}
+		if (errors < minErrors) {
+			minErrors = errors;
+			matchedPlayer = currentPlayerName;
+		}
+	}
+
+}
+;
+
+
+
+
 void User::Squad(vector <Footballer> MainSquad, vector <Footballer> SubstitutionSquad) {
 	int choice;
 	cout << "your fantasy squad" << endl;
@@ -18,7 +102,16 @@ choice:
 	cin >> choice;
 	if (choice == 1)
 	{
-		//showPlayerInfo(MainSquad, SubstitutionSquad);
+		Teams team;
+		User user;
+		string footballerName;
+		cout << "Enter your footballer name " << endl;
+		cin >> footballerName;
+		string playerExist = avoidTypos(footballerName, team, user, "sell");
+		if (playerExist == "exist")
+		{
+
+		}
 	}
 	else if (choice == 2) {
 		cout << "Available formats:" << endl;
@@ -55,21 +148,21 @@ choice:
 }
 
 
-void User::showPlayerInfo(unordered_map<string, Footballer> players, string name) {
+void User::showPlayerInfo(Footballer footballer) {
 	cout << "--------------------------------------------------------------------------------" << endl;
-	cout << "Name:" << players.at(name).GetName();
-	cout << "Age:" << players.at(name).GetAge();
-	cout << "Captain:" << players.at(name).GetCaptain();
-	cout << "Position:" << players.at(name).GetPosition();
-	cout << "Price:" << players.at(name).GetPrice();
-	cout << "Team:" << players.at(name).GetTeam();
-	cout << "Total goals this season:" << players.at(name).GetTotalGoals();
-	cout << "Total assists this season:" << players.at(name).GetTotalAssists();
-	if (players.at(name).GetPosition() == "Gk") {
-		cout << "Total Clean sheets this season:" << players.at(name).GetTotalCleansheets();
+	cout << "Name:" << footballer.GetName();
+	cout << "Age:" << footballer.GetAge();
+	cout << "Captain:" << footballer.GetCaptain();
+	cout << "Position:" << footballer.GetPosition();
+	cout << "Price:" << footballer.GetPrice();
+	cout << "Team:" << footballer.GetTeam();
+	cout << "Total goals this season:" << footballer.GetTotalGoals();
+	cout << "Total assists this season:" << footballer.GetTotalAssists();
+	if (footballer.GetPosition() == "Gk") {
+		cout << "Total Clean sheets this season:" << footballer.GetTotalCleansheets();
 	}
-	cout << "Total yellow card this season:" << players.at(name).GetTotalYellowCard();
-	cout << "Total red card this season:" << players.at(name).GetTotalRedCard();
+	cout << "Total yellow card this season:" << footballer.GetTotalYellowCard();
+	cout << "Total red card this season:" << footballer.GetTotalRedCard();
 	cout << "--------------------------------------------------------------------------------\n" << endl;
 
 };

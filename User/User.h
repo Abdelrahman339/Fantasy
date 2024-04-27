@@ -61,6 +61,9 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	string static spacing(int spaces, char character);
 
+	string static avoidTypos(string footballerName, Teams team, User currentUser, string status);
+	void CheckingPlayer(string status,Teams team,User currenUser,string inputName);
+
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
 	///////////////////////////////////////////////////////////////////////////////////
@@ -83,7 +86,7 @@ public:
 	void showSubstitutions(vector <Footballer> substitutionList);
 	int Formatdistance(string name, int space, bool remaining, string prev);
 	void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
-	void showPlayerInfo(unordered_map<string, Footballer> players, string name);
+	void showPlayerInfo(Footballer footballer);
 	void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Information
@@ -96,11 +99,13 @@ public:
 	void Market(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 	void showtopPlayer(unordered_map<string, Footballer> TopPlayer, User& currentUser, unordered_map<string, User>& Users, Teams& team);
 
-	void sell(User& currentUser, Teams& team);
-	void buy(User& currentUser, Teams& team);
-	void replace(User& currentUser, Teams& team);
+	void sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+	void replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 
-	void search();
+	void search(string footballerName, Teams team, User currentUser, string status, vector<League> leagues);
+	Footballer* findPlayer(vector<League> leagues, string footballerName);
+	Teams* findTeam(vector<League> league, string footballerName);
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////
