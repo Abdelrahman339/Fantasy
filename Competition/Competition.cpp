@@ -294,13 +294,14 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 		if (Competition::IsManOfTheMatch(currentMOTM, currentFootballer.GetName()) == true) {
 			ManOfTheMatchPoints = Competition::MOTM_Bonus;
 		}
-		//string footballerName, User& currentUser, string violation, string status, Teams& team
-		ReducePoints(playerName, currentUser, violation, status, team);
+		
 
 		if (Competition::checkPosition(currentFootballer.GetPosition())) {
 
 		}
 
+
+		ReducePoints(playerName, currentUser, violation, status, team);
 		Competition::updatePoints(playerName, currentUser, contributions, status, team);
 
 
