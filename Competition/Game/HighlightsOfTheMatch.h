@@ -18,4 +18,4 @@ public:
 	string getViolation();
 };
 
-//add all the 22 players in this class to know whos players scored goals and who didn't using contributes attribute  
+

@@ -27,7 +27,7 @@ public:
 	void displayGameOverview(queue<Game>currentGame);
 	void displayTeamsAndScore(Game currentGame);
 	void displayBorder(int type);
-	void displayHighlights(Game CurrentGame);
+	void displayPlayerHighlights(Game CurrentGame);
 
 
 /////////////////////////////////////////
