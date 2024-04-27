@@ -7,6 +7,7 @@
 #include "unordered_map"
 #include "Teams.h"
 #include "Game.h"
+#include <Leagues.h>
 
 using namespace std;
 
@@ -62,7 +63,7 @@ public:
 	string static spacing(int spaces, char character);
 
 	string static avoidTypos(string footballerName, Teams team, User currentUser, string status);
-	string static CheckingPlayer(string status,Teams team,User currenUser,string inputName);
+	string static CheckingPlayer(string status, Teams team, User currenUser, string inputName);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials

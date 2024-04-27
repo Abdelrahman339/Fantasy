@@ -21,5 +21,6 @@ public:
 
 	void displayPointTable(vector <Teams> teamlist);
 
+	//sorting function to sort the map of team by points.
 	map<string, Teams> getTeams();
 };

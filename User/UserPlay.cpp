@@ -52,7 +52,7 @@ invalid:
 	cout << "Enter the namr of your wanted player.";
 	cin >> footballerName;
 	system("cls");
-	User::showPlayerInfo(TopPlayer, footballerName);
+	//User::showPlayerInfo(TopPlayer, footballerName);
 	cout << "1-Buy playern\2-Replace player\n3-Go back." << endl;
 	cin >> choice;
 	if (choice == 1) {

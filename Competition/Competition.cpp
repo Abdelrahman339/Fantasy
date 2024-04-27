@@ -123,8 +123,8 @@ void Competition::updatePoints(string footballerName, User& currentUser, string 
 			addPoints(contributes, currentUser, footballerName, Competition::assistPoints, status, team);
 		}
 		else {
-			currentUser.GetMainSquad().at(footballerName).AddTotalpoints(3);
-			currentUser.AddPoints(3);
+			currentUser.GetMainSquad().at(footballerName).AddTotalpoints(cleanSheetPoints);
+			currentUser.AddPoints(cleanSheetPoints);
 			currentUser.addBalance(10);
 		}
 	}
@@ -267,9 +267,9 @@ void Competition::UpdateFootballerPrice(Footballer& player) // for all the playe
 
 }
 
-void Competition::searchTeamInMatch(unordered_map<string,Footballer> TeamType,Game game){
+void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game) {
 
-	
+
 	Teams team;
 	User currentUser;
 	string status = "footballer";
@@ -287,29 +287,22 @@ void Competition::searchTeamInMatch(unordered_map<string,Footballer> TeamType,Ga
 		int redCardPenalty = 0;
 		int ManOfTheMatchPoints = 0;
 		string contributions = highlights.getContributions();
+		string violation = highlights.getViolation();
 
 
 
 		if (Competition::IsManOfTheMatch(currentMOTM, currentFootballer.GetName()) == true) {
 			ManOfTheMatchPoints = Competition::MOTM_Bonus;
 		}
+		//string footballerName, User& currentUser, string violation, string status, Teams& team
+		ReducePoints(playerName, currentUser, violation, status, team);
 
-		if (highlights.getViolation() == "red") {
-			redCardPenalty = -(Competition::redCardDeduction);
-		}
-		if (highlights.getViolation() == "yellow") {
-			yellowCardPenalty = -(Competition::yellowCardDeduction);
-		}
-		
-		if (Competition::checkPosition(currentFootballer.GetPosition()) ) {
+		if (Competition::checkPosition(currentFootballer.GetPosition())) {
 
 		}
 
 		Competition::updatePoints(playerName, currentUser, contributions, status, team);
 
-		int totalPoints = yellowCardPenalty + redCardPenalty + ManOfTheMatchPoints + currentFootballer.GetTotalpoints();
-
-		currentFootballer.SetTotalpoints(totalPoints);
 
 
 
@@ -326,12 +319,12 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> Curre
 	Game game = UserGames.front();
 	auto AwayFootballPlayers = game.getAwayTeam().getFootballPlayer();
 	auto HomeFootballPlayers = game.getHomeTeam().getFootballPlayer();
-	
+
 
 	while (!game.getHighlightsOfTheMatch().empty()) {
-		
-		Competition::searchTeamInMatch(AwayFootballPlayers,game);
-		Competition::searchTeamInMatch(HomeFootballPlayers,game);
+
+		Competition::searchTeamInMatch(AwayFootballPlayers, game);
+		Competition::searchTeamInMatch(HomeFootballPlayers, game);
 
 
 		game.getHighlightsOfTheMatch().pop();
@@ -339,6 +332,6 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> Curre
 
 
 
-	
+
 }
 

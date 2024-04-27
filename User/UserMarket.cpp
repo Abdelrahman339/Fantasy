@@ -40,8 +40,9 @@ invalid:
 void User::search(string footballerName, Teams team, User currentUser, string status, vector<League>  leagues)
 {
 	string search;
-	cout << "You can search by teams of the name of footballer." << endl;
+	cout << "You can search by teams or the name of footballer." << endl;
 	cin >> search;
+	Footballer* footballer = findPlayer(leagues, search);
 	if (findPlayer(leagues, search) != nullptr)
 	{
 		User::showPlayerInfo(*findPlayer(leagues, search));
@@ -61,7 +62,7 @@ void User::search(string footballerName, Teams team, User currentUser, string st
 Footballer* User::findPlayer(vector<League> leagues, string footballerName)
 {
 	Footballer* footballer;
-	for (int i = 0; i < leagues.size(); i++)
+	for (int i = 0; i < leagues.size(); i++)// n=3 laliga
 	{
 		for (int i = 0; i < leagues.at(i).getTeams().size(); i++)
 		{
@@ -74,7 +75,6 @@ Footballer* User::findPlayer(vector<League> leagues, string footballerName)
 					footballer = &currentTeam.getFootballPlayer().at(footballerName);
 				}
 			}
-
 		}
 	}
 	return footballer;

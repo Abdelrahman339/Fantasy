@@ -6,6 +6,7 @@
 #include "Teams.h"
 #include <stack>
 #include "HighlightsOfTheMatch.h"
+ 
 
 
 using namespace std;
@@ -18,7 +19,7 @@ protected:
 	string winningTeam;
 	string score;
 	string manOfTheMatch;
-	string statistics; // (shots-shotsOnTarget-possesion-passes-pass accuracy) preferably written like this -->("shots: 10, shotsOnTarget: 7, possession: 55%, passes: 300, pass accuracy: 85%")
+	string statistics;	 // (shots-shotsOnTarget-possesion-passes-pass accuracy) preferably written like this -->("shots: 10, shotsOnTarget: 7, possession: 55%, passes: 300, pass accuracy: 85%")
 	stack<HighlightsOfTheMatch> highlightsOfTheMatch;
 	string date;//the date of the match (or the round in league)
 	int GameId;
