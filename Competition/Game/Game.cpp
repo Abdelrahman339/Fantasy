@@ -5,6 +5,8 @@
 #include "Game.h"
 #include"Teams.h"
 #include"Leagues.h"
+#include<regex>
+
 
 
 
@@ -34,6 +36,34 @@ void Game:: displayTeamsAndScore(Game currentGame)
 	
 	cout << right << setw(20) <<"\u2022"<< homeTeamName << setw(20) << currentGame.getScore() << setw(25) <<"\u2022"<< awayTeamName << endl;
 
+}
+
+void Game::displayStatisitcs(Game currentGame)
+{
+	string matchStats = currentGame.getStatistics();
+
+	regex pattern("(\\w+) (\\d+-\\d+)");
+
+	// Iterate over matches
+	auto words_begin = sregex_iterator(matchStats.begin(), matchStats.end(), pattern);
+	auto words_end = sregex_iterator();
+
+	for (sregex_iterator i = words_begin; i != words_end; ++i) {
+		smatch match = *i;
+		string word = "~~" + match[1].str() + "~~"; //statistics names
+		string score = match[2]; //statistics scores
+
+		// Calculate the padding 
+		int padding_name = (89 - word.length()) / 2;
+		int padding_score = (89 - score.length()) / 2;
+
+
+		cout << setw(padding_name + word.length()) << word << endl;
+		cout << setw(padding_score + score.length()) << score << endl;
+
+		cout << "\n";
+
+	}
 }
 
 void Game:: displayPlayerHighlights(Game CurrentGame) {

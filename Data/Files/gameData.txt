@@ -1,0 +1,64 @@
+ID
+Home Team ID
+Away Team ID
+Winner Team Name
+Score
+Statistics (Home - Away)
+	Shots on goal
+	Shots
+	Possession %
+	Fouls
+	Offsides
+	Corner kicks
+	Saves
+Man of the Match
+Match Date
+----
+https://www.bing.com/sportsdetails?q=Alaves%20vs%20Atletico&gameid=SportRadar_Soccer_SpainLaLiga_2023_Game_41893535&league=Soccer_SpainLaLiga&scenario=GameCenter&intent=Game&iscelebratedgame=False&TimezoneId=Egypt%20Standard%20Time&sport=Soccer&seasonyear=2023&team=SportRadar_Soccer_SpainLaLiga_2023_Team_2885&team2=SportRadar_Soccer_SpainLaLiga_2023_Team_2836&venueid={%22id%22:%22SportRadar_Soccer_SpainLaLiga_2023_Venue_9311%22}:version-1&segment=sports&isl2=true&
+1
+105
+106
+Alaves
+2 - 0
+Statistics
+4 - 4
+7 - 13
+31 - 69
+19 - 13
+0 - 1
+1 - 11
+4 - 2
+21-04-2023
+----
+https://www.bing.com/sportsdetails?q=Real%20Madrid%20vs%20Bilbao&gameid=SportRadar_Soccer_SpainLaLiga_2023_Game_41893499&league=Soccer_SpainLaLiga&scenario=GameCenter&intent=Game&iscelebratedgame=False&TimezoneId=Egypt%20Standard%20Time&sport=Soccer&seasonyear=2023&team=SportRadar_Soccer_SpainLaLiga_2023_Team_2829&team2=SportRadar_Soccer_SpainLaLiga_2023_Team_2825&venueid={%22id%22:%22SportRadar_Soccer_SpainLaLiga_2023_Venue_754%22}:version-1&segment=sports&isl2=true&
+2
+102
+104
+Real Madrid
+2 - 0
+Statistics
+4 - 3
+9 - 7
+58 - 42
+9 - 13
+1 - 0
+4 - 7
+3 - 2
+31-03-2023
+----
+https://www.bing.com/sportsdetails?q=Barcelona%20vs%20Real%20Madrid&gameid=SportRadar_Soccer_SpainLaLiga_2023_Game_41893103&league=Soccer_SpainLaLiga&scenario=GameCenter&intent=Game&iscelebratedgame=False&TimezoneId=Egypt%20Standard%20Time&sport=Soccer&seasonyear=2023&team=SportRadar_Soccer_SpainLaLiga_2023_Team_2817&team2=SportRadar_Soccer_SpainLaLiga_2023_Team_2829&venueid={%22id%22:%22SportRadar_Soccer_SpainLaLiga_2023_Venue_714%22}:version-1&segment=sports&isl2=true&
+3
+102
+103
+Real Madrid
+1 - 2
+Statistics
+4 - 4
+11 - 11
+51 - 49
+0 - 0
+1 - 0
+6 - 3
+2 - 3
+28-10-2023
+----
