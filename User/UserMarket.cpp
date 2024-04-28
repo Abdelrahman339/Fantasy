@@ -40,21 +40,25 @@ invalid:
 void User::search(string footballerName, Teams team, User currentUser, string status, vector<League>  leagues)
 {
 	string search;
+invalid:
 	cout << "You can search by teams or the name of footballer." << endl;
 	cin >> search;
 	Footballer* footballer = findPlayer(leagues, search);
-	if (findPlayer(leagues, search) != nullptr)
+	Teams* teams = findTeam(leagues, search);
+	if (footballer != nullptr)
 	{
-		User::showPlayerInfo(*findPlayer(leagues, search));
+		User::showPlayerInfo(*footballer);
 	}
 
-	else if (findTeam(leagues, search) != nullptr)
+	else if (teams != nullptr)
 	{
 		//findTeam(leagues, search).displayPlayers();
+
 	}
 	else
 	{
-		cout << "please enter a valid team name or footabller name" << endl;
+		cout << "please enter a valid Team name or Footabller name" << endl;
+		goto invalid;
 	}
 
 

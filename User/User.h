@@ -65,6 +65,8 @@ public:
 	string static avoidTypos(string footballerName, Teams team, User currentUser, string status);
 	string static CheckingPlayer(string status, Teams team, User currenUser, string inputName);
 
+	vector<Footballer> static ToVector(unordered_map<string, Footballer> map);
+
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
 	///////////////////////////////////////////////////////////////////////////////////
@@ -80,15 +82,15 @@ public:
 	//User Squad and Format
 	///////////////////////////////////////////////////////////////////////////////////
 
-	void squadFormat(int choice, vector <Footballer> squad);
-	void Format433(vector <Footballer> squad);
-	void Format343(vector <Footballer> MainSquad);
-	void Format442(vector <Footballer> squad);
-	void showSubstitutions(vector <Footballer> substitutionList);
+	void squadFormat(int choice, unordered_map<string, Footballer>  squad);
+	void Format433(unordered_map<string, Footballer> squad);
+	void Format343(unordered_map<string, Footballer> squad);
+	void Format442(unordered_map<string, Footballer> squad);
+	void showSubstitutions(unordered_map<string, Footballer> squad);
 	int Formatdistance(string name, int space, bool remaining, string prev);
-	void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
+	void ShowSquad(unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> SubstitutionSquad, User& currentUser, unordered_map<string, User>& Users);
 	void showPlayerInfo(Footballer footballer);
-	void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);
+	void Substitution(unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> SubstitutionSquad, User& currentUser, unordered_map<string, User>& Users);
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Information
 	///////////////////////////////////////////////////////////////////////////////////

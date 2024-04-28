@@ -3,6 +3,7 @@
 #include "UserValidations.h"
 #include "Teams.h"
 #include <algorithm>
+#include <regex>
 
 
 using namespace std;
@@ -32,9 +33,9 @@ string User::avoidTypos(string footballerName, Teams team, User currentUser, str
 		}
 		else
 		{
-
-			if (!CheckingPlayer("sellMain", team, currentUser, footballerName).empty()) {
-				return CheckingPlayer("sellMain", team, currentUser, footballerName);
+			string PlayerName = CheckingPlayer("sellMain", team, currentUser, footballerName);
+			if (!PlayerName.empty()) {
+				return PlayerName + " main";
 			}
 			else {
 				return CheckingPlayer("sellSub", team, currentUser, footballerName);
@@ -95,14 +96,32 @@ string User::CheckingPlayer(string status, Teams team, User currentUser, string 
 			matchedPlayer = currentPlayerName;
 		}
 	}
-	return matchedPlayer;
+	if (minErrors < 3)
+	{
+		return matchedPlayer;
+
+	}
+	else
+	{
+		return "";
+	}
 }
-;
+vector<Footballer> User::ToVector(unordered_map<string, Footballer> map)
+{
+	vector<Footballer> Squad;
+
+	for (auto kv : map)
+	{
+		Squad.push_back(kv.second);
+	}
+	return Squad;
+};
 
 
 
 
-void User::Squad(vector <Footballer> MainSquad, vector <Footballer> SubstitutionSquad) {
+
+void User::ShowSquad(unordered_map<string, Footballer> MainSquad, unordered_map<string, Footballer> SubstitutionSquad, User& currentUser, unordered_map<string, User>& Users) {
 	int choice;
 	cout << "your fantasy squad" << endl;
 	squadFormat(2, MainSquad);
@@ -141,11 +160,11 @@ choice:
 	}
 	else if (choice == 3)
 	{
-		Substitution(MainSquad, SubstitutionSquad);
+		Substitution(MainSquad, SubstitutionSquad, currentUser, Users);
 	}
 	else if (choice == 4)
 	{
-		//userMenu(this);
+		userMenu(currentUser, Users);
 	}
 	else
 	{
@@ -177,21 +196,93 @@ void User::showPlayerInfo(Footballer footballer) {
 };
 
 
-void User::Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad) {
-	int choice1;
-	int choice2;
+void User::Substitution(unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> SubstitutionSquad, User& cuurentUser, unordered_map<string, User>& Users) {
+	char ans;
+	string PlayerName1;
+	string PlayerName2;
+	string existPlayer;
 	Footballer tempPlayer;
-	cout << "Choose player from your main squad to change him (Use the index)" << endl;
-	cin >> choice1;
-	cout << "Choose player from your main substitution to let him play (Use the index)" << endl;
-	cin >> choice2;
-	tempPlayer = mainSquad.at(choice1 - 1);
-	mainSquad.at(choice1 - 1) = SubstitutionSquad.at(choice2 - 1);
-	SubstitutionSquad.at(choice1 - 1) = tempPlayer;
+	Teams team;
+invalid_main:
+	cout << "Choose player from your main squad to change him (Use the Name)" << endl;
+	cin >> PlayerName1;
+
+	existPlayer = avoidTypos(PlayerName1, team, cuurentUser, "sell");
+	regex pattern(R"(main)");
+	if (existPlayer == "existMain")
+	{
+		tempPlayer = mainSquad.at(PlayerName1);
+	}
+	else if (!existPlayer.empty()) {
+		if (regex_match(existPlayer, pattern))
+		{
+			regex_replace(existPlayer, pattern, "");
+			cout << "You enterd a wrong player .Do you mean " << existPlayer << "?" << endl;
+			cin >> ans;
+			if (ans == 'y')
+			{
+				tempPlayer = mainSquad.at(PlayerName1);
+			}
+			else if (ans == 'n') {
+				cout << "Plese enter a valid footballer name." << endl;
+				goto invalid_main;
+			}
+		}
+		else {
+			cout << "Please enter choose first the player from your main squad." << endl;
+			goto invalid_main;
+		}
+	}
+	else {
+
+		cout << "You enterd a wrong player.Please enter a exist player" << endl;
+		goto invalid_main;
+	}
+
+
+
+
+
+
+	cout << "Choose player from your main substitution to let him play (Use the name)" << endl;
+	cin >> PlayerName2;
+	existPlayer = avoidTypos(PlayerName1, team, cuurentUser, "sell");
+	regex pattern(R"(main)");
+	if (existPlayer == "existSub")
+	{
+		cuurentUser.GetMainSquad().at(PlayerName1) = cuurentUser.GetSubstitutionSquad().at(PlayerName2);
+		cuurentUser.GetSubstitutionSquad().at(PlayerName2) = tempPlayer;
+	}
+	else if (!existPlayer.empty()) {
+		if (!regex_match(existPlayer, pattern))
+		{
+			cout << "You enterd a wrong player .Do you mean " << existPlayer << "?" << endl;
+			cin >> ans;
+			if (ans == 'y')
+			{
+				cuurentUser.GetMainSquad().at(PlayerName1) = cuurentUser.GetSubstitutionSquad().at(PlayerName2);
+				cuurentUser.GetSubstitutionSquad().at(PlayerName2) = tempPlayer;
+			}
+			else if (ans == 'n') {
+				cout << "Plese enter a valid footballer name." << endl;
+				goto invalid_main;
+			}
+		}
+		else {
+			cout << "Please enter choose first the player from your main squad." << endl;
+			goto invalid_main;
+		}
+	}
+	else {
+
+		cout << "You enterd a wrong player.Please enter a exist player" << endl;
+		goto invalid_main;
+	}
+
 	cout << "Player in your main squad now" << endl;
 	system("pause");
 	system("cls");
-	Squad(mainSquad, SubstitutionSquad);
+	ShowSquad(mainSquad, SubstitutionSquad, cuurentUser, Users);
 };
 
 void User::profile(User& currentUser, unordered_map<string, User>& Users) {
@@ -278,16 +369,16 @@ invalid:
 	}
 };
 
-void User::squadFormat(int choice, vector <Footballer> MainSquad) {
+void User::squadFormat(int choice, unordered_map<string, Footballer>  squad) {
 	if (choice == 1)
 	{
-		//User::Format343(MainSquad);
+		User::Format343(squad);
 	}
 	else if (choice == 2) {
-		//User::Format433(MainSquad);
+		User::Format433(squad);
 	}
 	else if (choice == 3) {
-		//User::Format442(MainSquad);
+		User::Format442(squad);
 	}
 	else {
 		cout << "invalid input!" << endl;
@@ -296,7 +387,10 @@ void User::squadFormat(int choice, vector <Footballer> MainSquad) {
 	}
 
 };
-void User::Format433(vector <Footballer> MainSquad) {
+void User::Format433(unordered_map<string, Footballer> Squad) {
+
+	vector <Footballer>MainSquad = ToVector(Squad);
+
 
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n\n";
@@ -321,7 +415,10 @@ void User::Format433(vector <Footballer> MainSquad) {
 
 
 
-void User::Format343(vector <Footballer> MainSquad) {
+void User::Format343(unordered_map<string, Footballer> Squad) {
+
+
+	vector <Footballer>MainSquad = ToVector(Squad);
 
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
@@ -375,7 +472,10 @@ void User::Format343(vector <Footballer> MainSquad) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void User::Format442(vector <Footballer> MainSquad) {
+void User::Format442(unordered_map<string, Footballer> Squad) {
+
+
+	vector <Footballer>MainSquad = ToVector(Squad);
 
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
@@ -412,8 +512,10 @@ void User::Format442(vector <Footballer> MainSquad) {
 }
 
 
-void User::showSubstitutions(vector<Footballer> substitutionList)
+void User::showSubstitutions(unordered_map<string, Footballer> Squad)
 {
+
+	vector <Footballer>substitutionList = ToVector(Squad);
 
 	cout << User::spacing(28, ' ') << "                   substitutions" << endl;
 	cout << User::spacing(28, ' ') << "_____________     ________________    _____________" << "\n\n\n";
