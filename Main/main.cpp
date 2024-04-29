@@ -1,11 +1,13 @@
 ﻿#include <iostream> 
-//files
+#include <fileManpulation.h>
+
+// Files
 #include "User.h"
 #include "Competition.h"
 #include "Admin.h"
 #include "Game.h"
 
-//data structures
+// Data structures
 #include <unordered_map>
 
 
