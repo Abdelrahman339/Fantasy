@@ -19,7 +19,7 @@ string User::avoidTypos(string footballerName, Teams team, User& currentUser, st
 {
 
 	string LowercaseName = footballerName;
-	//transform(LowercaseName.begin(), LowercaseName.end(), LowercaseName.begin(), ::tolower);
+	transform(LowercaseName.begin(), LowercaseName.end(), LowercaseName.begin(), ::tolower);
 
 	//checking if the name exist or not in sell function cause i use the user squad not the team squad
 	if (status == "sell") {
@@ -148,6 +148,9 @@ choice:
 		{
 			showPlayerInfo(MainSquad.at(footballerName));
 		}
+		else if (existPlayer == "existSub") {
+			showPlayerInfo(SubstitutionSquad.at(footballerName));
+		}
 		else if (!existPlayer.empty()) {
 			if (regex_search(existPlayer, pattern))
 			{
@@ -163,8 +166,21 @@ choice:
 					goto invalid;
 				}
 			}
+			else if (!regex_search(existPlayer, pattern)) {
+				cout << "You enterd a wrong player .Do you mean " << existPlayer << "?(y/n)" << endl;
+				cin >> ans;
+				if (ans == 'y')
+				{
+					showPlayerInfo(SubstitutionSquad.at(existPlayer));
+				}
+				else if (ans == 'n') {
+					cout << "Plese enter a valid footballer name." << endl;
+					goto invalid;
+				}
+
+			}
 			else {
-				cout << "Please choose first the player from your main squad." << endl;
+				cout << "You enterd a wrong player.Please enter a exist player." << endl;
 				goto invalid;
 			}
 		}
@@ -174,18 +190,7 @@ choice:
 			goto invalid;
 		}
 
-
-
-
-
-
-
 	}
-
-
-
-
-
 
 
 
@@ -522,19 +527,19 @@ void User::Format442(unordered_map<string, Footballer> Squad) {
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
 
-	
-	
+
+
 	cout << User::spacing(38, ' '); cout << User::spacing(User::Formatdistance(MainSquad[9].GetName(), 0, false, MainSquad[9].GetName()), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10].GetName(), 9, true, MainSquad[9].GetName()), ' ') << "11" << endl;
 	cout << User::spacing(38, ' '); cout << MainSquad[9].GetName() << User::spacing(10, ' ') << MainSquad[10].GetName() << "\n\n";
-	
-	
+
+
 	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5].GetName(), 0, false, MainSquad[5].GetName()), ' ') << "6"; cout << User::spacing(User::Formatdistance(MainSquad[6].GetName(), 13, true, MainSquad[5].GetName()), ' ') << "7"; cout << User::spacing(User::Formatdistance(MainSquad[7].GetName(), 13, true, MainSquad[6].GetName()), ' ') << "8"; cout << User::spacing(User::Formatdistance(MainSquad[8].GetName(), 13, true, MainSquad[7].GetName()), ' ') << "9" << endl;
 	cout << User::spacing(20, ' '); cout << MainSquad[5].GetName() << User::spacing(13, ' ') << MainSquad[6].GetName() << User::spacing(13, ' ') << MainSquad[7].GetName() << User::spacing(13, ' ') << MainSquad[8].GetName() << "\n\n";
 
 	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1].GetName(), 0, false, MainSquad[1].GetName()), ' ') << "2"; cout << User::spacing(User::Formatdistance(MainSquad[2].GetName(), 13, true, MainSquad[1].GetName()), ' ') << "3"; cout << User::spacing(User::Formatdistance(MainSquad[3].GetName(), 13, true, MainSquad[2].GetName()), ' ') << "4"; cout << User::spacing(User::Formatdistance(MainSquad[4].GetName(), 13, true, MainSquad[3].GetName()), ' ') << "5" << endl;
 	cout << User::spacing(20, ' '); cout << MainSquad[1].GetName() << User::spacing(13, ' ') << MainSquad[2].GetName() << User::spacing(13, ' ') << MainSquad[3].GetName() << User::spacing(13, ' ') << MainSquad[4].GetName() << "\n\n";
-	
-	
+
+
 	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << endl;
 	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0].GetName() << User::spacing(25, ' ');
 }
