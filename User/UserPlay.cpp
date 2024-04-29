@@ -49,20 +49,33 @@ void User::showtopPlayer(unordered_map<string, Footballer> TopPlayer, User& curr
 	int choice;
 invalid:
 	cout << "Welcome to top player in the session!" << endl;
-	//User::Format343(TopPlayer);
-	cout << "Enter the namr of your wanted player.";
-	cin >> footballerName;
+	User::Format343(TopPlayer);
 	system("cls");
-	//User::showPlayerInfo(TopPlayer, footballerName);
-	cout << "1-Buy playern\2-Replace player\n3-Go back." << endl;
+
+	cout << "1-Show information about player\n2-buy player\n3-Replace player\n4-Go back." << endl;
 	cin >> choice;
 	if (choice == 1) {
-		//buy func 
+		cout << "Enter the name of the player you want to show information about" << endl;
+		cin >> footballerName;
+		if (TopPlayer.count(footballerName) > 0)
+		{
+			showPlayerInfo(TopPlayer.at(footballerName));
+		}
+		else
+		{
+			cout << "Please enter a valid name" << endl;
+			goto invalid;
+		}
 	}
-	else if (choice == 2) {
-		//replace
+	else if (choice == 2)
+	{
+		buy(currentUser, team, TopPlayer, Users);
+
 	}
 	else if (choice == 3) {
+		replace(currentUser, team, TopPlayer, Users);
+	}
+	else if (choice == 4) {
 		Market(currentUser, team, TopPlayer, Users);
 	}
 	else {
