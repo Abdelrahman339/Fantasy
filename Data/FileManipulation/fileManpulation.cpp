@@ -51,6 +51,57 @@ map<string, Teams> fileManipulation::getTeamsData() {
 	regex = R"(\n)";
 	return parseTeams(parts, regex);
 }
+map<string, unordered_map<string, Footballer>> fileManipulation::getFootballersOfTeamData() {
+	string filename = "footballersOfTeam.txt";
+	string file_data = readFileData(filename);
+	string regex = R"(\s+----------------\s+)";
+	vector<string> parts = splitByRegex(file_data, regex);
+	map<string, unordered_map<string, Footballer>> parsedFootballersOfTeam;
+	for (const string& part : parts) {
+		regex = R"(\s+--------\s+)";
+		vector<string> teamFootballersVector = splitByRegex(part, regex);
+		pair<string, string> teamFootballers = { teamFootballersVector[0], teamFootballersVector[1] };
+		regex = R"(\s+----\s+)";
+		parsedFootballersOfTeam.insert(
+			parseFootballersOfTeam(teamFootballers, regex)
+		);
+	}
+	return {};
+}
+pair<string, unordered_map<string, Footballer>> fileManipulation::parseFootballersOfTeam(pair<string, string> teamFootballers, string regex) {
+	vector<string> footballersOfTeam = splitByRegex(teamFootballers.second, regex);
+	unordered_map<string, Footballer> parsedFootballersOfTeam;
+	regex = R"(\n)";
+	for (size_t i = 0; i < footballersOfTeam.size(); i++) {
+		vector<string> footballerLines = splitByRegex(footballersOfTeam[i], regex);
+		Footballer footballer = parseFootballer(footballerLines, teamFootballers.first);
+		parsedFootballersOfTeam.insert(
+			make_pair(footballer.GetName(), footballer)
+		);
+	}
+	return make_pair(teamFootballers.first, parsedFootballersOfTeam);
+}
+Footballer fileManipulation::parseFootballer(vector<string> footballerLines, string teamName) {
+	string name = footballerLines[0];
+	int age = stoi(footballerLines[1], nullptr);
+	string position = footballerLines[2];
+	float price = stof(footballerLines[3], nullptr);
+	float rating = stoi(footballerLines[4], nullptr);
+	int totalGoals = stoi(footballerLines[6], nullptr);
+	int totalAssists = stoi(footballerLines[7], nullptr);
+	int totalRedCard = stoi(footballerLines[8], nullptr);
+	int totalYellowCard = stoi(footballerLines[9], nullptr);
+	int totalCleansheets = stoi(footballerLines[10], nullptr);
+	int totalPoints = stoi(footballerLines[11], nullptr);
+
+	//return Footballer(footballerLines[0],2,teamName, position,45.0F, 45.0F,0,0,0,0,0,0);
+	return Footballer(
+		name, age, teamName, position, price, rating,
+		totalGoals, totalAssists, totalRedCard, totalYellowCard,
+		totalCleansheets, totalPoints
+	);
+}
+
 string fileManipulation::parseGameStatistics(vector<string> gameLines) {
 	string parsedStatistics;
 	string statisticsNames[] = {
@@ -113,6 +164,7 @@ Teams fileManipulation::parseTeam(vector<string> teamLines) {
 }
 Game fileManipulation::parseGame(vector<string> gameLines) {
 	int gameID = stoi(gameLines[0], nullptr);
+
 	string winnerTeam = gameLines[3];
 	string score = gameLines[4];
 	string gameStatistics = parseGameStatistics(gameLines);
