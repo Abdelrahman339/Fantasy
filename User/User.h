@@ -7,6 +7,7 @@
 #include "unordered_map"
 #include "Teams.h"
 #include "Game.h"
+#include <Leagues.h>
 
 using namespace std;
 
@@ -25,6 +26,12 @@ protected:
 	unordered_map <string, Footballer >TheMainSquad;
 	unordered_map <string, Footballer >SubstitutionSquad;
 public:
+
+	//User();
+	//User(string fullName, string username, string password, string phoneNumber,
+	//	string Email, int id, int rank, int points, float balance,
+	//	unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad);
+
 	// getter and setter and constructor
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
@@ -50,8 +57,8 @@ public:
 	int GetRank();
 	int GetPoints();
 	float GetBalance();
-	unordered_map<string, Footballer> GetMainSquad();
-	unordered_map<string, Footballer> GetSubstitutionSquad();
+	unordered_map<string, Footballer>& GetMainSquad();
+	unordered_map<string, Footballer>& GetSubstitutionSquad();
 
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
@@ -60,6 +67,11 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
 	string static spacing(int spaces, char character);
+
+	string static avoidTypos(string footballerName, Teams team, User& currentUser, string status);
+	string static CheckingPlayer(string status, Teams team, User currenUser, string inputName);
+
+	vector<Footballer> static ToVector(unordered_map<string, Footballer> map);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
@@ -76,15 +88,15 @@ public:
 	//User Squad and Format
 	///////////////////////////////////////////////////////////////////////////////////
 
-	void squadFormat(int choice, vector <Footballer> squad);
-	void Format433(vector <Footballer> squad);
-	void Format343(vector <Footballer> MainSquad);
-	void Format442(vector <Footballer> squad);
-	void showSubstitutions(vector <Footballer> substitutionList);
-	int Formatdistance(string name, int space, bool remaining, string prev);
-	void Squad(vector <Footballer> squad, vector <Footballer> SubstitutionSquad);
-	void showPlayerInfo(unordered_map<string, Footballer> players, string name);
-	void Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad);
+	void static squadFormat(int choice, unordered_map<string, Footballer>  squad);
+	void static Format433(unordered_map<string, Footballer> squad);
+	void static Format343(unordered_map<string, Footballer> squad);
+	void static Format442(unordered_map<string, Footballer> squad);
+	void static showSubstitutions(unordered_map<string, Footballer> squad);
+	int  static Formatdistance(string name, int space, bool remaining, string prev);
+	void static ShowSquad(User& currentUser, unordered_map<string, User>& Users);
+	void static showPlayerInfo(Footballer footballer);
+	void static Substitution(User& currentUser, unordered_map<string, User>& Users);
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Information
 	///////////////////////////////////////////////////////////////////////////////////
@@ -96,11 +108,13 @@ public:
 	void Market(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 	void showtopPlayer(unordered_map<string, Footballer> TopPlayer, User& currentUser, unordered_map<string, User>& Users, Teams& team);
 
-	void sell(User& currentUser, Teams& team);
-	void buy(User& currentUser, Teams& team);
-	void replace(User& currentUser, Teams& team);
+	void sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+	void replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 
-	void search();
+	//void search(string footballerName, Teams team, User currentUser, string status, vector<League> leagues);
+	//Footballer* findPlayer(vector<League> leagues, string footballerName);
+	//Teams* findTeam(vector<League> league, string footballerName);
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////

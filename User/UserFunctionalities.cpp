@@ -2,48 +2,230 @@
 #include "User.h"
 #include "UserValidations.h"
 #include "Teams.h"
+#include <algorithm>
+#include <regex>
 
+int formatchoice = 3;
 
 using namespace std;
 string User::spacing(int spacing, char character) {
 	string space(spacing, character);
 	return space;
+}
+
+
+
+string User::avoidTypos(string footballerName, Teams team, User& currentUser, string status)
+{
+
+	string LowercaseName = footballerName;
+	transform(LowercaseName.begin(), LowercaseName.end(), LowercaseName.begin(), ::tolower);
+
+	//checking if the name exist or not in sell function cause i use the user squad not the team squad
+	if (status == "sell") {
+		int it = currentUser.GetMainSquad().count(footballerName);
+		int it2 = currentUser.GetSubstitutionSquad().count(footballerName);
+		if (it > 0)
+		{
+			return "existMain";
+		}
+		else if (it2 > 0) {
+			return "existSub";
+		}
+		else
+		{
+			string PlayerName = CheckingPlayer("sellMain", team, currentUser, footballerName);
+			if (!PlayerName.empty()) {
+				return PlayerName + "main";
+			}
+			else {
+				return CheckingPlayer("sellSub", team, currentUser, footballerName);
+			}
+		}
+
+	}
+
+	//checking if the name exist or not 
+	else
+	{
+
+		auto it = team.getFootballPlayer().count(LowercaseName);
+		if (it > 0)
+		{
+			return "exist";
+		}
+		else // the player doesn't exist in the map . try to find the best similar name
+		{
+			return CheckingPlayer("buy", team, currentUser, footballerName);
+
+		}
+	}
+}
+string User::CheckingPlayer(string status, Teams team, User currentUser, string inputName)
+{
+	unordered_map<string, Footballer> currentsquad;
+	if (status == "sellMain")
+	{
+		currentsquad = currentUser.GetMainSquad();
+	}
+	else if (status == "sellSub")
+	{
+		currentsquad = currentUser.GetSubstitutionSquad();
+	}
+	else
+	{
+		currentsquad = team.getFootballPlayer();
+	}
+
+
+	int minErrors = 10000;
+	string matchedPlayer;
+	for (auto kv : currentsquad) {
+
+		string currentPlayerName = kv.first;
+		int errors = 0;
+		for (int i = 0; i < min(inputName.size(), currentPlayerName.size()); ++i) {
+			if (inputName[i] != currentPlayerName[i]) {
+				errors++;
+				if (errors > 2) {
+					break;
+				}
+			}
+		}
+		if (errors < minErrors) {
+			minErrors = errors;
+			matchedPlayer = currentPlayerName;
+		}
+	}
+	if (minErrors < 3)
+	{
+		return matchedPlayer;
+
+	}
+	else
+	{
+		return "";
+	}
+}
+vector<Footballer> User::ToVector(unordered_map<string, Footballer> map)
+{
+	vector<Footballer> Squad;
+
+	for (auto kv : map)
+	{
+		Squad.push_back(kv.second);
+	}
+	return Squad;
 };
-void User::Squad(vector <Footballer> MainSquad, vector <Footballer> SubstitutionSquad) {
+
+
+
+
+
+void User::ShowSquad(User& currentUser, unordered_map<string, User>& Users) {
 	int choice;
+	unordered_map <string, Footballer> MainSquad = currentUser.GetMainSquad();
+	unordered_map <string, Footballer> SubstitutionSquad = currentUser.GetSubstitutionSquad();
 	cout << "your fantasy squad" << endl;
-	squadFormat(2, MainSquad);
+	squadFormat(formatchoice, MainSquad);
+	cout << "\n\n\ ";
+	showSubstitutions(SubstitutionSquad);
+	cout << "\n\n\ ";
 choice:
 	cout << "1-Show information about your players\n2-Change your format\n3-Substitution\n4-Go back " << endl;
 	cin >> choice;
 	if (choice == 1)
 	{
-		//showPlayerInfo(MainSquad, SubstitutionSquad);
+		Teams team;
+		string footballerName;
+		char ans;
+	invalid:
+		cout << "Enter your footballer name " << endl;
+		cin >> footballerName;
+		string existPlayer = avoidTypos(footballerName, team, currentUser, "sell");
+		regex pattern(R"(main)");
+		if (existPlayer == "existMain")
+		{
+			showPlayerInfo(MainSquad.at(footballerName));
+		}
+		else if (existPlayer == "existSub") {
+			showPlayerInfo(SubstitutionSquad.at(footballerName));
+		}
+		else if (!existPlayer.empty()) {
+			if (regex_search(existPlayer, pattern))
+			{
+				existPlayer = regex_replace(existPlayer, pattern, "");
+				cout << "You enterd a wrong player .Do you mean " << existPlayer << "?(y/n)" << endl;
+				cin >> ans;
+				if (ans == 'y')
+				{
+					showPlayerInfo(MainSquad.at(existPlayer));
+				}
+				else if (ans == 'n') {
+					cout << "Plese enter a valid footballer name." << endl;
+					goto invalid;
+				}
+			}
+			else if (!regex_search(existPlayer, pattern)) {
+				cout << "You enterd a wrong player .Do you mean " << existPlayer << "?(y/n)" << endl;
+				cin >> ans;
+				if (ans == 'y')
+				{
+					showPlayerInfo(SubstitutionSquad.at(existPlayer));
+				}
+				else if (ans == 'n') {
+					cout << "Plese enter a valid footballer name." << endl;
+					goto invalid;
+				}
+
+			}
+			else {
+				cout << "You enterd a wrong player.Please enter a exist player." << endl;
+				goto invalid;
+			}
+		}
+		else {
+
+			cout << "You enterd a wrong player.Please enter a exist player" << endl;
+			goto invalid;
+		}
+
 	}
+
+
+
 	else if (choice == 2) {
 		cout << "Available formats:" << endl;
-		cout << "1- 4 3 3 \n2- 3 4 3\n3- 4 4 2";
+		cout << "1- 3 4 3 \n2- 4 3 3\n3- 4 4 2";
 		cout << "Choose your new format" << endl;
 		cin >> choice;
 		if (choice == 1)
 		{
+			formatchoice = 1;
 			squadFormat(1, MainSquad);
+			ShowSquad(currentUser, Users);
 		}
 		else if (choice == 2) {
+			formatchoice = 2;
 			squadFormat(2, MainSquad);
+			ShowSquad(currentUser, Users);
+
 		}
 
 		else if (choice == 3) {
+			formatchoice = 3;
 			squadFormat(3, MainSquad);
+			ShowSquad(currentUser, Users);
+
 		}
 	}
 	else if (choice == 3)
 	{
-		Substitution(MainSquad, SubstitutionSquad);
+		Substitution(currentUser, Users);
 	}
 	else if (choice == 4)
 	{
-		//userMenu(this);
+		userMenu(currentUser, Users);
 	}
 	else
 	{
@@ -55,41 +237,120 @@ choice:
 }
 
 
-void User::showPlayerInfo(unordered_map<string, Footballer> players, string name) {
+void User::showPlayerInfo(Footballer footballer) {
 	cout << "--------------------------------------------------------------------------------" << endl;
-	cout << "Name:" << players.at(name).GetName();
-	cout << "Age:" << players.at(name).GetAge();
-	cout << "Captain:" << players.at(name).GetCaptain();
-	cout << "Position:" << players.at(name).GetPosition();
-	cout << "Price:" << players.at(name).GetPrice();
-	cout << "Team:" << players.at(name).GetTeam();
-	cout << "Total goals this season:" << players.at(name).GetTotalGoals();
-	cout << "Total assists this season:" << players.at(name).GetTotalAssists();
-	if (players.at(name).GetPosition() == "Gk") {
-		cout << "Total Clean sheets this season:" << players.at(name).GetTotalCleansheets();
+	cout << "Name:" << footballer.GetName() << endl;
+	cout << "Age:" << footballer.GetAge() << endl;
+	cout << "Captain:" << footballer.GetCaptain() << endl;
+	cout << "Position:" << footballer.GetPosition() << endl;
+	cout << "Price:" << footballer.GetPrice() << endl;
+	cout << "Team:" << footballer.GetTeam() << endl;
+	cout << "Total goals this season:" << footballer.GetTotalGoals() << endl;
+	cout << "Total assists this season:" << footballer.GetTotalAssists() << endl;
+	if (footballer.GetPosition() == "Gk") {
+		cout << "Total Clean sheets this season:" << footballer.GetTotalCleansheets() << endl;
 	}
-	cout << "Total yellow card this season:" << players.at(name).GetTotalYellowCard();
-	cout << "Total red card this season:" << players.at(name).GetTotalRedCard();
+	cout << "Total yellow card this season:" << footballer.GetTotalYellowCard() << endl;
+	cout << "Total red card this season:" << footballer.GetTotalRedCard() << endl;
 	cout << "--------------------------------------------------------------------------------\n" << endl;
 
 };
 
-
-void User::Substitution(vector <Footballer> mainSquad, vector <Footballer> SubstitutionSquad) {
-	int choice1;
-	int choice2;
+// has errors 
+void User::Substitution(User& currentUser, unordered_map<string, User>& Users) { // has errors 
+	char ans;
+	string PlayerName1;
+	string PlayerName2;
+	string existPlayer;
 	Footballer tempPlayer;
-	cout << "Choose player from your main squad to change him (Use the index)" << endl;
-	cin >> choice1;
-	cout << "Choose player from your main substitution to let him play (Use the index)" << endl;
-	cin >> choice2;
-	tempPlayer = mainSquad.at(choice1 - 1);
-	mainSquad.at(choice1 - 1) = SubstitutionSquad.at(choice2 - 1);
-	SubstitutionSquad.at(choice1 - 1) = tempPlayer;
+	Teams team;
+invalid_main:
+	cout << "Choose player from your main squad to change him (Use the Name)" << endl;
+	cin >> PlayerName1;
+
+	existPlayer = avoidTypos(PlayerName1, team, currentUser, "sell");
+	regex pattern(R"(main)");
+	if (existPlayer == "existMain")
+	{
+		tempPlayer = currentUser.GetMainSquad().at(PlayerName1);
+	}
+	else if (!existPlayer.empty()) {
+		if (regex_search(existPlayer, pattern))
+		{
+			existPlayer = regex_replace(existPlayer, pattern, "");
+			cout << "You enterd a wrong player .Do you mean " << existPlayer << "? (y/n)" << endl;
+			cin >> ans;
+			if (ans == 'y')
+			{
+				tempPlayer = currentUser.GetMainSquad().at(existPlayer);
+			}
+			else if (ans == 'n') {
+				cout << "Plese enter a valid footballer name." << endl;
+				goto invalid_main;
+			}
+		}
+		else {
+			cout << "Please choose first the player from your main squad." << endl;
+			goto invalid_main;
+		}
+	}
+	else {
+
+		cout << "You enterd a wrong player.Please enter a exist player" << endl;
+		goto invalid_main;
+	}
+
+
+
+
+
+invalid_Sub:
+	cout << "Choose player from your substitutions to let him play (Use the name)" << endl;
+	cin >> PlayerName2;
+	existPlayer = avoidTypos(PlayerName2, team, currentUser, "sell");
+	if (existPlayer == "existSub")
+	{
+		Footballer Subplayer = currentUser.GetSubstitutionSquad().at(PlayerName2);
+		currentUser.GetMainSquad().erase(tempPlayer.GetName());
+		currentUser.GetMainSquad().insert_or_assign(Subplayer.GetName(), Subplayer);
+
+		currentUser.GetSubstitutionSquad().erase(Subplayer.GetName());
+		currentUser.GetSubstitutionSquad().insert_or_assign(tempPlayer.GetName(), tempPlayer);
+	}
+	else if (!existPlayer.empty()) {
+		if (!regex_search(existPlayer, pattern))
+		{
+			cout << "You enterd a wrong player .Do you mean " << existPlayer << "?" << endl;
+			cin >> ans;
+			if (ans == 'y')
+			{
+				Footballer Subplayer = currentUser.GetSubstitutionSquad().at(existPlayer);
+				currentUser.GetMainSquad().erase(tempPlayer.GetName());
+				currentUser.GetMainSquad().insert_or_assign(Subplayer.GetName(), Subplayer);
+
+				currentUser.GetSubstitutionSquad().erase(Subplayer.GetName());
+				currentUser.GetSubstitutionSquad().insert_or_assign(tempPlayer.GetName(), tempPlayer);
+			}
+			else if (ans == 'n') {
+				cout << "Plese enter a valid footballer name." << endl;
+				goto invalid_Sub;
+			}
+		}
+		else {
+			cout << "Please enter a player from your Substitution squad." << endl;
+			goto invalid_Sub;
+		}
+	}
+	else {
+
+		cout << "You enterd a wrong player.Please enter a exist player" << endl;
+		goto invalid_Sub;
+	}
+
 	cout << "Player in your main squad now" << endl;
 	system("pause");
 	system("cls");
-	Squad(mainSquad, SubstitutionSquad);
+	ShowSquad(currentUser, Users);
 };
 
 void User::profile(User& currentUser, unordered_map<string, User>& Users) {
@@ -134,7 +395,12 @@ invalid:
 	}
 	else if (choice == 2)
 	{
+		User oldUser = currentUser;
 		UserValidations::usernameCheck(Users, currentUser);
+		string newUserName = currentUser.GetUsername();
+		Users.erase(oldUser.GetUsername());
+		Users.insert_or_assign(newUserName, currentUser);
+
 		cout << "Username updated successfully" << endl;
 		system("pause");
 		system("cls");
@@ -176,16 +442,16 @@ invalid:
 	}
 };
 
-void User::squadFormat(int choice, vector <Footballer> MainSquad) {
+void User::squadFormat(int choice, unordered_map<string, Footballer>  squad) {
 	if (choice == 1)
 	{
-		//User::Format343(MainSquad);
+		User::Format343(squad);
 	}
 	else if (choice == 2) {
-		//User::Format433(MainSquad);
+		User::Format433(squad);
 	}
 	else if (choice == 3) {
-		//User::Format442(MainSquad);
+		User::Format442(squad);
 	}
 	else {
 		cout << "invalid input!" << endl;
@@ -194,7 +460,10 @@ void User::squadFormat(int choice, vector <Footballer> MainSquad) {
 	}
 
 };
-void User::Format433(vector <Footballer> MainSquad) {
+void User::Format433(unordered_map<string, Footballer> Squad) {
+
+	vector <Footballer>MainSquad = ToVector(Squad);
+
 
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n\n";
@@ -219,53 +488,30 @@ void User::Format433(vector <Footballer> MainSquad) {
 
 
 
-void User::Format343(vector <Footballer> MainSquad) {
+void User::Format343(unordered_map<string, Footballer> Squad) {
+
+
+	vector <Footballer>MainSquad = ToVector(Squad);
 
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
 
-	cout << User::spacing(28, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8].GetName(), 0, false, MainSquad[8].GetName()), ' ') << "9";
-	for (int i = 8; i < 10; i++)
-	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
-	}
-	cout << endl;
-	////////////////////////////////////////////////////////
-	cout << User::spacing(28, ' ') << MainSquad[8].GetName();
-	for (int i = 9; i < 11; i++)
-	{
-		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
-	}
-	cout << "\n\n";
 
-	cout << User::spacing(User::Formatdistance(MainSquad[4].GetName(), 20, false, MainSquad[4].GetName()), ' ') << "5";
-	for (int i = 4; i < 7; i++)
-	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
-	}
-	cout << endl;
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8].GetName(), 0, false, MainSquad[8].GetName()), ' ') << "9"; cout << User::spacing(User::Formatdistance(MainSquad[9].GetName(), 12, true, MainSquad[8].GetName()), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10].GetName(), 12, true, MainSquad[9].GetName()), ' ') << "11" << endl;
+	cout << User::spacing(20, ' '); cout << MainSquad[8].GetName() << User::spacing(13, ' ') << MainSquad[9].GetName() << User::spacing(13, ' ') << MainSquad[10].GetName() << "\n\n";
 
-	//////////////////////////////////////////////////
-	cout << User::spacing(20, ' ') << MainSquad[4].GetName();
-	for (int i = 5; i < 8; i++)
-	{
-		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
-	}
-	cout << "\n\n";
-	cout << User::spacing(28, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1].GetName(), 0, false, MainSquad[1].GetName()), ' ') << "2";
-	for (int i = 1; i < 3; i++)
-	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
-	}
-	cout << endl;
-	cout << User::spacing(28, ' '); cout << MainSquad[1].GetName();
-	for (int i = 2; i < 4; i++)
-	{
-		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
-	}
-	cout << "\n\n" << endl;
+	cout << User::spacing(User::Formatdistance(MainSquad[4].GetName(), 13, false, MainSquad[4].GetName()), ' ') << "5"; cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5].GetName(), 0, true, MainSquad[4].GetName()), ' ') << "6"; cout << User::spacing(User::Formatdistance(MainSquad[6].GetName(), 13, true, MainSquad[5].GetName()), ' ') << "7"; cout << User::spacing(User::Formatdistance(MainSquad[7].GetName(), 13, true, MainSquad[6].GetName()), ' ') << "8" << endl;
+	cout << User::spacing(13, ' ') << MainSquad[4].GetName(); cout << User::spacing(20, ' '); cout << MainSquad[5].GetName() << User::spacing(13, ' ') << MainSquad[6].GetName() << User::spacing(13, ' ') << MainSquad[7].GetName() << endl;
+
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1].GetName(), 0, false, MainSquad[1].GetName()), ' ') << "2"; cout << User::spacing(User::Formatdistance(MainSquad[2].GetName(), 13, true, MainSquad[1].GetName()), ' ') << "3"; cout << User::spacing(User::Formatdistance(MainSquad[3].GetName(), 13, true, MainSquad[2].GetName()), ' ') << "4" << endl;
+	cout << User::spacing(20, ' '); cout << MainSquad[1].GetName() << User::spacing(13, ' ') << MainSquad[2].GetName() << User::spacing(13, ' ') << MainSquad[3].GetName() << "\n\n";
+
+
 	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << endl;
 	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0].GetName() << User::spacing(25, ' ');
+
+
+
 };
 
 
@@ -273,45 +519,36 @@ void User::Format343(vector <Footballer> MainSquad) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void User::Format442(vector <Footballer> MainSquad) {
+void User::Format442(unordered_map<string, Footballer> Squad) {
+
+
+	vector <Footballer>MainSquad = ToVector(Squad);
 
 	cout << User::spacing(28, ' ') << "                    Players" << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
 
+
+
 	cout << User::spacing(38, ' '); cout << User::spacing(User::Formatdistance(MainSquad[9].GetName(), 0, false, MainSquad[9].GetName()), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10].GetName(), 9, true, MainSquad[9].GetName()), ' ') << "11" << endl;
 	cout << User::spacing(38, ' '); cout << MainSquad[9].GetName() << User::spacing(10, ' ') << MainSquad[10].GetName() << "\n\n";
 
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5].GetName(), 0, false, MainSquad[5].GetName()), ' ') << "6";
-	for (int i = 5; i < 8; i++)
-	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
-	}
-	cout << endl;
-	cout << User::spacing(20, ' ') << MainSquad[5].GetName();
-	for (int i = 6; i < 9; i++)
-	{
-		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
-	}
-	cout << "\n\n";
-	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1].GetName(), 0, false, MainSquad[1].GetName()), ' ') << "2";
-	for (int i = 1; i < 4; i++)
-	{
-		cout << User::spacing(User::Formatdistance(MainSquad[i + 1].GetName(), 13, true, MainSquad[i].GetName()), ' ') << i + 2;
-	}
-	cout << endl;
-	cout << User::spacing(20, ' '); cout << MainSquad[1].GetName();
-	for (int i = 2; i < 5; i++)
-	{
-		cout << User::spacing(13, ' ') << MainSquad[i].GetName();
-	}
-	cout << "\n\n" << endl;
+
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5].GetName(), 0, false, MainSquad[5].GetName()), ' ') << "6"; cout << User::spacing(User::Formatdistance(MainSquad[6].GetName(), 13, true, MainSquad[5].GetName()), ' ') << "7"; cout << User::spacing(User::Formatdistance(MainSquad[7].GetName(), 13, true, MainSquad[6].GetName()), ' ') << "8"; cout << User::spacing(User::Formatdistance(MainSquad[8].GetName(), 13, true, MainSquad[7].GetName()), ' ') << "9" << endl;
+	cout << User::spacing(20, ' '); cout << MainSquad[5].GetName() << User::spacing(13, ' ') << MainSquad[6].GetName() << User::spacing(13, ' ') << MainSquad[7].GetName() << User::spacing(13, ' ') << MainSquad[8].GetName() << "\n\n";
+
+	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1].GetName(), 0, false, MainSquad[1].GetName()), ' ') << "2"; cout << User::spacing(User::Formatdistance(MainSquad[2].GetName(), 13, true, MainSquad[1].GetName()), ' ') << "3"; cout << User::spacing(User::Formatdistance(MainSquad[3].GetName(), 13, true, MainSquad[2].GetName()), ' ') << "4"; cout << User::spacing(User::Formatdistance(MainSquad[4].GetName(), 13, true, MainSquad[3].GetName()), ' ') << "5" << endl;
+	cout << User::spacing(20, ' '); cout << MainSquad[1].GetName() << User::spacing(13, ' ') << MainSquad[2].GetName() << User::spacing(13, ' ') << MainSquad[3].GetName() << User::spacing(13, ' ') << MainSquad[4].GetName() << "\n\n";
+
+
 	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0].GetName(), 25, false, MainSquad[0].GetName()), ' ') << endl;
 	cout << User::spacing(20, ' '); cout << User::spacing(25, ' ') << MainSquad[0].GetName() << User::spacing(25, ' ');
 }
 
 
-void User::showSubstitutions(vector<Footballer> substitutionList)
+void User::showSubstitutions(unordered_map<string, Footballer> Squad)
 {
+
+	vector <Footballer>substitutionList = ToVector(Squad);
 
 	cout << User::spacing(28, ' ') << "                   substitutions" << endl;
 	cout << User::spacing(28, ' ') << "_____________     ________________    _____________" << "\n\n\n";

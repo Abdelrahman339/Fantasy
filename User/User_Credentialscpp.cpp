@@ -43,7 +43,7 @@ choice:
 };
 
 
-void User::toLogin(unordered_map<string, User> &Users) {
+void User::toLogin(unordered_map<string, User>& Users) {
 	int count = 0;
 	string user;
 	string pass;
@@ -85,6 +85,7 @@ User User::login(unordered_map<string, User>& users, string username, string pas
 	else
 	{
 		cout << "Login failed!. Please make sure of your username and password" << endl;
+		loginstat = false;
 		return User();
 	}
 };
@@ -114,7 +115,7 @@ choice:
 	}
 	else if (choice == 2)
 	{
-		//Squad(currentUser.TheMainSquad, currentUser.SubstitutionSquad);
+		ShowSquad(currentUser, Users);
 	}
 	else if (choice == 3)
 	{

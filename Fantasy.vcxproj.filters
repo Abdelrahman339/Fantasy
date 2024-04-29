@@ -42,13 +42,13 @@
     <ClCompile Include="Data\Teams\Teams.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Data\fileManpulation.cpp">
+    <ClCompile Include="Data\FileManipulation\fileManpulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Data\Teams\TeamsGetterSetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="User\User(play_Market).cpp">
+    <ClCompile Include="User\UserPlay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Main\main.cpp">
@@ -58,6 +58,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Competition\Game\HighlightsOfTheMatch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User\UserMarket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +86,7 @@
     <ClInclude Include="Data\Teams\Teams.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Data\fileManpulation.h">
+    <ClInclude Include="Data\FileManipulation\fileManpulation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Competition\Game\HighlightsOfTheMatch.h">

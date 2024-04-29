@@ -9,7 +9,11 @@ protected:
 	string contributes;// the type of contribution (goals ,assists ,clean sheets) goals 2 & assist 1
 	string violation; // the type of violence action (red cards,yellow cards)
 
+
 public:
+
+	//HighlightsOfTheMatch(string name, string contributes, string violation);
+	//HighlightsOfTheMatch();
 	void setName(string name);
 	void setContributions(string contributors);
 	void setViolation(string violation);
@@ -18,4 +22,4 @@ public:
 	string getViolation();
 };
 
-//add all the 22 players in this class to know whos players scored goals and who didn't using contributes attribute  
+

@@ -1,35 +1,39 @@
+League Name (Unique)
+Teams Names (Prefered to delete if name doesn't end with - )
+----
 Premier League
-Manchester United
-Manchester City
-Liverpool
-Chelsea
-Arsenal
-Tottenham Hotspur
+Manchester United -
+Manchester City -
+Liverpool -
+Chelsea -
+Arsenal -
+Tottenham Hotspur -
 Leicester City
 Everton
 West Ham United
 Wolverhampton Wanderers
--
+----
 La Liga
-Real Madrid
-Barcelona
-Atletico Madrid
-Sevilla
-Valencia
+Real Madrid -
+Barcelona -
+Atletico Madrid -
+Sevilla -
+Valencia -
 Real Sociedad
 Villarreal
 Athletic Bilbao
 Real Betis
 Celta Vigo
--
+----
 Serie A
-Juventus
-Inter Milan
+Juventus -
+Inter Milan -
 AC Milan
-AS Roma
-Napoli
+AS Roma -
+Napoli -
 Lazio
 Atalanta
 Fiorentina
 Sampdoria
 Udinese
+----
