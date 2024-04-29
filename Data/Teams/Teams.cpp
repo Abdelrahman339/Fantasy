@@ -1,8 +1,13 @@
 #include "Teams.h"
 
+unordered_map<string, Footballer> Teams::getFootballPlayer()
+{
+	return this->players;
+}
+
 string Teams::getName()
 {
-	return name ;
+	return name;
 }
 
 int Teams::getwins()
@@ -22,7 +27,7 @@ int Teams::getdraw()
 
 int Teams::getPoints()
 {
-	return points ;
+	return points;
 }
 
 void Teams::SetPoints(int num)
@@ -31,6 +36,6 @@ void Teams::SetPoints(int num)
 }
 
 void Teams::addPoints(int num)
-{	
+{
 	points += num;
 }

@@ -2,11 +2,12 @@
 #include <deque>
 #include <stack>
 #include "User.h"
+#include "Game.h"
 #include <set>
 #include "Competition.h"
 using namespace std;
 
-void play(list<Game> allGames, User currentUser) {
+void User::play(list<Game> allGames, User currentUser) {
 	int choice;
 	char ans;
 	queue <Game>UserGames = User::FilteringTeams(allGames, currentUser);
