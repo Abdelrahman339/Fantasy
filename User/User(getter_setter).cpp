@@ -4,20 +4,20 @@
 #include "Teams.h"
 using namespace std;
 
-User::User(string fullName, string username, string password, string phoneNumber, string Email, int id, int rank, int points, float balance, unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad)
-{
-	this->fullName = fullName;
-	this->username = username;
-	this->password = password;
-	this->phoneNumber = phoneNumber;
-	this->Email = Email;
-	this->id = id;
-	this->rank = rank;
-	this->points = points;
-	this->balance = balance;
-	this->TheMainSquad = mainSquad;
-	this->SubstitutionSquad = substitutionSquad;
-}
+//User::User(string fullName, string username, string password, string phoneNumber, string Email, int id, int rank, int points, float balance, unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad)
+//{
+//	this->fullName = fullName;
+//	this->username = username;
+//	this->password = password;
+//	this->phoneNumber = phoneNumber;
+//	this->Email = Email;
+//	this->id = id;
+//	this->rank = rank;
+//	this->points = points;
+//	this->balance = balance;
+//	this->TheMainSquad = mainSquad;
+//	this->SubstitutionSquad = substitutionSquad;
+//}
 
 void User::SetFullName(string fullName)
 {
@@ -137,12 +137,12 @@ float User::GetBalance()
 	return balance;
 }
 
-unordered_map<string, Footballer> User::GetMainSquad()
+unordered_map<string, Footballer>& User::GetMainSquad()
 {
 	return this->TheMainSquad;
 }
 
-unordered_map<string, Footballer> User::GetSubstitutionSquad()
+unordered_map<string, Footballer>& User::GetSubstitutionSquad()
 {
 	return this->SubstitutionSquad;
 }

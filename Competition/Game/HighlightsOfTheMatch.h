@@ -12,7 +12,8 @@ protected:
 
 public:
 
-	HighlightsOfTheMatch(string name, string contributes, string violation);
+	//HighlightsOfTheMatch(string name, string contributes, string violation);
+	//HighlightsOfTheMatch();
 	void setName(string name);
 	void setContributions(string contributors);
 	void setViolation(string violation);

@@ -34,11 +34,11 @@ protected:
 
 
 public:
+	//Footballer();
+	//Footballer(string name, int age, string team, string position, float price, float rating,
+	//	bool captain, bool matchWinner, int totalGoals, int totalAssists,
+	//	int totalRedCard, int totalYellowCard, int totalCleansheets, int totalPoints);
 
-	Footballer(string name, int age, string team, string position, float price, float rating,
-		bool captain, bool matchWinner, int totalGoals, int totalAssists,
-		int totalRedCard, int totalYellowCard, int totalCleansheets, int totalPoints);
-	
 
 	////////////////////////////////////////////////////////////////////////
 	/////////////////// setters ////////////////////////////////////////////
@@ -112,7 +112,11 @@ protected:
 	unordered_map<string, Footballer> players;
 
 public:
+	//Teams();
+
+	//Teams(string name, int points, int wins, int lose, int draw, unordered_map<string, Footballer> players);
 	unordered_map<string, Footballer>getFootballPlayer();
+
 	string getName();
 	int getwins();
 	int getlose();

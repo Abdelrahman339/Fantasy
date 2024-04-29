@@ -27,10 +27,10 @@ protected:
 	unordered_map <string, Footballer >SubstitutionSquad;
 public:
 
-
-	User(string fullName, string username, string password, string phoneNumber,
-		string Email, int id, int rank, int points, float balance,
-		unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad);
+	//User();
+	//User(string fullName, string username, string password, string phoneNumber,
+	//	string Email, int id, int rank, int points, float balance,
+	//	unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad);
 
 	// getter and setter and constructor
 	///////////////////////////////////////////////////////////////////////////////////
@@ -57,8 +57,8 @@ public:
 	int GetRank();
 	int GetPoints();
 	float GetBalance();
-	unordered_map<string, Footballer> GetMainSquad();
-	unordered_map<string, Footballer> GetSubstitutionSquad();
+	unordered_map<string, Footballer>& GetMainSquad();
+	unordered_map<string, Footballer>& GetSubstitutionSquad();
 
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////

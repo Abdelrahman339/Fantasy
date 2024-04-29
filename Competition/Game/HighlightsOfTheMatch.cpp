@@ -1,12 +1,12 @@
 #include "HighlightsOfTheMatch.h"
 
-HighlightsOfTheMatch::HighlightsOfTheMatch(string name, string contributes, string violation)
-{
-
-	this->name = name;
-	this->contributes = contributes;
-	this->violation = violation;
-}
+//HighlightsOfTheMatch::HighlightsOfTheMatch(string name, string contributes, string violation)
+//{
+//
+//	this->name = name;
+//	this->contributes = contributes;
+//	this->violation = violation;
+//}
 
 void HighlightsOfTheMatch::setName(string name)
 {
