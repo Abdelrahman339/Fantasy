@@ -71,6 +71,7 @@ public:
 	string static avoidTypos(string footballerName, Teams team, User& currentUser, string status);
 	string static CheckingPlayer(string status, Teams team, User currenUser, string inputName);
 
+	void static typosLayout(User currentUser);
 	vector<Footballer> static ToVector(unordered_map<string, Footballer> map);
 
 	///////////////////////////////////////////////////////////////////////////////////
@@ -108,13 +109,14 @@ public:
 	void Market(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 	void showtopPlayer(unordered_map<string, Footballer> TopPlayer, User& currentUser, unordered_map<string, User>& Users, Teams& team);
 
-	void sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+	bool sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName);
+	void static sellFunction(User& currentUser, string footballerName, string stauts);
 	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 	void replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 
-	//void search(string footballerName, Teams team, User currentUser, string status, vector<League> leagues);
-	//Footballer* findPlayer(vector<League> leagues, string footballerName);
-	//Teams* findTeam(vector<League> league, string footballerName);
+	void search(string footballerName, Teams team, User currentUser, string status, vector<League> leagues);
+	Footballer* findPlayer(vector<League> leagues, string footballerName);
+	Teams* findTeam(vector<League> league, string footballerName);
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////

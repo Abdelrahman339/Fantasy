@@ -12,6 +12,7 @@ using namespace std;
 
 void User::Market(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users)
 {
+	string FootballerName;
 	cout << "Fatntasy Market" << endl;
 	int choice = 0;
 	User::showtopPlayer(TopPlayer, currentUser, Users, team);
@@ -24,7 +25,9 @@ invalid:
 		//TopPlayer
 	}
 	else if (choice == 3) {
-		//sell
+		cout << "Enter Footballer name that you want to sell." << endl;
+		cin >> FootballerName;
+		sell(currentUser, team, TopPlayer, Users, FootballerName);
 	}
 	else if (choice == 4) {
 		User::userMenu(currentUser, Users);
@@ -79,153 +82,181 @@ invalid:
 }
 
 
-//void User::search(string footballerName, Teams team, User currentUser, string status, vector<League>  leagues)
-//{
-//	string search;
-//invalid:
-//	cout << "You can search by teams or the name of footballer." << endl;
-//	cin >> search;
-//	Footballer* footballer = findPlayer(leagues, search);
-//	Teams* teams = findTeam(leagues, search);
-//	if (footballer != nullptr)
-//	{
-//		User::showPlayerInfo(*footballer);
-//	}
-//
-//	else if (teams != nullptr)
-//	{
-//		//findTeam(leagues, search).displayPlayers();
-//
-//	}
-//	else
-//	{
-//		cout << "please enter a valid Team name or Footabller name" << endl;
-//		goto invalid;
-//	}
-//
-//
-//}
-//Footballer* User::findPlayer(vector<League> leagues, string footballerName)
-//{
-//	Footballer* footballer;
-//	for (int i = 0; i < leagues.size(); i++)// n=3 laliga
-//	{
-//		for (int i = 0; i < leagues.at(i).getTeams().size(); i++)
-//		{
-//			map<string, Teams > LeagueTeams = leagues.at(i).getTeams();
-//			for (auto team : LeagueTeams) {
-//				Teams currentTeam = team.second;
-//				int footballerExist = currentTeam.getFootballPlayer().count(footballerName);
-//				if (footballerExist > 0)
-//				{
-//					footballer = &currentTeam.getFootballPlayer().at(footballerName);
-//				}
-//			}
-//		}
-//	}
-//	return footballer;
-//}
-//Teams* User::findTeam(vector<League> leagues, string TeamName)
-//{
-//	Teams* teamFound;
-//	for (int i = 0; i < leagues.size(); i++)
-//	{
-//		map<string, Teams> teamsInLeagus = leagues.at(i).getTeams();
-//		int TeamExist = teamsInLeagus.count(TeamName);
-//		if (TeamExist > 0) {
-//			teamFound = &teamsInLeagus.at(TeamName);
-//		}
-//
-//	}
-//	return teamFound;
-//};
-//
-//
-//
-//
-//
-//
-
-
-
-
-void User::sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users) {
-	string footballerName;
-	char ans;
+void User::search(string footballerName, Teams team, User currentUser, string status, vector<League>  leagues)
+{
+	string search;
 invalid:
-	cout << "Enter the name of your wanted player to sell.\n";
-	cin >> footballerName;
+	cout << "You can search by teams or the name of footballer." << endl;
+	cin >> search;
+	Footballer* footballer = findPlayer(leagues, search);
+	Teams* teams = findTeam(leagues, search);
+	if (footballer != nullptr)
+	{
+		User::showPlayerInfo(*footballer);
+		cout << "buy";
+	}
+
+	else if (teams != nullptr)
+	{
+		//findTeam(leagues, search).displayPlayers();
+
+	}
+	else
+	{
+		cout << "please enter a valid Team name or Footabller name" << endl;
+		goto invalid;
+	}
+
+
+}
+Footballer* User::findPlayer(vector<League> leagues, string footballerName)
+{
+	Footballer* footballer;
+	for (int i = 0; i < leagues.size(); i++)// n=3  to enter the league
+	{
+
+		map<string, Teams > LeagueTeams = leagues.at(i).GetTeams(); // all teams in the league
+		for (auto team : LeagueTeams) { // to get one team from teams in league
+			Teams currentTeam = team.second;
+			int footballerExist = currentTeam.getFootballPlayer().count(footballerName);
+			if (footballerExist > 0)
+			{
+				footballer = &currentTeam.getFootballPlayer().at(footballerName);
+			}
+
+		}
+	}
+	return footballer;
+}
+
+Teams* User::findTeam(vector<League> leagues, string TeamName)
+{
+	Teams* teamFound;
+	for (int i = 0; i < leagues.size(); i++)
+	{
+		map<string, Teams> teamsInLeagus = leagues.at(i).GetTeams();
+		int TeamExist = teamsInLeagus.count(TeamName);
+		if (TeamExist > 0) {
+			teamFound = &teamsInLeagus.at(TeamName);
+		}
+
+	}
+	return teamFound;
+};
+
+
+
+
+//
+//
+
+
+
+
+bool User::sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName) {
+
+
+	char ans;
+
 	string playerExist = User::avoidTypos(footballerName, team, currentUser, "sell");
 
+
+
+	//if the user enterd the name of the player correctly
+
+	//the player exist in the main squad
 	if (playerExist == "existMain") {
-		cout << "Player sold successfully.." << endl;
-		currentUser.GetMainSquad().erase(footballerName);
-
-		float FootballerPrice = currentUser.GetMainSquad().at(footballerName).GetPrice();
-
-		currentUser.addBalance(FootballerPrice);
+		sellFunction(currentUser, footballerName, "main");
+		return true;
 	}
+
+	//the player exist in sub squad
 	else if ("existSub")
 	{
-		cout << "Player sold successfully.." << endl;
-		currentUser.GetSubstitutionSquad().erase(footballerName);
-
-		float FootballerPrice = currentUser.GetSubstitutionSquad().at(footballerName).GetPrice();
-
-		currentUser.addBalance(FootballerPrice);
+		sellFunction(currentUser, footballerName, "sub");
+		return true;
 	}
 
 
+	//the user enterd the name wrong
 
 	else if (!playerExist.empty()) {
-	invalidOption:
+
 		regex pattern(R"(main)");
+
+		// check if the player from the main squad or not
 		if (regex_search(playerExist, pattern))
 		{
 			playerExist = regex_replace(playerExist, pattern, "");
 			cout << "You enterd a wrong player .Do you mean " << playerExist << "?(y/n)" << endl;
 			cin >> ans;
-			if (ans == 'y')
+
+			switch (ans)
 			{
-				cout << "Player sold successfully.." << endl;
-				currentUser.GetMainSquad().erase(footballerName);
-
-				float FootballerPrice = currentUser.GetMainSquad().at(footballerName).GetPrice();
-
-				currentUser.addBalance(FootballerPrice);
-			}
-			else if (ans == 'n') {
+			case'y':
+				sellFunction(currentUser, playerExist, "main");
+				return true;
+			case'n':
 				cout << "Plese enter a valid footballer name." << endl;
-				goto invalid;
+				return false;
+
+			default:
+				break;
 			}
+
 		}
+
+
+		// the player is from sub squad
 		else {
 			cout << "You enterd a wrong player .Do you mean " << playerExist << "?(y/n)" << endl;
 			cin >> ans;
 			if (ans == 'y')
 			{
-				cout << "Player sold successfully.." << endl;
-				currentUser.GetSubstitutionSquad().erase(footballerName);
-
-				float FootballerPrice = currentUser.GetSubstitutionSquad().at(footballerName).GetPrice();
-
-				currentUser.addBalance(FootballerPrice);
+				sellFunction(currentUser, playerExist, "sub");
+				return true;
 			}
 			else if (ans == 'n') {
 				cout << "Plese enter a valid footballer name." << endl;
-				goto invalid;
+				return false;
 			};
 		}
 	}
+
+	// the player dosen't exist in main and sub squad
 	else
 	{
 		cout << "There is no matching football player." << endl;
 		cout << "Plese enter a valid footballer name." << endl;
-		goto invalid;
+		return false;
 	}
 
+}
 
-};
+
+
+void User::sellFunction(User& currentUser, string footballerName, string status)
+{
+	unordered_map<string, Footballer> squad;
+	if (status == "main")
+	{
+		squad = currentUser.GetMainSquad();
+	}
+
+	else
+	{
+		squad = currentUser.GetSubstitutionSquad();
+	}
+
+	cout << "Player sold successfully.." << endl;
+	squad.erase(footballerName);
+
+	float FootballerPrice = squad.at(footballerName).GetPrice();
+
+	currentUser.addBalance(FootballerPrice);
+
+}
+;
 
 
 

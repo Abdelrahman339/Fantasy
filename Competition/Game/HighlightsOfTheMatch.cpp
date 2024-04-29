@@ -37,3 +37,8 @@ string HighlightsOfTheMatch::getViolation()
 {
 	return violation;
 }
+
+int HighlightsOfTheMatch::GetGameId()
+{
+	return this->GameId;
+}

@@ -107,6 +107,12 @@ string User::CheckingPlayer(string status, Teams team, User currentUser, string 
 		return "";
 	}
 }
+void User::typosLayout(User currentUser)
+{
+
+
+
+}
 vector<Footballer> User::ToVector(unordered_map<string, Footballer> map)
 {
 	vector<Footballer> Squad;
@@ -126,6 +132,7 @@ void User::ShowSquad(User& currentUser, unordered_map<string, User>& Users) {
 	int choice;
 	unordered_map <string, Footballer> MainSquad = currentUser.GetMainSquad();
 	unordered_map <string, Footballer> SubstitutionSquad = currentUser.GetSubstitutionSquad();
+
 	cout << "your fantasy squad" << endl;
 	squadFormat(formatchoice, MainSquad);
 	cout << "\n\n\ ";
@@ -140,38 +147,147 @@ choice:
 		string footballerName;
 		char ans;
 	invalid:
+
 		cout << "Enter your footballer name " << endl;
+
+
 		cin >> footballerName;
+
 		string existPlayer = avoidTypos(footballerName, team, currentUser, "sell");
+
+
+
 		regex pattern(R"(main)");
+
+		//the user enterd the name correctly
+
 		if (existPlayer == "existMain")
 		{
+			//the player is from main squad
+
 			showPlayerInfo(MainSquad.at(footballerName));
+			do
+			{
+				cout << "1-sell this player\n2-Go back " << endl;
+				cin >> choice;
+				switch (choice)
+				{
+				case 1:
+
+					sellFunction(currentUser, footballerName, "main");
+					break;
+				case 2:
+					ShowSquad(currentUser, Users);
+					break;
+				default:
+					cout << "Enter a valid choice please";
+					break;
+				}
+			} while (choice != 1 || choice != 2);
+
 		}
+
+		//player is from sub squad
 		else if (existPlayer == "existSub") {
 			showPlayerInfo(SubstitutionSquad.at(footballerName));
+
+			do
+			{
+				cout << "1-sell this player\n2-Go back " << endl;
+				cin >> choice;
+				switch (choice)
+				{
+				case 1:
+
+					sellFunction(currentUser, footballerName, "sub");
+					break;
+				case 2:
+					ShowSquad(currentUser, Users);
+					break;
+				default:
+					cout << "Enter a valid choice please";
+					break;
+				}
+			} while (choice != 1 || choice != 2);
+
+
 		}
+
+
+		//the user enterd tha name of player wrong 
+
 		else if (!existPlayer.empty()) {
+
+			//checking if the player from the main squad or sub squad
 			if (regex_search(existPlayer, pattern))
 			{
+
+				//the player is from the main squad
 				existPlayer = regex_replace(existPlayer, pattern, "");
 				cout << "You enterd a wrong player .Do you mean " << existPlayer << "?(y/n)" << endl;
 				cin >> ans;
 				if (ans == 'y')
 				{
 					showPlayerInfo(MainSquad.at(existPlayer));
+
+					do
+					{
+						cout << "1-sell this player\n2-Go back " << endl;
+						cin >> choice;
+						switch (choice)
+						{
+						case 1:
+
+							sellFunction(currentUser, footballerName, "main");
+							break;
+						case 2:
+							ShowSquad(currentUser, Users);
+							break;
+						default:
+							cout << "Enter a valid choice please";
+							break;
+						}
+					} while (choice != 1 || choice != 2);
+
 				}
+
+
+				// not the wanted player
 				else if (ans == 'n') {
 					cout << "Plese enter a valid footballer name." << endl;
 					goto invalid;
 				}
 			}
+
+
+			// the plyaer is from the sub squad
 			else if (!regex_search(existPlayer, pattern)) {
 				cout << "You enterd a wrong player .Do you mean " << existPlayer << "?(y/n)" << endl;
 				cin >> ans;
 				if (ans == 'y')
 				{
+
 					showPlayerInfo(SubstitutionSquad.at(existPlayer));
+					do
+					{
+						cout << "1-sell this player\n2-Go back " << endl;
+						cin >> choice;
+						switch (choice)
+						{
+						case 1:
+
+							sellFunction(currentUser, footballerName, "sub");
+							break;
+						case 2:
+							ShowSquad(currentUser, Users);
+							break;
+						default:
+							cout << "Enter a valid choice please";
+							break;
+						}
+					} while (choice != 1 || choice != 2);
+
+
 				}
 				else if (ans == 'n') {
 					cout << "Plese enter a valid footballer name." << endl;

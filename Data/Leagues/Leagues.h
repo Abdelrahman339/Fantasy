@@ -1,7 +1,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <string>
-#include"Teams.h"
+#include "Teams.h"
 #include <vector>
 #include <map>
 using namespace std;
@@ -12,10 +12,11 @@ private:
 	map <string, Teams> teams;
 
 public:
-	League();
-	void displayTeams();
-	void updatePoints( list <Game> allgames);
-	void displayPointTable();
+	////League();
+	//void displayTeams();
+	//void updatePoints( list <Game> allgames);
+	//void displayPointTable();
 
+	map <string, Teams> GetTeams();
 
 };
