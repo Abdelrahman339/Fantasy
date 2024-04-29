@@ -106,9 +106,9 @@ public:
 	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 	void replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 
-	void search(string footballerName, Teams team, User currentUser, string status, vector<League> leagues);
-	Footballer* findPlayer(vector<League> leagues, string footballerName);
-	Teams* findTeam(vector<League> league, string footballerName);
+	//void search(string footballerName, Teams team, User currentUser, string status, vector<League> leagues);
+	//Footballer* findPlayer(vector<League> leagues, string footballerName);
+	//Teams* findTeam(vector<League> league, string footballerName);
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////

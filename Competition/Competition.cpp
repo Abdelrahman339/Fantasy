@@ -60,13 +60,18 @@ void Competition::removeCurrentGame(queue<Game> UserGames, list<Game>& allGames)
 {
 	while (!UserGames.empty())
 	{
-
-		for (Game game : allGames) {
-			if (UserGames.front().getGameId() == game.getGameId())
-			{
-				allGames.remove(game);
+		auto gameit = allGames.begin();
+		while (gameit != allGames.end())
+		{
+			if ((*gameit).getGameId() == UserGames.front().getGameId()) {
+				break;
 			}
 		}
+		allGames.erase(gameit);
+
+
+
+
 		UserGames.pop();
 	}
 }
@@ -294,7 +299,7 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 		if (Competition::IsManOfTheMatch(currentMOTM, currentFootballer.GetName()) == true) {
 			ManOfTheMatchPoints = Competition::MOTM_Bonus;
 		}
-		
+
 
 		if (Competition::checkPosition(currentFootballer.GetPosition())) {
 

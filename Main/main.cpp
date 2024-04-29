@@ -12,6 +12,8 @@
 int main() {
 
 
+	cout << "Code is running now" << endl;
+
 }
 
 /*

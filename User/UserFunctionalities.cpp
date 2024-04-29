@@ -247,7 +247,6 @@ invalid_main:
 	cout << "Choose player from your main substitution to let him play (Use the name)" << endl;
 	cin >> PlayerName2;
 	existPlayer = avoidTypos(PlayerName1, team, cuurentUser, "sell");
-	regex pattern(R"(main)");
 	if (existPlayer == "existSub")
 	{
 		cuurentUser.GetMainSquad().at(PlayerName1) = cuurentUser.GetSubstitutionSquad().at(PlayerName2);
