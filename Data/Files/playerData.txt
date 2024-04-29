@@ -1,0 +1,14 @@
+﻿Name (Unique)
+Age
+Team name
+Position
+Price in market
+Rating
+Season Details
+	Total Goals
+	Total Assists
+	Total RedCards
+	Total YellowCards
+	Total Cleansheets
+	Total Points
+----

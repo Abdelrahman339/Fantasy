@@ -31,6 +31,26 @@ vector<string> splitByRegex(string data, string reg) {
 
 	return parts;
 }
+
+list<Game> fileManipulation::getGamesData() {
+	string filename = "gameData.txt";
+	string file_data = readFileData(filename);
+	string regex = R"(\s+----\s+)";
+	vector<string> parts = splitByRegex(file_data, regex);
+
+	regex = R"(\n)";
+
+	return parseGames(parts, regex);
+}
+map<string, Teams> fileManipulation::getTeamsData() {
+	string filename = "teamsData.txt";
+	string file_data = readFileData(filename);
+	string regex = R"(\s+----\s+)";
+	vector<string> parts = splitByRegex(file_data, regex);
+	//cout << parts[0] << endl << parts[1] << endl;
+	regex = R"(\n)";
+	return parseTeams(parts, regex);
+}
 string fileManipulation::parseGameStatistics(vector<string> gameLines) {
 	string parsedStatistics;
 	string statisticsNames[] = {
@@ -50,50 +70,54 @@ string fileManipulation::parseGameStatistics(vector<string> gameLines) {
 	return parsedStatistics;
 }
 /*
- * 'parseGame' function should return all Games in the gameData.txt
+ * 'parseGames' function should return all Games in the gameData.txt
  */
-void parseGames(vector<string> parts, string regex) {
-	for (size_t i = 1; i < parts.size(); i++) {
-		// Line of Game Data
+list<Game> fileManipulation::parseGames(vector<string> parts, string regex) {
+	list<Game> parsedGames;
+
+	for (size_t i = 1; i < parts.size(); ++i) {
 		vector<string> gameLines = splitByRegex(parts[i], regex);
 
-		// ID Parse
-		int gameID = stoi(gameLines[0], nullptr);
-		cout << "Game ID: " << gameID << endl;
-		// Home Team Parse 1
-			
-		// Away Team Parse 2
-		
-		// Winner Team Name 3
-		cout << "Winner Team: " << gameLines[3] << endl;
-		// Score 4
-		cout << "Score: " << gameLines[4] << endl;
-		// Statistics
-		string gameStatistics = fileManipulation::parseGameStatistics(gameLines);
-		cout << "Game Statistics: " << gameStatistics << endl;
-		// Man Of The Match (Footballer Name) 13
-		cout << "Man Of The Match: " << gameLines[13] << endl;
-		// Game Due Date
-		cout << "Date: " << gameLines[14] << endl << endl;
+		parsedGames.push_back(
+			parseGame(gameLines)
+		);
 	}
+
+	return parsedGames;
 }
-void fileManipulation::getGamesData() {
-	string filename = "gameData.txt";
-	string file_data = readFileData(filename);
-	string regex = R"(\s+----\s+)";
+/*
+ * 'parseTeams' function should return all Teams in the teamsData.txt
+ */
+map<string, Teams> fileManipulation::parseTeams(vector<string> parts, string regex) {
+	map<string, Teams> parsedTeams;
 
-	vector<string> parts = splitByRegex(file_data, regex);
-	//cout << parts[1] << endl;
-	regex = R"(\n)";
-	parseGames(parts, regex);
+	for (size_t i = 1; i < parts.size(); ++i) {
+		vector<string> teamLines = splitByRegex(parts[i], regex);
 
-	//cout << "Game Statistics: " << gameStatistics << endl;
+		parsedTeams.insert(
+			make_pair(teamLines[0], parseTeam(teamLines))
+		);
+	}
 
-
-
-
-	//cout << "Split data:" << endl;
-	//for (size_t i = 1; i < parts.size(); i++)
-	//	cout << parts[i] << endl;
+	return parsedTeams;
 }
 
+Teams fileManipulation::parseTeam(vector<string> teamLines) {
+	string name = teamLines[0];
+	int points = stoi(teamLines[1], nullptr);
+	int wins = stoi(teamLines[2], nullptr);
+	int losses = stoi(teamLines[3], nullptr);
+	int draws = stoi(teamLines[4], nullptr);
+
+	return Teams(name, points, wins, losses, draws);
+}
+Game fileManipulation::parseGame(vector<string> gameLines) {
+	int gameID = stoi(gameLines[0], nullptr);
+	string winnerTeam = gameLines[3];
+	string score = gameLines[4];
+	string gameStatistics = parseGameStatistics(gameLines);
+	string manOfTheMatch = gameLines[13];
+	string gameDate = gameLines[14];
+
+	return Game(gameID, winnerTeam, score, gameStatistics, manOfTheMatch, gameDate);
+}
