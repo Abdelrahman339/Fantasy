@@ -5,47 +5,44 @@ Age
 Position
 Price in market
 Rating
-Season Details
-    Total Goals
-    Total Assists
-    Total RedCards
-    Total YellowCards
-    Total Cleansheets
-    Total Points
+Total Goals
+Total Assists
+Total RedCards
+Total YellowCards
+Total Cleansheets
+Total Points
 ----
 Name (Unique)
 Age
 Position
 Price in market
 Rating
-Season Details
-    Total Goals
-    Total Assists
-    Total RedCards
-    Total YellowCards
-    Total Cleansheets
-    Total Points
+Total Goals
+Total Assists
+Total RedCards
+Total YellowCards
+Total Cleansheets
+Total Points
 ----
 Name (Unique)
 Age
 Position
 Price in market
 Rating
-Season Details
-    Total Goals
-    Total Assists
-    Total RedCards
-    Total YellowCards
-    Total Cleansheets
-    Total Points
+Total Goals
+Total Assists
+Total RedCards
+Total YellowCards
+Total Cleansheets
+Total Points
 ----------------
 Manchester City
 --------
 1.Ederson
-29  
-Goalkeeper  
-35000000 
-8.5  
+29
+Goalkeeper
+35000000
+8.5
 0
 0
 0
@@ -53,35 +50,11 @@ Goalkeeper
 0
 0
 ----
-2.João Cancelo  
-28 
-Defender  
-60000000  
-8.2  
-0
-0
-0
-0
-0
-0
-----
-3.Rúben Dias 
-26  
-Defender 
-65000000  
-8.7 
-0
-0
-0
-0
-0
-0
-----
-4.Aymeric Laporte  
-28  
+2.João Cancelo
+28
 Defender
-65000000  
-8.1 
+60000000
+8.2
 0
 0
 0
@@ -89,11 +62,11 @@ Defender
 0
 0
 ----
-5.Kyle Walker 
-31 
-Defender 
-50000000 
-8.3 
+3.Rúben Dias
+26
+Defender
+65000000
+8.7
 0
 0
 0
@@ -101,11 +74,11 @@ Defender
 0
 0
 ----
-6.Rodri  
-25  
-Midfielder 
-62000000  
-8.6 
+4.Aymeric Laporte
+28
+Defender
+65000000
+8.1
 0
 0
 0
@@ -113,11 +86,11 @@ Midfielder
 0
 0
 ----
-7.Kevin De Bruyne  
-30  
-Midfielder  
-75000000  
-9.0 
+5.Kyle Walker
+31
+Defender
+50000000
+8.3
 0
 0
 0
@@ -125,23 +98,11 @@ Midfielder
 0
 0
 ----
-8.Bernardo Silva  
-27  
-Midfielder  
-70000000 
-8.4 
-0 
-0
-0
-0
-0
-0
-----
-9.Phil Foden  
-21   
-Midfielder 
-65000000  
-8.8  
+6.Rodri
+25
+Midfielder
+62000000
+8.6
 0
 0
 0
@@ -149,11 +110,47 @@ Midfielder
 0
 0
 ----
-10.Riyad Mahrez  
-32  
-Forward  
-60000000  
-8.7  
+7.Kevin De Bruyne
+30
+Midfielder
+75000000
+9.0
+0
+0
+0
+0
+0
+0
+----
+8.Bernardo Silva
+27
+Midfielder
+70000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+9.Phil Foden
+21
+Midfielder
+65000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+10.Riyad Mahrez
+32
+Forward
+60000000
+8.7
 0
 0
 0
@@ -162,11 +159,11 @@ Forward
 0
 0
 ----
-11.Gabriel Jesus 
-25    
-Forward  
-65000000  
-8.5  
+11.Gabriel Jesus
+25
+Forward
+65000000
+8.5
 0
 0
 0
@@ -189,11 +186,11 @@ Goalkeeper
 0
 0
 ----
-2.Trent Alexander-Arnold  
-24 
-Defender 
-70000000 
-8.8 
+2.Trent Alexander-Arnold
+24
+Defender
+70000000
+8.8
 0
 0
 0
@@ -201,11 +198,11 @@ Defender
 0
 0
 ----
-3.Virgil van Dijk  
-31   
-Defender  
-75000000 
-9.0 
+3.Virgil van Dijk
+31
+Defender
+75000000
+9.0
 0
 0
 0
@@ -213,11 +210,11 @@ Defender
 0
 0
 ----
-4.Joël Matip  
-31   
-Defender  
-35000000  
-8.2  
+4.Joël Matip
+31
+Defender
+35000000
+8.2
 0
 0
 0
@@ -225,11 +222,11 @@ Defender
 0
 0
 ----
-5.Andrew Robertson  
-28    
-Defender  
-65000000 
-8.7  
+5.Andrew Robertson
+28
+Defender
+65000000
+8.7
 0
 0
 0
@@ -237,11 +234,11 @@ Defender
 0
 0
 ----
-6.Fabinho 
-29  
-Midfielder 
-50000000  
-8.6 
+6.Fabinho
+29
+Midfielder
+50000000
+8.6
 0
 0
 0
@@ -249,11 +246,11 @@ Midfielder
 0
 0
 ----
-7.Jordan Henderson  
-33   
-Midfielder  
-40000000  
-8.5 
+7.Jordan Henderson
+33
+Midfielder
+40000000
+8.5
 0
 0
 0
@@ -261,11 +258,11 @@ Midfielder
 0
 0
 ----
-8.Thiago Alcântara  
-32   
-Midfielder  
-60000000 
-8.7  
+8.Thiago Alcântara
+32
+Midfielder
+60000000
+8.7
 0
 0
 0
@@ -273,11 +270,11 @@ Midfielder
 0
 0
 ----
-9.Sadio Mané  
-30  
-Forward  
-70000000  
-8.9  
+9.Sadio Mané
+30
+Forward
+70000000
+8.9
 0
 0
 0
@@ -285,11 +282,11 @@ Forward
 0
 0
 ----
-10.Mohamed Salah 
-31   
-Forward  
-80000000 
-9.1  
+10.Mohamed Salah
+31
+Forward
+80000000
+9.1
 0
 0
 0
@@ -297,11 +294,11 @@ Forward
 0
 0
 ----
-11.Diogo Jota  
-26   
-Forward  
-50000000  
-8.8  
+11.Diogo Jota
+26
+Forward
+50000000
+8.8
 0
 0
 0
@@ -311,11 +308,11 @@ Forward
 ----------------
 Chelsea
 --------
-1.Édouard Mendy  
-30  
-Goalkeeper 
-40000000 
-8.6  
+1.Édouard Mendy
+30
+Goalkeeper
+40000000
+8.6
 0
 0
 0
@@ -323,11 +320,11 @@ Goalkeeper
 0
 0
 ----
-2.Reece James  
-24    
-Defender  
-50000000 
-8.4  
+2.Reece James
+24
+Defender
+50000000
+8.4
 0
 0
 0
@@ -335,11 +332,11 @@ Defender
 0
 0
 ----
-3.Antonio Rüdiger  
-29   
-Defender  
-40000000   
-8.3  
+3.Antonio Rüdiger
+29
+Defender
+40000000
+8.3
 0
 0
 0
@@ -347,11 +344,11 @@ Defender
 0
 0
 ----
-4.Andreas Christensen  
-26    
-Defender 
-35000000   
-8.2  
+4.Andreas Christensen
+26
+Defender
+35000000
+8.2
 0
 0
 0
@@ -359,11 +356,11 @@ Defender
 0
 0
 ----
-5.Ben Chilwell  
-26  
-Defender  
-60000000 
-8.5  
+5.Ben Chilwell
+26
+Defender
+60000000
+8.5
 0
 0
 0
@@ -371,11 +368,11 @@ Defender
 0
 0
 ----
-6.Jorginho  
-31  
-Midfielder  
-50000000   
-8.6  
+6.Jorginho
+31
+Midfielder
+50000000
+8.6
 0
 0
 0
@@ -383,11 +380,11 @@ Midfielder
 0
 0
 ----
-7.N'Golo Kanté  
-32  
-Midfielder  
-70000000   
-8.8  
+7.N'Golo Kanté
+32
+Midfielder
+70000000
+8.8
 0
 0
 0
@@ -395,11 +392,11 @@ Midfielder
 0
 0
 ----
-8.Mason Mount  
-24  
-Midfielder  
-65000000   
-8.7  
+8.Mason Mount
+24
+Midfielder
+65000000
+8.7
 0
 0
 0
@@ -407,11 +404,11 @@ Midfielder
 0
 0
 ----
-9.Kai Havertz  
-23   
-Forward  
-75000000   
-8.9  
+9.Kai Havertz
+23
+Forward
+75000000
+8.9
 0
 0
 0
@@ -419,11 +416,11 @@ Forward
 0
 0
 ----
-10.Timo Werner  
-28   
-Forward  
-70000000   
-8.8  
+10.Timo Werner
+28
+Forward
+70000000
+8.8
 0
 0
 0
@@ -431,11 +428,11 @@ Forward
 0
 0
 ----
-11.Christian Pulisic  
-25  
-Forward  
-65000000   
-8.7 
+11.Christian Pulisic
+25
+Forward
+65000000
+8.7
 0
 0
 0
@@ -448,7 +445,7 @@ Arsenal
 1.Bernd Leno
 29
 Goalkeeper
-4000000 
+4000000
 8.2
 0
 0
@@ -460,7 +457,7 @@ Goalkeeper
 2.Hector Bellerin
 27
 Right-back
-6000000 
+6000000
 7.9
 0
 0
@@ -468,11 +465,11 @@ Right-back
 0
 0
 0
----- 
+----
 3.Gabriel Magalhães
 25
 Centre-back
-8000000 
+8000000
 7.8
 0
 0
@@ -480,11 +477,11 @@ Centre-back
 0
 0
 0
----- 
+----
 4.Ben White
 24
 Centre-back
-10000000 
+10000000
 7.7
 0
 0
@@ -492,11 +489,11 @@ Centre-back
 0
 0
 0
----- 
+----
 5.Kieran Tierney
 25
 Left-back
-9000000 
+9000000
 8.0
 0
 0
@@ -504,11 +501,11 @@ Left-back
 0
 0
 0
----- 
+----
 6.Thomas Partey
 28
 Midfielder
-12000000 
+12000000
 8.1
 0
 0
@@ -516,11 +513,11 @@ Midfielder
 0
 0
 0
----- 
+----
 7.Granit Xhaka
 30
 Midfielder
-10000000 
+10000000
 7.6
 0
 0
@@ -528,11 +525,11 @@ Midfielder
 0
 0
 0
----- 
+----
 8.Bukayo Saka
 21
 Midfielder
-15000000 
+15000000
 8.5
 0
 0
@@ -555,7 +552,7 @@ Midfielder
 ----
 10.Martin Odegaard
 24
-Attacking midfielder
+Midfielder
 18000000
 8.4
 0
@@ -1247,7 +1244,7 @@ Left winger
 0
 0
 ----------------
-Sevilla 
+Sevilla
 --------
 1.Yassine Bounou
 30
@@ -1515,7 +1512,7 @@ Left winger
 0
 0
 ----------------
-Juventus Lineup:
+Juventus
 --------
 1.Gianluigi Buffon
 45
@@ -1649,7 +1646,7 @@ Forward
 0
 0
 ----------------
-Inter Milan
+AC Milan
 --------
 1.Samir Handanović
 38
