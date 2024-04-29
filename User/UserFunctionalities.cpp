@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <regex>
 
+int formatchoice = 2;
 
 using namespace std;
 string User::spacing(int spacing, char character) {
@@ -14,11 +15,11 @@ string User::spacing(int spacing, char character) {
 
 
 
-string User::avoidTypos(string footballerName, Teams team, User currentUser, string status)
+string User::avoidTypos(string footballerName, Teams team, User& currentUser, string status)
 {
 
 	string LowercaseName = footballerName;
-	transform(LowercaseName.begin(), LowercaseName.end(), LowercaseName.begin(), ::tolower);
+	//transform(LowercaseName.begin(), LowercaseName.end(), LowercaseName.begin(), ::tolower);
 
 	//checking if the name exist or not in sell function cause i use the user squad not the team squad
 	if (status == "sell") {
@@ -35,7 +36,7 @@ string User::avoidTypos(string footballerName, Teams team, User currentUser, str
 		{
 			string PlayerName = CheckingPlayer("sellMain", team, currentUser, footballerName);
 			if (!PlayerName.empty()) {
-				return PlayerName + " main";
+				return PlayerName + "main";
 			}
 			else {
 				return CheckingPlayer("sellSub", team, currentUser, footballerName);
@@ -121,46 +122,101 @@ vector<Footballer> User::ToVector(unordered_map<string, Footballer> map)
 
 
 
-void User::ShowSquad(unordered_map<string, Footballer> MainSquad, unordered_map<string, Footballer> SubstitutionSquad, User& currentUser, unordered_map<string, User>& Users) {
+void User::ShowSquad( User& currentUser, unordered_map<string, User>& Users) {
 	int choice;
+	unordered_map <string, Footballer> MainSquad = currentUser.GetMainSquad();
+	unordered_map <string, Footballer> SubstitutionSquad = currentUser.GetSubstitutionSquad();
 	cout << "your fantasy squad" << endl;
-	squadFormat(2, MainSquad);
+	squadFormat(formatchoice, MainSquad);
+	cout << "\n\n\ ";
+	showSubstitutions(SubstitutionSquad);
+	cout << "\n\n\ ";
 choice:
 	cout << "1-Show information about your players\n2-Change your format\n3-Substitution\n4-Go back " << endl;
 	cin >> choice;
 	if (choice == 1)
 	{
 		Teams team;
-		User user;
 		string footballerName;
+		char ans;
+	invalid:
 		cout << "Enter your footballer name " << endl;
 		cin >> footballerName;
-		string playerExist = avoidTypos(footballerName, team, user, "sell");
-		if (playerExist == "exist")
+		string existPlayer = avoidTypos(footballerName, team, currentUser, "sell");
+		regex pattern(R"(main)");
+		if (existPlayer == "existMain")
 		{
-
+			showPlayerInfo(MainSquad.at(footballerName));
 		}
+		else if (!existPlayer.empty()) {
+			if (regex_search(existPlayer, pattern))
+			{
+				existPlayer = regex_replace(existPlayer, pattern, "");
+				cout << "You enterd a wrong player .Do you mean " << existPlayer << "?(y/n)" << endl;
+				cin >> ans;
+				if (ans == 'y')
+				{
+					showPlayerInfo(MainSquad.at(existPlayer));
+				}
+				else if (ans == 'n') {
+					cout << "Plese enter a valid footballer name." << endl;
+					goto invalid;
+				}
+			}
+			else {
+				cout << "Please choose first the player from your main squad." << endl;
+				goto invalid;
+			}
+		}
+		else {
+
+			cout << "You enterd a wrong player.Please enter a exist player" << endl;
+			goto invalid;
+		}
+
+
+
+
+
+
+
 	}
+
+
+
+
+
+
+
+
 	else if (choice == 2) {
 		cout << "Available formats:" << endl;
-		cout << "1- 4 3 3 \n2- 3 4 3\n3- 4 4 2";
+		cout << "1- 3 4 3 \n2- 4 3 3\n3- 4 4 2";
 		cout << "Choose your new format" << endl;
 		cin >> choice;
 		if (choice == 1)
 		{
+			formatchoice = 1;
 			squadFormat(1, MainSquad);
+			ShowSquad(currentUser, Users);
 		}
 		else if (choice == 2) {
+			formatchoice = 2;
 			squadFormat(2, MainSquad);
+			ShowSquad(currentUser, Users);
+
 		}
 
 		else if (choice == 3) {
+			formatchoice = 3;
 			squadFormat(3, MainSquad);
+			ShowSquad(currentUser, Users);
+
 		}
 	}
 	else if (choice == 3)
 	{
-		Substitution(MainSquad, SubstitutionSquad, currentUser, Users);
+		Substitution(currentUser, Users);
 	}
 	else if (choice == 4)
 	{
@@ -178,25 +234,25 @@ choice:
 
 void User::showPlayerInfo(Footballer footballer) {
 	cout << "--------------------------------------------------------------------------------" << endl;
-	cout << "Name:" << footballer.GetName();
-	cout << "Age:" << footballer.GetAge();
-	cout << "Captain:" << footballer.GetCaptain();
-	cout << "Position:" << footballer.GetPosition();
-	cout << "Price:" << footballer.GetPrice();
-	cout << "Team:" << footballer.GetTeam();
-	cout << "Total goals this season:" << footballer.GetTotalGoals();
-	cout << "Total assists this season:" << footballer.GetTotalAssists();
+	cout << "Name:" << footballer.GetName() << endl;
+	cout << "Age:" << footballer.GetAge() << endl;
+	cout << "Captain:" << footballer.GetCaptain() << endl;
+	cout << "Position:" << footballer.GetPosition() << endl;
+	cout << "Price:" << footballer.GetPrice() << endl;
+	cout << "Team:" << footballer.GetTeam() << endl;
+	cout << "Total goals this season:" << footballer.GetTotalGoals() << endl;
+	cout << "Total assists this season:" << footballer.GetTotalAssists() << endl;
 	if (footballer.GetPosition() == "Gk") {
-		cout << "Total Clean sheets this season:" << footballer.GetTotalCleansheets();
+		cout << "Total Clean sheets this season:" << footballer.GetTotalCleansheets() << endl;
 	}
-	cout << "Total yellow card this season:" << footballer.GetTotalYellowCard();
-	cout << "Total red card this season:" << footballer.GetTotalRedCard();
+	cout << "Total yellow card this season:" << footballer.GetTotalYellowCard() << endl;
+	cout << "Total red card this season:" << footballer.GetTotalRedCard() << endl;
 	cout << "--------------------------------------------------------------------------------\n" << endl;
 
 };
 
-
-void User::Substitution(unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> SubstitutionSquad, User& cuurentUser, unordered_map<string, User>& Users) {
+// has errors 
+void User::Substitution(User& currentUser, unordered_map<string, User>& Users) { // has errors 
 	char ans;
 	string PlayerName1;
 	string PlayerName2;
@@ -207,21 +263,21 @@ invalid_main:
 	cout << "Choose player from your main squad to change him (Use the Name)" << endl;
 	cin >> PlayerName1;
 
-	existPlayer = avoidTypos(PlayerName1, team, cuurentUser, "sell");
+	existPlayer = avoidTypos(PlayerName1, team, currentUser, "sell");
 	regex pattern(R"(main)");
 	if (existPlayer == "existMain")
 	{
-		tempPlayer = mainSquad.at(PlayerName1);
+		tempPlayer = currentUser.GetMainSquad().at(PlayerName1);
 	}
 	else if (!existPlayer.empty()) {
-		if (regex_match(existPlayer, pattern))
+		if (regex_search(existPlayer, pattern))
 		{
-			regex_replace(existPlayer, pattern, "");
-			cout << "You enterd a wrong player .Do you mean " << existPlayer << "?" << endl;
+			existPlayer = regex_replace(existPlayer, pattern, "");
+			cout << "You enterd a wrong player .Do you mean " << existPlayer << "? (y/n)" << endl;
 			cin >> ans;
 			if (ans == 'y')
 			{
-				tempPlayer = mainSquad.at(PlayerName1);
+				tempPlayer = currentUser.GetMainSquad().at(existPlayer);
 			}
 			else if (ans == 'n') {
 				cout << "Plese enter a valid footballer name." << endl;
@@ -229,7 +285,7 @@ invalid_main:
 			}
 		}
 		else {
-			cout << "Please enter choose first the player from your main squad." << endl;
+			cout << "Please choose first the player from your main squad." << endl;
 			goto invalid_main;
 		}
 	}
@@ -244,23 +300,23 @@ invalid_main:
 
 
 
-	cout << "Choose player from your main substitution to let him play (Use the name)" << endl;
+	cout << "Choose player from your substitutions to let him play (Use the name)" << endl;
 	cin >> PlayerName2;
-	existPlayer = avoidTypos(PlayerName1, team, cuurentUser, "sell");
+	existPlayer = avoidTypos(PlayerName2, team, currentUser, "sell");
 	if (existPlayer == "existSub")
 	{
-		cuurentUser.GetMainSquad().at(PlayerName1) = cuurentUser.GetSubstitutionSquad().at(PlayerName2);
-		cuurentUser.GetSubstitutionSquad().at(PlayerName2) = tempPlayer;
+		currentUser.GetMainSquad().at(tempPlayer.GetName()) = currentUser.GetSubstitutionSquad().at(PlayerName2);
+		currentUser.GetSubstitutionSquad().at(PlayerName2) = tempPlayer;
 	}
 	else if (!existPlayer.empty()) {
-		if (!regex_match(existPlayer, pattern))
+		if (!regex_search(existPlayer, pattern))
 		{
 			cout << "You enterd a wrong player .Do you mean " << existPlayer << "?" << endl;
 			cin >> ans;
 			if (ans == 'y')
 			{
-				cuurentUser.GetMainSquad().at(PlayerName1) = cuurentUser.GetSubstitutionSquad().at(PlayerName2);
-				cuurentUser.GetSubstitutionSquad().at(PlayerName2) = tempPlayer;
+				currentUser.GetMainSquad().at(tempPlayer.GetName()) = currentUser.GetSubstitutionSquad().at(existPlayer);
+				currentUser.GetSubstitutionSquad().insert_or_assign(tempPlayer.GetName(), tempPlayer);
 			}
 			else if (ans == 'n') {
 				cout << "Plese enter a valid footballer name." << endl;
@@ -268,7 +324,7 @@ invalid_main:
 			}
 		}
 		else {
-			cout << "Please enter choose first the player from your main squad." << endl;
+			cout << "Please enter a player from your Substitution squad." << endl;
 			goto invalid_main;
 		}
 	}
@@ -281,7 +337,7 @@ invalid_main:
 	cout << "Player in your main squad now" << endl;
 	system("pause");
 	system("cls");
-	ShowSquad(mainSquad, SubstitutionSquad, cuurentUser, Users);
+	ShowSquad(currentUser, Users);
 };
 
 void User::profile(User& currentUser, unordered_map<string, User>& Users) {
@@ -326,7 +382,12 @@ invalid:
 	}
 	else if (choice == 2)
 	{
+		User oldUser = currentUser;
 		UserValidations::usernameCheck(Users, currentUser);
+		string newUserName = currentUser.GetUsername();
+		Users.erase(oldUser.GetUsername());
+		Users.insert_or_assign(newUserName, currentUser);
+
 		cout << "Username updated successfully" << endl;
 		system("pause");
 		system("cls");

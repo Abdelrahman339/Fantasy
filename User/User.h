@@ -62,7 +62,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	string static spacing(int spaces, char character);
 
-	string static avoidTypos(string footballerName, Teams team, User currentUser, string status);
+	string static avoidTypos(string footballerName, Teams team, User& currentUser, string status);
 	string static CheckingPlayer(string status, Teams team, User currenUser, string inputName);
 
 	vector<Footballer> static ToVector(unordered_map<string, Footballer> map);
@@ -82,15 +82,15 @@ public:
 	//User Squad and Format
 	///////////////////////////////////////////////////////////////////////////////////
 
-	void squadFormat(int choice, unordered_map<string, Footballer>  squad);
-	void Format433(unordered_map<string, Footballer> squad);
-	void Format343(unordered_map<string, Footballer> squad);
-	void Format442(unordered_map<string, Footballer> squad);
-	void showSubstitutions(unordered_map<string, Footballer> squad);
-	int Formatdistance(string name, int space, bool remaining, string prev);
-	void ShowSquad(unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> SubstitutionSquad, User& currentUser, unordered_map<string, User>& Users);
-	void showPlayerInfo(Footballer footballer);
-	void Substitution(unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> SubstitutionSquad, User& currentUser, unordered_map<string, User>& Users);
+	void static squadFormat(int choice, unordered_map<string, Footballer>  squad);
+	void static Format433(unordered_map<string, Footballer> squad);
+	void static Format343(unordered_map<string, Footballer> squad);
+	void static Format442(unordered_map<string, Footballer> squad);
+	void static showSubstitutions(unordered_map<string, Footballer> squad);
+	int  static Formatdistance(string name, int space, bool remaining, string prev);
+	void static ShowSquad(User& currentUser, unordered_map<string, User>& Users);
+	void static showPlayerInfo(Footballer footballer);
+	void static Substitution(User& currentUser, unordered_map<string, User>& Users);
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Information
 	///////////////////////////////////////////////////////////////////////////////////

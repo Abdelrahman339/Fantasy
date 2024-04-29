@@ -10,9 +10,21 @@
 
 
 int main() {
-
-
-	cout << "Code is running now" << endl;
+	vector <string> players = { "Courtois","Carvajal","Rudiger","Tchouameni","Mendy","Camavinga","Kroos","Bellingham","Valverde","Rodrygo","Vinicius","Stegen","Koundé","Araújo","Cubarsí","Cancelo","Pedri","Gündoğan","Frenkie ","Lamine ","Lewandowski","Raphinha" };
+	unordered_map <string, Footballer> footballer;
+	unordered_map<string, User> Users;
+	User user;
+	for (int i = 0; i < players.size(); i++)
+	{
+		Footballer player;
+		player.SetName(players[i]);
+		footballer.insert_or_assign(player.GetName(), player);
+	}
+	for (int i = 0; i < 15; i++)
+	{
+		user.SetFootballer(footballer.at(players[i]));
+	}
+	user.userMenu(user,Users);
 
 }
 
