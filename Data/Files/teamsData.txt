@@ -1,2 +1,111 @@
-team id
-team name
+Name of Team (Unique)
+Points
+Number of Wins
+Number of Losses
+Number of Draws
+----
+Real Madrid
+La Liga
+84
+26
+1
+6
+----
+Barcelona
+La Liga
+70
+21
+4
+7
+----
+Atletico
+La Liga
+64
+20
+9
+4
+----
+Sevilla
+La Liga
+37
+9
+13
+10
+----
+Valencia
+La Liga
+47
+13
+11
+8
+----
+Manchester United
+Premier League
+54
+16
+12
+6
+----
+Liverpool
+Premier League
+75
+22
+4
+9
+----
+Chelsea
+Premier League
+48
+13
+11
+9
+----
+Arsenal
+Premier League
+80
+25
+5
+5
+----
+Manchester City
+Premier League
+79
+24
+3
+7
+----
+Tottenham Hotspur
+Premier League
+60
+18
+9
+6
+----
+Juventus
+Serie A
+65
+18
+5
+11
+----
+Milan
+Serie A
+70
+21
+6
+7
+----
+Napoli
+Serie A
+50
+13
+10
+11
+----
+Roma
+Serie A
+59
+17
+9
+8
+----

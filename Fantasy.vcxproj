@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>STATIC_CONCPP;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Leagues;$(SolutionDir)Data\Teams;$(SolutionDir)Data;$(SolutionDir)User;$(SolutionDir)mysql-connector-c++-8.3.0-winx64\include\jdbc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Leagues;$(SolutionDir)Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)User;$(SolutionDir)mysql-connector-c++-8.3.0-winx64\include\jdbc</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition;$(SolutionDir)\Competition\Game;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)\Data;$(SolutionDir)\User</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition;$(SolutionDir)\Competition\Game;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)\User</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
@@ -152,7 +152,7 @@
     <ClCompile Include="Competition\Game\Game.cpp" />
     <ClCompile Include="Competition\Game\GameGetterSetter.cpp" />
     <ClCompile Include="Competition\Game\HighlightsOfTheMatch.cpp" />
-    <ClCompile Include="Data\fileManpulation.cpp" />
+    <ClCompile Include="Data\FileManipulation\fileManpulation.cpp" />
     <ClCompile Include="Data\Leagues\Leagues.cpp" />
     <ClCompile Include="Data\Teams\Teams.cpp" />
     <ClCompile Include="Data\Teams\TeamsGetterSetter.cpp" />
@@ -169,7 +169,7 @@
     <ClInclude Include="Competition\Competition.h" />
     <ClInclude Include="Competition\Game\Game.h" />
     <ClInclude Include="Competition\Game\HighlightsOfTheMatch.h" />
-    <ClInclude Include="Data\fileManpulation.h" />
+    <ClInclude Include="Data\FileManipulation\fileManpulation.h" />
     <ClInclude Include="Data\Leagues\Leagues.h" />
     <ClInclude Include="Data\Teams\Teams.h" />
     <ClInclude Include="User\User.h" />
