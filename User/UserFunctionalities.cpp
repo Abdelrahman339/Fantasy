@@ -306,7 +306,8 @@ invalid_main:
 	if (existPlayer == "existSub")
 	{
 		currentUser.GetMainSquad().at(tempPlayer.GetName()) = currentUser.GetSubstitutionSquad().at(PlayerName2);
-		currentUser.GetSubstitutionSquad().at(PlayerName2) = tempPlayer;
+		currentUser.GetMainSquad().erase(tempPlayer.GetName());
+		currentUser.GetMainSquad().insert_or_assign(tempPlayer.GetName(), tempPlayer);
 	}
 	else if (!existPlayer.empty()) {
 		if (!regex_search(existPlayer, pattern))
