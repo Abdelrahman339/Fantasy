@@ -1,6 +1,44 @@
 ﻿Name of Team
-squad of the team
-------------
+--------
+Name (Unique)
+Age
+Position
+Price in market
+Rating
+Season Details
+    Total Goals
+    Total Assists
+    Total RedCards
+    Total YellowCards
+    Total Cleansheets
+    Total Points
+----
+Name (Unique)
+Age
+Position
+Price in market
+Rating
+Season Details
+    Total Goals
+    Total Assists
+    Total RedCards
+    Total YellowCards
+    Total Cleansheets
+    Total Points
+----
+Name (Unique)
+Age
+Position
+Price in market
+Rating
+Season Details
+    Total Goals
+    Total Assists
+    Total RedCards
+    Total YellowCards
+    Total Cleansheets
+    Total Points
+----------------
 Manchester City
 --------
 1.Ederson
