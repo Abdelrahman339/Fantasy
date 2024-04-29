@@ -5,6 +5,24 @@ string Footballer::GetName() {
 	return this->name;
 }
 
+Footballer::Footballer(string name, int age, string team, string position, float price, float rating, bool captain, bool matchWinner, int totalGoals, int totalAssists, int totalRedCard, int totalYellowCard, int totalCleansheets, int totalPoints)
+{
+	this->name = name;
+	this->age = age;
+	this->team = team;
+	this->position = position;
+	this->price = price;
+	this->rating = rating;
+	this->captain = captain;
+	this->matchWinner = matchWinner;
+	this->totalGoals = totalGoals;
+	this->totalAssists = totalAssists;
+	this->totalRedCard = totalRedCard;
+	this->totalYellowCard = totalYellowCard;
+	this->totalCleansheets = totalCleansheets;
+	this->totalPoints = totalPoints;
+}
+
 void Footballer::SetName(string name) {
 	this->name = name;
 }

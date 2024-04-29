@@ -6,7 +6,7 @@
 #include "Teams.h"
 #include <stack>
 #include "HighlightsOfTheMatch.h"
- 
+
 
 
 using namespace std;
@@ -31,17 +31,19 @@ public:
 	void displayPlayerHighlights(Game CurrentGame);
 	void displayStatisitcs(Game currentGame);
 
+	Game(Teams& away, Teams& home, string& winTeam, string& score, string& motm,
+		string& stats, stack<HighlightsOfTheMatch>& highlights, string& date, int id);
 
-/////////////////////////////////////////
-///////////// Setters ///////////////////
-/////////////////////////////////////////
+	/////////////////////////////////////////
+	///////////// Setters ///////////////////
+	/////////////////////////////////////////
 
 	void setAwayTeam(Teams team);
 	void setHomeTeam(Teams team);
 	void setScore(string newScore);
 	void setManOfTheMatch(string newManOfTheMatch);
 	void setStatistics(string newStatistics);
-	void setHighlightsOfTheMatch( HighlightsOfTheMatch newHighlights);
+	void setHighlightsOfTheMatch(HighlightsOfTheMatch newHighlights);
 	void setDate(string newDate);
 
 	void setGameId(int id);

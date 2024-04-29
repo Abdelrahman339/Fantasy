@@ -13,7 +13,7 @@
 using namespace std;
 
 
-void Game:: displayBorder(int type) {
+void Game::displayBorder(int type) {
 
 	if (type == 1) {
 		cout << "~-~-~-~-~-~-~-~-~-~-~~-~-~-~-~-~-~-~-~-~-~~-~-~-~-~-~-~-~-~-~-~~-~-~-~-~-~-~-~-~-~-~\n"
@@ -29,12 +29,12 @@ void Game:: displayBorder(int type) {
 	}
 }
 
-void Game:: displayTeamsAndScore(Game currentGame)
+void Game::displayTeamsAndScore(Game currentGame)
 {
-	string homeTeamName =   currentGame.getHomeTeam().getName();
-	string awayTeamName=  currentGame.getAwayTeam().getName();
-	
-	cout << right << setw(20) <<"\u2022"<< homeTeamName << setw(20) << currentGame.getScore() << setw(25) <<"\u2022"<< awayTeamName << endl;
+	string homeTeamName = currentGame.getHomeTeam().getName();
+	string awayTeamName = currentGame.getAwayTeam().getName();
+
+	cout << right << setw(20) << "\u2022" << homeTeamName << setw(20) << currentGame.getScore() << setw(25) << "\u2022" << awayTeamName << endl;
 
 }
 
@@ -66,7 +66,19 @@ void Game::displayStatisitcs(Game currentGame)
 	}
 }
 
-void Game:: displayPlayerHighlights(Game CurrentGame) {
+Game::Game(Teams& away, Teams& home, string& winTeam, string& score, string& motm, string& stats, stack<HighlightsOfTheMatch>& highlights, string& date, int id)
+{
+	this->awayTeam = away;
+	this->homeTeam = home;
+	this->winningTeam = winTeam;
+	this->score = score;
+	this->manOfTheMatch = motm;
+	this->statistics = stats;
+	this->highlightsOfTheMatch = highlights;
+	this->date = date;
+}
+
+void Game::displayPlayerHighlights(Game CurrentGame) {
 
 	HighlightsOfTheMatch currentHighlight = CurrentGame.getHighlightsOfTheMatch().top();
 	string playerName = CurrentGame.getHighlightsOfTheMatch().top().getName();
@@ -91,17 +103,17 @@ void Game:: displayPlayerHighlights(Game CurrentGame) {
 
 			dis = uniform_int_distribution<>(CurrentMin, max);
 			int GoalMinute = dis(gen);
-			cout << right << setw(45)<< playerName << " " << GoalMinute<< "'" << "\U000026BD" << endl;
+			cout << right << setw(45) << playerName << " " << GoalMinute << "'" << "\U000026BD" << endl;
 			cout << "\n";
 			CurrentMin = GoalMinute + 1;
-			
+
 		}
 
 	}
-	
-	
+
+
 	CurrentGame.getHighlightsOfTheMatch().pop();
-	
+
 }
 
 
@@ -109,19 +121,19 @@ void Game::displayGameOverview(queue <Game> currentGame) {
 
 	Game game;
 
-	
+
 	system("cls");
 	Game::displayBorder(1);
-	cout <<left<<setw(50)<< game.getDate() <<right<<setw(33)<< "Full-time" << endl;
+	cout << left << setw(50) << game.getDate() << right << setw(33) << "Full-time" << endl;
 	cout << "\n";
 	displayTeamsAndScore(game);
 	Game::displayBorder(2);
-	cout << right << setw(30) <<"\u2605"<< " Man of the Match : " << game.getManOfTheMatch() << endl;
+	cout << right << setw(30) << "\u2605" << " Man of the Match : " << game.getManOfTheMatch() << endl;
 	Game::displayBorder(2);
 	cout << "\n\n";
 	Game::displayPlayerHighlights(game);
 	Game::displayBorder(3);
-	
+
 
 }
 

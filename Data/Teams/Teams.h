@@ -35,6 +35,10 @@ protected:
 
 public:
 
+	Footballer(string name, int age, string team, string position, float price, float rating,
+		bool captain, bool matchWinner, int totalGoals, int totalAssists,
+		int totalRedCard, int totalYellowCard, int totalCleansheets, int totalPoints);
+	
 
 	////////////////////////////////////////////////////////////////////////
 	/////////////////// setters ////////////////////////////////////////////

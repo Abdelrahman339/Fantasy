@@ -9,7 +9,10 @@ protected:
 	string contributes;// the type of contribution (goals ,assists ,clean sheets) goals 2 & assist 1
 	string violation; // the type of violence action (red cards,yellow cards)
 
+
 public:
+
+	HighlightsOfTheMatch(string name, string contributes, string violation);
 	void setName(string name);
 	void setContributions(string contributors);
 	void setViolation(string violation);
