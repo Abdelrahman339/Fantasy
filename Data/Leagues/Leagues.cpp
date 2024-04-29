@@ -10,21 +10,25 @@ using namespace std;
 void League::displayTeams() {
     cout << "Teams in the league:" << endl;
     for ( auto& team : teams) {
-        cout << team.getName()<< endl;
+        cout << team.second.getName()<< endl;
     }
 }
 
-
-void League::updatePoints(vector<Teams> allteams, list<Game> allgames) {
- 
+void League::updatePoints( list <Game> allgames) {
     // Update points based on games played
     for ( auto& game : allgames) {
-        for (auto& team : allteams) {
-            if (team.getName() == game.getwinningTeam()) {
-                team.addPoints(3);
+        auto homeTeam = teams.find(game.getHomeTeam().getName());
+        auto awayTeam = teams.find(game.getAwayTeam().getName());
+        if (homeTeam != teams.end() && awayTeam != teams.end()) {
+            if (game.getwinningTeam() == homeTeam->first) {
+                homeTeam->second.addPoints(3);
             }
-            else if ((team.getName() == game.getHomeTeam().getName() || team.getName() == game.getAwayTeam().getName()) && game.getwinningTeam() == "draw") {
-                team.addPoints(1);
+            else if (game.getwinningTeam() == awayTeam->first) {
+                awayTeam->second.addPoints(3);
+            }
+            else if (game.getwinningTeam() == "draw") {
+                homeTeam->second.addPoints(1);
+                awayTeam->second.addPoints(1);
             }
         }
     }
@@ -33,19 +37,19 @@ void League::updatePoints(vector<Teams> allteams, list<Game> allgames) {
     
 
 
-void League::displayPointTable(vector <Teams> teamlist)
-{
+void League::displayPointTable()
+{ 
     {
         cout << "Point table:" << endl;
-        // Sort teams by points
-        sort(teamlist.begin(), teamlist.end(), []( Teams& a,  Teams& b) {
-            return a.getPoints() > b.getPoints();
+        vector<pair<string, Teams>> teamlist(teams.begin(), teams.end());
+
+        // Custom sort using lambda expression
+        sort(teamlist.begin(), teamlist.end(), []( pair<string, Teams>& a,  pair<string, Teams>& b) {
+            return a.second.getPoints() > b.second.getPoints();
             });
         // Display point table
         for (int i = 0; i < teamlist.size(); ++i) {
-            cout << i + 1 << ". " << teamlist[i].getName() << ": " << teamlist[i].getPoints() << " points" <<","<< teamlist[i].getwins()<<"wins"<<"," << teamlist[i].getlose()<< "lose" <<"," << teamlist[i].getdraw()<<"draw" << endl;
+            cout << i + 1 << ". " << teamlist[i].second.getName() << ": " << teamlist[i].second.getPoints() << " points" <<","<< teamlist[i].second.getwins()<<"wins"<<"," << teamlist[i].second.getlose()<< "lose" <<"," << teamlist[i].second.getdraw()<<"draw" << endl;
         }
     }
 }
-
-

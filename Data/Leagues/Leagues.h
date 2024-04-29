@@ -13,13 +13,9 @@ private:
 
 public:
 	League();
-
-
 	void displayTeams();
-
-	void updatePoints(vector <Teams>allteams, list<Game> allgames);
-
-	void displayPointTable(vector <Teams> teamlist);
+	void updatePoints( list <Game> allgames);
+	void displayPointTable();
 
 
 };
