@@ -74,6 +74,8 @@ public:
 	void static typosLayout(User currentUser);
 	vector<Footballer> static ToVector(unordered_map<string, Footballer> map);
 
+	void static fromSubtoMain(unordered_map<string, Footballer>& mainSquad, unordered_map<string, Footballer>& SubSquad);
+
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
 	///////////////////////////////////////////////////////////////////////////////////
