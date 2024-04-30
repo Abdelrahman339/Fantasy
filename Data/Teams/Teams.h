@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 #include <unordered_map>
 
 using namespace std;
@@ -115,6 +116,7 @@ public:
 
 	Teams(string name, int points, int wins, int lose, int draw, unordered_map<string, Footballer> footballers);
 	unordered_map<string, Footballer>getFootballPlayer();
+	Teams static getTeamByName(map<string, Teams> teams, string name);
 
 	string getName();
 	int getwins();

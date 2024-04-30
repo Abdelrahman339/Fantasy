@@ -13,7 +13,8 @@ private:
 	map <string, Teams> teams;
 
 public:
-	////League();
+	League();
+	League(string name, map <string, Teams> teams);
 	//void displayTeams();
 	//void updatePoints( list <Game> allgames);
 	//void displayPointTable();
