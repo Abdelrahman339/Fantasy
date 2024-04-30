@@ -238,7 +238,8 @@ choice:
 						{
 						case 1:
 
-							sellFunction(currentUser, footballerName, "main");
+							sellFunction(currentUser, existPlayer, "main");
+							ShowSquad(currentUser, Users);
 							break;
 						case 2:
 							ShowSquad(currentUser, Users);
@@ -276,7 +277,8 @@ choice:
 						{
 						case 1:
 
-							sellFunction(currentUser, footballerName, "sub");
+							sellFunction(currentUser, existPlayer, "sub");
+							ShowSquad(currentUser, Users);
 							break;
 						case 2:
 							ShowSquad(currentUser, Users);
