@@ -124,30 +124,30 @@ invalid:
 Footballer User::returnPlayer(string footballerName, User currentUser, string status, vector<League> leagues)
 {
 
-	//string teamName = "";
-	//string nameOfFootballer = avoidTypos(footballerName, currentUser, "buy", leagues, teamName);
-	//Footballer TargetedFootballer;
-	//for (int i = 0; i < leagues.size(); i++)
-	//{
-	//	for (auto currentTeam : leagues[i].GetTeams()) {
+	string teamName = "";
+	string nameOfFootballer = avoidTypos(footballerName, currentUser, "buy", leagues, teamName);
+	Footballer TargetedFootballer;
+	for (int i = 0; i < leagues.size(); i++)
+	{
+		for (auto currentTeam : leagues[i].GetTeams()) {
 
-	//		if (currentTeam.first == teamName)
-	//		{
-	//			try
-	//			{
-	//				TargetedFootballer = currentTeam.second.getFootballPlayer().at(nameOfFootballer);
-	//			}
-	//			catch (const exception&)
-	//			{
-	//				return {};
-	//			}
+			if (currentTeam.first == teamName)
+			{
+				try
+				{
+					TargetedFootballer = currentTeam.second.getFootballPlayer().at(nameOfFootballer);
+				}
+				catch (const exception&)
+				{
+					return Footballer();
+				}
 
-	//		}
-	//	}
-	//}
+			}
+		}
+	}
 
-	//return TargetedFootballer;
-	return {};
+	return TargetedFootballer;
+
 }
 
 
