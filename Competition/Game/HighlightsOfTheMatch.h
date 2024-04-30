@@ -12,8 +12,8 @@ protected:
 
 public:
 
-	//HighlightsOfTheMatch(string name, string contributes, string violation,int GameId);
-	//HighlightsOfTheMatch();
+	HighlightsOfTheMatch();
+	HighlightsOfTheMatch(int GameId, string name, string contributes, string violation);
 	void setName(string name);
 	void setContributions(string contributors);
 	void setViolation(string violation);

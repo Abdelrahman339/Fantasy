@@ -4,24 +4,41 @@
 string Footballer::GetName() {
 	return this->name;
 }
-
-//Footballer::Footballer(string name, int age, string team, string position, float price, float rating, bool captain, bool matchWinner, int totalGoals, int totalAssists, int totalRedCard, int totalYellowCard, int totalCleansheets, int totalPoints)
-//{
-//	this->name = name;
-//	this->age = age;
-//	this->team = team;
-//	this->position = position;
-//	this->price = price;
-//	this->rating = rating;
-//	this->captain = captain;
-//	this->matchWinner = matchWinner;
-//	this->totalGoals = totalGoals;
-//	this->totalAssists = totalAssists;
-//	this->totalRedCard = totalRedCard;
-//	this->totalYellowCard = totalYellowCard;
-//	this->totalCleansheets = totalCleansheets;
-//	this->totalPoints = totalPoints;
-//}
+Footballer::Footballer() {
+	this->name = "";
+	this->age = 0;
+	this->team = "";
+	this->position = "";
+	this->price = 80.0F;
+	this->rating = 2.0F;
+	this->captain = false;
+	this->matchWinner = false;
+	this->totalGoals = 0;
+	this->totalAssists = 0;
+	this->totalRedCard = 0;
+	this->totalYellowCard = 0;
+	this->totalCleansheets = 0;
+	this->totalPoints = 0;
+}
+Footballer::Footballer(string name, int age, string team, string position, float price, float rating,
+	int totalGoals, int totalAssists, int totalRedCard, int totalYellowCard,
+	int totalCleansheets, int totalPoints
+) {
+	this->name = name;
+	this->age = age;
+	this->team = team;
+	this->position = position;
+	this->price = price;
+	this->rating = rating;
+	//this->captain = false;
+	//this->matchWinner = false;
+	this->totalGoals = totalGoals;
+	this->totalAssists = totalAssists;
+	this->totalRedCard = totalRedCard;
+	this->totalYellowCard = totalYellowCard;
+	this->totalCleansheets = totalCleansheets;
+	this->totalPoints = totalPoints;
+}
 
 void Footballer::SetName(string name) {
 	this->name = name;

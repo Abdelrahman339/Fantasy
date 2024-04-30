@@ -32,9 +32,10 @@ public:
 	void displayStatisitcs(Game currentGame);
 
 	Game();
-
-	Game(Teams away, Teams home, string winTeam, string score, string motm,
-		string stats, stack<HighlightsOfTheMatch> highlights, string date, int id);
+	//, Teams home, Teams away
+	
+	Game(int id, string winTeam, string score,
+		string stats, stack<HighlightsOfTheMatch> highlights, string motm, string date);
 	/////////////////////////////////////////
 	///////////// Setters ///////////////////
 	/////////////////////////////////////////

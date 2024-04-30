@@ -42,14 +42,14 @@ list<Game> fileManipulation::getGamesData() {
 
 	return parseGames(parts, regex);
 }
-map<string, Teams> fileManipulation::getTeamsData() {
+map<string, Teams> fileManipulation::getTeamsData(map<string, unordered_map<string, Footballer>> footballersOfTeam) {
 	string filename = "teamsData.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s+----\s+)";
 	vector<string> parts = splitByRegex(file_data, regex);
 	//cout << parts[0] << endl << parts[1] << endl;
 	regex = R"(\n)";
-	return parseTeams(parts, regex);
+	return parseTeams(footballersOfTeam, parts, regex);
 }
 map<string, unordered_map<string, Footballer>> fileManipulation::getFootballersOfTeamData() {
 	string filename = "footballersOfTeam.txt";
@@ -57,17 +57,18 @@ map<string, unordered_map<string, Footballer>> fileManipulation::getFootballersO
 	string regex = R"(\s+----------------\s+)";
 	vector<string> parts = splitByRegex(file_data, regex);
 	map<string, unordered_map<string, Footballer>> parsedFootballersOfTeam;
-	for (const string& part : parts) {
+	for (size_t i = 1; i < parts.size(); ++i) {
 		regex = R"(\s+--------\s+)";
-		vector<string> teamFootballersVector = splitByRegex(part, regex);
+		vector<string> teamFootballersVector = splitByRegex(parts[i], regex);
 		pair<string, string> teamFootballers = { teamFootballersVector[0], teamFootballersVector[1] };
 		regex = R"(\s+----\s+)";
 		parsedFootballersOfTeam.insert(
 			parseFootballersOfTeam(teamFootballers, regex)
 		);
 	}
-	return {};
+	return parsedFootballersOfTeam;
 }
+
 pair<string, unordered_map<string, Footballer>> fileManipulation::parseFootballersOfTeam(pair<string, string> teamFootballers, string regex) {
 	vector<string> footballersOfTeam = splitByRegex(teamFootballers.second, regex);
 	unordered_map<string, Footballer> parsedFootballersOfTeam;
@@ -86,13 +87,13 @@ Footballer fileManipulation::parseFootballer(vector<string> footballerLines, str
 	int age = stoi(footballerLines[1], nullptr);
 	string position = footballerLines[2];
 	float price = stof(footballerLines[3], nullptr);
-	float rating = stoi(footballerLines[4], nullptr);
-	int totalGoals = stoi(footballerLines[6], nullptr);
-	int totalAssists = stoi(footballerLines[7], nullptr);
-	int totalRedCard = stoi(footballerLines[8], nullptr);
-	int totalYellowCard = stoi(footballerLines[9], nullptr);
-	int totalCleansheets = stoi(footballerLines[10], nullptr);
-	int totalPoints = stoi(footballerLines[11], nullptr);
+	float rating = stof(footballerLines[4], nullptr);
+	int totalGoals = stoi(footballerLines[5], nullptr);
+	int totalAssists = stoi(footballerLines[6], nullptr);
+	int totalRedCard = stoi(footballerLines[7], nullptr);
+	int totalYellowCard = stoi(footballerLines[8], nullptr);
+	int totalCleansheets = stoi(footballerLines[9], nullptr);
+	int totalPoints = stoi(footballerLines[10], nullptr);
 
 	//return Footballer(footballerLines[0],2,teamName, position,45.0F, 45.0F,0,0,0,0,0,0);
 	return Footballer(
@@ -141,37 +142,76 @@ list<Game> fileManipulation::parseGames(vector<string> parts, string regex) {
 /*
  * 'parseTeams' function should return all Teams in the teamsData.txt
  */
-map<string, Teams> fileManipulation::parseTeams(vector<string> parts, string regex) {
+map<string, Teams> fileManipulation::parseTeams(map<string, unordered_map<string, Footballer>> footballersOfTeam, vector<string> parts, string regex) {
 	map<string, Teams> parsedTeams;
 
 	for (size_t i = 1; i < parts.size(); ++i) {
 		vector<string> teamLines = splitByRegex(parts[i], regex);
 
 		parsedTeams.insert(
-			make_pair(teamLines[0], parseTeam(teamLines))
+			make_pair(teamLines[0], parseTeam(teamLines, footballersOfTeam.at(teamLines[0])))
 		);
 	}
 
 	return parsedTeams;
 }
 
-Teams fileManipulation::parseTeam(vector<string> teamLines) {
+Teams fileManipulation::parseTeam(vector<string> teamLines, unordered_map<string, Footballer> footballers) {
 	string name = teamLines[0];
-	int points = stoi(teamLines[1], nullptr);
-	int wins = stoi(teamLines[2], nullptr);
-	int losses = stoi(teamLines[3], nullptr);
-	int draws = stoi(teamLines[4], nullptr);
+	int points = stoi(teamLines[2], nullptr);
+	int wins = stoi(teamLines[3], nullptr);
+	int losses = stoi(teamLines[4], nullptr);
+	int draws = stoi(teamLines[5], nullptr);
 
-	return Teams(name, points, wins, losses, draws);
+	return Teams(name, points, wins, losses, draws, footballers);
 }
 Game fileManipulation::parseGame(vector<string> gameLines) {
 	int gameID = stoi(gameLines[0], nullptr);
-
 	string winnerTeam = gameLines[3];
 	string score = gameLines[4];
 	string gameStatistics = parseGameStatistics(gameLines);
 	string manOfTheMatch = gameLines[13];
 	string gameDate = gameLines[14];
+	stack<HighlightsOfTheMatch> highlights = getHighlights(gameID);
 
-	return Game(gameID, winnerTeam, score, gameStatistics, manOfTheMatch, gameDate);
+	return Game(gameID, winnerTeam, score, gameStatistics, highlights, manOfTheMatch, gameDate);
+}
+
+stack<HighlightsOfTheMatch> fileManipulation::getHighlights(int gameID) {
+	string filename = "HighlightsOfTheMatch.txt";
+	string file_data = readFileData(filename);
+	string regex = R"(\s+----------------\s+)";
+	vector<string> parts = splitByRegex(file_data, regex);
+
+	for (size_t i = 1; i < parts.size(); ++i) {
+		regex = R"(\s+--------\s+)";
+		vector<string> gameHighlights = splitByRegex(parts[i], regex);
+		if (stoi(gameHighlights[0], nullptr) != gameID)
+			continue;
+		regex = R"(\s+----\s+)";
+		vector<string> highlights = splitByRegex(gameHighlights[1], regex);
+		regex = R"(\n)";
+		return parseHighlights(highlights, gameID, regex);
+	}
+	// No Highlights found for this game.
+	return {};
+}
+
+stack<HighlightsOfTheMatch> fileManipulation::parseHighlights(vector<string> highlights, int gameId, string regex) {
+	stack<HighlightsOfTheMatch> parsedHighlights;
+	for (size_t i = 0; i < highlights.size(); i++) {
+		vector<string> highlightLines = splitByRegex(highlights[i], regex);
+
+		parsedHighlights.push(
+			parseHighlight(highlightLines, gameId)
+		);
+	}
+	return parsedHighlights;
+}
+HighlightsOfTheMatch fileManipulation::parseHighlight(vector<string> highlightLines, int gameId){
+	string name = highlightLines[0];
+	string contributes = highlightLines[1];
+	string violation = highlightLines[2];
+
+	return HighlightsOfTheMatch(gameId, name, contributes, violation);
 }

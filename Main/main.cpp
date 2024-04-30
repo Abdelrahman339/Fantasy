@@ -12,6 +12,19 @@
 
 
 int main() {
+	/*	Get Teams now Done! ==> USAGE
+		map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
+		map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
+		cout << Teams.at("Manchester City").getFootballPlayer().at("Ederson").GetAge() << endl;
+	*/
+	/*	Get Games now Done! ==> USAGE
+		list<Game> games = fileManipulation::getGamesData();
+		for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
+			stack<HighlightsOfTheMatch> highlightsOfTheMatch = it->getHighlightsOfTheMatch();
+			if (!highlightsOfTheMatch.empty())
+				cout << highlightsOfTheMatch.top().getName() << endl;
+	}*/
+
 	vector <string> players = { "Courtois","Carvajal","Rudiger","Tchouameni","Mendy","Camavinga","Kroos","Bellingham","Valverde","Rodrygo","Vinicius","Stegen","Koundé","Araújo","Cubarsí","Cancelo","Pedri","Gündoğan","Frenkie ","Lamine ","Lewandowski","Raphinha" };
 	unordered_map <string, Footballer> footballer;
 	unordered_map<string, User> Users;
