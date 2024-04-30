@@ -91,7 +91,7 @@ invalid:
 	cin >> search;
 	Footballer targetFootballer = returnPlayer(search, currentUser, "buy", leagues);
 
-	//Teams* teams = findTeam(leagues, search);
+	Teams* teams = findTeam(leagues, search);
 	if (!targetFootballer.GetName().empty())
 	{
 		User::showPlayerInfo(targetFootballer);
@@ -108,11 +108,11 @@ invalid:
 		}
 	}
 
-	//else if (teams != nullptr)
-	//{
-	//	//findTeam(leagues, search).displayPlayers();
+	else if (teams != nullptr)
+	{
+		User::Format343(teams->getFootballPlayer());
 
-	//}
+	}
 	else
 	{
 		cout << "please enter a valid Team name or Footabller name" << endl;
@@ -156,7 +156,7 @@ Footballer User::returnPlayer(string footballerName, User currentUser, string st
 
 Teams* User::findTeam(vector<League> leagues, string TeamName)
 {
-	Teams* teamFound=nullptr;
+	Teams* teamFound = nullptr;
 	for (int i = 0; i < leagues.size(); i++)
 	{
 		map<string, Teams> teamsInLeagus = leagues.at(i).GetTeams();
@@ -295,7 +295,7 @@ invalid:
 	cout << "Enter the name of your wanted player to buy.\n";
 	cin >> footballerName;
 	string teamName;
-	string playerExist = User::avoidTypos(footballerName, currentUser, "buing", Leagues,teamName);
+	string playerExist = User::avoidTypos(footballerName, currentUser, "buing", Leagues, teamName);
 
 
 	if (playerExist == "exist")
