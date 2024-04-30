@@ -16,7 +16,7 @@ string User::spacing(int spacing, char character) {
 
 
 
-string User::avoidTypos(string &footballerName, User& currentUser, string status, vector <League> allLeagues, string& teamName)
+string User::avoidTypos(string& footballerName, User& currentUser, string status, vector <League> allLeagues, string& teamName)
 {
 	Teams team;
 	footballerName[0] = toupper(footballerName[0]);
@@ -48,12 +48,12 @@ string User::avoidTypos(string &footballerName, User& currentUser, string status
 	//checking if the name exist or not in a team not in user squad
 	else
 	{
-		//pair<string, string> PlayerName_TeamName = getTeam(allLeagues, currentUser, footballerName);
+		pair<string, string> PlayerName_TeamName = getTeam(allLeagues, currentUser, footballerName);
 
-		//teamName = PlayerName_TeamName.second;
+		teamName = PlayerName_TeamName.second;
 
-		//return PlayerName_TeamName.first;
-		return "";
+		return PlayerName_TeamName.first;
+
 	}
 }
 
@@ -237,8 +237,7 @@ choice:
 				{
 				case 1:
 
-					sellFunction(currentUser, existPlayer, "sub");
-					fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
+					sellFunction(currentUser, footballerName, "sub");
 					ShowSquad(currentUser, Users);
 					break;
 				case 2:
@@ -319,8 +318,6 @@ choice:
 						case 1:
 
 							sellFunction(currentUser, existPlayer, "sub");
-							fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
-
 							ShowSquad(currentUser, Users);
 							break;
 						case 2:

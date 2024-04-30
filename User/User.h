@@ -114,7 +114,7 @@ public:
 
 	bool sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName);
 	void static sellFunction(User& currentUser, string footballerName, string stauts);
-	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users,vector<League> leagues);
 	bool buyFunction(User& currentUser, Teams team, string footballerName);
 	void replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 

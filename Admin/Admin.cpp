@@ -344,14 +344,14 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 	answer = false;
 }
 
-void Admin::UpdatePlayersInTeam(string Leaguename, map<string, Teams> teams)
-{
-	Footballer PlayerToUpdate;
-	for_each(teams.begin(), teams.end(), [](pair<string, Teams> pair) {
-		PlayerToUpdate = pair.second.getFootballPlayer();
-		});
-
-}
+//void Admin::UpdatePlayersInTeam(string Leaguename, map<string, Teams> teams)
+//{
+//	Footballer PlayerToUpdate;
+//	for_each(teams.begin(), teams.end(), [](pair<string, Teams> pair) {
+//		PlayerToUpdate = pair.second.getFootballPlayer();
+//		});
+//
+//}
 
 void Admin::PauseAndClear()
 {
