@@ -87,7 +87,7 @@ string User::CheckingPlayer(string status, Teams team, User currentUser, string 
 		for (int i = 0; i < min(inputName.size(), currentPlayerName.size()); ++i) {
 			if (inputName[i] != currentPlayerName[i]) {
 				errors++;
-				if (errors > 2) {
+				if (errors > 3) {
 					break;
 				}
 			}
@@ -122,7 +122,23 @@ vector<Footballer> User::ToVector(unordered_map<string, Footballer> map)
 		Squad.push_back(kv.second);
 	}
 	return Squad;
-};
+}
+void User::fromSubtoMain(unordered_map<string, Footballer>& mainSquad, unordered_map<string, Footballer>& SubSquad)
+{
+	if (mainSquad.size() < 11)
+	{
+		if (SubSquad.size() > 0) {
+
+			auto it = SubSquad.begin();
+
+			Footballer footballer = it->second;
+			mainSquad.insert_or_assign(footballer.GetName(), footballer);
+			SubSquad.erase(it);
+
+		}
+	}
+}
+;
 
 
 
@@ -175,6 +191,8 @@ choice:
 				case 1:
 
 					sellFunction(currentUser, footballerName, "main");
+					fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
+					ShowSquad(currentUser, Users);
 					break;
 				case 2:
 					ShowSquad(currentUser, Users);
@@ -200,6 +218,8 @@ choice:
 				case 1:
 
 					sellFunction(currentUser, footballerName, "sub");
+					fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
+					ShowSquad(currentUser, Users);
 					break;
 				case 2:
 					ShowSquad(currentUser, Users);
@@ -239,6 +259,7 @@ choice:
 						case 1:
 
 							sellFunction(currentUser, existPlayer, "main");
+							fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
 							ShowSquad(currentUser, Users);
 							break;
 						case 2:
@@ -278,6 +299,8 @@ choice:
 						case 1:
 
 							sellFunction(currentUser, existPlayer, "sub");
+							fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
+
 							ShowSquad(currentUser, Users);
 							break;
 						case 2:
