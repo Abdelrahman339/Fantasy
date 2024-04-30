@@ -54,7 +54,17 @@ using namespace std;
 //    }
 //}
 
+League::League() {
+	this->name = "";
+	this->teams = {};
+}
+
+League::League(string name, map<string, Teams> teams) {
+	this->name = name;
+	this->teams = teams;
+}
+
 map<string, Teams> League::GetTeams()
 {
-    return this->teams;
+	return this->teams;
 }

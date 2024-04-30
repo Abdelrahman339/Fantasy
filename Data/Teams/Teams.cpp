@@ -21,6 +21,9 @@ unordered_map<string, Footballer> Teams::getFootballPlayer()
 {
 	return this->players;
 }
+Teams Teams::getTeamByName(map<string, Teams> teams, string name) {
+	return teams.at(name);
+}
 
 string Teams::getName()
 {
