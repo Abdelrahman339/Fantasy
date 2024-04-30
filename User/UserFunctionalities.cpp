@@ -61,25 +61,25 @@ string User::avoidTypos(string& footballerName, User& currentUser, string status
 
 pair<string, string> User::getTeam(vector<League> allLeagues, User currentUser, string FootballerName)
 {
-	//pair<string, string> playerExist;
-	//for (int i = 0; i < allLeagues.size(); i++)
-	//{
-	//	for (auto team : allLeagues[i].GetTeams())
-	//	{
-	//		// player name| team name
-	//		playerExist = make_pair(CheckingPlayer("buy", team.second, currentUser, FootballerName), team.first);//the footbalelrName and the team name to use it in search function at market
-	//		if (playerExist.first.empty()) {
-	//			continue;
-	//		}
-	//		else
-	//		{
-	//			break;
-	//		}
-	//	}
-	//}
+	pair<string, string> playerExist;
+	for (int i = 0; i < allLeagues.size(); i++)
+	{
+		for (auto team : allLeagues[i].GetTeams())
+		{
+			// player name| team name
+			playerExist = make_pair(CheckingPlayer("buy", team.second, currentUser, FootballerName), team.first);//the footbalelrName and the team name to use it in search function at market
+			if (playerExist.first.empty()) {
+				continue;
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
 
-	//return playerExist;
-	return make_pair("", "");
+	return playerExist;
+
 }
 
 string User::CheckingPlayer(string status, Teams team, User currentUser, string inputName)
