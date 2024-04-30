@@ -19,7 +19,7 @@ La Liga
 4
 7
 ----
-Atletico
+Atletico Madrid
 La Liga
 64
 20
@@ -103,7 +103,7 @@ Serie A
 10
 11
 ----
-Roma
+AS Roma
 Serie A
 59
 17
