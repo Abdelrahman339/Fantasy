@@ -154,21 +154,21 @@ Footballer User::returnPlayer(string footballerName, User currentUser, string st
 
 
 
-//Teams* User::findTeam(vector<League> leagues, string TeamName)
-//{
-//	Teams* teamFound;
-//	for (int i = 0; i < leagues.size(); i++)
-//	{
-//		map<string, Teams> teamsInLeagus = leagues.at(i).GetTeams();
-//		int TeamExist = teamsInLeagus.count(TeamName);
-//		if (TeamExist > 0) {
-//			teamFound = &teamsInLeagus.at(TeamName);
-//		}
-//
-//	}
-//	return teamFound;
-//};
-//
+Teams* User::findTeam(vector<League> leagues, string TeamName)
+{
+	Teams* teamFound=nullptr;
+	for (int i = 0; i < leagues.size(); i++)
+	{
+		map<string, Teams> teamsInLeagus = leagues.at(i).GetTeams();
+		int TeamExist = teamsInLeagus.count(TeamName);
+		if (TeamExist > 0) {
+			teamFound = &teamsInLeagus.at(TeamName);
+		}
+
+	}
+	return teamFound;
+};
+
 
 
 
