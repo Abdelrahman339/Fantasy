@@ -31,10 +31,10 @@ public:
 	void displayPlayerHighlights(Game CurrentGame);
 	void displayStatisitcs(Game currentGame);
 
-	//Game();
+	Game();
 
-	//Game(Teams& away, Teams& home, string& winTeam, string& score, string& motm,
-	//	string& stats, stack<HighlightsOfTheMatch>& highlights, string& date, int id);
+	Game(Teams away, Teams home, string winTeam, string score, string motm,
+		string stats, stack<HighlightsOfTheMatch> highlights, string date, int id);
 	/////////////////////////////////////////
 	///////////// Setters ///////////////////
 	/////////////////////////////////////////

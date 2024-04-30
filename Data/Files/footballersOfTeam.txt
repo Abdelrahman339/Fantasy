@@ -50,7 +50,7 @@ Goalkeeper
 0
 0
 ----
-2.João Cancelo
+2.Joao Cancelo
 28
 Defender
 60000000
@@ -62,7 +62,7 @@ Defender
 0
 0
 ----
-3.Rúben Dias
+3.Ruben Dias
 26
 Defender
 65000000
@@ -210,7 +210,7 @@ Defender
 0
 0
 ----
-4.Joël Matip
+4.Joel Matip
 31
 Defender
 35000000
@@ -258,7 +258,7 @@ Midfielder
 0
 0
 ----
-8.Thiago Alcântara
+8.Thiago Alcantara
 32
 Midfielder
 60000000
@@ -270,7 +270,7 @@ Midfielder
 0
 0
 ----
-9.Sadio Mané
+9.Sadio Mane
 30
 Forward
 70000000
@@ -308,7 +308,7 @@ Forward
 ----------------
 Chelsea
 --------
-1.Édouard Mendy
+1.Edouard Mendy
 30
 Goalkeeper
 40000000
@@ -332,7 +332,7 @@ Defender
 0
 0
 ----
-3.Antonio Rüdiger
+3.Antonio Rudiger
 29
 Defender
 40000000
@@ -380,7 +380,7 @@ Midfielder
 0
 0
 ----
-7.N'Golo Kanté
+7.N'Golo Kante
 32
 Midfielder
 70000000
@@ -466,7 +466,7 @@ Right-back
 0
 0
 ----
-3.Gabriel Magalhães
+3.Gabriel Magalhaes
 25
 Centre-back
 8000000
@@ -600,7 +600,7 @@ Right-back
 0
 0
 ----
-3.Davinson Sánchez
+3.Davinson Sanchez
 25
 Centre-back
 10
@@ -624,7 +624,7 @@ Centre-back
 0
 0
 ----
-5.Sergio Reguilón
+5.Sergio Reguilon
 25
 Left-back
 12000000
@@ -868,9 +868,9 @@ Right-back
 0
 0
 ----
-3.Raphael Varane
-28
-Centre-back
+3.Brahim Diaz
+24
+Midfielder
 50000000
 8.6
 0
@@ -940,9 +940,9 @@ Central midfielder
 0
 0
 ----
-9.Vinícius Júnior
-21
-Left winger
+9.Federico Valverde
+25
+Midfielder
 70000000
 8.4
 0
@@ -978,7 +978,7 @@ Right winger
 ----------------
 Barcelona
 --------
-1.Marc-André ter Stegen
+1.Marc-Andre ter Stegen
 31
 Goalkeeper
 50000000
@@ -1002,7 +1002,7 @@ Right-back
 0
 0
 ----
-3.Gerard Piqué
+3.Gerard Pique
 35
 Centre-back
 40000000
@@ -1014,7 +1014,7 @@ Centre-back
 0
 0
 ----
-4.Clément Lenglet
+4.Clement Lenglet
 27
 Centre-back
 35000000
@@ -1074,7 +1074,7 @@ Central midfielder
 0
 0
 ----
-9.Ousmane Dembélé
+9.Ousmane Dembele
 24
 Left winger
 80000000
@@ -1136,7 +1136,7 @@ Right-back
 0
 0
 ----
-3.José Giménez
+3.Jose Gimenez
 27
 Centre-back
 45000000
@@ -1148,7 +1148,7 @@ Centre-back
 0
 0
 ----
-4.Stefan Savić
+4.Stefan Savic
 31
 Centre-back
 30000000
@@ -1184,7 +1184,7 @@ Central midfielder
 0
 0
 ----
-7.Saúl Ñíguez
+7.Saul Niguez
 27
 Central midfielder
 55000000
@@ -1208,7 +1208,7 @@ Central midfielder
 0
 0
 ----
-9.Ángel Correa
+9.Angel Correa
 26
 Right winger
 45000000
@@ -1220,7 +1220,7 @@ Right winger
 0
 0
 ----
-10.Luis Suárez
+10.Luis Suarez
 35
 Striker
 25000000
@@ -1232,7 +1232,7 @@ Striker
 0
 0
 ----
-11.João Félix
+11.Joao Felix
 23
 Left winger
 70000000
@@ -1258,7 +1258,7 @@ Goalkeeper
 0
 0
 ----
-2.Jesús Navas
+2.Jesus Navas
 36
 Right-back
 20000000
@@ -1282,7 +1282,7 @@ Centre-back
 0
 0
 ----
-4.Jules Koundé
+4.Jules Kounde
 23
 Centre-back
 50000000
@@ -1294,7 +1294,7 @@ Centre-back
 0
 0
 ----
-5.Marcos Acuña
+5.Marcos Acuna
 29
 Left-back
 25000000
@@ -1306,7 +1306,7 @@ Left-back
 0
 0
 ----
-6.Joan Jordán
+6.Joan Jordan
 27
 Central midfielder
 30000000
@@ -1318,7 +1318,7 @@ Central midfielder
 0
 0
 ----
-7.Ivan Rakitić
+7.Ivan Rakitic
 34
 Central midfielder
 15000000
@@ -1330,7 +1330,7 @@ Central midfielder
 0
 0
 ----
-8.Papu Gómez
+8.Papu Gomez
 34
 Central midfielder
 35000000
@@ -1404,7 +1404,7 @@ Right-back
 0
 0
 ----
-3.Hugo Guillamón
+3.Hugo Guillamon
 21
 Centre-back
 10000000
@@ -1428,7 +1428,7 @@ Centre-back
 0
 0
 ----
-5.José Gayà
+5.Jose Gaya
 27
 Left-back
 25000000
@@ -1464,7 +1464,7 @@ Central midfielder
 0
 0
 ----
-8.Uroš Račić
+8.Uros Racic
 24
 Central midfielder
 18000000
@@ -1476,7 +1476,7 @@ Central midfielder
 0
 0
 ----
-9.Gonçalo Guedes
+9.Goncalo Guedes
 25
 Right winger
 35000000
@@ -1488,7 +1488,7 @@ Right winger
 0
 0
 ----
-10.Maxi Gómez
+10.Maxi Gomez
 25
 Striker
 40000000
@@ -1648,7 +1648,7 @@ Forward
 ----------------
 AC Milan
 --------
-1.Samir Handanović
+1.Samir Handanovic
 38
 Goalkeeper
 12000000
@@ -1660,7 +1660,7 @@ Goalkeeper
 0
 0
 ----
-2.Milan Škriniar
+2.Milan skriniar
 27
 Defender
 30000000
@@ -1708,7 +1708,7 @@ Defender
 0
 0
 ----
-6.Marcelo Brozović
+6.Marcelo Brozovic
 29
 Midfielder
 28000000
@@ -1732,7 +1732,7 @@ Midfielder
 0
 0
 ----
-8.Hakan Çalhanoğlu
+8.Hakan calhanoglu
 28
 Midfielder
 38000000
@@ -1744,7 +1744,7 @@ Midfielder
 0
 0
 ----
-9.Lautaro Martínez
+9.Lautaro Martinez
 25
 Forward
 45000000
@@ -1756,7 +1756,7 @@ Forward
 0
 0
 ----
-10.Alexis Sánchez
+10.Alexis Sanchez
 33
 Forward
 20000000
@@ -1768,7 +1768,7 @@ Forward
 0
 0
 ----
-11.Joaquín Correa
+11.Joaquin Correa
 27
 Forward
 35000000
@@ -1782,7 +1782,7 @@ Forward
 ----------------
 AS Roma
 --------
-1.Rui Patrício
+1.Rui Patricio
 34
 Goalkeeper
 15000000
@@ -1818,7 +1818,7 @@ Defender
 0
 0
 ----
-4.Roger Ibañez
+4.Roger Ibanez
 23
 Defender
 30000000
@@ -1902,7 +1902,7 @@ Forward
 0
 0
 ----
-11.Carles Pérez
+11.Carles Perez
 25
 Forward
 20000000
@@ -1964,7 +1964,7 @@ Defender
 0
 0
 ----
-5.Mário Rui
+5.Mario Rui
 31
 Defender
 20000000
@@ -1976,7 +1976,7 @@ Defender
 0
 0
 ----
-6.Fabián Ruiz
+6.Fabian Ruiz
 25
 Midfielder
 60000000
@@ -1988,7 +1988,7 @@ Midfielder
 0
 0
 ----
-7.Tiémoué Bakayoko
+7.Tiemoue Bakayoko
 28
 Midfielder
 35000000
