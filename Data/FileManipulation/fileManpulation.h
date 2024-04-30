@@ -1,4 +1,4 @@
-#pragma/* once
+#pragma once
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -27,4 +27,4 @@ public:
 	map<string, unordered_map<string, Footballer>> static getFootballersOfTeamData();
 	pair<string, unordered_map<string, Footballer>> static parseFootballersOfTeam(pair<string, string> teamFootballers, string regex);
 	Footballer static parseFootballer(vector<string> footballerLines, string teamName);
-};*/
+};
