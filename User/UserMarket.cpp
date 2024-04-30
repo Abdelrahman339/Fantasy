@@ -263,84 +263,90 @@ void User::sellFunction(User& currentUser, string footballerName, string status)
 //
 //
 //
-//void User::buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users) {
-//	string footballerName;
-//	char ans;
-//invalid:
-//	cout << "Enter the name of your wanted player to buy.\n";
-//	cin >> footballerName;
-//
-//	string playerExist = User::avoidTypos(footballerName, team, currentUser, "buing");
-//
-//
-//	if (playerExist == "exist")
-//	{
-//
-//		cout << "Are you sure you want to buy " << footballerName << " ?(y/n)" << endl;
-//		cin >> ans;
-//		if (ans == 'y')
-//		{
-//			cout << "Player bought successfully." << endl;
-//
-//
-//			float FootballerPrice = team.getFootballPlayer().at(footballerName).GetPrice();
-//			currentUser.addBalance(-FootballerPrice);
-//
-//
-//			Footballer footballer = team.getFootballPlayer().at(footballerName);
-//			currentUser.SetFootballer(footballer);
-//
-//		}
-//		else if (ans == 'n') {
-//			Market(currentUser, team, TopPlayer, Users);
-//		}
-//		else {
-//			cout << "Please enter a valid option." << endl;
-//			goto invalidOption;
-//		}
-//	}
-//
-//
-//
-//
-//
-//	else if (!playerExist.empty()) {
-//	invalidOption:
-//		cout << "You enterd a wrong player .Do you mean " << playerExist << "?" << endl;
-//		cin >> ans;
-//		if (ans == 'y')
-//		{
-//			cout << "Player bought successfully." << endl;
-//
-//
-//			float FootballerPrice = team.getFootballPlayer().at(footballerName).GetPrice();
-//			currentUser.addBalance(-FootballerPrice);
-//
-//
-//			Footballer footballer = team.getFootballPlayer().at(footballerName);
-//			currentUser.SetFootballer(footballer);
-//		}
-//		else if (ans == 'n') {
-//			cout << "Plese enter a valid footballer name." << endl;
-//			goto invalid;
-//		}
-//		else
-//		{
-//			cout << "Please enter a valid option." << endl;
-//			goto invalidOption;
-//		}
-//	}
-//
-//
-//
-//	else
-//	{
-//		cout << "There is no matching football player." << endl;
-//		cout << "Plese enter a valid footballer name." << endl;
-//		goto invalid;
-//	}
-//
-//};
+void User::buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users) {
+	string footballerName;
+	char ans;
+invalid:
+	cout << "Enter the name of your wanted player to buy.\n";
+	cin >> footballerName;
+
+	string playerExist = User::avoidTypos(footballerName, team, currentUser, "buing");
+
+
+	if (playerExist == "exist")
+	{
+
+		cout << "Are you sure you want to buy " << footballerName << " ?(y/n)" << endl;
+		cin >> ans;
+		if (ans == 'y')
+		{
+			cout << "Player bought successfully." << endl;
+
+
+			buyFunction(currentUser, team, footballerName);
+
+			Market(currentUser, team, TopPlayer, Users);
+
+		}
+		else if (ans == 'n') {
+			Market(currentUser, team, TopPlayer, Users);
+		}
+		else {
+			cout << "Please enter a valid option." << endl;
+			goto invalidOption;
+		}
+	}
+
+
+
+
+
+	else if (!playerExist.empty()) {
+	invalidOption:
+		cout << "You enterd a wrong player .Do you mean " << playerExist << "?" << endl;
+		cin >> ans;
+		if (ans == 'y')
+		{
+			cout << "Player bought successfully." << endl;
+
+			buyFunction(currentUser, team, playerExist);
+
+			Market(currentUser, team, TopPlayer, Users);
+
+		}
+		else if (ans == 'n') {
+			cout << "Plese enter a valid footballer name." << endl;
+			goto invalid;
+		}
+		else
+		{
+			cout << "Please enter a valid option." << endl;
+			goto invalidOption;
+		}
+	}
+
+
+
+	else
+	{
+		cout << "There is no matching football player." << endl;
+		cout << "Plese enter a valid footballer name." << endl;
+		goto invalid;
+	}
+
+}
+bool User::buyFunction(User& currentUser, Teams& team, string footballerName)
+{
+	float FootballerPrice = team.getFootballPlayer().at(footballerName).GetPrice();
+	currentUser.addBalance(-FootballerPrice);
+
+
+	Footballer footballer = team.getFootballPlayer().at(footballerName);
+	return currentUser.SetFootballer(footballer);
+
+
+}
+;
 //
 //
 //
