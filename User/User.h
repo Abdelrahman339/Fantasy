@@ -72,7 +72,7 @@ public:
 	string static CheckingPlayer(string status, Teams team, User currenUser, string inputName);
 
 	void static typosLayout(User currentUser);
-	vector<Footballer> static ToVector(unordered_map<string, Footballer> map);
+	vector<string> static ToVector(unordered_map<string, Footballer> UserSquad);
 
 	void static fromSubtoMain(unordered_map<string, Footballer>& mainSquad, unordered_map<string, Footballer>& SubSquad);
 
