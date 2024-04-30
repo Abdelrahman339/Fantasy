@@ -7,7 +7,7 @@
 #include "unordered_map"
 #include "Teams.h"
 #include "Game.h"
-#include <Leagues.h>
+#include "Leagues.h"
 
 using namespace std;
 
@@ -68,10 +68,11 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	string static spacing(int spaces, char character);
 
-	string static avoidTypos(string footballerName, Teams team, User& currentUser, string status);
+	string static avoidTypos(string &footballerName, User& currentUser, string status, vector <League> allLeagues, string& teamName);
 	string static CheckingPlayer(string status, Teams team, User currenUser, string inputName);
 
-	void static typosLayout(User currentUser);
+	pair<string, string> static getTeam(vector <League> allLeagues, User currentUser, string FootballerName);
+
 	vector<string> static ToVector(unordered_map<string, Footballer> UserSquad);
 
 	void static fromSubtoMain(unordered_map<string, Footballer>& mainSquad, unordered_map<string, Footballer>& SubSquad);
@@ -114,12 +115,12 @@ public:
 	bool sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName);
 	void static sellFunction(User& currentUser, string footballerName, string stauts);
 	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
-	bool buyFunction(User& currentUser, Teams& team, string footballerName);
+	bool buyFunction(User& currentUser, Teams team, string footballerName);
 	void replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 
 	void search(string footballerName, Teams team, User currentUser, string status, vector<League> leagues);
-	Footballer* findPlayer(vector<League> leagues, string footballerName);
-	Teams* findTeam(vector<League> league, string footballerName);
+	Footballer returnPlayer(string footballerName, User currentUser, string status, vector<League>  leagues);
+	Teams* findTeam(vector<League> league, string TeamName);
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////

@@ -4,6 +4,7 @@
 #include "Teams.h"
 #include <algorithm>
 #include <regex>
+#include "Leagues.h"
 
 int formatchoice = 3;
 
@@ -15,11 +16,10 @@ string User::spacing(int spacing, char character) {
 
 
 
-string User::avoidTypos(string footballerName, Teams team, User& currentUser, string status)
+string User::avoidTypos(string &footballerName, User& currentUser, string status, vector <League> allLeagues, string& teamName)
 {
-
-	string Name = footballerName;
-	Name[0] = toupper(Name[0]);
+	Teams team;
+	footballerName[0] = toupper(footballerName[0]);
 
 	//checking if the name exist or not in sell function cause i use the user squad not the team squad
 	if (status == "sell") {
@@ -45,22 +45,43 @@ string User::avoidTypos(string footballerName, Teams team, User& currentUser, st
 
 	}
 
-	//checking if the name exist or not 
+	//checking if the name exist or not in a team not in user squad
 	else
 	{
+		//pair<string, string> PlayerName_TeamName = getTeam(allLeagues, currentUser, footballerName);
 
-		auto it = team.getFootballPlayer().count(Name);
-		if (it > 0)
-		{
-			return "exist";
-		}
-		else // the player doesn't exist in the map . try to find the best similar name
-		{
-			return CheckingPlayer("buy", team, currentUser, footballerName);
+		//teamName = PlayerName_TeamName.second;
 
-		}
+		//return PlayerName_TeamName.first;
+		return "";
 	}
 }
+
+
+
+pair<string, string> User::getTeam(vector<League> allLeagues, User currentUser, string FootballerName)
+{
+	//pair<string, string> playerExist;
+	//for (int i = 0; i < allLeagues.size(); i++)
+	//{
+	//	for (auto team : allLeagues[i].GetTeams())
+	//	{
+	//		// player name| team name
+	//		playerExist = make_pair(CheckingPlayer("buy", team.second, currentUser, FootballerName), team.first);//the footbalelrName and the team name to use it in search function at market
+	//		if (playerExist.first.empty()) {
+	//			continue;
+	//		}
+	//		else
+	//		{
+	//			break;
+	//		}
+	//	}
+	//}
+
+	//return playerExist;
+	return make_pair("", "");
+}
+
 string User::CheckingPlayer(string status, Teams team, User currentUser, string inputName)
 {
 	unordered_map<string, Footballer> currentsquad;
@@ -107,12 +128,10 @@ string User::CheckingPlayer(string status, Teams team, User currentUser, string 
 		return "";
 	}
 }
-void User::typosLayout(User currentUser)
-{
 
 
 
-}
+
 vector<string> User::ToVector(unordered_map<string, Footballer> map)
 {
 	vector<string> Squad;
@@ -142,8 +161,6 @@ void User::fromSubtoMain(unordered_map<string, Footballer>& mainSquad, unordered
 		}
 	}
 }
-;
-
 
 
 
@@ -163,7 +180,7 @@ choice:
 	cin >> choice;
 	if (choice == 1)
 	{
-		Teams team;
+		string team;
 		string footballerName;
 		char ans;
 	invalid:
@@ -173,7 +190,7 @@ choice:
 
 		cin >> footballerName;
 
-		string existPlayer = avoidTypos(footballerName, team, currentUser, "sell");
+		string existPlayer = avoidTypos(footballerName, currentUser, "sell", { League() }, team);
 
 
 
@@ -184,7 +201,6 @@ choice:
 		if (existPlayer == "existMain")
 		{
 			//the player is from main squad
-
 			showPlayerInfo(MainSquad.at(footballerName));
 			do
 			{
@@ -221,7 +237,7 @@ choice:
 				{
 				case 1:
 
-					sellFunction(currentUser, footballerName, "sub");
+					sellFunction(currentUser, existPlayer, "sub");
 					fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
 					ShowSquad(currentUser, Users);
 					break;
@@ -409,11 +425,12 @@ void User::Substitution(User& currentUser, unordered_map<string, User>& Users) {
 	string existPlayer;
 	Footballer tempPlayer;
 	Teams team;
+	string Name;
 invalid_main:
 	cout << "Choose player from your main squad to change him (Use the Name)" << endl;
 	cin >> PlayerName1;
 
-	existPlayer = avoidTypos(PlayerName1, team, currentUser, "sell");
+	existPlayer = avoidTypos(PlayerName1, currentUser, "sell", { League() }, Name);
 	regex pattern(R"(main)");
 	if (existPlayer == "existMain")
 	{
@@ -452,7 +469,7 @@ invalid_main:
 invalid_Sub:
 	cout << "Choose player from your substitutions to let him play (Use the name)" << endl;
 	cin >> PlayerName2;
-	existPlayer = avoidTypos(PlayerName2, team, currentUser, "sell");
+	existPlayer = avoidTypos(PlayerName2, currentUser, "sell", {}, Name);
 	if (existPlayer == "existSub")
 	{
 		Footballer Subplayer = currentUser.GetSubstitutionSquad().at(PlayerName2);
