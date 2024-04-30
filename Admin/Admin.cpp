@@ -167,7 +167,7 @@ void Admin::EditProfile(unordered_map<string, User>& Users, User currentUser)
 {
 	bool valid = false;
 	int choice;
-	choices:
+choices:
 	cout << "1-Edit Full Name.\n2-Edit Username\n3-Edit Email Address.\n4-Edit Phone Number.\n5-Edit Password.\n6-Edit Balance\n7-Edit Points\n8-Edit Rank\n9-Go Back" << endl;
 	cout << "Enter your choice: ";
 	cin >> choice;
@@ -183,12 +183,12 @@ void Admin::EditProfile(unordered_map<string, User>& Users, User currentUser)
 		valid = true;
 		auto it = Users.find(currentUser.GetUsername());//old username
 		UserValidations::usernameCheck(Users, currentUser);
-		if (it != Users.end()) 
+		if (it != Users.end())
 		{
-			Users.insert({ currentUser.GetUsername(), it->second});//updated username
+			Users.insert({ currentUser.GetUsername(), it->second });//updated username
 			Users.erase(it);//erasing old username
 		}
-		else 
+		else
 		{
 			cout << "Username Not Found" << endl;
 			valid = false;
@@ -253,7 +253,7 @@ void Admin::EditProfile(unordered_map<string, User>& Users, User currentUser)
 		ViewProfile(Users, currentUser);
 	}
 }
-void Admin::UserSquadAndPlayers(unordered_map<string, User>&Users)
+void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
 {
 	if (answer)
 	{
@@ -287,7 +287,7 @@ void Admin::DeleteUser(unordered_map<string, User>& Users)
 {
 	User CurrentUser;
 	string userName;
-	if (counter==0)
+	if (counter == 0)
 	{
 		cout << "No Users To Delete" << endl;
 		AboutUsers(Users);
@@ -344,8 +344,14 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 	answer = false;
 }
 
+void Admin::UpdatePlayersInTeam(string Leaguename, map<string, Teams> teams)
+{
+	Footballer PlayerToUpdate;
+	for_each(teams.begin(), teams.end(), [](pair<string, Teams> pair) {
+		PlayerToUpdate = pair.second.getFootballPlayer();
+		});
 
-
+}
 
 void Admin::PauseAndClear()
 {
