@@ -84,7 +84,7 @@ map<string, unordered_map<string, Footballer>> fileManipulation::getFootballersO
 	return parsedFootballersOfTeam;
 }
 
-unordered_map<string, User> fileManipulation::getUsersData() {
+unordered_map<string, User> fileManipulation::getUsersData(map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> usersSquads) {
 	string filename = "userData.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s*----\s*)";
@@ -92,7 +92,7 @@ unordered_map<string, User> fileManipulation::getUsersData() {
 
 	regex = R"(\n)";
 
-	return parseUsers(parts, regex);
+	return parseUsers(parts, regex, usersSquads);
 }
 
 
@@ -154,20 +154,20 @@ pair<string, unordered_map<string, Footballer>> fileManipulation::parseFootballe
 
 pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>> fileManipulation::parseUserSquads(vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>> footballersOfTeam) {
 	return make_pair(
-		parseSquad(MAIN, userIdMainSubSquads, regex, footballersOfTeam), 
+		parseSquad(MAIN, userIdMainSubSquads, regex, footballersOfTeam),
 		parseSquad(SUBSTITUTION, userIdMainSubSquads, regex, footballersOfTeam)
 	);
 }
 
 
-unordered_map<string, User> fileManipulation::parseUsers(vector<string> parts, string regex) {
+unordered_map<string, User> fileManipulation::parseUsers(vector<string> parts, string regex, map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> usersSquads) {
 	unordered_map<string, User> parsedUsers;
 
 	for (size_t i = 1; i < parts.size(); ++i) {
 		vector<string> userLines = splitByRegex(parts[i], regex);
 
 		parsedUsers.insert(
-			make_pair(userLines[2], parseUser(userLines))
+			make_pair(userLines[2], parseUser(userLines, usersSquads))
 		);
 	}
 
@@ -236,8 +236,10 @@ Footballer fileManipulation::parseFootballer(vector<string> footballerLines, str
 
 unordered_map<string, Footballer> fileManipulation::getSquadUsingAllFootballers(vector<string>userTeamAndFootballerNames, map<string, unordered_map<string, Footballer>> footballersOfTeam) {
 	unordered_map<string, Footballer> squad;
+
 	for (size_t i = 1; i < userTeamAndFootballerNames.size(); i++) {
 		unordered_map<string, Footballer> allFootballersInTeam = footballersOfTeam.at(userTeamAndFootballerNames[0]);
+
 		squad.insert(
 			make_pair(userTeamAndFootballerNames[i], allFootballersInTeam.at(userTeamAndFootballerNames[i])
 			)
@@ -246,7 +248,7 @@ unordered_map<string, Footballer> fileManipulation::getSquadUsingAllFootballers(
 	return squad;
 }
 
-User fileManipulation::parseUser(vector<string> userLines) {
+User fileManipulation::parseUser(vector<string> userLines, map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> usersSquads) {
 	int userID = stoi(userLines[0], nullptr);
 	string fullname = userLines[1];
 	string username = userLines[2];
@@ -256,13 +258,35 @@ User fileManipulation::parseUser(vector<string> userLines) {
 	int rank = stoi(userLines[6], nullptr);
 	int points = stoi(userLines[7], nullptr);
 	float balance = stof(userLines[8], nullptr);
+	unordered_map<string, Footballer> mainSquad = {};
+	unordered_map<string, Footballer> substitutionSquad = {};
 
-	return User(userID, fullname, username, email, password, phoneNumber, rank, points, balance);
+	try {
+		mainSquad = usersSquads.at(userID).first;
+	}
+	catch (const std::exception&) {
+		cout << "User \"" << fullname << "\" has 0 Footballers in his main Squad." << endl;
+	}
+
+	try {
+		substitutionSquad = usersSquads.at(userID).second;
+	}
+	catch (const std::exception&) {
+		cout << "User \"" << fullname << "\" has 0 Footballers in his substitution Squad." << endl;
+	}
+
+	return User(userID, fullname, username, email, password, phoneNumber, rank, points, balance, mainSquad, substitutionSquad);
 }
-
 unordered_map<string, Footballer> fileManipulation::parseSquad(Squad squadType, vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>> footballersOfTeam) {
-	vector<string> userTeamsAndFootballerNames = splitByRegex(userIdMainSubSquads[squadType], regex);
+	vector<string> userTeamsAndFootballerNames;
 	unordered_map<string, Footballer> footballers;
+	try {
+		userTeamsAndFootballerNames = splitByRegex(userIdMainSubSquads[squadType], regex);
+	}
+	catch (const std::exception&) {
+		cout << "Found (0) Footballers in " << (userIdMainSubSquads.size() == 2 ? "SUBSTITUTION Squad" : "MAIN and SUBSTITUTION Squads") << " of User ID : (" << userIdMainSubSquads[0] << ")" << endl;
+		return {};
+	}
 
 	regex = R"(\n)";
 
@@ -344,10 +368,14 @@ map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballe
 	string regex = R"(\s*----------------\s*)";
 	vector<string> parts = splitByRegex(file_data, regex);
 	map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> parsedUserSquads;
+
 	for (size_t i = 1; i < parts.size(); ++i) {
+		vector<string> userIdMainSubSquads;
+		int userID;
+
 		regex = R"(\s*--------\s*)";
-		vector<string> userIdMainSubSquads = splitByRegex(parts[i], regex);
-		int userID = stoi(userIdMainSubSquads[0], nullptr);
+		userIdMainSubSquads = splitByRegex(parts[i], regex);
+		userID = stoi(userIdMainSubSquads[0], nullptr);
 		regex = R"(\s*----\s*)";
 
 		parsedUserSquads.insert(

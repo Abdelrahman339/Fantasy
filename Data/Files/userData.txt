@@ -9,7 +9,7 @@ int Points
 float Balance
 ----
 1
-Alice Johnson 
+Alice Johnson
 _alice_johnson92
 alice.johnson92@hotmail.com
 123
@@ -29,7 +29,7 @@ william.lee81@yahoo.com
 34567.23
 ----
 3
-Olivia Brown 
+Olivia Brown
 cheerful_liv
 olivia.brown.cheerful@gmail.com
 123
