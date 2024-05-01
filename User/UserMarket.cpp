@@ -127,6 +127,7 @@ Footballer User::returnPlayer(string footballerName, User currentUser, string st
 	string teamName = "";
 	string nameOfFootballer = avoidTypos(footballerName, currentUser, "buy", leagues, teamName);
 	Footballer TargetedFootballer;
+	bool found = false;
 	for (int i = 0; i < leagues.size(); i++)
 	{
 		for (auto currentTeam : leagues[i].GetTeams()) {
@@ -136,17 +137,24 @@ Footballer User::returnPlayer(string footballerName, User currentUser, string st
 				try
 				{
 					TargetedFootballer = currentTeam.second.getFootballPlayer().at(nameOfFootballer);
+					found = true;
 				}
 				catch (const exception&)
 				{
-					return Footballer();
+					continue;
 				}
 
 			}
 		}
 	}
+	if (found == true)
+	{
 
-	return TargetedFootballer;
+		return TargetedFootballer;
+	}
+	else {
+		return Footballer();
+	}
 
 }
 
