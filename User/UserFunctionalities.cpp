@@ -97,35 +97,42 @@ string User::CheckingPlayer(string status, Teams team, User currentUser, string 
 		currentsquad = team.getFootballPlayer();
 	}
 
+	try
+	{
+		return currentsquad.at(inputName).GetName();
+	}
+	catch (const std::exception&)
+	{
+		int minErrors = 10000;
+		string matchedPlayer;
+		for (auto kv : currentsquad) {
 
-	int minErrors = 10000;
-	string matchedPlayer;
-	for (auto kv : currentsquad) {
-
-		string currentPlayerName = kv.first;
-		int errors = 0;
-		for (int i = 0; i < min(inputName.size(), currentPlayerName.size()); ++i) {
-			if (inputName[i] != currentPlayerName[i]) {
-				errors++;
-				if (errors > 2) {
-					break;
+			string currentPlayerName = kv.first;
+			int errors = 0;
+			for (int i = 0; i < min(inputName.size(), currentPlayerName.size()); ++i) {
+				if (inputName[i] != currentPlayerName[i]) {
+					errors++;
+					if (errors > 2) {
+						break;
+					}
 				}
 			}
+			if (errors < minErrors) {
+				minErrors = errors;
+				matchedPlayer = currentPlayerName;
+			}
 		}
-		if (errors < minErrors) {
-			minErrors = errors;
-			matchedPlayer = currentPlayerName;
-		}
-	}
-	if (minErrors < 3 && inputName.size()>3)
-	{
-		return matchedPlayer;
+		if (minErrors < 3 && inputName.size()>3)
+		{
+			return matchedPlayer;
 
+		}
+		else
+		{
+			return "";
+		}
 	}
-	else
-	{
-		return "";
-	}
+
 }
 
 
@@ -352,6 +359,8 @@ choice:
 
 
 	else if (choice == 2) {
+
+
 		cout << "Available formats:" << endl;
 		cout << "1- 3 4 3 \n2- 4 3 3\n3- 4 4 2";
 		cout << "Choose your new format" << endl;
@@ -376,13 +385,15 @@ choice:
 
 		}
 	}
+
+
 	else if (choice == 3)
 	{
 		Substitution(currentUser, Users);
 	}
 	else if (choice == 4)
 	{
-		//userMenu(currentUser, Users,);
+		return;
 	}
 	else
 	{
@@ -561,7 +572,7 @@ void User::profile(User& currentUser, unordered_map<string, User>& Users) {
 	}
 	else if (choice == 2)
 	{
-		//userMenu(currentUser, Users);
+		return;
 	}
 };
 

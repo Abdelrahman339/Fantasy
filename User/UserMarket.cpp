@@ -13,7 +13,7 @@ using namespace std;
 
 void User::Market(User& currentUser, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector <League> leagues)
 {
-	string FootballerName;
+
 	cout << "Fatntasy Market" << endl;
 	int choice = 0;
 	//User::showtopPlayer(TopPlayer, currentUser, Users, team);
@@ -28,9 +28,17 @@ invalid:
 		//TopPlayer
 	}
 	else if (choice == 3) {
+		string FootballerName;
+		Format343(currentUser.GetMainSquad());
+		cout << endl << endl << endl;
+		showSubstitutions(currentUser.GetSubstitutionSquad());
+		cout << endl << endl;
+
 		cout << "Enter Footballer name that you want to sell." << endl;
-		cin >> FootballerName;
+		getline(cin >> ws, FootballerName);
 		sell(currentUser, TopPlayer, Users, FootballerName);
+		system("cls");
+		Market(currentUser, TopPlayer, Users, leagues);
 	}
 	else if (choice == 4) {
 		User::userMenu(currentUser, Users, leagues);
@@ -191,8 +199,8 @@ bool User::sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, 
 
 
 	char ans;
-	Teams name;
-	string playerExist = User::avoidTypos(footballerName, currentUser, "sell", {}, name);
+	Teams TeamName;
+	string playerExist = User::avoidTypos(footballerName, currentUser, "sell", {}, TeamName);
 
 
 
@@ -205,7 +213,7 @@ bool User::sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, 
 	}
 
 	//the player exist in sub squad
-	else if ("existSub")
+	else if (playerExist == "existSub")
 	{
 		sellFunction(currentUser, footballerName, "sub");
 		return true;

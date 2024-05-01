@@ -32,20 +32,20 @@ int main() {
 	map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
 	unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
 	User user = users.at("_alice_johnson92");
-	unordered_map<string, Footballer> squad = user.GetMainSquad();
-	string footballerName = "Eden Hazard";
+	//unordered_map<string, Footballer> squad = user.GetMainSquad();
+	//string footballerName = "Eden Hazard";
 
-	cout << endl;
+	//cout << endl;
 
-	try {
-		cout << footballerName << "\'s Price in market is: " << squad.at(footballerName).GetPrice() << endl;
-	}
-	catch (const std::exception&) {
-		cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
-	}
+	//try {
+	//	cout << footballerName << "\'s Price in market is: " << squad.at(footballerName).GetPrice() << endl;
+	//}
+	//catch (const std::exception&) {
+	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
+	//}
 
 
-	user.userMenu(user,users, leagues);
+	user.homePage(users,leagues);
 	
 }
 

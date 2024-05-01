@@ -80,9 +80,9 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
 	///////////////////////////////////////////////////////////////////////////////////
-	void static homePage(unordered_map<string, User>& Users);
+	void static homePage(unordered_map<string, User>& Users,vector <League> leagues);
 
-	void static toLogin(unordered_map<string, User>& Users);
+	void static toLogin(unordered_map<string, User>& Users,vector <League> leagues);
 	User static login(unordered_map<string, User>& users, string username, string password);
 	void static signup(unordered_map<string, User>& Users);
 	string static hidePassword(string username);
