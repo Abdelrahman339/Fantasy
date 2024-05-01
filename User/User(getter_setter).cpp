@@ -17,9 +17,9 @@ User::User() {
 	this->points = 0;
 	this->balance = 0;
 }
-//, unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad
+
 User::User(int id, string fullName, string username, string Email, string password,
-	string phoneNumber, int rank, int points, float balance) {
+	string phoneNumber, int rank, int points, float balance, unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad) {
 	this->fullName = fullName;
 	this->username = username;
 	this->password = password;
@@ -29,8 +29,8 @@ User::User(int id, string fullName, string username, string Email, string passwo
 	this->rank = rank;
 	this->points = points;
 	this->balance = balance;
-	//this->TheMainSquad = mainSquad;
-	//this->SubstitutionSquad = substitutionSquad;
+	this->TheMainSquad = mainSquad;
+	this->SubstitutionSquad = substitutionSquad;
 }
 
 
