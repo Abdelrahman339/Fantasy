@@ -60,7 +60,7 @@ void User::toLogin(unordered_map<string, User>& Users) {
 		{
 			system("pause");
 			system("cls");
-			userMenu(CurrentUser, Users);
+			//userMenu(CurrentUser, Users);
 			return;
 		}
 		else
@@ -101,7 +101,7 @@ void User::signup(unordered_map<string, User>& Users)
 	UserValidations::signupinfo(&newUser, "EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
 	Users.insert_or_assign(newUser.username, newUser);
 }
-void User::userMenu(User& currentUser, unordered_map<string, User>& Users)
+void User::userMenu(User& currentUser, unordered_map<string, User>& Users,vector <League> leagues)
 {
 	int choice;
 choice:
@@ -119,7 +119,8 @@ choice:
 	}
 	else if (choice == 3)
 	{
-		// market function
+		
+		Market(currentUser, {}, Users, leagues);
 	}
 	else if (choice == 4)
 	{

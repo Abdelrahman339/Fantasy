@@ -8,18 +8,21 @@
 #include "User.h"
 #include "Leagues.h"
 #include <regex>
+#include <string>
 using namespace std;
 
-void User::Market(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users)
+void User::Market(User& currentUser, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector <League> leagues)
 {
 	string FootballerName;
 	cout << "Fatntasy Market" << endl;
 	int choice = 0;
-	User::showtopPlayer(TopPlayer, currentUser, Users, team);
+	//User::showtopPlayer(TopPlayer, currentUser, Users, team);
 invalid:
 	cout << "1-search.\n2-Choose Top player.\n3-Sell your players.\n4-Go back." << endl;
+	cin >> choice;
 	if (choice == 1) {
-		//search
+		search(currentUser, leagues);
+		userMenu(currentUser, Users, leagues);
 	}
 	else if (choice == 2) {
 		//TopPlayer
@@ -27,10 +30,10 @@ invalid:
 	else if (choice == 3) {
 		cout << "Enter Footballer name that you want to sell." << endl;
 		cin >> FootballerName;
-		sell(currentUser, team, TopPlayer, Users, FootballerName);
+		sell(currentUser, TopPlayer, Users, FootballerName);
 	}
 	else if (choice == 4) {
-		User::userMenu(currentUser, Users);
+		User::userMenu(currentUser, Users, leagues);
 	}
 	else {
 		cout << "Invalid input.Please try again." << endl;
@@ -71,7 +74,7 @@ invalid:
 		replace(currentUser, team, TopPlayer, Users);
 	}
 	else if (choice == 4) {
-		Market(currentUser, team, TopPlayer, Users);
+		//Market(currentUser, team, TopPlayer, Users);
 	}
 	else {
 		cout << "Invalid choice.Please select valid choice" << endl;
@@ -82,7 +85,7 @@ invalid:
 }
 
 
-void User::search(string footballerName, Teams team, User currentUser, string status, vector<League>  leagues)
+void User::search(User& currentUser, vector<League>  leagues)
 {
 	// all the variables declartion
 	int ans;
@@ -94,12 +97,12 @@ invalid:
 	// the user enter a name either of (Player name) , (Team name).
 	cout << "You can search by teams or the name of footballer." << endl;
 
-	cin >> search;
+	getline(cin >> ws, search);
 	//function typos start here to check if the user enterd any wrong Player name.after this function is done it return a object of type footballer
 	targetFootballer = returnPlayer(search, currentUser, "buy", leagues, footballerTeam);
 
 	//funcion find team to find the team that the user entered
-	Teams* teams = findTeam(leagues, search);
+	Teams Wantedteam = findTeam(leagues, search);
 
 	//checking if the object of footballer is empty or not 
 	if (!targetFootballer.GetName().empty())
@@ -111,6 +114,7 @@ invalid:
 		{
 		case 1:
 			buyFunction(currentUser, targetFootballer);
+
 		case 2:
 
 		default:
@@ -120,10 +124,14 @@ invalid:
 
 
 	//checking if the find team return a team or a nullptr
-	else if (teams != nullptr)
+	else if (!Wantedteam.getName().empty())
 	{
-		User::Format343(teams->getFootballPlayer());
+		User::Format343(Wantedteam.getFootballPlayer());
+
 	}
+
+
+	// the two method return false value so the user entered a wrong team and footballer name
 	else
 	{
 		cout << "please enter a valid Team name or Footabller name" << endl;
@@ -138,10 +146,10 @@ Footballer User::returnPlayer(string footballerName, User currentUser, string st
 	string nameOfFootballer = avoidTypos(footballerName, currentUser, "buy", leagues, footballerTeam);
 	Footballer TargetedFootballer;
 	bool found = false;
-	auto it = footballerTeam.getFootballPlayer().find(nameOfFootballer);
-	if (it != footballerTeam.getFootballPlayer().end())
+	int it = footballerTeam.getFootballPlayer().count(nameOfFootballer);
+	if (it > 0)
 	{
-		TargetedFootballer = it->second;
+		TargetedFootballer = footballerTeam.getFootballPlayer().at(nameOfFootballer);
 		return TargetedFootballer;
 	}
 	else
@@ -155,15 +163,15 @@ Footballer User::returnPlayer(string footballerName, User currentUser, string st
 
 
 
-Teams* User::findTeam(vector<League> leagues, string TeamName)
+Teams User::findTeam(vector<League> leagues, string TeamName)
 {
-	Teams* teamFound = nullptr;
+	Teams teamFound;
 	for (int i = 0; i < leagues.size(); i++)
 	{
 		map<string, Teams> teamsInLeagus = leagues.at(i).GetTeams();
 		int TeamExist = teamsInLeagus.count(TeamName);
 		if (TeamExist > 0) {
-			teamFound = &teamsInLeagus.at(TeamName);
+			teamFound = teamsInLeagus.at(TeamName);
 		}
 
 	}
@@ -179,7 +187,7 @@ Teams* User::findTeam(vector<League> leagues, string TeamName)
 
 
 
-bool User::sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName) {
+bool User::sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName) {
 
 
 	char ans;
@@ -315,16 +323,16 @@ invalid:
 		cin >> ans;
 		if (ans == 'y')
 		{
-			cout << "Player bought successfully." << endl;
+
 
 
 			buyFunction(currentUser, wantedFootballer);
 
-			Market(currentUser, team, TopPlayer, Users);
+			//Market(currentUser, team, TopPlayer, Users);
 
 		}
 		else if (ans == 'n') {
-			Market(currentUser, team, TopPlayer, Users);
+			//Market(currentUser, team, TopPlayer, Users);
 		}
 		else {
 			cout << "Please enter a valid option." << endl;
@@ -346,11 +354,11 @@ invalid:
 		//asking the user if he is the wanted player or not
 		if (ans == 'y')
 		{
-			cout << "Player bought successfully." << endl;
+
 
 			buyFunction(currentUser, wantedFootballer);
 
-			Market(currentUser, team, TopPlayer, Users);
+			//Market(currentUser, team, TopPlayer, Users);
 
 		}
 		else if (ans == 'n') {
@@ -380,15 +388,31 @@ invalid:
 void User::buyFunction(User& currentUser, Footballer footballer)
 {
 	float FootballerPrice = footballer.GetPrice();
-	currentUser.addBalance(-FootballerPrice);
+	float currentBalance = currentUser.GetBalance();
 
+	if (!checkBalance(currentBalance, FootballerPrice))
+	{
 
-	currentUser.SetFootballer(footballer);
+		cout << "you don't have enough money to buy this player." << endl;
+		return;
+	}
+	if (currentUser.SetFootballer(footballer)) {
+		currentUser.addBalance(-FootballerPrice);
+		cout << "Player bought successfully." << endl;
+	}
 };
 
 
 
 
+
+bool User::checkBalance(float& currentUserBalance, float& footballerPrice)
+{
+
+	return currentUserBalance > footballerPrice;
+
+
+}
 
 void User::replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users) {
 

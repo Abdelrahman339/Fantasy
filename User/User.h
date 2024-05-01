@@ -47,7 +47,7 @@ public:
 	void AddPoints(int points);
 	void SetBalance(float balance);
 	void addBalance(float balance);
-	void SetFootballer(Footballer footbaler);
+	bool SetFootballer(Footballer footbaler);
 	string GetFullName();
 	string GetUsername();
 	string GetPassword();
@@ -86,7 +86,7 @@ public:
 	User static login(unordered_map<string, User>& users, string username, string password);
 	void static signup(unordered_map<string, User>& Users);
 	string static hidePassword(string username);
-	void static userMenu(User& currentUser, unordered_map<string, User>& Users);
+	void static userMenu(User& currentUser, unordered_map<string, User>& Users, vector <League> leagues);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Squad and Format
@@ -110,18 +110,20 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//Market functions
 	///////////////////////////////////////////////////////////////////////////////////
-	void Market(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
-	void showtopPlayer(unordered_map<string, Footballer> TopPlayer, User& currentUser, unordered_map<string, User>& Users, Teams& team);
+	void static Market(User& currentUser, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector<League>leageus);
+	void static showtopPlayer(unordered_map<string, Footballer> TopPlayer, User& currentUser, unordered_map<string, User>& Users, Teams& team);
 
-	bool sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName);
+	bool static sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName);
 	void static sellFunction(User& currentUser, string footballerName, string stauts);
-	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector<League> leagues);
-	void buyFunction(User& currentUser, Footballer footballer);
-	void replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+	void static buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector<League> leagues);
+	void static buyFunction(User& currentUser, Footballer footballer);
 
-	void search(string footballerName, Teams team, User currentUser, string status, vector<League> leagues);
-	Footballer returnPlayer(string footballerName, User currentUser, string status, vector<League>  leagues, Teams& footballerTeam);
-	Teams* findTeam(vector<League> league, string TeamName);
+	bool static checkBalance(float& currentUserBalance, float& footballerPrice);
+	void static replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+
+	void static search(User& currentUser, vector<League> leagues);
+	Footballer static returnPlayer(string footballerName, User currentUser, string status, vector<League>  leagues, Teams& footballerTeam);
+	Teams static  findTeam(vector<League> league, string TeamName);
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////

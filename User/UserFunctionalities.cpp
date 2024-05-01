@@ -71,10 +71,9 @@ pair<string, Teams> User::getTeam(vector<League> allLeagues, User currentUser, s
 			if (playerExist.first.empty()) {
 				continue;
 			}
-			else
-			{
-				break;
-			}
+
+			return playerExist;
+
 		}
 	}
 
@@ -108,7 +107,7 @@ string User::CheckingPlayer(string status, Teams team, User currentUser, string 
 		for (int i = 0; i < min(inputName.size(), currentPlayerName.size()); ++i) {
 			if (inputName[i] != currentPlayerName[i]) {
 				errors++;
-				if (errors > 3) {
+				if (errors > 2) {
 					break;
 				}
 			}
@@ -188,7 +187,7 @@ choice:
 		cout << "Enter your footballer name " << endl;
 
 
-		cin >> footballerName;
+		getline(cin >> ws, footballerName);
 
 		string existPlayer = avoidTypos(footballerName, currentUser, "sell", { League() }, team);
 
@@ -383,7 +382,7 @@ choice:
 	}
 	else if (choice == 4)
 	{
-		userMenu(currentUser, Users);
+		//userMenu(currentUser, Users,);
 	}
 	else
 	{
@@ -562,7 +561,7 @@ void User::profile(User& currentUser, unordered_map<string, User>& Users) {
 	}
 	else if (choice == 2)
 	{
-		userMenu(currentUser, Users);
+		//userMenu(currentUser, Users);
 	}
 };
 
