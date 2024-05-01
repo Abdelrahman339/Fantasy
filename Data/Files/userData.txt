@@ -1,0 +1,11 @@
+﻿string fullName;
+string username;
+string password;
+string phoneNumber;
+string Email;
+int rank;
+int points;
+float balance;
+
+int id;
+---------------------------------

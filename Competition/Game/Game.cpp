@@ -66,31 +66,32 @@ void Game::displayStatisitcs(Game currentGame)
 	}
 }
 
-//Game::Game()
-//{
-//	       awayTeam = Teams();
-//        homeTeam = Teams();
-//        winningTeam = "";
-//        score = "";
-//        manOfTheMatch = "";
-//        statistics = "";
-//        date = "";
-//        GameId = 0;
-//}
-//
-//
-//
-//Game::Game(Teams& away, Teams& home, string& winTeam, string& score, string& motm, string& stats, stack<HighlightsOfTheMatch>& highlights, string& date, int id)
-//{
-//	this->awayTeam = away;
-//	this->homeTeam = home;
-//	this->winningTeam = winTeam;
-//	this->score = score;
-//	this->manOfTheMatch = motm;
-//	this->statistics = stats;
-//	this->highlightsOfTheMatch = highlights;
-//	this->date = date;
-//}
+Game::Game()
+{
+	       awayTeam = Teams();
+        homeTeam = Teams();
+        winningTeam = "";
+        score = "";
+        manOfTheMatch = "";
+        statistics = "";
+        date = "";
+        GameId = 0;
+}
+//, Teams home, Teams away
+
+Game::Game(int id, string winTeam, string score,
+	string stats, stack<HighlightsOfTheMatch> highlights, string motm, string date)
+{
+	this->GameId = id;
+	//this->awayTeam = away;
+	//this->homeTeam = home;
+	this->winningTeam = winTeam;
+	this->score = score;
+	this->manOfTheMatch = motm;
+	this->statistics = stats;
+	this->highlightsOfTheMatch = highlights;
+	this->date = date;
+}
 
 void Game::displayPlayerHighlights(Game CurrentGame) {
 

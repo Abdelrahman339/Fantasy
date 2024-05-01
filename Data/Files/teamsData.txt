@@ -1,4 +1,5 @@
 Name of Team (Unique)
+league
 Points
 Number of Wins
 Number of Losses
@@ -18,7 +19,7 @@ La Liga
 4
 7
 ----
-Atletico
+Atletico Madrid
 La Liga
 64
 20
@@ -88,7 +89,7 @@ Serie A
 5
 11
 ----
-Milan
+Inter Milan
 Serie A
 70
 21
@@ -102,7 +103,7 @@ Serie A
 10
 11
 ----
-Roma
+AS Roma
 Serie A
 59
 17

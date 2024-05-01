@@ -1,12 +1,12 @@
 #include "HighlightsOfTheMatch.h"
 
-//HighlightsOfTheMatch::HighlightsOfTheMatch(string name, string contributes, string violation)
-//{
-//
-//	this->name = name;
-//	this->contributes = contributes;
-//	this->violation = violation;
-//}
+HighlightsOfTheMatch::HighlightsOfTheMatch(int GameId, string name, string contributes, string violation)
+{
+	this->GameId = GameId;
+	this->name = name;
+	this->contributes = contributes;
+	this->violation = violation;
+}
 
 void HighlightsOfTheMatch::setName(string name)
 {
@@ -36,4 +36,9 @@ string HighlightsOfTheMatch::getContributions()
 string HighlightsOfTheMatch::getViolation()
 {
 	return violation;
+}
+
+int HighlightsOfTheMatch::GetGameId()
+{
+	return this->GameId;
 }

@@ -4,6 +4,8 @@
 #include "Teams.h"
 using namespace std;
 
+
+
 //User::User(string fullName, string username, string password, string phoneNumber, string Email, int id, int rank, int points, float balance, unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad)
 //{
 //	this->fullName = fullName;

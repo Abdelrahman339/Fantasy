@@ -30,9 +30,12 @@ public:
 	void Deletion(unordered_map<string, User>& Users, User DeletedUser);
 
 	//teams
-
+	void UpdatePlayersInTeam(string Leaguename, map <string, Teams> teams);
+	void DeletePlayersInTeam(string Leaguename, map <string, Teams> teams);
 
 	//leagues
-
+	void DisplayAllLeagues(void);
+	void UpdateLeague(void);
+	void DeleteLeague(void);
 	void PauseAndClear();
 };

@@ -1,0 +1,2051 @@
+﻿Name of Team
+--------
+Name (Unique)
+Age
+Position
+Price in market
+Rating
+Total Goals
+Total Assists
+Total RedCards
+Total YellowCards
+Total Cleansheets
+Total Points
+----
+Name (Unique)
+Age
+Position
+Price in market
+Rating
+Total Goals
+Total Assists
+Total RedCards
+Total YellowCards
+Total Cleansheets
+Total Points
+----
+Name (Unique)
+Age
+Position
+Price in market
+Rating
+Total Goals
+Total Assists
+Total RedCards
+Total YellowCards
+Total Cleansheets
+Total Points
+----------------
+Manchester City
+--------
+Ederson
+29
+Goalkeeper
+35000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Joao Cancelo
+28
+Defender
+60000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Ruben Dias
+26
+Defender
+65000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Aymeric Laporte
+28
+Defender
+65000000
+8.1
+0
+0
+0
+0
+0
+0
+----
+Kyle Walker
+31
+Defender
+50000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Rodri
+25
+Midfielder
+62000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Kevin De Bruyne
+30
+Midfielder
+75000000
+9.0
+0
+0
+0
+0
+0
+0
+----
+Bernardo Silva
+27
+Midfielder
+70000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Phil Foden
+21
+Midfielder
+65000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Riyad Mahrez
+32
+Forward
+60000000
+8.7
+0
+0
+0
+0
+0
+0
+0
+----
+Gabriel Jesus
+25
+Forward
+65000000
+8.5
+0
+0
+0
+0
+0
+0
+0
+----------------
+Liverpool
+--------
+Alisson Becker
+30
+Goalkeeper
+60000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Trent Alexander-Arnold
+24
+Defender
+70000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Virgil van Dijk
+31
+Defender
+75000000
+9.0
+0
+0
+0
+0
+0
+0
+----
+Joel Matip
+31
+Defender
+35000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Andrew Robertson
+28
+Defender
+65000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Fabinho
+29
+Midfielder
+50000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Jordan Henderson
+33
+Midfielder
+40000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Thiago Alcantara
+32
+Midfielder
+60000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Sadio Mane
+30
+Forward
+70000000
+8.9
+0
+0
+0
+0
+0
+0
+----
+Mohamed Salah
+31
+Forward
+80000000
+9.1
+0
+0
+0
+0
+0
+0
+----
+Diogo Jota
+26
+Forward
+50000000
+8.8
+0
+0
+0
+0
+0
+0
+----------------
+Chelsea
+--------
+Edouard Mendy
+30
+Goalkeeper
+40000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Reece James
+24
+Defender
+50000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Antonio Rudiger
+29
+Defender
+40000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Andreas Christensen
+26
+Defender
+35000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Ben Chilwell
+26
+Defender
+60000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Jorginho
+31
+Midfielder
+50000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+N'Golo Kante
+32
+Midfielder
+70000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Mason Mount
+24
+Midfielder
+65000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Kai Havertz
+23
+Forward
+75000000
+8.9
+0
+0
+0
+0
+0
+0
+----
+Timo Werner
+28
+Forward
+70000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Christian Pulisic
+25
+Forward
+65000000
+8.7
+0
+0
+0
+0
+0
+0
+----------------
+Arsenal
+--------
+Bernd Leno
+29
+Goalkeeper
+4000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Hector Bellerin
+27
+Right-back
+6000000
+7.9
+0
+0
+0
+0
+0
+0
+----
+Gabriel Magalhaes
+25
+Centre-back
+8000000
+7.8
+0
+0
+0
+0
+0
+0
+----
+Ben White
+24
+Centre-back
+10000000
+7.7
+0
+0
+0
+0
+0
+0
+----
+Kieran Tierney
+25
+Left-back
+9000000
+8.0
+0
+0
+0
+0
+0
+0
+----
+Thomas Partey
+28
+Midfielder
+12000000
+8.1
+0
+0
+0
+0
+0
+0
+----
+Granit Xhaka
+30
+Midfielder
+10000000
+7.6
+0
+0
+0
+0
+0
+0
+----
+Bukayo Saka
+21
+Midfielder
+15000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Emile Smith Rowe
+22
+Midfielder
+13000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Martin Odegaard
+24
+Midfielder
+18000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Pierre-Emerick Aubameyang
+33
+Forward
+20000000
+8.7
+0
+0
+0
+0
+0
+0
+----------------
+Tottenham Hotspur
+--------
+Hugo Lloris
+36
+Goalkeeper
+8000000
+8.0
+0
+0
+0
+0
+0
+0
+----
+Serge Aurier
+29
+Right-back
+6000000
+7.5
+0
+0
+0
+0
+0
+0
+----
+Davinson Sanchez
+25
+Centre-back
+10
+7.8
+0
+0
+0
+0
+0
+0
+----
+Eric Dier
+28
+Centre-back
+8000000
+7.6
+0
+0
+0
+0
+0
+0
+----
+Sergio Reguilon
+25
+Left-back
+12000000
+7.9
+0
+0
+0
+0
+0
+0
+----
+Pierre-Emile Højbjerg
+26
+Midfielder
+15000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Tanguy Ndombele
+25
+Midfielder
+17000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Giovani Lo Celso
+25
+Midfielder
+16000000
+8.0
+0
+0
+0
+0
+0
+0
+----
+Son Heung-min
+29
+Forward
+25000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Harry Kane
+29
+Forward
+30000000
+9.0
+0
+0
+0
+0
+0
+0
+----
+Steven Bergwijn
+25
+Forward
+18000000
+7.7
+0
+0
+0
+0
+0
+0
+----------------
+Manchester United
+--------
+David de Gea
+32
+Goalkeeper
+10000000
+8.1
+0
+0
+0
+0
+0
+0
+----
+Aaron Wan-Bissaka
+25
+Right-back
+15000000
+8.0
+0
+0
+0
+0
+0
+0
+----
+Raphael Varane
+30
+Centre-back
+25000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Harry Maguire
+30
+Centre-back
+28000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Luke Shaw
+27
+Left-back
+20000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Scott McTominay
+25
+Midfielder
+18000000
+7.9
+0
+0
+0
+0
+0
+0
+----
+Fred
+29
+Midfielder
+16000000
+7.8
+0
+0
+0
+0
+0
+0
+----
+Bruno Fernandes
+28
+Midfielder
+35000000
+9.0
+0
+0
+0
+0
+0
+0
+----
+Jadon Sancho
+23
+Forward
+40000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Marcus Rashford
+25
+Forward
+35000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Mason Greenwood
+21
+Forward
+30000000
+8.5
+0
+0
+0
+0
+0
+0
+----------------
+Real Madrid
+--------
+Thibaut Courtois
+29
+Goalkeeper
+40000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Dani Carvajal
+30
+Right-back
+35000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Brahim Diaz
+24
+Midfielder
+50000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Sergio Ramos
+35
+Centre-back
+25000000
+8.9
+0
+0
+0
+0
+0
+0
+----
+Ferland Mendy
+25
+Left-back
+30000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Casemiro
+29
+Defensive midfielder
+60000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Luka Modric
+36
+Central midfielder
+20000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Toni Kroos
+32
+Central midfielder
+45000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Federico Valverde
+25
+Midfielder
+70000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Karim Benzema
+33
+Striker
+80000000
+9.0
+0
+0
+0
+0
+0
+0
+----
+Eden Hazard
+31
+Right winger
+65000000
+8.6
+0
+0
+0
+0
+0
+0
+----------------
+Barcelona
+--------
+Marc-Andre ter Stegen
+31
+Goalkeeper
+50000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Sergi Roberto
+30
+Right-back
+30000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Gerard Pique
+35
+Centre-back
+40000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Clement Lenglet
+27
+Centre-back
+35000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Jordi Alba
+33
+Left-back
+25000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Sergio Busquets
+33
+Defensive midfielder
+35000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Frenkie de Jong
+25
+Central midfielder
+60000000
+8.9
+0
+0
+0
+0
+0
+0
+----
+Pedri
+20
+Central midfielder
+70000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Ousmane Dembele
+24
+Left winger
+80000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Memphis Depay
+28
+Striker
+75000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Ansu Fati
+20
+Right winger
+90000000
+8.9
+0
+0
+0
+0
+0
+0
+----------------
+Atletico Madrid
+--------
+Jan Oblak
+29
+Goalkeeper
+60000000
+8.9
+0
+0
+0
+0
+0
+0
+----
+Kieran Trippier
+32
+Right-back
+35000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Jose Gimenez
+27
+Centre-back
+45000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Stefan Savic
+31
+Centre-back
+30000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Renan Lodi
+23
+Left-back
+40000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Koke
+30
+Central midfielder
+50000000
+6
+0
+0
+0
+0
+0
+0
+----
+Saul Niguez
+27
+Central midfielder
+55000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Marcos Llorente
+27
+Central midfielder
+65000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Angel Correa
+26
+Right winger
+45000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Luis Suarez
+35
+Striker
+25000000
+9.0
+0
+0
+0
+0
+0
+0
+----
+Joao Felix
+23
+Left winger
+70000000
+8.8
+0
+0
+0
+0
+0
+0
+----------------
+Sevilla
+--------
+Yassine Bounou
+30
+Goalkeeper
+30000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Jesus Navas
+36
+Right-back
+20000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Diego Carlos
+28
+Centre-back
+40000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Jules Kounde
+23
+Centre-back
+50000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Marcos Acuna
+29
+Left-back
+25000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Joan Jordan
+27
+Central midfielder
+30000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Ivan Rakitic
+34
+Central midfielder
+15000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Papu Gomez
+34
+Central midfielder
+35000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Suso
+28
+Right winger
+25000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Youssef En-Nesyri
+24
+Striker
+40000000
+8.9
+0
+0
+0
+0
+0
+0
+----
+Lucas Ocampos
+27
+Left winger
+45000000
+8.6
+0
+0
+0
+0
+0
+0
+----------------
+Valencia
+--------
+Jasper Cillessen
+33
+Goalkeeper
+20000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Thierry Correia
+22
+Right-back
+15000000
+7.9
+0
+0
+0
+0
+0
+0
+----
+Hugo Guillamon
+21
+Centre-back
+10000000
+7.8
+0
+0
+0
+0
+0
+0
+----
+Mouctar Diakhaby
+25
+Centre-back
+12000000
+8.0
+0
+0
+0
+0
+0
+0
+----
+Jose Gaya
+27
+Left-back
+25000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Carlos Soler
+25
+Central midfielder
+30000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Daniel Wass
+32
+Central midfielder
+20000000
+8.1
+0
+0
+0
+0
+0
+0
+----
+Uros Racic
+24
+Central midfielder
+18000000
+8.0
+0
+0
+0
+0
+0
+0
+----
+Goncalo Guedes
+25
+Right winger
+35000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Maxi Gomez
+25
+Striker
+40000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Gonzalo Plata
+21
+Left winger
+25000000
+8.2
+0
+0
+0
+0
+0
+0
+----------------
+Juventus
+--------
+Gianluigi Buffon
+45
+Goalkeeper
+10000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Danilo
+30
+Defender
+15000000
+7.8
+0
+0
+0
+0
+0
+0
+----
+Leonardo Bonucci
+35
+Defender
+20000000
+8.0
+0
+0
+0
+0
+0
+0
+----
+Matthijs de Ligt
+23
+Defender
+25000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Alex Sandro
+31
+Defender
+18000000
+7.9
+0
+0
+0
+0
+0
+0
+----
+Rodrigo Bentancur
+25
+Midfielder
+22000000
+8.1
+0
+0
+0
+0
+0
+0
+----
+Arthur
+25
+Midfielder
+30000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Weston McKennie
+24
+Midfielder
+20,000,000
+8.0
+0
+0
+0
+0
+0
+0
+----
+Federico Chiesa
+24
+Forward
+35000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Paulo Dybala
+29
+Forward
+40000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Moise Kean
+22
+Forward
+28000000
+8.2
+0
+0
+0
+0
+0
+0
+----------------
+Inter Milan
+--------
+Samir Handanovic
+38
+Goalkeeper
+12000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Milan skriniar
+27
+Defender
+30000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Stefan de Vrij
+30
+Defender
+25000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Alessandro Bastoni
+23
+Defender
+35000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Achraf Hakimi
+24
+Defender
+40000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Marcelo Brozovic
+29
+Midfielder
+28000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Nicolo Barella
+25
+Midfielder
+32000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Hakan calhanoglu
+28
+Midfielder
+38000000
+8.9
+0
+0
+0
+0
+0
+0
+----
+Lautaro Martinez
+25
+Forward
+45000000
+9.0
+0
+0
+0
+0
+0
+0
+----
+Alexis Sanchez
+33
+Forward
+20000000
+2
+0
+0
+0
+0
+0
+0
+----
+Joaquin Correa
+27
+Forward
+35000000
+8.5
+0
+0
+0
+0
+0
+0
+----------------
+AS Roma
+--------
+Rui Patricio
+34
+Goalkeeper
+15000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Rick Karsdorp
+27
+Defender
+20000000
+8.0
+0
+0
+0
+0
+0
+0
+----
+Chris Smalling
+32
+Defender
+25000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Roger Ibanez
+23
+Defender
+30000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Leonardo Spinazzola
+29
+Defender
+25000000
+8.1
+0
+0
+0
+0
+0
+0
+----
+Jordan Veretout
+28
+Midfielder
+35000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Bryan Cristante
+26
+Midfielder
+30000000
+8.3
+0
+0
+0
+0
+0
+0
+----
+Nicolo Zaniolo
+22
+Midfielder
+40000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Stephan El Shaarawy
+29
+Forward
+28000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Tammy Abraham
+24
+Forward
+45000000
+8.6
+0
+0
+0
+0
+0
+0
+----
+Carles Perez
+25
+Forward
+20000000
+8.0
+0
+0
+0
+0
+0
+0
+----------------
+Napoli
+--------
+Alex Meret
+25
+Goalkeeper
+18000000
+8.4
+0
+0
+0
+0
+0
+0
+----
+Giovanni Di Lorenzo
+27
+Defender
+22000000
+8.1
+0
+0
+0
+0
+0
+0
+----
+Kalidou Koulibaly
+30
+Defender
+50000000
+8.9
+0
+0
+0
+0
+0
+0
+----
+Kostas Manolas
+30
+Defender
+40000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Mario Rui
+31
+Defender
+20000000
+8.2
+0
+0
+0
+0
+0
+0
+----
+Fabian Ruiz
+25
+Midfielder
+60000000
+9.0
+0
+0
+0
+0
+0
+0
+----
+Tiemoue Bakayoko
+28
+Midfielder
+35000000
+8.5
+0
+0
+0
+0
+0
+0
+----
+Piotr Zieliński
+28
+Midfielder
+45000000
+8.7
+0
+0
+0
+0
+0
+0
+----
+Hirving Lozano
+26
+Forward
+50000000
+8.8
+0
+0
+0
+0
+0
+0
+----
+Lorenzo Insigne
+30
+Forward
+55000000
+8.9
+0
+0
+0
+0
+0
+0
+----
+Victor Osimhen
+24
+Forward
+60000000
+9.0
+0
+0
+0
+0
+0
+0
+
+

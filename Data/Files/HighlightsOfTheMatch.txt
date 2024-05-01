@@ -1,0 +1,102 @@
+Game ID
+--------
+Footballer Name
+Contributes
+Violations
+----
+Footballer Name
+Contributes
+Violations
+----------------
+1
+--------
+Toni Kroos
+Goals: 1 & Assists: 0
+None
+----
+Luka Modric
+Goals: 0 & Assists: 0
+Yellow Card
+----
+Jude Bellingham
+Goals: 0 & Assists: 0
+Yellow Card
+----
+Ferland Mendy
+Goals: 0 & Assists: 0
+Yellow Card
+----
+Thibaut Courtois
+Goals: 0 & Assists: 0
+None
+----
+Dani Carvajal
+Goals: 0 & Assists: 0
+None
+----
+Casemiro
+Goals: 0 & Assists: 0
+None
+----
+Karim Benzema
+Goals: 0 & Assists: 0
+None
+----
+Eden Hazard
+Goals: 0 & Assists: 0
+None
+----
+Federico Valverde
+Goals: 0 & Assists: 0
+None
+----
+Sergio Ramos
+Goals: 0 & Assists: 0
+None
+
+----
+
+Kieran Trippier
+Goals: 2 & Assists: 0
+None
+----
+Jose Gimenez
+Goals: 0 & Assists: 1
+None
+----
+Stefan Savic
+Goals: 0 & Assists: 2
+None
+----
+Renan Lodi
+Goals: 1 & Assists: 0
+None
+----
+Saul Niguez
+Goals: 0 & Assists: 0
+Yellow Card
+----
+Jan Oblak
+Goals: 0 & Assists: 0
+None
+----
+Marcos Llorente
+Goals: 0 & Assists: 0
+None
+----
+Koke
+Goals: 0 & Assists: 0
+None
+----
+Angel Correa
+Goals: 0 & Assists: 0
+None
+----
+Joao Felix
+Goals: 0 & Assists: 0
+None
+----
+Luis Suarez
+Goals: 0 & Assists: 0
+None
+----------------
