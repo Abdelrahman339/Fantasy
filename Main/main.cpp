@@ -12,21 +12,28 @@
 
 
 int main() {
-	//	League Data now Done! ==> Usage
-	//	map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
-	//	map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
-	//	vector<League> leagues =  fileManipulation::getLeagueData(Teams);
-	//	for (auto league: leagues)
-	//		for (auto team : league.GetTeams())
-	//			cout << team.first << endl;
+	////League Data now Done!==> Usage
+	//map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
+	//map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
+	//vector<League> leagues = fileManipulation::getLeagueData(Teams);
+	//for (auto league : leagues)
+	//	for (auto team : league.GetTeams())
+	//		cout << team.first << endl;
 
-	//	Get Games now Done! ==> USAGE
-	//	list<Game> games = fileManipulation::getGamesData();
-	//	for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
-	//		stack<HighlightsOfTheMatch> highlightsOfTheMatch = it->getHighlightsOfTheMatch();
-	//		if (!highlightsOfTheMatch.empty())
-	//			cout << highlightsOfTheMatch.top().getName() << endl;
-	//	}
+	////Get Games now Done!==> USAGE
+	//list<Game> games = fileManipulation::getGamesData();
+	//for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
+	//	stack<HighlightsOfTheMatch> highlightsOfTheMatch = it->getHighlightsOfTheMatch();
+	//	if (!highlightsOfTheMatch.empty())
+	//		cout << highlightsOfTheMatch.top().getName() << endl;
+	//}
+
+	////Get User now Done!==> USAGE
+	//unordered_map<string, User> users = fileManipulation::getUsersData();
+	//cout << users.at("william_l_81").GetId() << endl;
+
+	//map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
+	//cout << userSquads.size() << endl;
 
 	vector <string> players = { "Courtois","Carvajal","Rudiger","Tchouameni","Mendy","Camavinga","Kroos","Bellingham","Valverde","Rodrygo","Vinicius","Stegen","Koundé","Araújo","Cubarsí","Cancelo","Pedri","Gündoğan","Frenkie ","Lamine ","Lewandowski","Raphinha" };
 	unordered_map <string, Footballer> footballer;

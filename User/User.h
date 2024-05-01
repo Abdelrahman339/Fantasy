@@ -27,10 +27,10 @@ protected:
 	unordered_map <string, Footballer >SubstitutionSquad;
 public:
 
-	//User();
-	//User(string fullName, string username, string password, string phoneNumber,
-	//	string Email, int id, int rank, int points, float balance,
-	//	unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad);
+	User();
+	//unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad
+	User(int id, string fullName, string username, string Email, string password,
+		string phoneNumber, int rank, int points, float balance);
 
 	// getter and setter and constructor
 	///////////////////////////////////////////////////////////////////////////////////
