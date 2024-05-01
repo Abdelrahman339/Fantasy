@@ -45,9 +45,6 @@
     <ClCompile Include="Data\FileManipulation\fileManpulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Data\Teams\TeamsGetterSetter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="User\UserPlay.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -61,6 +58,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="User\UserMarket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Data\Teams\FootballerGetterSetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="User\TopUsers_Footballers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

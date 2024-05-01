@@ -422,7 +422,13 @@ void User::showPlayerInfo(Footballer footballer) {
 	cout << "Total red card this season:" << footballer.GetTotalRedCard() << endl;
 	cout << "--------------------------------------------------------------------------------\n" << endl;
 
-};
+}
+void User::showPlayerInfolayout()
+{
+
+
+}
+;
 
 // has errors 
 void User::Substitution(User& currentUser, unordered_map<string, User>& Users) { // has errors 

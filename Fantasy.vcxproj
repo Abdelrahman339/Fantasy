@@ -157,6 +157,7 @@
     <ClCompile Include="Data\Teams\Teams.cpp" />
     <ClCompile Include="Data\Teams\FootballerGetterSetter.cpp" />
     <ClCompile Include="Main\main.cpp" />
+    <ClCompile Include="User\TopUsers_Footballers.cpp" />
     <ClCompile Include="User\User(getter_setter).cpp" />
     <ClCompile Include="User\UserPlay.cpp" />
     <ClCompile Include="User\UserFunctionalities.cpp" />

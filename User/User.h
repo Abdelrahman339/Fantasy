@@ -5,6 +5,7 @@
 #include <deque>
 #include <stack>
 #include "unordered_map"
+#include <algorithm>
 #include "Teams.h"
 #include "Game.h"
 #include "Leagues.h"
@@ -80,9 +81,9 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
 	///////////////////////////////////////////////////////////////////////////////////
-	void static homePage(unordered_map<string, User>& Users,vector <League> leagues);
+	void static homePage(unordered_map<string, User>& Users, vector <League> leagues);
 
-	void static toLogin(unordered_map<string, User>& Users,vector <League> leagues);
+	void static toLogin(unordered_map<string, User>& Users, vector <League> leagues);
 	User static login(unordered_map<string, User>& users, string username, string password);
 	void static signup(unordered_map<string, User>& Users);
 	string static hidePassword(string username);
@@ -100,6 +101,8 @@ public:
 	int  static Formatdistance(string name, int space, bool remaining, string prev);
 	void static ShowSquad(User& currentUser, unordered_map<string, User>& Users);
 	void static showPlayerInfo(Footballer footballer);
+
+	void static showPlayerInfolayout();
 	void static Substitution(User& currentUser, unordered_map<string, User>& Users);
 	void static SubstituteFunction(User& currentUser, string subFootballer, Footballer mainFootballer);
 	///////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +114,6 @@ public:
 	//Market functions
 	///////////////////////////////////////////////////////////////////////////////////
 	void static Market(User& currentUser, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector<League>leageus);
-	void static showtopPlayer(unordered_map<string, Footballer> TopPlayer, User& currentUser, unordered_map<string, User>& Users, Teams& team);
 
 	bool static sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName);
 	void static sellFunction(User& currentUser, string footballerName, string stauts);
@@ -135,4 +137,27 @@ public:
 	void static findDuplicates(stack<string>& userTeams);
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
+
+	///////////////////////////////////////////////////////////////////////////////////
+	//Top Footballers functions
+	///////////////////////////////////////////////////////////////////////////////////
+
+	vector<Footballer> static GetAllFootballers(League league);// this function used to stor all the players in the league in a single vector 
+
+	vector <Footballer> static TopFootballersinLeague(vector <Footballer> Footballers); // this function takes a vector of all players in the league and return just the top 5 players .
+
+	void static toUnordredMap(unordered_map<string, Footballer>& topPlayers, vector<Footballer> top5players); // store the 3 vectors of top 5 players in each leageu into one single unordred map 
+
+	unordered_map <string, Footballer> static TopFootballers(vector <League> leageus);// this function used to return unordered map of top players in leageus (5 players per league).
+
+	void static showtopFootballers(unordered_map<string, Footballer> TopPlayer, User& currentUser, unordered_map<string, User>& Users, Teams& team);
+
+
+	/////////////////////////////////////////////////////////////////////////////////////
+	//Top Users functions
+	////////////////////////////////////////////////////////////////////////////////////
+
+	vector <User> moveTovector(unordered_map<string, User> Users);
+	void sortingUsers(vector<User> users);
+
 };
