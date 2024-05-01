@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include<Windows.h>
 #include "Admin.h"
 #include "User.h"
@@ -11,38 +12,86 @@ using namespace std;
 int counter = 0;
 bool answer = false;
 
+bool Admin::CheckAdmin()
+{
+	int count = 1;
+	string username, password;
+	do
+	{
+		cout << "Enter Admin Username " << endl;
+		cout << "Username: ";
+		cin >> username;
+		cout << "~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "Enter Admin Password " << endl;
+		cout << "Password: ";
+		cin >> password;
+		transform(username.begin(), username.end(), username.begin(), ::tolower);
+		transform(password.begin(), password.end(), password.begin(), ::tolower);
+		if ((username == "admin" && password == "admin") || (username == "1" && password == "1"))
+		{
+			PauseAndClear();
+			cout << endl << "~~~~~~~~ Welcome Back Admin! ~~~~~~~~" << endl;
+			return true;
+		}
+		else if (count == 3)
+		{
+			return false;
+		}
+		else
+		{
+			cout << endl << "Wrong Admin Username Or Password" << endl;
+			cout << "Please Try Again...  " << count << " / 3\n";
+			count++;
+			PauseAndClear();
+		}
+	} while (true);
+}
+
 void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/)
 {
-	int choice;
-	cout << "\t     Admin Menu" << endl;
-	cout << "--------------------------------------" << endl;
-Menu:
-	cout << "1-About Users \n2-About Teams \n3-About Leagues \n4-Go Back" << endl;
-	cout << "--------------------------------------" << endl;
-	cout << "Enter your choice: ";
-	cin >> choice;
-	cout << endl;
-	if (choice == 1)
+	if (CheckAdmin())
 	{
-		AboutUsers(Users/*, Team, League*/);
-	}
-	else if (choice == 2)
-	{
+		int choice;
+	Menu:
+		cout << endl << "\t     Admin Menu" << endl;
+		cout << "--------------------------------------" << endl;
+		cout << "1-About Users \n2-About Teams \n3-About Leagues \n4-Go Back" << endl;
+		cout << "--------------------------------------" << endl;
+		cout << "Enter your choice: ";
+		cin >> choice;
+		cout << endl;
+		if (choice == 1)
+		{
+			system("cls");
+			AboutUsers(Users/*, Team, League*/);
+		}
+		else if (choice == 2)
+		{
 
-	}
-	else if (choice == 3)
-	{
+		}
+		else if (choice == 3)
+		{
 
-	}
-	else if (choice == 4)
-	{
-		User::homePage(Users);
+		}
+		else if (choice == 4)
+		{
+			system("cls");
+			User::homePage(Users);
+		}
+		else
+		{
+			system("cls");
+			cout << endl << "Please select a valid choice.." << endl;
+			goto Menu;
+		}
 	}
 	else
 	{
-		cout << "Please select a valid choice." << endl;
+		cout << "Failed To Enter Admin Menu   3 / 3" << endl;
+		cout << "Going Back To Home Page..." << endl;
+		Sleep(3200);
 		system("cls");
-		goto Menu;
+		User::homePage(Users);
 	}
 }
 
@@ -50,6 +99,7 @@ void Admin::AboutUsers(unordered_map<string, User>& Users/*, unordered_map<strin
 {
 	int choice;
 Choose:
+	cout << endl;
 	DisplayAllUsers(Users);
 	cout << "1-Add New User \n2-About User \n3-User Squad And Players\n4-Delete User \n5-Go Back" << endl;
 	cout << "Enter your choice: ";
@@ -69,7 +119,6 @@ Choose:
 	}
 	else if (choice == 3)
 	{
-		answer = true;
 		UserSquadAndPlayers(Users);
 		PauseAndClear();
 		goto Choose;
@@ -87,8 +136,8 @@ Choose:
 	}
 	else
 	{
-		cout << "Please select a valid choice." << endl;
 		system("cls");
+		cout << endl << "Please select a valid choice.." << endl;
 		goto Choose;
 	}
 }
@@ -138,11 +187,13 @@ void Admin::ViewProfile(unordered_map<string, User>& Users, User currentUser)
 	cout << "Email Address:" << currentUser.GetEmail() << endl;
 	cout << "Phone number:" << currentUser.GetPhoneNumber() << endl;
 	cout << "Password:" << currentUser.GetPassword() << endl;
-	//cout << "Id:" << currentUser.GetId() << endl;
-	//cout << "Balance:" << currentUser.GetBalance() << endl;
-	//cout << "Points:" << currentUser.GetPoints() << endl;
-	//cout << "Rank:" << currentUser.GetRank() << endl;
+	cout << "Id:" << currentUser.GetId() << endl;
+	cout << "Balance:" << currentUser.GetBalance() << endl;
+	cout << "Points:" << currentUser.GetPoints() << endl;
+	cout << "Rank:" << currentUser.GetRank() << endl;
 	cout << "--------------------------------------" << endl;
+choices:
+	cout << endl;
 	cout << "1-Edit User Information\n2-User Squad And Players\n3-Delete User \n4-Go Back" << endl;
 	cout << "Enter your choice: ";
 	cin >> choice;
@@ -152,7 +203,8 @@ void Admin::ViewProfile(unordered_map<string, User>& Users, User currentUser)
 	}
 	else if (choice == 2)
 	{
-		UserSquadAndPlayers(Users);
+		////////////////////by7sl hena error////////////////////////////////
+		User::ShowSquad(currentUser, Users);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
 	}
 	else if (choice == 3)
 	{
@@ -162,76 +214,80 @@ void Admin::ViewProfile(unordered_map<string, User>& Users, User currentUser)
 	{
 		AboutUsers(Users);
 	}
+	else
+	{
+		system("cls");
+		cout << endl << "Please select a valid choice.." << endl;
+		goto choices;
+	}
 }
 void Admin::EditProfile(unordered_map<string, User>& Users, User currentUser)
 {
 	bool valid = false;
 	int choice;
-	choices:
+choices:
 	cout << "1-Edit Full Name.\n2-Edit Username\n3-Edit Email Address.\n4-Edit Phone Number.\n5-Edit Password.\n6-Edit Balance\n7-Edit Points\n8-Edit Rank\n9-Go Back" << endl;
 	cout << "Enter your choice: ";
 	cin >> choice;
 	if (choice == 1)
 	{
 		UserValidations::signupinfo(&currentUser, "new Fullname", UserValidations::fullnameCheck, &User::SetFullName);
-		cout << "full name updated successfully" << endl;
-		system("pause");
-		system("cls");
+		cout << "Full name updated successfully" << endl;
+		PauseAndClear();
 	}
 	else if (choice == 2)
 	{
 		valid = true;
 		auto it = Users.find(currentUser.GetUsername());//old username
 		UserValidations::usernameCheck(Users, currentUser);
-		if (it != Users.end()) 
+		if (it != Users.end())
 		{
-			Users.insert({ currentUser.GetUsername(), it->second});//updated username
+			Users.insert({ currentUser.GetUsername(), it->second });//updated username
 			Users.erase(it);//erasing old username
 		}
-		else 
+		else
 		{
 			cout << "Username Not Found" << endl;
 			valid = false;
 		}
 		cout << "Username updated successfully" << endl;
-		system("pause");
-		system("cls");
+		PauseAndClear();
 	}
 	else if (choice == 3)
 	{
 		UserValidations::signupinfo(&currentUser, "new Email", UserValidations::emailAddressCheck, &User::SetEmail);
 		cout << "Email updated successfully" << endl;
-		system("pause");
-		system("cls");
+		PauseAndClear();
 	}
 	else if (choice == 4)
 	{
 		UserValidations::signupinfo(&currentUser, "new PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
 		cout << "PhoneNumber updated successfully" << endl;
-		system("pause");
-		system("cls");
+		PauseAndClear();
 	}
 	else if (choice == 5)
 	{
 		UserValidations::signupinfo(&currentUser, "new Password", UserValidations::passwordCheck, &User::SetPassword);
 		cout << "Password updated successfully" << endl;
-		system("pause");
-		system("cls");
+		PauseAndClear();
 	}
 	/*else if (choice == 6)
 	{
 		UserValidations::signupinfo(&currentUser, "new Balance", UserValidations::balanceCheck, &User::SetBalance);
 		cout << "Balance updated successfully" << endl;
+		PauseAndClear();
 	}
 	else if (choice == 7)
 	{
 		UserValidations::signupinfo(&currentUser, "new Points", UserValidations::pointsCheck, &User::SetPoints);
 		cout << "Points updated successfully" << endl;
+		PauseAndClear();
 	}
 	else if (choice == 8)
 	{
 		UserValidations::signupinfo(&currentUser, "new Rank", UserValidations::rankCheck, &User::SetRank);
 		cout << "Rank updated successfully" << endl;
+		PauseAndClear();
 	}*/
 	else if (choice == 9)
 	{
@@ -239,8 +295,8 @@ void Admin::EditProfile(unordered_map<string, User>& Users, User currentUser)
 	}
 	else
 	{
-		cout << "Please select a valid choice." << endl;
 		system("cls");
+		cout << endl << "Please select a valid choice.." << endl;
 		goto choices;
 	}
 	if (valid)
@@ -253,41 +309,30 @@ void Admin::EditProfile(unordered_map<string, User>& Users, User currentUser)
 		ViewProfile(Users, currentUser);
 	}
 }
-void Admin::UserSquadAndPlayers(unordered_map<string, User>&Users)
+void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
 {
-	if (answer)
+	string userName;
+	cout << "Enter Username To Display User Squad: " << endl;
+	cout << "Username: ";
+	cin >> userName;
+	if (Users.find(userName) == Users.end())
 	{
-		User CurrentUser;
-		string userName;
-		cout << "Enter Username To Display User Squad: " << endl;
-		cout << "Username: ";
-		cin >> userName;
-		if (Users.find(userName) == Users.end())
-		{
-			cout << "User Does Not Exist, Please Enter An Existing User" << endl;
-			Sleep(200);
-			UserSquadAndPlayers(Users);
-		}
-		else
-		{
-			CurrentUser = Users.at(userName);
-			CurrentUser.SetUsername(userName);
-			//User::Squad(CurrentUser.TheMainSquad, CurrentUser.SubstitutionSquad);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 8er el AboutUsers function
-			cout << "aaa";
-		}
+		cout << "User Does Not Exist, Please Enter An Existing User" << endl;
+		Sleep(200);
+		UserSquadAndPlayers(Users);
 	}
 	else
 	{
-		cout << "test";////////////////////////////////
+		////////////////////by7sl hena error////////////////////////////////
+		Users.at(userName).SetUsername(userName);
+		User::ShowSquad(Users.at(userName), Users);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
 	}
-	answer = false;
-};
+}
 
 void Admin::DeleteUser(unordered_map<string, User>& Users)
 {
-	User CurrentUser;
 	string userName;
-	if (counter==0)
+	if (counter == 0)
 	{
 		cout << "No Users To Delete" << endl;
 		AboutUsers(Users);
@@ -305,9 +350,8 @@ void Admin::DeleteUser(unordered_map<string, User>& Users)
 		}
 		else
 		{
-			CurrentUser = Users.at(userName);
-			CurrentUser.SetUsername(userName);
-			Deletion(Users, CurrentUser);
+			Users.at(userName).SetUsername(userName);
+			Deletion(Users, Users.at(userName));
 		}
 	}
 }
@@ -328,11 +372,14 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 	{
 		if (answer)
 		{
+			cout << "Returning Back To The User Menu..." << endl;
+			Sleep(200);
 			AboutUsers(Users);
 		}
 		else
 		{
-			ShowAndEditUser(Users);
+			Sleep(200);
+			ViewProfile(Users, CurrentUser);
 		}
 	}
 	else
