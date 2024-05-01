@@ -84,14 +84,24 @@ invalid:
 
 void User::search(string footballerName, Teams team, User currentUser, string status, vector<League>  leagues)
 {
+	// all the variables declartion
 	int ans;
 	string search;
+	Teams footballerTeam;
+	Footballer targetFootballer;
 invalid:
-	cout << "You can search by teams or the name of footballer." << endl;
-	cin >> search;
-	Footballer targetFootballer = returnPlayer(search, currentUser, "buy", leagues);
 
+	// the user enter a name either of (Player name) , (Team name).
+	cout << "You can search by teams or the name of footballer." << endl;
+
+	cin >> search;
+	//function typos start here to check if the user enterd any wrong Player name.after this function is done it return a object of type footballer
+	targetFootballer = returnPlayer(search, currentUser, "buy", leagues, footballerTeam);
+
+	//funcion find team to find the team that the user entered
 	Teams* teams = findTeam(leagues, search);
+
+	//checking if the object of footballer is empty or not 
 	if (!targetFootballer.GetName().empty())
 	{
 		User::showPlayerInfo(targetFootballer);
@@ -100,7 +110,7 @@ invalid:
 		switch (ans)
 		{
 		case 1:
-			//buyFunction(currentUser, targetFootballer.GetTeamObject(leagues), targetFootballer.GetName());
+			buyFunction(currentUser, targetFootballer);
 		case 2:
 
 		default:
@@ -108,10 +118,11 @@ invalid:
 		}
 	}
 
+
+	//checking if the find team return a team or a nullptr
 	else if (teams != nullptr)
 	{
 		User::Format343(teams->getFootballPlayer());
-
 	}
 	else
 	{
@@ -121,38 +132,20 @@ invalid:
 
 
 }
-Footballer User::returnPlayer(string footballerName, User currentUser, string status, vector<League> leagues)
+Footballer User::returnPlayer(string footballerName, User currentUser, string status, vector<League> leagues, Teams& footballerTeam)
 {
 
-	string teamName = "";
-	string nameOfFootballer = avoidTypos(footballerName, currentUser, "buy", leagues, teamName);
+	string nameOfFootballer = avoidTypos(footballerName, currentUser, "buy", leagues, footballerTeam);
 	Footballer TargetedFootballer;
 	bool found = false;
-	for (int i = 0; i < leagues.size(); i++)
+	auto it = footballerTeam.getFootballPlayer().find(nameOfFootballer);
+	if (it != footballerTeam.getFootballPlayer().end())
 	{
-		for (auto currentTeam : leagues[i].GetTeams()) {
-
-			if (currentTeam.first == teamName)
-			{
-				try
-				{
-					TargetedFootballer = currentTeam.second.getFootballPlayer().at(nameOfFootballer);
-					found = true;
-				}
-				catch (const exception&)
-				{
-					continue;
-				}
-
-			}
-		}
-	}
-	if (found == true)
-	{
-
+		TargetedFootballer = it->second;
 		return TargetedFootballer;
 	}
-	else {
+	else
+	{
 		return Footballer();
 	}
 
@@ -190,7 +183,7 @@ bool User::sell(User& currentUser, Teams& team, unordered_map<string, Footballer
 
 
 	char ans;
-	string name;
+	Teams name;
 	string playerExist = User::avoidTypos(footballerName, currentUser, "sell", {}, name);
 
 
@@ -297,17 +290,26 @@ void User::sellFunction(User& currentUser, string footballerName, string status)
 
 
 void User::buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector<League> Leagues) {
+
+	// all used variables
 	string footballerName;
+	Footballer wantedFootballer;
+	Teams PlayerTeam;
+	string playerExist;
 	char ans;
+
+
 invalid:
 	cout << "Enter the name of your wanted player to buy.\n";
 	cin >> footballerName;
-	string teamName;
-	string playerExist = User::avoidTypos(footballerName, currentUser, "buing", Leagues, teamName);
+	playerExist = User::avoidTypos(footballerName, currentUser, "buing", Leagues, PlayerTeam);
 
 
+	//the user enterd the name of the player correctlly 
 	if (playerExist == "exist")
 	{
+		//get the footballer object from the team
+		wantedFootballer = PlayerTeam.getFootballPlayer().at(footballerName);
 
 		cout << "Are you sure you want to buy " << footballerName << " ?(y/n)" << endl;
 		cin >> ans;
@@ -316,7 +318,7 @@ invalid:
 			cout << "Player bought successfully." << endl;
 
 
-			buyFunction(currentUser, team, footballerName);
+			buyFunction(currentUser, wantedFootballer);
 
 			Market(currentUser, team, TopPlayer, Users);
 
@@ -333,16 +335,20 @@ invalid:
 
 
 
-
+	// the user enterd the player name wrong.
 	else if (!playerExist.empty()) {
+		wantedFootballer = PlayerTeam.getFootballPlayer().at(playerExist);
 	invalidOption:
 		cout << "You enterd a wrong player .Do you mean " << playerExist << "?" << endl;
 		cin >> ans;
+
+
+		//asking the user if he is the wanted player or not
 		if (ans == 'y')
 		{
 			cout << "Player bought successfully." << endl;
 
-			buyFunction(currentUser, team, playerExist);
+			buyFunction(currentUser, wantedFootballer);
 
 			Market(currentUser, team, TopPlayer, Users);
 
@@ -351,6 +357,7 @@ invalid:
 			cout << "Plese enter a valid footballer name." << endl;
 			goto invalid;
 		}
+		// invalid input from the user
 		else
 		{
 			cout << "Please enter a valid option." << endl;
@@ -359,7 +366,7 @@ invalid:
 	}
 
 
-
+	// the function typos didnt find the player so the user enterd a player dose not exist
 	else
 	{
 		cout << "There is no matching football player." << endl;
@@ -368,18 +375,16 @@ invalid:
 	}
 
 }
-bool User::buyFunction(User& currentUser, Teams team, string footballerName)
+
+
+void User::buyFunction(User& currentUser, Footballer footballer)
 {
-	float FootballerPrice = team.getFootballPlayer().at(footballerName).GetPrice();
+	float FootballerPrice = footballer.GetPrice();
 	currentUser.addBalance(-FootballerPrice);
 
 
-	Footballer footballer = team.getFootballPlayer().at(footballerName);
-	return currentUser.SetFootballer(footballer);
-
-
-}
-;
+	currentUser.SetFootballer(footballer);
+};
 
 
 

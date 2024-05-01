@@ -82,7 +82,7 @@ string User::GetFullName()
 }
 
 
-bool User::SetFootballer(Footballer footballer)
+void User::SetFootballer(Footballer footballer)
 {
 	if (TheMainSquad.size() < 11)
 	{
@@ -96,7 +96,7 @@ bool User::SetFootballer(Footballer footballer)
 	{
 		cout << "Your team is full!" << endl;
 		cout << "You can only replace players to add new players" << endl;
-		return false;
+		
 	}
 }
 
