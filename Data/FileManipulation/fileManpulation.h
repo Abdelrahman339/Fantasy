@@ -14,7 +14,11 @@
 #include <map>
 #include <unordered_map>
 #include <regex>
-
+#include <User.h>
+enum Squad {
+	MAIN = 1,
+	SUBSTITUTION = 2
+};
 using namespace std;
 class fileManipulation {
 public:
@@ -22,17 +26,23 @@ public:
 	list<Game> static getGamesData();
 	map<string, Teams> static getTeamsData(map<string, unordered_map<string, Footballer>> footballersOfTeam);
 	map<string, unordered_map<string, Footballer>> static getFootballersOfTeamData();
-
+	unordered_map<string, User> static getUsersData();
+	map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> static getUserSquadsData(map<string, unordered_map<string, Footballer>> footballersOfTeam);
 
 	vector<League> static parseLeagues(vector<string> parts, string regex, map<string, Teams> allTeams);
 	list<Game> static parseGames(vector<string> parts, string regex);
-	map<string, Teams> static parseTeams(map<string, unordered_map<string, Footballer>> footballersOfTeam,vector<string> parts, string regex);
+	map<string, Teams> static parseTeams(map<string, unordered_map<string, Footballer>> footballersOfTeam, vector<string> parts, string regex);
 	pair<string, unordered_map<string, Footballer>> static parseFootballersOfTeam(pair<string, string> teamFootballers, string regex);
+	pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>> static parseUserSquads(vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>> footballersOfTeam);
+	unordered_map<string, User> static parseUsers(vector<string> parts, string regex);
 
 	Game static parseGame(vector<string> gameLines);
+	User static parseUser(vector<string> userLines);
+	unordered_map<string, Footballer> static parseSquad(Squad squadType, vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>> footballersOfTeam);
 	League static parseLeague(vector<string> leagueLines, map<string, Teams> allTeams);
 	Teams static parseTeam(vector<string> teamLines, unordered_map<string, Footballer> footballers);
 	Footballer static parseFootballer(vector<string> footballerLines, string teamName);
+	unordered_map<string, Footballer> static getSquadUsingAllFootballers(vector<string>userTeamAndFootballerNames, map<string, unordered_map<string, Footballer>> footballersOfTeam);
 	HighlightsOfTheMatch static parseHighlight(vector<string> highlight, int gameId);
 	string static parseGameStatistics(vector<string>);
 	stack<HighlightsOfTheMatch> static parseHighlights(vector<string> highlights, int gameId, string regex);

@@ -27,10 +27,10 @@ protected:
 	unordered_map <string, Footballer >SubstitutionSquad;
 public:
 
-	//User();
-	//User(string fullName, string username, string password, string phoneNumber,
-	//	string Email, int id, int rank, int points, float balance,
-	//	unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad);
+	User();
+	//unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad
+	User(int id, string fullName, string username, string Email, string password,
+		string phoneNumber, int rank, int points, float balance);
 
 	// getter and setter and constructor
 	///////////////////////////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	string static spacing(int spaces, char character);
 
-	string static avoidTypos(string &footballerName, User& currentUser, string status, vector <League> allLeagues, string& teamName);
+	string static avoidTypos(string& footballerName, User& currentUser, string status, vector <League> allLeagues, string& teamName);
 	string static CheckingPlayer(string status, Teams team, User currenUser, string inputName);
 
 	pair<string, string> static getTeam(vector <League> allLeagues, User currentUser, string FootballerName);
@@ -114,7 +114,7 @@ public:
 
 	bool sell(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName);
 	void static sellFunction(User& currentUser, string footballerName, string stauts);
-	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users,vector<League> leagues);
+	void buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector<League> leagues);
 	bool buyFunction(User& currentUser, Teams team, string footballerName);
 	void replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
 
