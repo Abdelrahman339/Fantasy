@@ -12,6 +12,7 @@
 
 
 int main() {
+	//cout << "Reading from files: " << endl << endl;
 	////League Data now Done!==> Usage
 	//map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
 	//map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
@@ -29,11 +30,22 @@ int main() {
 	//}
 
 	////Get User now Done!==> USAGE
-	//unordered_map<string, User> users = fileManipulation::getUsersData();
-	//cout << users.at("william_l_81").GetId() << endl;
 
 	//map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
-	//cout << userSquads.size() << endl;
+	//unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
+	//User user = users.at("william_l_81");
+	//unordered_map<string, Footballer> squad = user.GetMainSquad();
+	//string footballerName = "Eden Hazard";
+
+	//cout << endl;
+
+	//try {
+	//	cout << footballerName << "\'s Price in market is: " << squad.at(footballerName).GetPrice() << endl;
+	//}
+	//catch (const std::exception&) {
+	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
+	//}
+
 
 	vector <string> players = { "Courtois","Carvajal","Rudiger","Tchouameni","Mendy","Camavinga","Kroos","Bellingham","Valverde","Rodrygo","Vinicius","Stegen","Koundé","Araújo","Cubarsí","Cancelo","Pedri","Gündoğan","Frenkie ","Lamine ","Lewandowski","Raphinha" };
 	unordered_map <string, Footballer> footballer;
@@ -49,7 +61,7 @@ int main() {
 	{
 		user.SetFootballer(footballer.at(players[i]));
 	}
-	user.userMenu(user,Users);
+	user.userMenu(user, Users);
 
 }
 
