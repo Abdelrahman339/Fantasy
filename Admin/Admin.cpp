@@ -358,9 +358,10 @@ void Admin::DeleteUser(unordered_map<string, User>& Users)
 
 void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 {
+	int choice;
 	cout << "Are you sure you want to delete " << CurrentUser.GetUsername() << "?" << endl;
 	cout << "1. Yes \n2. No" << endl;
-	int choice;
+	cout << "Enter your choice: ";
 	cin >> choice;
 	if (choice == 1)
 	{
@@ -373,7 +374,8 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 		if (answer)
 		{
 			cout << "Returning Back To The User Menu..." << endl;
-			Sleep(200);
+			Sleep(500);
+			answer = false;
 			AboutUsers(Users);
 		}
 		else
@@ -385,10 +387,8 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 	else
 	{
 		cout << "Please select a valid choice." << endl;
-		system("cls");
 		Deletion(Users, CurrentUser);
 	}
-	answer = false;
 }
 
 //void Admin::UpdatePlayersInTeam(string Leaguename, map<string, Teams> teams)
