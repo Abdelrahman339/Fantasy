@@ -2,6 +2,7 @@
 #include <string>
 #include<Windows.h>
 #include "Admin.h"
+#include "Leagues.h"
 #include "User.h"
 #include "Teams.h"
 #include"Leagues.h"
@@ -11,7 +12,7 @@ using namespace std;
 int counter = 0;
 bool answer = false;
 
-void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/)
+void Admin::AdminMenu(unordered_map<string, User>& Users, unordered_map<string, Teams>& teams, unordered_map<string, League>& leagues)
 {
 	int choice;
 	cout << "\t     Admin Menu" << endl;
@@ -28,11 +29,13 @@ Menu:
 	}
 	else if (choice == 2)
 	{
-
+		for (auto it = leagues.begin(); it != leagues.end(); ++it) {
+			it->second.displayTeams(teams);
+		}
 	}
 	else if (choice == 3)
 	{
-
+		DisplayAllLeagues(leagues);
 	}
 	else if (choice == 4)
 	{
@@ -46,7 +49,7 @@ Menu:
 	}
 }
 
-void Admin::AboutUsers(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/)
+void Admin::AboutUsers(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Teams, unordered_map<string, Leagues>& League*/)
 {
 	int choice;
 Choose:
@@ -344,13 +347,93 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 	answer = false;
 }
 
-void Admin::UpdatePlayersInTeam(string Leaguename, map<string, Teams> teams)
-{
-	Footballer PlayerToUpdate;
-	for_each(teams.begin(), teams.end(), [](pair<string, Teams> pair) {
-		PlayerToUpdate = pair.second.getFootballPlayer();
-		});
+void Admin::displayTeamsForSpecificLeague(unordered_map<string, League> leagues){
+	cout << "Choose a League to show all";
+}
 
+Footballer* Admin::getFootballerToBeUpdated(vector<League> allleagues, string teamName, string footballerName) {
+	Teams team = Teams::getTeamByName(allleagues, teamName);
+	Footballer* footballerToBeUpdated = team.getFootballerByTeamName(team, footballerName);
+	return footballerToBeUpdated;
+}
+
+void Admin::updateFootballer(Footballer* footballerToBeUpdated, vector<League> allleagues, string teamName, string footballerName) {
+	int choice;
+	string InputString;
+	float InputInt;
+	bool InputBool;
+	footballerToBeUpdated = getFootballerToBeUpdated(allleagues, teamName, footballerName);
+
+	do
+	{
+	beginning:
+		cout << "Update " << footballerToBeUpdated->GetName() << "'s info" << endl;
+		cout << "What do you wish to modify?" << endl;
+		cout << "1) Name" << endl;
+		cout << "2) Age" << endl;
+		cout << "3) Captain" << endl;
+		cout << "4) Position" << endl;
+		cout << "5) Team" << endl;
+		cout << "6) Price" << endl;
+		cout << "7) Rating" << endl;
+
+		cin >> choice;
+
+		switch (choice) {
+		case 1:
+			cout << "Enter new name: ";
+			cin >> InputString;
+			footballerToBeUpdated->SetName(InputString);
+			break;
+		case 2:
+			cout << "Enter new age: ";
+			cin >> InputInt;
+			footballerToBeUpdated->SetAge(InputInt);
+			break;
+		case 3:
+			cout << "Is the Player a Captain? (1 for Yes / 0 for No): ";
+			cin >> InputBool;
+			footballerToBeUpdated->SetCaptain(InputBool);
+			break;
+		case 4:
+			cout << "Enter new position: ";
+			cin >> InputString;
+			footballerToBeUpdated->SetPosition(InputString);
+			break;
+		case 5:
+			cout << "Enter new team: ";
+			cin >> InputString;
+			footballerToBeUpdated->SetTeam(InputString);
+			break;
+		case 6:
+			cout << "Enter new price: ";
+
+			cin >> InputInt;
+			footballerToBeUpdated->SetPrice(InputInt);
+			break;
+		case 7:
+			cout << "Enter new rating: ";
+			cin >> InputInt;
+			footballerToBeUpdated->SetRating(InputInt);
+			break;
+		default:
+			cout << "Invalid choice!" << endl;
+			Sleep(300);
+			goto beginning;
+		}
+		cout << "Successfully Updated." << endl;
+		Sleep(300);
+		cout << "Continue Modifying? (Yes/No)" << endl;
+		cin >> InputString;
+		PauseAndClear();
+	} while (InputString == "Yes" || "yes" || "YES");
+
+}
+
+void Admin::DisplayAllLeagues(unordered_map<string, League> leagues) {
+	for (auto it = leagues.begin(); it != leagues.end(); ++it) {
+		cout << it->first << endl;
+	}
 }
 
 void Admin::PauseAndClear()

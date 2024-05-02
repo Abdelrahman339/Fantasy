@@ -1,6 +1,7 @@
 #include <iostream>	
 #include "Teams.h"
 #include <vector>
+#include "Leagues.h"
 string Footballer::GetName() {
 	return this->name;
 }
@@ -39,6 +40,7 @@ Footballer::Footballer(string name, int age, string team, string position, float
 	this->totalCleansheets = totalCleansheets;
 	this->totalPoints = totalPoints;
 }
+
 
 void Footballer::SetName(string name) {
 	this->name = name;

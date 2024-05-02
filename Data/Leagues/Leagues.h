@@ -5,6 +5,8 @@
 #include "Teams.h"
 #include <vector>
 #include <map>
+#include "Game.h"
+
 using namespace std;
 
 class League {
@@ -15,9 +17,9 @@ private:
 public:
 	League();
 	League(string name, map <string, Teams> teams);
-	//void displayTeams();
-	//void updatePoints( list <Game> allgames);
-	//void displayPointTable();
+	void displayTeams(unordered_map<string, Teams>& Teams);
+	void updatePoints( list <Game> allgames);
+	void displayPointTable();
 
 	map <string, Teams> GetTeams();
 
