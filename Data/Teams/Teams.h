@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <unordered_map>
+#include <Leagues.h>
 
 using namespace std;
 class Footballer //the squad that the user own's
@@ -37,8 +38,9 @@ protected:
 public:
 	Footballer();
 	Footballer(string name, int age, string team, string position, float price, float rating,
-		int totalGoals, int totalAssists,int totalRedCard, int totalYellowCard,
+		int totalGoals, int totalAssists, int totalRedCard, int totalYellowCard,
 		int totalCleansheets, int totalPoints);
+
 
 	////////////////////////////////////////////////////////////////////////
 	/////////////////// setters ////////////////////////////////////////////
@@ -125,5 +127,10 @@ public:
 	int getPoints();
 	void SetPoints(int num);
 	void addPoints(int num);
+
+	Teams static getTeamByName(vector<League> allleagues, string teamName);
+
+	Footballer* getFootballerByTeamName(Teams team, string footballerName);
+
 };
 
