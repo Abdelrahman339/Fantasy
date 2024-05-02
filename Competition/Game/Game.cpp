@@ -68,7 +68,7 @@ void Game::displayStatisitcs(Game currentGame)
 
 Game::Game()
 {
-	       awayTeam = Teams();
+	    awayTeam = Teams();
         homeTeam = Teams();
         winningTeam = "";
         score = "";
@@ -93,8 +93,9 @@ Game::Game(int id, string winTeam, string score,
 	this->date = date;
 }
 
-void Game::displayPlayerHighlights(Game CurrentGame) {
+void Game::displayPlayerHighlights(Game game) {
 
+	Game CurrentGame = game; // for poping the stack without changing the actual one
 	HighlightsOfTheMatch currentHighlight = CurrentGame.getHighlightsOfTheMatch().top();
 	string playerName = CurrentGame.getHighlightsOfTheMatch().top().getName();
 	string Contributes = CurrentGame.getHighlightsOfTheMatch().top().getContributions();
