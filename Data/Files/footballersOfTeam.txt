@@ -931,7 +931,7 @@ Central midfielder
 Toni Kroos
 32
 Central midfielder
-20000000
+13000
 8.7
 0
 0

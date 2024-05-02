@@ -22,7 +22,7 @@ choice:
 	}
 	else if (choice == 2)
 	{
-		toLogin(Users,leagues);
+		toLogin(Users, leagues);
 	}
 	else if (choice == 3)
 	{
@@ -43,7 +43,7 @@ choice:
 };
 
 
-void User::toLogin(unordered_map<string, User>& Users,vector <League>leagues ) {
+void User::toLogin(unordered_map<string, User>& Users, vector <League>leagues) {
 	int count = 0;
 	string user;
 	string pass;
@@ -116,13 +116,14 @@ choice:
 	}
 	else if (choice == 2)
 	{
-		ShowSquad(currentUser, Users);
+		ShowSquad(currentUser);
 		userMenu(currentUser, Users, leagues);
 	}
 	else if (choice == 3)
 	{
 
-		Market(currentUser, {}, Users, leagues);
+		Market(currentUser, leagues);
+		userMenu(currentUser, Users, leagues);
 	}
 	else if (choice == 4)
 	{
@@ -130,7 +131,7 @@ choice:
 	}
 	else if (choice == 5)
 	{
-		currentUser.homePage(Users,leagues);
+		currentUser.homePage(Users, leagues);
 		return;
 	}
 	else

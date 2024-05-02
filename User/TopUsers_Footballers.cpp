@@ -65,6 +65,15 @@ unordered_map<string, Footballer> User::TopFootballers(vector<League> leageus)
 
 
 
-bool comparePlayersByPoints(Footballer& player1, Footballer& player2) {
+bool User::comparePlayersByPoints(Footballer& player1, Footballer& player2) {
 	return player1.GetTotalpoints() > player2.GetTotalpoints();
 }
+
+
+
+
+
+
+
+
+

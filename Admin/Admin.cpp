@@ -76,7 +76,7 @@ void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string
 		else if (choice == 4)
 		{
 			system("cls");
-			User::homePage(Users);
+		/*	User::homePage(Users);*/
 		}
 		else
 		{
@@ -91,7 +91,7 @@ void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string
 		cout << "Going Back To Home Page..." << endl;
 		Sleep(3200);
 		system("cls");
-		User::homePage(Users);
+	/*	User::homePage(Users);*/
 	}
 }
 
@@ -204,7 +204,7 @@ choices:
 	else if (choice == 2)
 	{
 		////////////////////by7sl hena error////////////////////////////////
-		User::ShowSquad(currentUser, Users);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
+		//User::ShowSquad(currentUser, Users);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
 	}
 	else if (choice == 3)
 	{
@@ -325,7 +325,7 @@ void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
 	{
 		////////////////////by7sl hena error////////////////////////////////
 		Users.at(userName).SetUsername(userName);
-		User::ShowSquad(Users.at(userName), Users);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
+		//User::ShowSquad(Users.at(userName), Users);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
 	}
 }
 

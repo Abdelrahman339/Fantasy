@@ -99,11 +99,11 @@ public:
 	void static Format442(unordered_map<string, Footballer> squad);
 	void static showSubstitutions(unordered_map<string, Footballer> squad);
 	int  static Formatdistance(string name, int space, bool remaining, string prev);
-	void static ShowSquad(User& currentUser, unordered_map<string, User>& Users);
+	void static ShowSquad(User& currentUser);
 	void static showPlayerInfo(Footballer footballer);
 
 	void static showPlayerInfolayout();
-	void static Substitution(User& currentUser, unordered_map<string, User>& Users);
+	void static Substitution(User& currentUser);
 	void static SubstituteFunction(User& currentUser, string subFootballer, Footballer mainFootballer);
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Information
@@ -113,11 +113,11 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//Market functions
 	///////////////////////////////////////////////////////////////////////////////////
-	void static Market(User& currentUser, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector<League>leageus);
+	void static Market(User& currentUser, vector<League>leageus);
 
-	bool static sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, string footballerName);
+	bool static sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, string footballerName);
 	void static sellFunction(User& currentUser, string footballerName, string stauts);
-	void static buy(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users, vector<League> leagues);
+	void static buy(User& currentUser, vector<League> leagues);
 	void static buyFunction(User& currentUser, Footballer footballer);
 
 	bool static checkBalance(float& currentUserBalance, float& footballerPrice);
@@ -150,8 +150,9 @@ public:
 
 	unordered_map <string, Footballer> static TopFootballers(vector <League> leageus);// this function used to return unordered map of top players in leageus (5 players per league).
 
-	void static showtopFootballers(unordered_map<string, Footballer> TopPlayer, User& currentUser, unordered_map<string, User>& Users, Teams& team);
+	void static showtopFootballers(unordered_map<string, Footballer> TopPlayer, User& currentUser, vector<League> Leageus);
 
+	bool static comparePlayersByPoints(Footballer& player1, Footballer& player2);
 
 	/////////////////////////////////////////////////////////////////////////////////////
 	//Top Users functions

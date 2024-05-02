@@ -171,7 +171,7 @@ void User::fromSubtoMain(unordered_map<string, Footballer>& mainSquad, unordered
 
 
 
-void User::ShowSquad(User& currentUser, unordered_map<string, User>& Users) {
+void User::ShowSquad(User& currentUser) {
 	int choice;
 	unordered_map <string, Footballer> MainSquad = currentUser.GetMainSquad();
 	unordered_map <string, Footballer> SubstitutionSquad = currentUser.GetSubstitutionSquad();
@@ -218,10 +218,12 @@ choice:
 
 					sellFunction(currentUser, footballerName, "main");
 					fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
-					ShowSquad(currentUser, Users);
+					ShowSquad(currentUser);
+					return;
 					break;
 				case 2:
-					ShowSquad(currentUser, Users);
+					ShowSquad(currentUser);
+					return;
 					break;
 				default:
 					cout << "Enter a valid choice please";
@@ -244,10 +246,12 @@ choice:
 				case 1:
 
 					sellFunction(currentUser, footballerName, "sub");
-					ShowSquad(currentUser, Users);
+					ShowSquad(currentUser);
+					return;
 					break;
 				case 2:
-					ShowSquad(currentUser, Users);
+					ShowSquad(currentUser);
+					return;
 					break;
 				default:
 					cout << "Enter a valid choice please";
@@ -285,10 +289,12 @@ choice:
 
 							sellFunction(currentUser, existPlayer, "main");
 							fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
-							ShowSquad(currentUser, Users);
+							ShowSquad(currentUser);
+							return;
 							break;
 						case 2:
-							ShowSquad(currentUser, Users);
+							ShowSquad(currentUser);
+							return;
 							break;
 						default:
 							cout << "Enter a valid choice please";
@@ -324,10 +330,12 @@ choice:
 						case 1:
 
 							sellFunction(currentUser, existPlayer, "sub");
-							ShowSquad(currentUser, Users);
+							ShowSquad(currentUser);
+							return;
 							break;
 						case 2:
-							ShowSquad(currentUser, Users);
+							ShowSquad(currentUser);
+							return;
 							break;
 						default:
 							cout << "Enter a valid choice please";
@@ -369,19 +377,19 @@ choice:
 		{
 			formatchoice = 1;
 			squadFormat(1, MainSquad);
-			ShowSquad(currentUser, Users);
+			ShowSquad(currentUser);
 		}
 		else if (choice == 2) {
 			formatchoice = 2;
 			squadFormat(2, MainSquad);
-			ShowSquad(currentUser, Users);
+			ShowSquad(currentUser);
 
 		}
 
 		else if (choice == 3) {
 			formatchoice = 3;
 			squadFormat(3, MainSquad);
-			ShowSquad(currentUser, Users);
+			ShowSquad(currentUser);
 
 		}
 	}
@@ -389,7 +397,7 @@ choice:
 
 	else if (choice == 3)
 	{
-		Substitution(currentUser, Users);
+		Substitution(currentUser);
 	}
 	else if (choice == 4)
 	{
@@ -423,15 +431,9 @@ void User::showPlayerInfo(Footballer footballer) {
 	cout << "--------------------------------------------------------------------------------\n" << endl;
 
 }
-void User::showPlayerInfolayout()
-{
 
 
-}
-;
-
-// has errors 
-void User::Substitution(User& currentUser, unordered_map<string, User>& Users) { // has errors 
+void User::Substitution(User& currentUser) {
 	char ans;
 	string PlayerName1;
 	string PlayerName2;
@@ -544,8 +546,9 @@ invalid_Sub:
 	cout << "Player in your main squad now" << endl;
 	system("pause");
 	system("cls");
-	ShowSquad(currentUser, Users);
+	ShowSquad(currentUser);
 }
+
 void User::SubstituteFunction(User& currentUser, string subFootballer, Footballer mainFootballer)
 {
 
