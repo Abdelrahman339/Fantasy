@@ -102,6 +102,8 @@ void Game::displayPlayerHighlights(Game game) {
 	string violation = CurrentGame.getHighlightsOfTheMatch().top().getViolation();
 
 	size_t found_goals = Contributes.find("goals");
+	size_t foundYellowCards = Contributes.find("yellowCard");
+	size_t foundRedCards = Contributes.find("redCard");
 	random_device rd;
 	mt19937 gen(rd()); // ----> engine used for generating random numbers
 
@@ -124,6 +126,24 @@ void Game::displayPlayerHighlights(Game game) {
 			CurrentMin = GoalMinute + 1;
 
 		}
+
+			dis = uniform_int_distribution<>(CurrentMin, max);
+
+		if (foundYellowCards != string::npos) {
+
+			int yellowCardMinute = dis(gen);
+			cout << right << setw(45) << playerName << " " << yellowCardMinute << "'" << endl;
+			CurrentMin = yellowCardMinute + 1;
+			
+		}
+		
+
+		if (foundRedCards != string::npos) {
+			
+			int redCardMinute = dis(gen);
+			cout << right << setw(45) << playerName << " " << redCardMinute << "'" << endl;
+		}
+
 
 	}
 
