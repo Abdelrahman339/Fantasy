@@ -44,32 +44,39 @@ bool UserValidations::phoneNumberCheck(string phoneNumber)
 };
 bool UserValidations::passwordCheck(string password)
 {
+	bool result = true;
 	regex specialChar_pattern(R"([!@#$%^&*-_=+<>])");
-	regex numberandchar_pattern(R"([\d\w])");
+	regex number_pattern(R"([\d])");
+	regex numberandchar_pattern(R"([\d\S]+)");
+
 
 	if (password.length() < 8)
 	{
 		cout << "Too short password!." << endl;
 		cout << "You must provide a valid password with length greater than 8" << endl;
-		return false;
+		result = false;
 	}
 
-	else if (!regex_search(password, specialChar_pattern))
+	if (!regex_search(password, specialChar_pattern))
 	{
 		cout << "Too easy password!" << endl;
 		cout << "You must provide a valid password with at least 1 special character" << endl;
-		return false;
+		result = false;
 	}
-	else if (!regex_search(password, numberandchar_pattern))
+	if (!regex_search(password, number_pattern))
 	{
 		cout << "Too easy password!" << endl;
-		cout << "You must provide a valid password with at least 1 character and number" << endl;
-		return false;
+		cout << "You must provide a valid password with at least 1 number" << endl;
+		result = false;
 	}
-	else
+
+	if (!regex_search(password, numberandchar_pattern))
 	{
-		return true;
+		cout << "Too easy password!" << endl;
+		cout << "You must provide a valid password with numbers and characters" << endl;
+		result = false;
 	}
+	return result;
 };
 bool UserValidations::usernameCheck(unordered_map<string, User> users, User& Newser)
 {

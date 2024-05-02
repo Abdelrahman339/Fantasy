@@ -38,7 +38,7 @@ protected:
 
 	void static ReducePoints(string footballerName, User& currentUser, string violation, string status, Teams& team);//this function used to reduce user points,balance and footballer points
 
-	void static updatePoints(string footballerName, User& currentUser, string contributes, string status, Teams& team);//this function used to update user points,balance and footballer points
+	void static updatePoints(string footballerName, User& currentUser, string contributes, string status, Teams& team, string footballerPosition);//this function used to update user points,balance and footballer points
 	void static addPoints(string contributes, User currentUser, string footballerName, int numPerpoints, string status, Teams& team); // goals or assits
 	void static addGoalsAssistPoints(string contributes, User currentUser, string footballerName, string status, Teams& team);// add both goals and assits
 	void static findPlayers(queue<Game>& UserGames, User& currentUser, string status, Teams& team);

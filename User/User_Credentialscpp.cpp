@@ -6,7 +6,7 @@
 using namespace std;
 bool loginstat = false;
 
-void User::homePage(unordered_map<string, User>& Users)
+void User::homePage(unordered_map<string, User>& Users, vector <League> leagues)
 {
 	int choice;
 
@@ -22,13 +22,13 @@ choice:
 	}
 	else if (choice == 2)
 	{
-		toLogin(Users);
+		toLogin(Users, leagues);
 	}
 	else if (choice == 3)
 	{
 		signup(Users);
 		system("pause");
-		toLogin(Users);
+		toLogin(Users, leagues);
 		return;
 	}
 	else if (choice == 4)
@@ -43,7 +43,7 @@ choice:
 };
 
 
-void User::toLogin(unordered_map<string, User>& Users) {
+void User::toLogin(unordered_map<string, User>& Users, vector <League>leagues) {
 	int count = 0;
 	string user;
 	string pass;
@@ -60,7 +60,7 @@ void User::toLogin(unordered_map<string, User>& Users) {
 		{
 			system("pause");
 			system("cls");
-			userMenu(CurrentUser, Users);
+			userMenu(CurrentUser, Users, leagues);
 			return;
 		}
 		else
@@ -101,7 +101,7 @@ void User::signup(unordered_map<string, User>& Users)
 	UserValidations::signupinfo(&newUser, "EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
 	Users.insert_or_assign(newUser.username, newUser);
 }
-void User::userMenu(User& currentUser, unordered_map<string, User>& Users)
+void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <League> leagues)
 {
 	int choice;
 choice:
@@ -112,14 +112,18 @@ choice:
 	if (choice == 1)
 	{
 		profile(currentUser, Users);
+		userMenu(currentUser, Users, leagues);
 	}
 	else if (choice == 2)
 	{
-		ShowSquad(currentUser, Users);
+		ShowSquad(currentUser);
+		userMenu(currentUser, Users, leagues);
 	}
 	else if (choice == 3)
 	{
-		// market function
+
+		Market(currentUser, leagues);
+		userMenu(currentUser, Users, leagues);
 	}
 	else if (choice == 4)
 	{
@@ -127,7 +131,7 @@ choice:
 	}
 	else if (choice == 5)
 	{
-		currentUser.homePage(Users);
+		currentUser.homePage(Users, leagues);
 		return;
 	}
 	else

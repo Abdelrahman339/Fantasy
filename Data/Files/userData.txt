@@ -1,11 +1,60 @@
-﻿string fullName;
-string username;
-string password;
-string phoneNumber;
-string Email;
-int rank;
-int points;
-float balance;
-
-int id;
----------------------------------
+﻿int ID
+string FullName
+string Username
+string Email
+string Password
+string Phone Number
+int Rank
+int Points
+float Balance
+----
+1
+Alice Johnson
+_alice_johnson92
+alice.johnson92@hotmail.com
+123
++20 115 550 1478
+5
+78
+23456.78
+----
+2
+William Lee
+william_l_81
+william.lee81@yahoo.com
+123
++20 100 794 6123
+3
+45
+34567.23
+----
+3
+Olivia Brown
+cheerful_liv
+olivia.brown.cheerful@gmail.com
+123
++20 121 938 1471
+7
+98
+56782.1
+----
+4
+David Miller
+david_m._24
+davidmiller.24@gmail.com
+123
++20 118 678 9000
+10
+32
+67890.0
+----
+5
+Sophia Garcia
+sophia_garcia_99
+sophia.garcia99@hotmail.com
+123
++20 100 328 7650
+2
+100
+78900.0
+----

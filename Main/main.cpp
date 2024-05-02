@@ -12,38 +12,41 @@
 
 
 int main() {
-	//	League Data now Done! ==> Usage
-	//	map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
-	//	map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
-	//	vector<League> leagues =  fileManipulation::getLeagueData(Teams);
-	//	for (auto league: leagues)
-	//		for (auto team : league.GetTeams())
-	//			cout << team.first << endl;
+	//cout << "Reading from files: " << endl << endl;
+	////League Data now Done!==> Usage
+	map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
+	map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
+	vector<League> leagues = fileManipulation::getLeagueData(Teams);
 
-	//	Get Games now Done! ==> USAGE
-	//	list<Game> games = fileManipulation::getGamesData();
-	//	for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
-	//		stack<HighlightsOfTheMatch> highlightsOfTheMatch = it->getHighlightsOfTheMatch();
-	//		if (!highlightsOfTheMatch.empty())
-	//			cout << highlightsOfTheMatch.top().getName() << endl;
-	//	}
 
-	vector <string> players = { "Courtois","Carvajal","Rudiger","Tchouameni","Mendy","Camavinga","Kroos","Bellingham","Valverde","Rodrygo","Vinicius","Stegen","Koundé","Araújo","Cubarsí","Cancelo","Pedri","Gündoğan","Frenkie ","Lamine ","Lewandowski","Raphinha" };
-	unordered_map <string, Footballer> footballer;
-	unordered_map<string, User> Users;
-	User user;
-	for (int i = 0; i < players.size(); i++)
-	{
-		Footballer player;
-		player.SetName(players[i]);
-		footballer.insert_or_assign(player.GetName(), player);
-	}
-	for (int i = 0; i < 15; i++)
-	{
-		user.SetFootballer(footballer.at(players[i]));
-	}
-	user.userMenu(user,Users);
+	////Get Games now Done!==> USAGE
+	//list<Game> games = fileManipulation::getGamesData();
+	//for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
+	//	stack<HighlightsOfTheMatch> highlightsOfTheMatch = it->getHighlightsOfTheMatch();
+	//	if (!highlightsOfTheMatch.empty())
+	//		cout << highlightsOfTheMatch.top().getName() << endl;
+	//}
 
+	//Get User now Done!==> USAGE
+
+	map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
+	unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
+	User user = users.at("_alice_johnson92");
+	//unordered_map<string, Footballer> squad = user.GetMainSquad();
+	//string footballerName = "Eden Hazard";
+
+	//cout << endl;
+
+	//try {
+	//	cout << footballerName << "\'s Price in market is: " << squad.at(footballerName).GetPrice() << endl;
+	//}
+	//catch (const std::exception&) {
+	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
+	//}
+
+
+	user.homePage(users,leagues);
+	
 }
 
 /*
@@ -81,3 +84,19 @@ to edit on users: will use the hash table of all users and the functions on user
 class team : should contain the name ,the id ,the points , number of wins ,nubmer of draws and number of losses.
 */
 
+
+//vector <string> players = { "Courtois","Carvajal","Rudiger","Tchouameni","Mendy","Camavinga","Kroos","Bellingham","Valverde","Rodrygo","Vinicius","Stegen","Koundé","Araújo","Cubarsí","Cancelo","Pedri","Gündoğan","Frenkie ","Lamine ","Lewandowski","Raphinha" };
+//unordered_map <string, Footballer> footballer;
+//unordered_map<string, User> Users;
+//User user;
+//for (int i = 0; i < players.size(); i++)
+//{
+//	Footballer player;
+//	player.SetName(players[i]);
+//	footballer.insert_or_assign(player.GetName(), player);
+//}
+//for (int i = 0; i < 15; i++)
+//{
+//	user.SetFootballer(footballer.at(players[i]));
+//}
+//user.userMenu(user, Users);

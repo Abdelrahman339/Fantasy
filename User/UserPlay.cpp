@@ -101,3 +101,5 @@ void User::insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game
 }
 
 
+
+

@@ -105,7 +105,7 @@ void Competition::ReducePoints(string footballerName, User& currentUser, string 
 
 }
 
-void Competition::updatePoints(string footballerName, User& currentUser, string contributes, string status, Teams& team)
+void Competition::updatePoints(string footballerName, User& currentUser, string contributes, string status, Teams& team, string footballerPosition)
 {
 	//"goals 5 & assists 6"
 	regex pattern(R"(&)");
@@ -128,9 +128,11 @@ void Competition::updatePoints(string footballerName, User& currentUser, string 
 			addPoints(contributes, currentUser, footballerName, Competition::assistPoints, status, team);
 		}
 		else {
-			currentUser.GetMainSquad().at(footballerName).AddTotalpoints(cleanSheetPoints);
-			currentUser.AddPoints(cleanSheetPoints);
-			currentUser.addBalance(10);
+			if (checkPosition(footballerPosition)) {
+				currentUser.GetMainSquad().at(footballerName).AddTotalpoints(cleanSheetPoints);
+				currentUser.AddPoints(cleanSheetPoints);
+				currentUser.addBalance(10);
+			}
 		}
 	}
 	else
@@ -170,7 +172,7 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, str
 	regex pattern(R"(\d+)");
 
 	smatch matches;
-	int goalsnum, assistsnum;
+	int goalsnum=0, assistsnum=0;
 
 	int foundNumbers = 0;
 
@@ -288,8 +290,6 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 		string playerName = kv.first;
 		Footballer& currentFootballer = kv.second;
 
-		int yellowCardPenalty = 0;
-		int redCardPenalty = 0;
 		int ManOfTheMatchPoints = 0;
 		string contributions = highlights.getContributions();
 		string violation = highlights.getViolation();
@@ -300,17 +300,11 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 			ManOfTheMatchPoints = Competition::MOTM_Bonus;
 		}
 
+		Competition::updatePoints(playerName, currentUser, contributions, status, team,currentFootballer.GetPosition());
+		Competition::ReducePoints(playerName, currentUser, violation, status, team); // for deducing redCards and yellowcards points
 
-		if (Competition::checkPosition(currentFootballer.GetPosition())) {
-
-		}
-
-
-		ReducePoints(playerName, currentUser, violation, status, team);
-		Competition::updatePoints(playerName, currentUser, contributions, status, team);
-
-
-
+		int currentPoints = currentFootballer.GetTotalpoints();
+		currentFootballer.AddTotalpoints(currentPoints+ManOfTheMatchPoints);
 
 
 		Competition::UpdateFootballerPrice(currentFootballer);

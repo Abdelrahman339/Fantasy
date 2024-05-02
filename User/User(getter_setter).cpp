@@ -6,20 +6,33 @@ using namespace std;
 
 
 
-//User::User(string fullName, string username, string password, string phoneNumber, string Email, int id, int rank, int points, float balance, unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad)
-//{
-//	this->fullName = fullName;
-//	this->username = username;
-//	this->password = password;
-//	this->phoneNumber = phoneNumber;
-//	this->Email = Email;
-//	this->id = id;
-//	this->rank = rank;
-//	this->points = points;
-//	this->balance = balance;
-//	this->TheMainSquad = mainSquad;
-//	this->SubstitutionSquad = substitutionSquad;
-//}
+User::User() {
+	this->id = -1;
+	this->fullName = "";
+	this->username = "";
+	this->password = "";
+	this->phoneNumber = "";
+	this->Email = "";
+	this->rank = 0;
+	this->points = 0;
+	this->balance = 0;
+}
+
+User::User(int id, string fullName, string username, string Email, string password,
+	string phoneNumber, int rank, int points, float balance, unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad) {
+	this->fullName = fullName;
+	this->username = username;
+	this->password = password;
+	this->phoneNumber = phoneNumber;
+	this->Email = Email;
+	this->id = id;
+	this->rank = rank;
+	this->points = points;
+	this->balance = balance;
+	this->TheMainSquad = mainSquad;
+	this->SubstitutionSquad = substitutionSquad;
+}
+
 
 void User::SetFullName(string fullName)
 {
@@ -88,9 +101,11 @@ bool User::SetFootballer(Footballer footballer)
 	{
 
 		TheMainSquad.insert_or_assign(footballer.GetName(), footballer);
+		return true;
 	}
 	else if (TheMainSquad.size() == 11 && SubstitutionSquad.size() < 4) {
 		SubstitutionSquad.insert_or_assign(footballer.GetName(), footballer);
+		return true;
 	}
 	else if (TheMainSquad.size() == 11 && SubstitutionSquad.size() == 4)
 	{

@@ -1,3 +1,68 @@
-user id
-user squad
+User ID
 --------
+Team Name
+User Main Footballer Name 1
+User Main Footballer Name 2
+----
+Team Name
+User Main Footballer Name 3
+--------
+Team Name
+User Substitution Footballer Name 1
+----
+Team Name
+User Substitution Footballer Name 2
+User Substitution Footballer Name 3
+----------------
+1
+--------
+Manchester City
+Ederson
+Phil Foden
+----
+Liverpool
+Sadio Mane
+Mohamed Salah
+----
+Real Madrid
+Brahim Diaz
+Karim Benzema
+Eden Hazard
+Dani Carvajal
+----
+Atletico Madrid
+Luis Suarez
+Joao Felix
+----
+Sevilla
+Jesus Navas
+--------
+Real Madrid
+Sergio Ramos
+Luka Modric
+----------------
+2
+--------
+Manchester City
+Ederson
+----
+Sevilla
+Jules Kounde
+Papu Gomez
+Joan Jordan
+----
+Chelsea
+Edouard Mendy
+Antonio Rudiger
+Reece James
+----
+Liverpool
+Diogo Jota
+----
+Real Madrid
+Eden Hazard
+Brahim Diaz
+----
+Atletico Madrid
+Luis Suarez
+----------------

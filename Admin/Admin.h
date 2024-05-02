@@ -16,7 +16,10 @@ protected:
 
 
 public:
-	void AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& teams, unordered_map<string, League>& leagues*/);
+
+	//admin
+	bool CheckAdmin();
+	void AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/);
 
 	//users
 	void AboutUsers(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Teams, unordered_map<string, Leagues>& League*/);
