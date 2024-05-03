@@ -110,16 +110,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>STATIC_CONCPP;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Leagues;$(SolutionDir)Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)User;$(SolutionDir)mysql-connector-c++-8.3.0-winx64\include\jdbc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)User</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>mysqlcppconn-static.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)mysql-connector-c++-8.3.0-winx64\lib64\vs14;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\mysql-connector-c++-8.3.0-winx64\include\jdbc;$(SolutionDir)\Admin;$(SolutionDir)\Competition;$(SolutionDir)\Competition\Game;$(SolutionDir)\Data\Leagues;$(SolutionDir)\Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)\User</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)User</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
@@ -139,7 +139,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>mysqlcppconn.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -153,7 +153,7 @@
     <ClCompile Include="Competition\Game\GameGetterSetter.cpp" />
     <ClCompile Include="Competition\Game\HighlightsOfTheMatch.cpp" />
     <ClCompile Include="Data\FileManipulation\fileManpulation.cpp" />
-    <ClCompile Include="Data\Leagues\Leagues.cpp" />
+    <ClCompile Include="Data\Teams\League.cpp" />
     <ClCompile Include="Data\Teams\Teams.cpp" />
     <ClCompile Include="Data\Teams\FootballerGetterSetter.cpp" />
     <ClCompile Include="Main\main.cpp" />
@@ -171,7 +171,7 @@
     <ClInclude Include="Competition\Game\Game.h" />
     <ClInclude Include="Competition\Game\HighlightsOfTheMatch.h" />
     <ClInclude Include="Data\FileManipulation\fileManpulation.h" />
-    <ClInclude Include="Data\Leagues\Leagues.h" />
+    <ClInclude Include="Data\Teams\Footballer.h" />
     <ClInclude Include="Data\Teams\Teams.h" />
     <ClInclude Include="User\User.h" />
     <ClInclude Include="User\UserValidations.h" />
