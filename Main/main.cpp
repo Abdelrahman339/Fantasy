@@ -3,9 +3,9 @@
 
 // Files
 #include "User.h"
-//#include "Competition.h"
-//#include "Admin.h"
-//#include "Game.h"
+#include "Competition.h"
+#include "Admin.h"
+#include "Game.h"
 
 // Data structures
 #include <unordered_map>
@@ -14,9 +14,9 @@
 int main() {
 	//cout << "Reading from files: " << endl << endl;
 	////League Data now Done!==> Usage
-	//map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
-	//map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
-	//vector<League> leagues = fileManipulation::getLeagueData(Teams);
+	map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
+	map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
+	vector<TheLeague> leagues = fileManipulation::getLeagueData(Teams);
 
 
 	////Get Games now Done!==> USAGE
@@ -29,12 +29,11 @@ int main() {
 
 	//Get User now Done!==> USAGE
 
-	//map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
-	//unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
-	//User user = users.at("_alice_johnson92");
-	//Teams team;
-	//unordered_map<string, Footballer> squad = user.GetMainSquad();
-	//string footballerName = "Eden Hazard";
+	map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
+	unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
+	User user;
+	unordered_map<string, Footballer> squad = user.GetMainSquad();
+	string footballerName = "Eden Hazard";
 
 	//cout << endl;
 
@@ -46,8 +45,8 @@ int main() {
 	//}
 	cout << "the project is running";
 
-	//user.homePage(users,leagues);
-	
+	user.homePage(users, leagues);
+
 }
 
 /*
