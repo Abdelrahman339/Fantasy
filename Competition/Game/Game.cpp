@@ -127,24 +127,6 @@ void Game::displayPlayerHighlights(Game game) {
 
 		}
 
-			dis = uniform_int_distribution<>(CurrentMin, max);
-
-		if (foundYellowCards != string::npos) {
-
-			int yellowCardMinute = dis(gen);
-			cout << right << setw(45) << playerName << " " << yellowCardMinute << "'" << endl;
-			CurrentMin = yellowCardMinute + 1;
-			
-		}
-		
-
-		if (foundRedCards != string::npos) {
-			
-			int redCardMinute = dis(gen);
-			cout << right << setw(45) << playerName << " " << redCardMinute << "'" << endl;
-		}
-
-
 	}
 
 
