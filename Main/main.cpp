@@ -44,7 +44,7 @@ int main() {
 	//catch (const std::exception&) {
 	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
 	//}
-	cout << "scascscacsa";
+	cout << "the project is running";
 
 	//user.homePage(users,leagues);
 	

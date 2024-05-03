@@ -178,7 +178,7 @@ void Admin::ShowAndEditUser(unordered_map<string, User>& Users)
 		ViewProfile(Users, Users.at(userName));
 	}
 }
-void Admin::ViewProfile(unordered_map<string, User>& Users, User currentUser)
+void Admin::ViewProfile(unordered_map<string, User>& Users, User& currentUser)
 {
 	int choice;
 	cout << "User Information And Profile" << endl;
@@ -205,7 +205,8 @@ choices:
 	else if (choice == 2)
 	{
 		////////////////////by7sl hena error////////////////////////////////
-		//User::ShowSquad(currentUser, Users);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
+		//User::ShowSquad(currentUser);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
+		// el funciont elly mafrod y5osh 3leha b3d el go back
 	}
 	else if (choice == 3)
 	{
@@ -222,7 +223,7 @@ choices:
 		goto choices;
 	}
 }
-void Admin::EditProfile(unordered_map<string, User>& Users, User currentUser)
+void Admin::EditProfile(unordered_map<string, User>& Users, User& currentUser)
 {
 	bool valid = false;
 	int choice;
@@ -274,19 +275,19 @@ choices:
 	}
 	else if (choice == 6)
 	{
-		EditBalancePointsRank(&currentUser, 1, "new Balance");
+		EditBalancePointsRank(currentUser, 1, "new Balance");
 		cout << "Balance updated successfully" << endl;
 		PauseAndClear();
 	}
 	else if (choice == 7)
 	{
-		EditBalancePointsRank(&currentUser, 2, "new Points");
+		EditBalancePointsRank(currentUser, 2, "new Points");
 		cout << "Points updated successfully" << endl;
 		PauseAndClear();
 	}
 	else if (choice == 8)
 	{
-		EditBalancePointsRank(&currentUser, 3, "new Rank");
+		EditBalancePointsRank(currentUser, 3, "new Rank");
 		cout << "Rank updated successfully" << endl;
 		PauseAndClear();
 	}
@@ -330,7 +331,7 @@ static bool isFloat(string& input)
 	}
 	return false;
 }
-void Admin::EditBalancePointsRank(User* CurrentUser, int choice, string information)
+void Admin::EditBalancePointsRank(User& CurrentUser, int choice, string information)
 {
 	string NewBalance = "1", NewPointsOrRank = "1";
 Redo:
@@ -369,15 +370,15 @@ Redo:
 		{
 			if (choice == 1)
 			{
-				CurrentUser->SetBalance(stof(NewBalance));
+				CurrentUser.SetBalance(stof(NewBalance));
 			}
 			else if (choice == 2)
 			{
-				CurrentUser->SetPoints(stoi(NewPointsOrRank));
+				CurrentUser.SetPoints(stoi(NewPointsOrRank));
 			}
 			else if (choice == 3)
 			{
-				CurrentUser->SetRank(stoi(NewPointsOrRank));
+				CurrentUser.SetRank(stoi(NewPointsOrRank));
 			}
 		}
 	}
