@@ -133,7 +133,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	void static play(list<Game> allGames, User currentUser);
 	void static showCurrentMatch(queue<Game>& UserGames);
-	queue<Game>static FilteringTeams(list<Game> allGames, User currentUser);
+	void static FilteringTeams(list<Game> allGames, User currentUser);
 
 	void static insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game>& UserGames);
 	void static findDuplicates(stack<string>& userTeams);
