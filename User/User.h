@@ -26,6 +26,7 @@ protected:
 	float balance;
 	unordered_map <string, Footballer >TheMainSquad;
 	unordered_map <string, Footballer >SubstitutionSquad;
+	queue<Game> &UserGames; // queue of the user games that he will play in the round.
 public:
 
 	User();
@@ -61,6 +62,7 @@ public:
 	unordered_map<string, Footballer>& GetMainSquad();
 	unordered_map<string, Footballer>& GetSubstitutionSquad();
 
+	queue<Game> GetUserGames();
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
 
@@ -162,3 +164,7 @@ public:
 	void sortingUsers(vector<User> users);
 
 };
+
+
+
+//b3d kol action fi fucntion el market el queue bta3et el user mafroud yt3mlha update w save fel file bta3 el user 3lshan fi function el play bta3et el rounds mafroud y lef 3la kol el uesr w y get el user games w y3ml udpate ll points 3la 7sb el games.

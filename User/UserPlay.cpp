@@ -52,7 +52,7 @@ void User::showCurrentMatch(queue<Game>& UserGames)
 
 
 queue<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
-	queue<Game> UserGames;
+	queue<Game> UserGames = currentUser.GetUserGames();
 	stack<string> userTeams;
 	for (auto& kv : currentUser.GetMainSquad()) {
 		string teamName = kv.second.GetTeam();
@@ -62,7 +62,7 @@ queue<Game> User::FilteringTeams(list<Game> allGames, User currentUser) {
 	findDuplicates(userTeams);
 
 	insertToQueue(allGames, userTeams, UserGames);
-	return UserGames;
+	currentUser.GetUserGames().swap(UserGames);
 
 }
 void User::findDuplicates(stack<string>& userTeams)
