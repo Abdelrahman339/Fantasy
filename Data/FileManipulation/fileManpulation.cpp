@@ -34,7 +34,7 @@ vector<string> splitByRegex(string data, string reg) {
 }
 
 
-vector<League> fileManipulation::getLeagueData(map<string, Teams> allTeams) {
+vector<TheLeague> fileManipulation::getLeagueData(map<string, Teams> allTeams) {
 	string filename = "leagueData.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s*----\s*)";
@@ -96,8 +96,8 @@ unordered_map<string, User> fileManipulation::getUsersData(map<int, pair<unorder
 }
 
 
-vector<League> fileManipulation::parseLeagues(vector<string> parts, string regex, map<string, Teams> allTeams) {
-	vector<League> parsedLeagues;
+vector<TheLeague> fileManipulation::parseLeagues(vector<string> parts, string regex, map<string, Teams> allTeams) {
+	vector<TheLeague> parsedLeagues;
 
 	for (size_t i = 1; i < parts.size(); ++i) {
 		vector<string> leagueLines = splitByRegex(parts[i], regex);
@@ -175,7 +175,7 @@ unordered_map<string, User> fileManipulation::parseUsers(vector<string> parts, s
 }
 
 
-League fileManipulation::parseLeague(vector<string> leagueLines, map<string, Teams> allTeams) {
+TheLeague fileManipulation::parseLeague(vector<string> leagueLines, map<string, Teams> allTeams) {
 	string leagueName = leagueLines[0];
 	map<string, Teams> leagueTeams;
 
@@ -186,7 +186,7 @@ League fileManipulation::parseLeague(vector<string> leagueLines, map<string, Tea
 			make_pair(team.getName(), team)
 		);
 	}
-	return League(leagueName, leagueTeams);
+	return TheLeague(leagueName, leagueTeams);
 }
 
 Game fileManipulation::parseGame(vector<string> gameLines) {

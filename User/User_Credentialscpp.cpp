@@ -3,10 +3,11 @@
 #include <conio.h>
 #include "UserValidations.h"
 #include "User.h"
+
 using namespace std;
 bool loginstat = false;
 
-void User::homePage(unordered_map<string, User>& Users, vector <League> leagues)
+void User::homePage(unordered_map<string, User>& Users, vector <TheLeague> leagues)
 {
 	int choice;
 
@@ -43,7 +44,7 @@ choice:
 };
 
 
-void User::toLogin(unordered_map<string, User>& Users, vector <League>leagues) {
+void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>leagues) {
 	int count = 0;
 	string user;
 	string pass;
@@ -101,7 +102,7 @@ void User::signup(unordered_map<string, User>& Users)
 	UserValidations::signupinfo(&newUser, "EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
 	Users.insert_or_assign(newUser.username, newUser);
 }
-void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <League> leagues)
+void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague> leagues)
 {
 	int choice;
 choice:

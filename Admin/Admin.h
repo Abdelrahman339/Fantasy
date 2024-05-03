@@ -6,7 +6,7 @@
 #include "User.h"
 #include "unordered_map"
 #include "Teams.h"
-#include"Leagues.h"
+#include "TheLeague.h"
 using namespace std;
 class Admin
 {
@@ -33,14 +33,14 @@ public:
 	void Deletion(unordered_map<string, User>& Users, User DeletedUser);
 
 	//teams
-	void displayTeamsForSpecificLeague(unordered_map<string, League> leagues);
-	Footballer* getFootballerToBeUpdated(vector<League> allleagues, string teamName, string footballerName);
-	void updateFootballer(Footballer* footballerToBeUpdated, vector<League> allleagues, string teamName, string footballerName);
-	void DeletePlayersInTeam(string Leaguename, map <string, Teams> teams);
+	//void displayTeamsForSpecificLeague(unordered_map<string, League> leagues);
+	//Footballer* getFootballerToBeUpdated(vector<League> allleagues, string teamName, string footballerName);
+	//void updateFootballer(Footballer* footballerToBeUpdated, vector<League> allleagues, string teamName, string footballerName);
+	//void DeletePlayersInTeam(string Leaguename, map <string, Teams> teams);
 
 	//leagues
-	void DisplayAllLeagues(void);
-	void UpdateLeague(void);
-	void DeleteLeague(void);
+	//void DisplayAllLeagues(void);
+	//void UpdateLeague(void);
+	//void DeleteLeague(void);
 	void PauseAndClear();
 };

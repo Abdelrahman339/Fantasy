@@ -2,15 +2,16 @@
 #include <deque>
 #include <stack>
 #include "User.h"
-#include "Game.h"
 #include <set>
+
 #include "Competition.h"
 using namespace std;
 
 void User::play(list<Game> allGames, User currentUser) {
 	int choice;
 	char ans;
-	queue <Game>UserGames = User::FilteringTeams(allGames, currentUser);
+	queue <Game>UserGames;
+	FilteringTeams(allGames, currentUser);
 invalid:
 	cout << "1-Play the current match \n 2-show the Games Highlights of the week\n 3-Go back" << endl;
 	cin >> choice;

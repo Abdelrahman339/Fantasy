@@ -1,17 +1,5 @@
-#include <iostream>
-#include <sstream>
-#include <iomanip>
-#include <random>
 #include "Game.h"
-#include"Teams.h"
-#include"Leagues.h"
-#include<regex>
-
-
-
-
-using namespace std;
-
+//#include "League.h"
 
 void Game::displayBorder(int type) {
 
@@ -126,24 +114,6 @@ void Game::displayPlayerHighlights(Game game) {
 			CurrentMin = GoalMinute + 1;
 
 		}
-
-			dis = uniform_int_distribution<>(CurrentMin, max);
-
-		if (foundYellowCards != string::npos) {
-
-			int yellowCardMinute = dis(gen);
-			cout << right << setw(45) << playerName << " " << yellowCardMinute << "'" << endl;
-			CurrentMin = yellowCardMinute + 1;
-			
-		}
-		
-
-		if (foundRedCards != string::npos) {
-			
-			int redCardMinute = dis(gen);
-			cout << right << setw(45) << playerName << " " << redCardMinute << "'" << endl;
-		}
-
 
 	}
 

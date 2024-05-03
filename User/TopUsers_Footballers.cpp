@@ -3,13 +3,13 @@
 
 
 
-vector<Footballer> User::GetAllFootballers(League league) {
+vector<Footballer> User::GetAllFootballers(TheLeague TheLeague) {
 
 
 	vector <Footballer> allPlayersLeageu;
 
-	// looping on all teams in the league
-	for (auto currentTeam : league.GetTeams()) {
+	// looping on all teams in the TheLeague
+	for (auto currentTeam : TheLeague.GetTeams()) {
 
 		//loop through all players in the team
 		for (auto currentPlayer : currentTeam.second.getFootballPlayer()) {
@@ -42,7 +42,7 @@ void User::toUnordredMap(unordered_map<string, Footballer>& topPlayers, vector<F
 }
 
 
-unordered_map<string, Footballer> User::TopFootballers(vector<League> leageus)
+unordered_map<string, Footballer> User::TopFootballers(vector<TheLeague> leageus)
 {
 	unordered_map<string, Footballer> topPlayers;
 

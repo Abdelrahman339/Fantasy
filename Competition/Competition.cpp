@@ -1,18 +1,4 @@
-#include <iostream>
-#include <queue>
-#include<list>
 #include "Competition.h"
-#include "Teams.h"
-#include"Game/Game.h"
-#include <unordered_map>
-#include "User.h"
-#include <regex>
-
-
-using namespace std;
-
-
-
 
 bool Competition::IsManOfTheMatch(string currentMOTM, string playerName)
 {
@@ -209,7 +195,7 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string 
 			string footballerName = kv.first;
 			if (footballerName == currentPlayerinMatch)
 			{
-				updatePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team);
+				updatePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team, currentPlayerinMatch);
 				ReducePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getViolation(), "User", team);
 
 			}
@@ -334,4 +320,3 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> Curre
 
 
 }
-

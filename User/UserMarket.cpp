@@ -1,17 +1,13 @@
-#include <iostream>
 #include <deque>
 #include <stack>
 #include <set>
 
-
 #include "Competition.h"
 #include "User.h"
-#include "Leagues.h"
-#include <regex>
-#include <string>
+
 using namespace std;
 
-void User::Market(User& currentUser, vector <League> leagues)
+void User::Market(User& currentUser, vector <TheLeague> leagues)
 {
 	unordered_map<string, Footballer> TopPlayer = TopFootballers(leagues);
 
@@ -52,7 +48,7 @@ invalid:
 	}
 };
 
-void User::showtopFootballers(unordered_map<string, Footballer> TopPlayer, User& currentUser, vector<League> Leageus)
+void User::showtopFootballers(unordered_map<string, Footballer> TopPlayer, User& currentUser, vector<TheLeague> Leageus)
 {
 	string footballerName;
 	int choice;
@@ -98,7 +94,7 @@ invalid:
 }
 
 
-void User::search(User& currentUser, vector<League>  leagues)
+void User::search(User& currentUser, vector<TheLeague>  leagues)
 {
 	// all the variables declartion
 	int ans;
@@ -182,7 +178,7 @@ invalid:
 
 
 }
-Footballer User::returnPlayer(string footballerName, User currentUser, string status, vector<League> leagues, Teams& footballerTeam)
+Footballer User::returnPlayer(string footballerName, User currentUser, string status, vector<TheLeague> leagues, Teams& footballerTeam)
 {
 
 	string nameOfFootballer = avoidTypos(footballerName, currentUser, "buy", leagues, footballerTeam);
@@ -205,7 +201,7 @@ Footballer User::returnPlayer(string footballerName, User currentUser, string st
 
 
 
-Teams User::findTeam(vector<League> leagues, string TeamName)
+Teams User::findTeam(vector<TheLeague> leagues, string TeamName)
 {
 	Teams teamFound;
 	for (int i = 0; i < leagues.size(); i++)
@@ -339,7 +335,7 @@ void User::sellFunction(User& currentUser, string footballerName, string status)
 
 
 
-void User::buy(User& currentUser, vector<League> Leagues) {
+void User::buy(User& currentUser, vector<TheLeague> Leagues) {
 
 	// all used variables
 	string footballerName;

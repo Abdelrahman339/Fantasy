@@ -1,10 +1,10 @@
 ﻿#include <iostream>
 #include "User.h"
 #include "UserValidations.h"
-#include "Teams.h"
 #include <algorithm>
 #include <regex>
-#include "Leagues.h"
+
+#include "Teams.h"
 
 int formatchoice = 3;
 
@@ -16,7 +16,7 @@ string User::spacing(int spacing, char character) {
 
 
 
-string User::avoidTypos(string& footballerName, User& currentUser, string status, vector <League> allLeagues, Teams& PlayerTeam)
+string User::avoidTypos(string& footballerName, User& currentUser, string status, vector <TheLeague> allLeagues, Teams& PlayerTeam)
 {
 	Teams team;
 	footballerName[0] = toupper(footballerName[0]);
@@ -59,7 +59,7 @@ string User::avoidTypos(string& footballerName, User& currentUser, string status
 
 
 
-pair<string, Teams> User::getTeam(vector<League> allLeagues, User currentUser, string FootballerName)
+pair<string, Teams> User::getTeam(vector<TheLeague> allLeagues, User currentUser, string FootballerName)
 {
 	pair<string, Teams> playerExist;
 	for (int i = 0; i < allLeagues.size(); i++)
@@ -196,7 +196,7 @@ choice:
 
 		getline(cin >> ws, footballerName);
 
-		string existPlayer = avoidTypos(footballerName, currentUser, "sell", { League() }, team);
+		string existPlayer = avoidTypos(footballerName, currentUser, "sell", { TheLeague() }, team);
 
 
 
@@ -449,7 +449,7 @@ invalid_main:
 	cin >> PlayerName1;
 
 	//checking if the user entered a correct footballer name or not
-	existPlayer = avoidTypos(PlayerName1, currentUser, "sell", { League() }, team);
+	existPlayer = avoidTypos(PlayerName1, currentUser, "sell", { TheLeague() }, team);
 
 
 	//the user entered a valid footballer name

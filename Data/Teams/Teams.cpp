@@ -6,6 +6,7 @@ Teams::Teams() {
 	this->wins = 0;
 	this->lose = 0;
 	this->draw = 0;
+	this->players = {};
 }
 
 Teams::Teams(string name, int points, int wins, int lose, int draw, unordered_map<string, Footballer> footballers) {
@@ -74,9 +75,10 @@ void Teams::addPoints(int num)
 //	}
 //	return team;
 //}
+//
 //Footballer* Teams::getFootballerByTeamName(Teams team, string footballerName)
 //{
-//	Footballer* footballerToBeUpdated;
+//	Footballer* footballerToBeUpdated = nullptr;
 //	*footballerToBeUpdated = team.getFootballPlayer().at(footballerName);
 //	return footballerToBeUpdated;
 //}

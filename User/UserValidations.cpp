@@ -1,7 +1,5 @@
 #include "UserValidations.h"
-#include <regex>
-#include <iostream>
-using namespace std;
+
 void UserValidations::signupinfo(User* newUser, string info, bool (*Check)(string), void (User::* set)(string))
 {
 	string input;

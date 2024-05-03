@@ -1,10 +1,14 @@
+#ifndef COMPETITION_H
+#define COMPETITION_H
+#pragma once
 #include <iostream>
 #include <queue>
 #include <vector>
-#include<list>
-#include "Game.h"
+#include <list>
 #include "User.h"
+#include "Game.h"
 #include "Teams.h"
+
 using namespace std;
 
 class Competition {
@@ -50,3 +54,4 @@ protected:
 	//suspend functions
 
 };
+#endif

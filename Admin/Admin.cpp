@@ -7,8 +7,8 @@
 #include "Admin.h"
 #include "User.h"
 #include "Teams.h"
-#include"Leagues.h"
 #include "UserValidations.h"
+
 using namespace std;
 
 int counter = 0;
@@ -464,94 +464,94 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 	}
 }
 
-void Admin::displayTeamsForSpecificLeague(unordered_map<string, League> leagues) {
-	cout << "Choose a League to show all";
-}
+//void Admin::displayTeamsForSpecificLeague(unordered_map<string, League> leagues){
+//	cout << "Choose a League to show all";
+//}
 
-Footballer* Admin::getFootballerToBeUpdated(vector<League> allleagues, string teamName, string footballerName) {
-	Teams team = Teams::getTeamByName(allleagues, teamName);
-	Footballer* footballerToBeUpdated = team.getFootballerByTeamName(team, footballerName);
-	return footballerToBeUpdated;
-}
+//Footballer* Admin::getFootballerToBeUpdated(vector<League> allleagues, string teamName, string footballerName) {
+//	Teams team = Teams::getTeamByName(allleagues, teamName);
+//	Footballer* footballerToBeUpdated = team.getFootballerByTeamName(team, footballerName);
+//	return footballerToBeUpdated;
+//}
 
-void Admin::updateFootballer(Footballer* footballerToBeUpdated, vector<League> allleagues, string teamName, string footballerName) {
-	int choice;
-	string InputString;
-	float InputInt;
-	bool InputBool;
-	footballerToBeUpdated = getFootballerToBeUpdated(allleagues, teamName, footballerName);
+//void Admin::updateFootballer(Footballer* footballerToBeUpdated, vector<League> allleagues, string teamName, string footballerName) {
+//	int choice;
+//	string InputString;
+//	float InputInt;
+//	bool InputBool;
+//	footballerToBeUpdated = getFootballerToBeUpdated(allleagues, teamName, footballerName);
+//
+//	do
+//	{
+//	beginning:
+//		cout << "Update " << footballerToBeUpdated->GetName() << "'s info" << endl;
+//		cout << "What do you wish to modify?" << endl;
+//		cout << "1) Name" << endl;
+//		cout << "2) Age" << endl;
+//		cout << "3) Captain" << endl;
+//		cout << "4) Position" << endl;
+//		cout << "5) Team" << endl;
+//		cout << "6) Price" << endl;
+//		cout << "7) Rating" << endl;
+//
+//		cin >> choice;
+//
+//		switch (choice) {
+//		case 1:
+//			cout << "Enter new name: ";
+//			cin >> InputString;
+//			footballerToBeUpdated->SetName(InputString);
+//			break;
+//		case 2:
+//			cout << "Enter new age: ";
+//			cin >> InputInt;
+//			footballerToBeUpdated->SetAge(InputInt);
+//			break;
+//		case 3:
+//			cout << "Is the Player a Captain? (1 for Yes / 0 for No): ";
+//			cin >> InputBool;
+//			footballerToBeUpdated->SetCaptain(InputBool);
+//			break;
+//		case 4:
+//			cout << "Enter new position: ";
+//			cin >> InputString;
+//			footballerToBeUpdated->SetPosition(InputString);
+//			break;
+//		case 5:
+//			cout << "Enter new team: ";
+//			cin >> InputString;
+//			footballerToBeUpdated->SetTeam(InputString);
+//			break;
+//		case 6:
+//			cout << "Enter new price: ";
+//
+//			cin >> InputInt;
+//			footballerToBeUpdated->SetPrice(InputInt);
+//			break;
+//		case 7:
+//			cout << "Enter new rating: ";
+//			cin >> InputInt;
+//			footballerToBeUpdated->SetRating(InputInt);
+//			break;
+//		default:
+//			cout << "Invalid choice!" << endl;
+//			Sleep(300);
+//			goto beginning;
+//		}
+//		cout << "Successfully Updated." << endl;
+//		Sleep(300);
+//		cout << "Continue Modifying? (Yes/No)" << endl;
+//		cin >> InputString;
+//		PauseAndClear();
+//	} while (InputString == "Yes" || "yes" || "YES");
+//
+//}
 
-	do
-	{
-	beginning:
-		cout << "Update " << footballerToBeUpdated->GetName() << "'s info" << endl;
-		cout << "What do you wish to modify?" << endl;
-		cout << "1) Name" << endl;
-		cout << "2) Age" << endl;
-		cout << "3) Captain" << endl;
-		cout << "4) Position" << endl;
-		cout << "5) Team" << endl;
-		cout << "6) Price" << endl;
-		cout << "7) Rating" << endl;
-
-		cin >> choice;
-
-		switch (choice) {
-		case 1:
-			cout << "Enter new name: ";
-			cin >> InputString;
-			footballerToBeUpdated->SetName(InputString);
-			break;
-		case 2:
-			cout << "Enter new age: ";
-			cin >> InputInt;
-			footballerToBeUpdated->SetAge(InputInt);
-			break;
-		case 3:
-			cout << "Is the Player a Captain? (1 for Yes / 0 for No): ";
-			cin >> InputBool;
-			footballerToBeUpdated->SetCaptain(InputBool);
-			break;
-		case 4:
-			cout << "Enter new position: ";
-			cin >> InputString;
-			footballerToBeUpdated->SetPosition(InputString);
-			break;
-		case 5:
-			cout << "Enter new team: ";
-			cin >> InputString;
-			footballerToBeUpdated->SetTeam(InputString);
-			break;
-		case 6:
-			cout << "Enter new price: ";
-
-			cin >> InputInt;
-			footballerToBeUpdated->SetPrice(InputInt);
-			break;
-		case 7:
-			cout << "Enter new rating: ";
-			cin >> InputInt;
-			footballerToBeUpdated->SetRating(InputInt);
-			break;
-		default:
-			cout << "Invalid choice!" << endl;
-			Sleep(300);
-			goto beginning;
-		}
-		cout << "Successfully Updated." << endl;
-		Sleep(300);
-		cout << "Continue Modifying? (Yes/No)" << endl;
-		cin >> InputString;
-		PauseAndClear();
-	} while (InputString == "Yes" || "yes" || "YES");
-
-}
-
-void Admin::DisplayAllLeagues(unordered_map<string, League> leagues) {
-	for (auto it = leagues.begin(); it != leagues.end(); ++it) {
-		cout << it->first << endl;
-	}
-}
+//void Admin::DisplayAllLeagues(unordered_map<string, League> leagues) {
+//	for (auto it = leagues.begin(); it != leagues.end(); ++it) {
+//		cout << it->first << endl;
+//	}
+//}
 
 void Admin::PauseAndClear()
 {
