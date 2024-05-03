@@ -1,11 +1,21 @@
+#ifndef GAME_H
+#define GAME_H
+
 #pragma once
 #include <iostream>
+#include <sstream>
+#include <iomanip>
+#include <random>
 #include <string>
 #include <vector>
 #include <queue>
-#include "Teams.h"
 #include <stack>
+#include <regex>
+
+
+#include "Teams.h"
 #include "HighlightsOfTheMatch.h"
+
 
 
 
@@ -33,7 +43,7 @@ public:
 
 	Game();
 	//, Teams home, Teams away
-	
+
 	Game(int id, string winTeam, string score,
 		string stats, stack<HighlightsOfTheMatch> highlights, string motm, string date);
 	/////////////////////////////////////////
@@ -70,3 +80,4 @@ public:
 
 
 };
+#endif // GAME_H

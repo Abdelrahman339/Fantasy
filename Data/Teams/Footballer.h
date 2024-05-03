@@ -1,3 +1,5 @@
+#ifndef FOOTBALLER_H
+#define FOOTBALLER_H
 #pragma once
 #include <iostream>
 #include <string>
@@ -101,3 +103,4 @@ public:
 
 
 };
+#endif

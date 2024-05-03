@@ -1,18 +1,4 @@
-#include <iostream>
-#include <queue>
-#include<list>
 #include "Competition.h"
-#include "Teams.h"
-#include"Game/Game.h"
-#include <unordered_map>
-#include "User.h"
-#include <regex>
-
-
-using namespace std;
-
-
-
 
 bool Competition::IsManOfTheMatch(string currentMOTM, string playerName)
 {
@@ -209,7 +195,7 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string 
 			string footballerName = kv.first;
 			if (footballerName == currentPlayerinMatch)
 			{
-				updatePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team);
+				updatePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team, currentPlayerinMatch);
 				ReducePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getViolation(), "User", team);
 
 			}
@@ -312,7 +298,7 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 	}
 }
 
-void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> CurrentGame) //for both squads of the match for the user
+void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> CurrentGame) //for both squads of the match
 {
 	removeCurrentGame(UserGames, CurrentGame);
 
@@ -331,30 +317,6 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> Curre
 	}
 
 
-
-
-}
-
-void Competition::UpdateAllPlayersPoints(list<Game>GameWeeks) {
-
-	list<Game>CurrentGameWeek = GameWeeks; // for now
-	if (CurrentGameWeek.empty()) {
-		return;
-	}
-
-	Game CurrentGame;
-	int numOfMatchesPlayed = 0; 
-	while (numOfMatchesPlayed < 8) {
-
-		CurrentGame = CurrentGameWeek.front();
-
-
-
-
-
-		CurrentGameWeek.pop_front();
-		numOfMatchesPlayed++;
-	}
 
 
 }

@@ -1,17 +1,5 @@
-#include <iostream>
-#include <sstream>
-#include <iomanip>
-#include <random>
 #include "Game.h"
-#include"Teams.h"
 //#include "League.h"
-#include<regex>
-
-
-
-
-using namespace std;
-
 
 void Game::displayBorder(int type) {
 
