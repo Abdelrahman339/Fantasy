@@ -22,9 +22,9 @@ unordered_map<string, Footballer> Teams::getFootballPlayer()
 {
 	return this->players;
 }
-//Teams Teams::getTeamByName(map<string, Teams> teams, string name) {
-//	return teams.at(name);
-//}
+Teams Teams::getTeamByName(map<string, Teams> teams, string name) {
+	return teams.at(name);
+}
 
 string Teams::getName()
 {
@@ -75,6 +75,7 @@ void Teams::addPoints(int num)
 //	}
 //	return team;
 //}
+//
 //Footballer* Teams::getFootballerByTeamName(Teams team, string footballerName)
 //{
 //	Footballer* footballerToBeUpdated = nullptr;

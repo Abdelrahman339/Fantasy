@@ -1,3 +1,5 @@
+#ifndef HIGHLIGHTSOFTHEMATCH_H
+#define HIGHLIGHTSOFTHEMATCH_H
 #pragma once
 #include <iostream>
 using namespace std;
@@ -24,3 +26,4 @@ public:
 };
 
 // the class will contain the 22 footballer of the two teams.
+#endif

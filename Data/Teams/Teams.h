@@ -1,3 +1,6 @@
+#ifndef TEAMS_H
+#define TEAMS_H
+
 #pragma once
 #include <iostream>
 #include <string>
@@ -5,9 +8,7 @@
 #include <map>
 #include <unordered_map>
 
-//#include "Game.h"
 #include "Footballer.h"
-#include "User.h"
 //#include "Game.h"
 
 //using namespace std;
@@ -30,7 +31,7 @@ public:
 
 	Teams(string name, int points, int wins, int lose, int draw, unordered_map<string, Footballer> footballers);
 	unordered_map<string, Footballer>getFootballPlayer();
-	//Teams static getTeamByName(map<string, Teams> teams, string name);
+	Teams static getTeamByName(map<string, Teams> teams, string name);
 
 	string getName();
 	int getwins();
@@ -46,5 +47,5 @@ public:
 
 };
 
-
+#endif
 

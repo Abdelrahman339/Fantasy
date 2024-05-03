@@ -1,12 +1,4 @@
-#include <iostream>
-#include <unordered_map>
-#include <string>
-#include <algorithm>
-
-#include "Teams.h"
-#include "Game.h"
-
-using namespace std;
+#include "TheLeague.h"
 
 //void League::displayTeams(unordered_map<string, Teams>& teams) {
 //    cout << "Teams in the league:" << endl;
@@ -35,7 +27,7 @@ using namespace std;
 //    }
 //}
 
-    
+
 
 
 //void League::displayPointTable()
@@ -55,17 +47,18 @@ using namespace std;
 //    }
 //}
 
-League::League() {
+TheLeague::TheLeague() {
 	this->name = "";
 	this->teams = {};
 }
 
-League::League(string name, map<string, Teams> teams) {
+TheLeague::TheLeague(string name, map<string, Teams> teams) {
 	this->name = name;
 	this->teams = teams;
 }
 
-map<string, Teams> League::GetTeams()
+map<string, Teams> TheLeague::GetTeams()
 {
 	return this->teams;
 }
+
