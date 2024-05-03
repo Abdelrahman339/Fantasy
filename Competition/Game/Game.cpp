@@ -102,8 +102,8 @@ void Game::displayPlayerHighlights(Game game) {
 	string violation = CurrentGame.getHighlightsOfTheMatch().top().getViolation();
 
 	size_t found_goals = Contributes.find("goals");
-	size_t foundYellowCards = Contributes.find("yellowCard");
-	size_t foundRedCards = Contributes.find("redCard");
+	size_t foundYellowCards = violation.find("yellowCard");
+	size_t foundRedCards = violation.find("redCard");
 	random_device rd;
 	mt19937 gen(rd()); // ----> engine used for generating random numbers
 
