@@ -329,7 +329,7 @@ static bool isFloat(string& input)
 	}
 	return false;
 }
-void Admin::EditBalancePointsRank(User* CurrentUser, int choice, string information)
+void Admin::EditBalancePointsRank(User& CurrentUser, int choice, string information)
 {
 	string NewBalance = "1", NewPointsOrRank = "1";
 Redo:
@@ -368,15 +368,15 @@ Redo:
 		{
 			if (choice == 1)
 			{
-				CurrentUser->SetBalance(stof(NewBalance));
+				CurrentUser.SetBalance(stof(NewBalance));
 			}
 			else if (choice == 2)
 			{
-				CurrentUser->SetPoints(stoi(NewPointsOrRank));
+				CurrentUser.SetPoints(stoi(NewPointsOrRank));
 			}
 			else if (choice == 3)
 			{
-				CurrentUser->SetRank(stoi(NewPointsOrRank));
+				CurrentUser.SetRank(stoi(NewPointsOrRank));
 			}
 		}
 	}
