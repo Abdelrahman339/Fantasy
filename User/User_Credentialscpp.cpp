@@ -124,6 +124,7 @@ choice:
 
 		Market(currentUser, leagues);
 		userMenu(currentUser, Users, leagues);
+		return;
 	}
 	else if (choice == 4)
 	{

@@ -63,6 +63,10 @@ int main() {
 
  stack of string and set:internal usage in functions.
 
+ vector of leagues
+
+ map of teams
+
 
 */
 

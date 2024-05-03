@@ -26,7 +26,7 @@ protected:
 	float balance;
 	unordered_map <string, Footballer >TheMainSquad;
 	unordered_map <string, Footballer >SubstitutionSquad;
-	queue<Game> &UserGames; // queue of the user games that he will play in the round.
+	queue<Game> UserGames; // queue of the user games that he will play in the round.
 public:
 
 	User();

@@ -3,7 +3,6 @@
 #include <algorithm>
 #include<Windows.h>
 #include "Admin.h"
-#include "Leagues.h"
 #include "User.h"
 #include "Teams.h"
 #include"Leagues.h"
