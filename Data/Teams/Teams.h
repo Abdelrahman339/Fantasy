@@ -128,9 +128,9 @@ public:
 	void SetPoints(int num);
 	void addPoints(int num);
 
-	Teams static getTeamByName(vector<League> allleagues, string teamName);
+	//Teams static getTeamByName(vector<League> allleagues, string teamName);
 
-	Footballer* getFootballerByTeamName(Teams team, string footballerName);
+	//Footballer* getFootballerByTeamName(Teams team, string footballerName);
 
 };
 
