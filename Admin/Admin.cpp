@@ -177,9 +177,10 @@ void Admin::ShowAndEditUser(unordered_map<string, User>& Users)
 		ViewProfile(Users, Users.at(userName));
 	}
 }
-void Admin::ViewProfile(unordered_map<string, User>& Users, User currentUser)
+void Admin::ViewProfile(unordered_map<string, User>& Users, User& currentUser)
 {
 	int choice;
+choices:
 	cout << "User Information And Profile" << endl;
 	cout << "--------------------------------------" << endl;
 	cout << "Name:" << currentUser.GetFullName() << endl;;
@@ -192,7 +193,6 @@ void Admin::ViewProfile(unordered_map<string, User>& Users, User currentUser)
 	cout << "Points:" << currentUser.GetPoints() << endl;
 	cout << "Rank:" << currentUser.GetRank() << endl;
 	cout << "--------------------------------------" << endl;
-choices:
 	cout << endl;
 	cout << "1-Edit User Information\n2-User Squad And Players\n3-Delete User \n4-Go Back" << endl;
 	cout << "Enter your choice: ";
@@ -221,11 +221,12 @@ choices:
 		goto choices;
 	}
 }
-void Admin::EditProfile(unordered_map<string, User>& Users, User currentUser)
+void Admin::EditProfile(unordered_map<string, User>& Users, User& currentUser)
 {
 	bool valid = false;
 	int choice;
 choices:
+	Sleep(200);
 	cout << "1-Edit Full Name.\n2-Edit Username\n3-Edit Email Address.\n4-Edit Phone Number.\n5-Edit Password.\n6-Edit Balance\n7-Edit Points\n8-Edit Rank\n9-Go Back" << endl;
 	cout << "Enter your choice: ";
 	cin >> choice;
@@ -273,19 +274,19 @@ choices:
 	}
 	else if (choice == 6)
 	{
-		EditBalancePointsRank(&currentUser, 1, "new Balance");
+		EditBalancePointsRank(currentUser, 1, "new Balance");
 		cout << "Balance updated successfully" << endl;
 		PauseAndClear();
 	}
 	else if (choice == 7)
 	{
-		EditBalancePointsRank(&currentUser, 2, "new Points");
+		EditBalancePointsRank(currentUser, 2, "new Points");
 		cout << "Points updated successfully" << endl;
 		PauseAndClear();
 	}
 	else if (choice == 8)
 	{
-		EditBalancePointsRank(&currentUser, 3, "new Rank");
+		EditBalancePointsRank(currentUser, 3, "new Rank");
 		cout << "Rank updated successfully" << endl;
 		PauseAndClear();
 	}
