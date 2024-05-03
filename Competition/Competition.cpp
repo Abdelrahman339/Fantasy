@@ -320,4 +320,3 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> Curre
 
 
 }
-
