@@ -78,7 +78,7 @@ void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string
 		else if (choice == 4)
 		{
 			system("cls");
-			/*	User::homePage(Users);*/
+			return;
 		}
 		else
 		{
@@ -93,7 +93,7 @@ void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string
 		cout << "Going Back To Home Page..." << endl;
 		Sleep(3200);
 		system("cls");
-		/*	User::homePage(Users);*/
+		return;
 	}
 }
 
@@ -148,14 +148,14 @@ void Admin::DisplayAllUsers(unordered_map<string, User>& Users)
 {
 	counter = 0;
 	Sleep(300);
-	cout << "\t| Full Name\t| User Name" << endl;
-	cout << "---------------------------------------------" << endl;
+	cout << "\t| Full Name\t\t  | User Name" << endl;
+	cout << "------------------------------------------------" << endl;
 	for (auto it = Users.begin(); it != Users.end(); ++it)
 	{
-		cout << counter + 1 << "\t|" << Users.at(it->first).GetFullName() << "\t\t|" << it->first << endl;
+		cout << counter + 1 << "\t|" << Users.at(it->first).GetFullName() << "  \t\t  |" << it->first << endl;
 		counter++;
 	}
-	cout << "---------------------------------------------" << endl;
+	cout << "------------------------------------------------" << endl;
 	cout << "Total Number of Users: " << counter << endl;
 }
 
@@ -174,7 +174,6 @@ void Admin::ShowAndEditUser(unordered_map<string, User>& Users)
 	}
 	else
 	{
-		Users.at(userName).SetUsername(userName);
 		ViewProfile(Users, Users.at(userName));
 	}
 }
@@ -204,8 +203,8 @@ choices:
 	}
 	else if (choice == 2)
 	{
-		////////////////////by7sl hena error////////////////////////////////
-		//User::ShowSquad(currentUser, Users);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
+		User::ShowSquad(currentUser);
+		ViewProfile(Users, currentUser);
 	}
 	else if (choice == 3)
 	{
@@ -396,9 +395,8 @@ void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
 	}
 	else
 	{
-		////////////////////by7sl hena error////////////////////////////////
-		Users.at(userName).SetUsername(userName);
-		//User::ShowSquad(Users.at(userName), Users);// lma y5osh gowa function Squad w das go back hyro7 fe 7ta tnya 5ales
+		User::ShowSquad(Users.at(userName));
+		AboutUsers(Users);
 	}
 }
 
@@ -423,7 +421,6 @@ void Admin::DeleteUser(unordered_map<string, User>& Users)
 		}
 		else
 		{
-			Users.at(userName).SetUsername(userName);
 			Deletion(Users, Users.at(userName));
 		}
 	}
