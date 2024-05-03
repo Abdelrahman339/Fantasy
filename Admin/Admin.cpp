@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <algorithm>
+#include <sstream>
+#include <limits>
 #include<Windows.h>
 #include "Admin.h"
 #include "User.h"
@@ -76,7 +78,7 @@ void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string
 		else if (choice == 4)
 		{
 			system("cls");
-		/*	User::homePage(Users);*/
+			/*	User::homePage(Users);*/
 		}
 		else
 		{
@@ -91,7 +93,7 @@ void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string
 		cout << "Going Back To Home Page..." << endl;
 		Sleep(3200);
 		system("cls");
-	/*	User::homePage(Users);*/
+		/*	User::homePage(Users);*/
 	}
 }
 
@@ -172,7 +174,6 @@ void Admin::ShowAndEditUser(unordered_map<string, User>& Users)
 	}
 	else
 	{
-		//lsa feh func t5leh y2dr y8yr el user balance, points, rank
 		Users.at(userName).SetUsername(userName);
 		ViewProfile(Users, Users.at(userName));
 	}
@@ -271,24 +272,24 @@ choices:
 		cout << "Password updated successfully" << endl;
 		PauseAndClear();
 	}
-	/*else if (choice == 6)
+	else if (choice == 6)
 	{
-		UserValidations::signupinfo(&currentUser, "new Balance", UserValidations::balanceCheck, &User::SetBalance);
+		EditBalancePointsRank(&currentUser, 1, "new Balance");
 		cout << "Balance updated successfully" << endl;
 		PauseAndClear();
 	}
 	else if (choice == 7)
 	{
-		UserValidations::signupinfo(&currentUser, "new Points", UserValidations::pointsCheck, &User::SetPoints);
+		EditBalancePointsRank(&currentUser, 2, "new Points");
 		cout << "Points updated successfully" << endl;
 		PauseAndClear();
 	}
 	else if (choice == 8)
 	{
-		UserValidations::signupinfo(&currentUser, "new Rank", UserValidations::rankCheck, &User::SetRank);
+		EditBalancePointsRank(&currentUser, 3, "new Rank");
 		cout << "Rank updated successfully" << endl;
 		PauseAndClear();
-	}*/
+	}
 	else if (choice == 9)
 	{
 		ViewProfile(Users, currentUser);
@@ -307,6 +308,78 @@ choices:
 	{
 		Users[currentUser.GetUsername()] = currentUser;
 		ViewProfile(Users, currentUser);
+	}
+}
+static bool isInteger(string& input)
+{
+	istringstream iss(input);
+	int value;
+	if (iss >> value) {
+		// Check if the entire string was consumed by the conversion
+		return iss.eof() && !iss.fail();
+	}
+	return false;
+}
+static bool isFloat(string& input)
+{
+	istringstream iss(input);
+	double value;
+	if (iss >> value) {
+		// Check if the entire string was consumed by the conversion
+		return iss.eof() && !iss.fail();
+	}
+	return false;
+}
+void Admin::EditBalancePointsRank(User* CurrentUser, int choice, string information)
+{
+	string NewBalance = "1", NewPointsOrRank = "1";
+Redo:
+	cout << "Enter Your " << information << ": " << endl;
+	if (information == "new Balance")
+	{
+		getline(cin, NewBalance);
+	}
+	else
+	{
+		getline(cin, NewPointsOrRank);
+	}
+	if (!isInteger(NewBalance) && !isFloat(NewBalance))
+	{
+		cout << "Your " << information << " Must Be A Value!" << endl;
+		goto Redo;
+	}
+	else if (!isInteger(NewPointsOrRank))
+	{
+		cout << "Your " << information << " Must Be Integer!" << endl;
+		goto Redo;
+	}
+	else
+	{
+		if (stof(NewBalance) < 0 || stoi(NewPointsOrRank) < 0)
+		{
+			cout << "Your " << information << " Cannot Be Negative" << endl;
+			goto Redo;
+		}
+		else if (stoi(NewPointsOrRank) == 0 && choice == 3)
+		{
+			cout << "Your " << information << " Cannot Be Zero" << endl;
+			goto Redo;
+		}
+		else
+		{
+			if (choice == 1)
+			{
+				CurrentUser->SetBalance(stof(NewBalance));
+			}
+			else if (choice == 2)
+			{
+				CurrentUser->SetPoints(stoi(NewPointsOrRank));
+			}
+			else if (choice == 3)
+			{
+				CurrentUser->SetRank(stoi(NewPointsOrRank));
+			}
+		}
 	}
 }
 void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
@@ -391,7 +464,7 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 	}
 }
 
-void Admin::displayTeamsForSpecificLeague(unordered_map<string, League> leagues){
+void Admin::displayTeamsForSpecificLeague(unordered_map<string, League> leagues) {
 	cout << "Choose a League to show all";
 }
 

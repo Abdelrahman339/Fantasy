@@ -27,6 +27,7 @@ public:
 	void ShowAndEditUser(unordered_map<string, User>& Users);
 	void ViewProfile(unordered_map<string, User>& Users, User CurrentUser);
 	void EditProfile(unordered_map<string, User>& Users, User CurrentUser);
+	void EditBalancePointsRank(User* CurrentUser,int choice, string information);
 	void UserSquadAndPlayers(unordered_map<string, User>& Users);
 	void DeleteUser(unordered_map<string, User>& Users);
 	void Deletion(unordered_map<string, User>& Users, User DeletedUser);
