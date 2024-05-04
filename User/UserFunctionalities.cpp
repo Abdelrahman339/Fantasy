@@ -314,7 +314,7 @@ choice:
 
 
 			// the plyaer is from the sub squad
-			else if (!regex_search(existPlayer, pattern)) {
+			else {
 				cout << "You enterd a wrong player .Do you mean " << existPlayer << "?(y/n)" << endl;
 				cin >> ans;
 				if (ans == 'y')
@@ -350,10 +350,6 @@ choice:
 					goto invalid;
 				}
 
-			}
-			else {
-				cout << "You enterd a wrong player.Please enter a exist player." << endl;
-				goto invalid;
 			}
 		}
 		else {

@@ -33,7 +33,6 @@ int main() {
 	unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
 	User user;
 	unordered_map<string, Footballer> squad = user.GetMainSquad();
-	string footballerName = "Eden Hazard";
 
 	//cout << endl;
 
@@ -43,7 +42,6 @@ int main() {
 	//catch (const std::exception&) {
 	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
 	//}
-	cout << "the project is running";
 
 	user.homePage(users, leagues);
 

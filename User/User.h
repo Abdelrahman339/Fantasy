@@ -127,11 +127,14 @@ public:
 	void static buyFunction(User& currentUser, Footballer footballer);
 
 	bool static checkBalance(float& currentUserBalance, float& footballerPrice);
-	void static replace(User& currentUser, Teams& team, unordered_map<string, Footballer> TopPlayer, unordered_map<string, User>& Users);
+	void static replace(User& currentUser, Footballer WantedFootballer);
 
+	void static replaceFunction(User& currentUser, string UserFootballerName, Footballer TeamFootballer, string status);
 	void static search(User& currentUser, vector<TheLeague> leagues);
 	Footballer static returnPlayer(string footballerName, User currentUser, string status, vector<TheLeague>  leagues, Teams& footballerTeam);
 	Teams static  findTeam(vector<TheLeague> TheLeague, string TeamName);
+
+	void static PlayerFunction(Footballer& targetFootballer, User& currentUser);
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////
