@@ -15,17 +15,16 @@ int main() {
 	//cout << "Reading from files: " << endl << endl;
 	////League Data now Done!==> Usage
 	map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
-	map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
-	vector<TheLeague> leagues = fileManipulation::getLeagueData(Teams);
+	map<string, Teams> allTeams = fileManipulation::getTeamsData(footballersOfTeam);
+	vector<TheLeague> leagues = fileManipulation::getLeagueData(allTeams);
 
 
 	////Get Games now Done!==> USAGE
-	//list<Game> games = fileManipulation::getGamesData();
-	//for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
-	//	stack<HighlightsOfTheMatch> highlightsOfTheMatch = it->getHighlightsOfTheMatch();
-	//	if (!highlightsOfTheMatch.empty())
-	//		cout << highlightsOfTheMatch.top().getName() << endl;
-	//}
+	list<Game> games = fileManipulation::getGamesData(allTeams);
+	for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
+		string name = it->getHomeTeam().getName();
+		//cout << name << endl;
+	}
 
 	//Get User now Done!==> USAGE
 
@@ -43,7 +42,8 @@ int main() {
 	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
 	//}
 
-	user.homePage(users, leagues);
+	user.homePage(users, leagues, games);
+
 
 }
 
