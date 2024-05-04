@@ -42,25 +42,7 @@ char Competition::priceCalculation(int points) {
 
 }
 
-void Competition::removeCurrentGame(queue<Game> UserGames, list<Game>& allGames)
-{
-	while (!UserGames.empty())
-	{
-		auto gameit = allGames.begin();
-		while (gameit != allGames.end())
-		{
-			if ((*gameit).getGameId() == UserGames.front().getGameId()) {
-				break;
-			}
-		}
-		allGames.erase(gameit);
 
-
-
-
-		UserGames.pop();
-	}
-}
 
 void Competition::ReducePoints(string footballerName, User& currentUser, string violence, string status, Teams& team)
 {
@@ -213,7 +195,6 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string 
 void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGame)
 {
 	char ans;
-	removeCurrentGame(Usergames, allGame);
 	cout << "Highlights of the week" << endl;
 	for (Game game : allGame) {
 		cout << game.getAwayTeam().getName() << User::spacing(10, ' ') << game.getHomeTeam().getName() << endl;
@@ -300,7 +281,7 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 
 void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> CurrentGame) //for both squads of the match
 {
-	removeCurrentGame(UserGames, CurrentGame);
+
 
 	Game game = UserGames.front();
 	auto AwayFootballPlayers = game.getAwayTeam().getFootballPlayer();

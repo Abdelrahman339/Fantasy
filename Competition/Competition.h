@@ -38,8 +38,6 @@ protected:
 
 
 
-	void static removeCurrentGame(queue<Game> UserGames, list<Game>& allGames);//use this function before updating all the players points. to prevent duplicate games between UserGames and allGames
-
 	void static ReducePoints(string footballerName, User& currentUser, string violation, string status, Teams& team);//this function used to reduce user points,balance and footballer points
 
 	void static updatePoints(string footballerName, User& currentUser, string contributes, string status, Teams& team, string footballerPosition);//this function used to update user points,balance and footballer points
