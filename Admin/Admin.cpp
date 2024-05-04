@@ -15,9 +15,9 @@ using namespace std;
 int counter = 0;
 bool answer = false;
 
-bool Admin::CheckAdmin()
+void Admin::CheckAdmin(unordered_map<string, User>& Users)
 {
-	int count = 1;
+	int count = 0;
 	string username, password;
 	do
 	{
@@ -34,69 +34,61 @@ bool Admin::CheckAdmin()
 		{
 			PauseAndClear();
 			cout << endl << "~~~~~~~~ Welcome Back Admin! ~~~~~~~~" << endl;
-			return true;
-		}
-		else if (count == 3)
-		{
-			return false;
-		}
-		else
-		{
-			cout << endl << "Wrong Admin Username Or Password" << endl;
-			cout << "Please Try Again...  " << count << " / 3\n";
-			count++;
-			PauseAndClear();
-		}
-	} while (true);
-}
-
-void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/)
-{
-	if (CheckAdmin())
-	{
-		int choice;
-	Menu:
-		cout << endl << "\t     Admin Menu" << endl;
-		cout << "--------------------------------------" << endl;
-		cout << "1-About Users \n2-About Teams \n3-About Leagues \n4-Go Back" << endl;
-		cout << "--------------------------------------" << endl;
-		cout << "Enter your choice: ";
-		cin >> choice;
-		cout << endl;
-		if (choice == 1)
-		{
-			system("cls");
-			AboutUsers(Users/*, Team, League*/);
-		}
-		else if (choice == 2)
-		{
-
-		}
-		else if (choice == 3)
-		{
-
-		}
-		else if (choice == 4)
-		{
-			system("cls");
+			AdminMenu(Users);
 			return;
 		}
 		else
 		{
-			system("cls");
-			cout << endl << "Please select a valid choice.." << endl;
-			goto Menu;
+			cout << endl << "Wrong Admin Username Or Password" << endl;
+			count++;
+			cout << "Please Try Again...  " << count << " / 3\n";
+			PauseAndClear();
 		}
-	}
-	else
+	} while (count != 3);
+}
+
+void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/)
+{
+
+
+	int choice;
+Menu:
+	cout << endl << "\t     Admin Menu" << endl;
+	cout << "--------------------------------------" << endl;
+	cout << "1-About Users \n2-About Teams \n3-About Leagues \n4-Go Back" << endl;
+	cout << "--------------------------------------" << endl;
+	cout << "Enter your choice: ";
+	cin >> choice;
+	cout << endl;
+	if (choice == 1)
 	{
-		cout << "Failed To Enter Admin Menu   3 / 3" << endl;
-		cout << "Going Back To Home Page..." << endl;
-		Sleep(3200);
+		system("cls");
+		AboutUsers(Users/*, Team, League*/);
+		return;
+	}
+	else if (choice == 2)
+	{
+
+	}
+	else if (choice == 3)
+	{
+
+	}
+	else if (choice == 4)
+	{
 		system("cls");
 		return;
 	}
+	else
+	{
+		system("cls");
+		cout << endl << "Please select a valid choice.." << endl;
+		goto Menu;
+	}
 }
+
+
+
 
 void Admin::AboutUsers(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/)
 {
@@ -112,30 +104,31 @@ Choose:
 		User::signup(Users);
 		cout << "Successfully Added Your New User " << endl;
 		PauseAndClear();
-		goto Choose;
+
 	}
 	if (choice == 2)
 	{
 		ShowAndEditUser(Users);
 		PauseAndClear();
-		goto Choose;
+
 	}
 	else if (choice == 3)
 	{
 		UserSquadAndPlayers(Users);
 		PauseAndClear();
-		goto Choose;
+
 	}
 	else if (choice == 4)
 	{
 		answer = true;
 		DeleteUser(Users);
 		PauseAndClear();
-		goto Choose;
+
 	}
 	else if (choice == 5)
 	{
 		AdminMenu(Users/*, Team, League*/);////////////////////////////////
+		return;
 	}
 	else
 	{
@@ -176,6 +169,7 @@ void Admin::ShowAndEditUser(unordered_map<string, User>& Users)
 	else
 	{
 		ViewProfile(Users, Users.at(userName));
+
 	}
 }
 void Admin::ViewProfile(unordered_map<string, User>& Users, User& currentUser)
@@ -214,6 +208,7 @@ choices:
 	else if (choice == 4)
 	{
 		AboutUsers(Users);
+		return;
 	}
 	else
 	{
@@ -306,11 +301,13 @@ choices:
 	if (valid)
 	{
 		ViewProfile(Users, currentUser);
+		return;
 	}
 	else
 	{
 		Users[currentUser.GetUsername()] = currentUser;
 		ViewProfile(Users, currentUser);
+		return;
 	}
 }
 void Admin::EditBalancePointsRank(User& CurrentUser, int choice, string information)

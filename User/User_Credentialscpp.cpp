@@ -3,6 +3,7 @@
 #include <conio.h>
 #include "UserValidations.h"
 #include "User.h"
+#include "Admin.h"
 
 using namespace std;
 bool loginstat = false;
@@ -19,17 +20,19 @@ choice:
 	cin >> choice;
 	if (choice == 1)
 	{
-		// admin
+		Admin::CheckAdmin(Users);
+		homePage(Users, leagues, allGames);
+		return;
 	}
 	else if (choice == 2)
 	{
-		toLogin(Users, leagues,allGames);
+		toLogin(Users, leagues, allGames);
 	}
 	else if (choice == 3)
 	{
 		signup(Users);
 		system("pause");
-		toLogin(Users, leagues,allGames);
+		toLogin(Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 4)
@@ -61,7 +64,7 @@ void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>leagues
 		{
 			system("pause");
 			system("cls");
-			userMenu(CurrentUser, Users, leagues,allGames);
+			userMenu(CurrentUser, Users, leagues, allGames);
 			return;
 		}
 		else
@@ -113,13 +116,13 @@ choice:
 	if (choice == 1)
 	{
 		profile(currentUser, Users);
-		userMenu(currentUser, Users, leagues,allGames);
+		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 2)
 	{
 		ShowSquad(currentUser);
-		userMenu(currentUser, Users, leagues,allGames);
+		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 3)
@@ -127,7 +130,7 @@ choice:
 		//stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
 		//FilteringTeams(allGames, currentUser, oldUserGames);
-		userMenu(currentUser, Users, leagues,allGames);
+		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 4)
@@ -137,7 +140,7 @@ choice:
 	}
 	else if (choice == 5)
 	{
-		currentUser.homePage(Users, leagues,allGames);
+		currentUser.homePage(Users, leagues, allGames);
 		return;
 	}
 	else

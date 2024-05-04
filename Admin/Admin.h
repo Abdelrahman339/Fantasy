@@ -18,20 +18,21 @@ protected:
 public:
 
 	//admin
-	bool CheckAdmin();
-	void AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/);
+	void static CheckAdmin(unordered_map<string, User>& Users);
+
+	void static AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/);
 
 	//users
-	void AboutUsers(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/);
-	void DisplayAllUsers(unordered_map<string, User>& Users);
-	void ShowAndEditUser(unordered_map<string, User>& Users);
-	void ViewProfile(unordered_map<string, User>& Users, User& CurrentUser);
-	void EditProfile(unordered_map<string, User>& Users, User& CurrentUser);
-	void EditBalancePointsRank(User& CurrentUser, int choice, string information);
-	bool CheckBalancePointsRank(string information);
-	void UserSquadAndPlayers(unordered_map<string, User>& Users);
-	void DeleteUser(unordered_map<string, User>& Users);
-	void Deletion(unordered_map<string, User>& Users, User DeletedUser);
+	void static AboutUsers(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/);
+	void static DisplayAllUsers(unordered_map<string, User>& Users);
+	void static ShowAndEditUser(unordered_map<string, User>& Users);
+	void static ViewProfile(unordered_map<string, User>& Users, User& CurrentUser);
+	void static EditProfile(unordered_map<string, User>& Users, User& CurrentUser);
+	void static EditBalancePointsRank(User& CurrentUser, int choice, string information);
+	bool static CheckBalancePointsRank(string information);
+	void static UserSquadAndPlayers(unordered_map<string, User>& Users);
+	void static DeleteUser(unordered_map<string, User>& Users);
+	void static Deletion(unordered_map<string, User>& Users, User DeletedUser);
 
 	//teams
 	//void displayTeamsForSpecificLeague(unordered_map<string, League> leagues);
@@ -43,5 +44,5 @@ public:
 	//void DisplayAllLeagues(void);
 	//void UpdateLeague(void);
 	//void DeleteLeague(void);
-	void PauseAndClear();
+	void static PauseAndClear();
 };

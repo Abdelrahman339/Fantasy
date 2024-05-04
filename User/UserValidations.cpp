@@ -80,7 +80,7 @@ bool UserValidations::usernameCheck(unordered_map<string, User> users, User& New
 {
 	string input;
 invalid:
-	cout << "Enter you " << "Username" << ": " << endl;
+	cout << "Enter your " << "Username" << ": " << endl;
 	getline(cin >> ws, input);
 	auto it = users.find(input);
 	if (it == users.end())
