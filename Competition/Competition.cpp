@@ -44,6 +44,8 @@ char Competition::priceCalculation(int points) {
 
 
 
+
+
 void Competition::ReducePoints(string footballerName, User& currentUser, string violence, string status, Teams& team)
 {
 	if (status == "User") {
@@ -140,7 +142,7 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, str
 	regex pattern(R"(\d+)");
 
 	smatch matches;
-	int goalsnum=0, assistsnum=0;
+	int goalsnum = 0, assistsnum = 0;
 
 	int foundNumbers = 0;
 
@@ -164,6 +166,18 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, str
 		currentUser.addBalance(totalPoints * 3);
 	}
 }
+
+
+void Competition::updateAllUserPoints(unordered_map<string, User>& Users)
+{
+	Teams team;
+	for (auto user : Users)
+	{
+		User currentUser = user.second;
+		findPlayers(currentUser.GetUserGames(), currentUser, "User", team);
+	}
+}
+
 
 void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string status, Teams& team)
 {
@@ -267,11 +281,11 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 			ManOfTheMatchPoints = Competition::MOTM_Bonus;
 		}
 
-		Competition::updatePoints(playerName, currentUser, contributions, status, team,currentFootballer.GetPosition());
+		Competition::updatePoints(playerName, currentUser, contributions, status, team, currentFootballer.GetPosition());
 		Competition::ReducePoints(playerName, currentUser, violation, status, team); // for deducing redCards and yellowcards points
 
 		int currentPoints = currentFootballer.GetTotalpoints();
-		currentFootballer.AddTotalpoints(currentPoints+ManOfTheMatchPoints);
+		currentFootballer.AddTotalpoints(currentPoints + ManOfTheMatchPoints);
 
 
 		Competition::UpdateFootballerPrice(currentFootballer);
