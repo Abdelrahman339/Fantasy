@@ -37,6 +37,7 @@ invalid:
 		cout << "Enter Footballer name that you want to sell." << endl;
 		getline(cin >> ws, FootballerName);
 		sell(currentUser, TopPlayer, FootballerName);
+		fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
 		system("cls");
 		Market(currentUser, leagues);
 	}
@@ -87,7 +88,32 @@ invalid:
 
 	}
 	else if (choice == 3) {
-		//replace(currentUser, team, TopPlayer, Users);
+
+		Footballer targetFootballer;
+		string footballerName;
+		Teams team;
+	invalid_Footballer_name:
+		cout << "Enter the name of the player you want to Replace" << endl;
+		getline(cin >> ws, footballerName);
+		targetFootballer = returnPlayer(footballerName, currentUser, "buy", Leageus, team);
+		if (!targetFootballer.GetName().empty())
+		{
+
+			Format442(currentUser.GetMainSquad());
+
+			cout << endl;
+
+			showSubstitutions(currentUser.GetSubstitutionSquad());
+
+			cout << endl << endl;
+
+			replace(currentUser, targetFootballer);
+			goto invalid;
+		}
+		else {
+			cout << "Please enter a valid name" << endl;
+			goto invalid_Footballer_name;
+		}
 	}
 	else if (choice == 4) {
 		return;
@@ -134,7 +160,7 @@ invalid:
 	}
 
 
-	//checking if the find team return a team or a nullptr
+	//checking if the find team return a team or a empty team
 	if (!Wantedteam.getName().empty())
 	{
 	invalid_input:
@@ -155,7 +181,7 @@ invalid:
 			if (!targetFootballer.GetName().empty())
 			{
 				PlayerFunction(targetFootballer, currentUser);
-				return;
+				goto invalid_input;
 			}
 			break;
 		case 2:
@@ -163,8 +189,30 @@ invalid:
 			return;
 			break;
 		case 3:
-			//replace
+		invalid_Footballer_name:
+			cout << "Enter the name of the player you want to Replace" << endl;
+			getline(cin >> ws, footballerName);
+			targetFootballer = returnPlayer(footballerName, currentUser, "buy", leagues, footballerTeam);
+			if (!targetFootballer.GetName().empty())
+			{
+
+				Format442(currentUser.GetMainSquad());
+
+				cout << endl;
+
+				showSubstitutions(currentUser.GetSubstitutionSquad());
+
+				cout << endl << endl;
+
+				replace(currentUser, targetFootballer);
+				goto invalid_input;
+			}
+			else {
+				cout << "Please enter a valid name" << endl;
+				goto invalid_Footballer_name;
+			}
 			return;
+			break;
 		case 4:
 			return;
 		default:
@@ -211,17 +259,46 @@ Footballer User::returnPlayer(string footballerName, User currentUser, string st
 
 Teams User::findTeam(vector<TheLeague> leagues, string TeamName)
 {
-	Teams teamFound;
+	User user;
+	Teams team;
+	string Teamexist = avoidTypos(TeamName, user, "Team", leagues, team);
+	int teamfound;
+	Teams wantedTeam;
+
 	for (int i = 0; i < leagues.size(); i++)
 	{
-		map<string, Teams> teamsInLeagus = leagues.at(i).GetTeams();
-		int TeamExist = teamsInLeagus.count(TeamName);
-		if (TeamExist > 0) {
-			teamFound = teamsInLeagus.at(TeamName);
+		teamfound = leagues[i].GetTeams().count(Teamexist);
+		if (teamfound > 0)
+		{
+			wantedTeam = leagues[i].GetTeams().at(Teamexist);
 		}
-
 	}
-	return teamFound;
+
+	return wantedTeam;
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//Teams teamFound;
+	//for (int i = 0; i < leagues.size(); i++)
+	//{
+	//	map<string, Teams> teamsInLeagus = leagues.at(i).GetTeams();
+	//	int TeamExist = teamsInLeagus.count(TeamName);
+	//	if (TeamExist > 0) {
+	//		teamFound = teamsInLeagus.at(TeamName);
+	//	}
+
+	//}
+	//return teamFound;
 }
 
 

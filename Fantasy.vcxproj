@@ -114,6 +114,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)User;$(SolutionDir)TheLeague</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
