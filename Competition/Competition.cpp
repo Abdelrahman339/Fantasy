@@ -255,7 +255,7 @@ void Competition::UpdateFootballerPrice(Footballer& player) // for all the playe
 
 }
 
-void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game) {
+void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game,string status) {
 
 
 	Teams team;
@@ -287,31 +287,79 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 		int currentPoints = currentFootballer.GetTotalpoints();
 		currentFootballer.AddTotalpoints(currentPoints + ManOfTheMatchPoints);
 
+		//update the player prices of the gameweek to avoid repition
+		if (status == "gameweek") {
+			Competition::UpdateFootballerPrice(currentFootballer);
+		}
 
-		Competition::UpdateFootballerPrice(currentFootballer);
-
+	
+		
 	}
 }
 
-void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> CurrentGame) //for both squads of the match
+void Competition::UpdateFootballerPoints(queue<Game> UserGames,list<Game> gameweek,string status) //for both squads of the match 
 {
 
-
-	Game game = UserGames.front();
+	Game game;
 	auto AwayFootballPlayers = game.getAwayTeam().getFootballPlayer();
 	auto HomeFootballPlayers = game.getHomeTeam().getFootballPlayer();
 
+	if (status == "usergames") {
+
+	game = UserGames.front();
 
 	while (!game.getHighlightsOfTheMatch().empty()) {
 
-		Competition::searchTeamInMatch(AwayFootballPlayers, game);
-		Competition::searchTeamInMatch(HomeFootballPlayers, game);
+		Competition::searchTeamInMatch(AwayFootballPlayers, game,status);
+		Competition::searchTeamInMatch(HomeFootballPlayers, game,status);
 
 
 		game.getHighlightsOfTheMatch().pop();
+	 }
+	}
+
+	else if (status == "gameweek") {
+
+		list<Game>CurrentGameWeek = gameweek;
+		int NumOfMatchesPlayed = 0;
+
+		while (NumOfMatchesPlayed < 8)
+		{
+			game = CurrentGameWeek.front();
+
+			while (!game.getHighlightsOfTheMatch().empty()) {
+
+				Competition::searchTeamInMatch(AwayFootballPlayers, game,status);
+				Competition::searchTeamInMatch(HomeFootballPlayers, game,status);
+
+
+				game.getHighlightsOfTheMatch().pop();
+			}
+			
+
+
+			CurrentGameWeek.pop_front();
+			NumOfMatchesPlayed++;
+		}
+
+
 	}
 
 
 
 
+
+
 }
+
+void Competition::UpdateAllFootballerPoints(list<Game> gameweek) {
+
+	list<Game>CurrentGameWeek = gameweek;
+	Game Currentgame;
+	int NumOfMatchesPlayed = 0;
+
+
+}
+
+
+
