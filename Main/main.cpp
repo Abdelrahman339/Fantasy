@@ -3,9 +3,9 @@
 
 // Files
 #include "User.h"
-//#include "Competition.h"
-//#include "Admin.h"
-//#include "Game.h"
+#include "Competition.h"
+#include "Admin.h"
+#include "Game.h"
 
 // Data structures
 #include <unordered_map>
@@ -14,27 +14,24 @@
 int main() {
 	//cout << "Reading from files: " << endl << endl;
 	////League Data now Done!==> Usage
-	//map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
-	//map<string, Teams> Teams = fileManipulation::getTeamsData(footballersOfTeam);
-	//vector<League> leagues = fileManipulation::getLeagueData(Teams);
+	map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
+	map<string, Teams> allTeams = fileManipulation::getTeamsData(footballersOfTeam);
+	vector<TheLeague> leagues = fileManipulation::getLeagueData(allTeams);
 
 
 	////Get Games now Done!==> USAGE
-	//list<Game> games = fileManipulation::getGamesData();
-	//for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
-	//	stack<HighlightsOfTheMatch> highlightsOfTheMatch = it->getHighlightsOfTheMatch();
-	//	if (!highlightsOfTheMatch.empty())
-	//		cout << highlightsOfTheMatch.top().getName() << endl;
-	//}
+	list<Game> games = fileManipulation::getGamesData(allTeams);
+	for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
+		string name = it->getHomeTeam().getName();
+		//cout << name << endl;
+	}
 
 	//Get User now Done!==> USAGE
 
-	//map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
-	//unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
-	//User user = users.at("_alice_johnson92");
-	//Teams team;
-	//unordered_map<string, Footballer> squad = user.GetMainSquad();
-	//string footballerName = "Eden Hazard";
+	map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
+	unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
+	User user;
+	unordered_map<string, Footballer> squad = user.GetMainSquad();
 
 	//cout << endl;
 
@@ -44,10 +41,10 @@ int main() {
 	//catch (const std::exception&) {
 	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
 	//}
-	cout << "scascscacsa";
 
-	//user.homePage(users,leagues);
-	
+	user.homePage(users, leagues, games);
+
+
 }
 
 /*

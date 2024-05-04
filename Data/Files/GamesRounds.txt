@@ -3,18 +3,18 @@ Games for season 24 in year 23/24
 round 1
 
 Premier League:
-Manchester United X Manchester City
-Liverpool X Chelsea
-Arsenal X Tottenham Hotspur
+Manchester United X Manchester City - 
+Liverpool X Chelsea - 
+Arsenal X Tottenham Hotspur -
 
 La Liga:
-Real Madrid X Barcelona
-Atletico Madrid X Sevilla
-Valencia X Girona
+Real Madrid X Barcelona -
+Atletico Madrid X Sevilla -
+Valencia X Girona - 
 
 Serie A:
-Juventus X Inter Milan
-AS Roma X Napoli
+Juventus X Napoli -
+AS Roma X Inter Milan - 
 
 round 2
 
@@ -30,23 +30,23 @@ Atletico Madrid X Barcelona
 Valencia X Sevilla
 
 Serie A: 
-Juventus X Napoli
-AS Roma X Inter Milan
+Juventus X Inter Milan
+AS Roma X Napoli
 
 round 3:
 Premier League:
-Manchester United X Liverpool 
-Manchester City X Tottenham Hotspur
-Arsenal X Chelsea
+Manchester United X Liverpool -
+Manchester City X Tottenham Hotspur -
+Arsenal X Chelsea -
 
 La Liga:
-Real Madrid X Sevilla
-Atletico Madrid X Girona
-Barcelona X Sevilla
+Real Madrid X Atletico Madrid -
+Sevilla X Girona -
+Barcelona X Sevilla -
 
 Serie A: 
-Juventus X AS Roma
-Inter Milan X Napoli
+Juventus X AS Roma - 
+Inter Milan X Napoli -
 
 
 mtnsash t8yr el date l rounds w yb2a 1 2 3 interger ya3ny 3lshan a sort beeh

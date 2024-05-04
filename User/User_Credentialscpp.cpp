@@ -7,7 +7,7 @@
 using namespace std;
 bool loginstat = false;
 
-void User::homePage(unordered_map<string, User>& Users, vector <TheLeague> leagues)
+void User::homePage(unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames)
 {
 	int choice;
 
@@ -23,13 +23,13 @@ choice:
 	}
 	else if (choice == 2)
 	{
-		toLogin(Users, leagues);
+		toLogin(Users, leagues,allGames);
 	}
 	else if (choice == 3)
 	{
 		signup(Users);
 		system("pause");
-		toLogin(Users, leagues);
+		toLogin(Users, leagues,allGames);
 		return;
 	}
 	else if (choice == 4)
@@ -44,7 +44,7 @@ choice:
 };
 
 
-void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>leagues) {
+void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>leagues, list<Game>allGames) {
 	int count = 0;
 	string user;
 	string pass;
@@ -61,7 +61,7 @@ void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>leagues
 		{
 			system("pause");
 			system("cls");
-			userMenu(CurrentUser, Users, leagues);
+			userMenu(CurrentUser, Users, leagues,allGames);
 			return;
 		}
 		else
@@ -102,7 +102,7 @@ void User::signup(unordered_map<string, User>& Users)
 	UserValidations::signupinfo(&newUser, "EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
 	Users.insert_or_assign(newUser.username, newUser);
 }
-void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague> leagues)
+void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames)
 {
 	int choice;
 choice:
@@ -113,27 +113,31 @@ choice:
 	if (choice == 1)
 	{
 		profile(currentUser, Users);
-		userMenu(currentUser, Users, leagues);
+		userMenu(currentUser, Users, leagues,allGames);
+		return;
 	}
 	else if (choice == 2)
 	{
 		ShowSquad(currentUser);
-		userMenu(currentUser, Users, leagues);
+		userMenu(currentUser, Users, leagues,allGames);
+		return;
 	}
 	else if (choice == 3)
 	{
-
+		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
-		userMenu(currentUser, Users, leagues);
+		FilteringTeams(allGames, currentUser, oldUserGames);
+		userMenu(currentUser, Users, leagues,allGames);
 		return;
 	}
 	else if (choice == 4)
 	{
 		// play function
+		return;
 	}
 	else if (choice == 5)
 	{
-		currentUser.homePage(Users, leagues);
+		currentUser.homePage(Users, leagues,allGames);
 		return;
 	}
 	else

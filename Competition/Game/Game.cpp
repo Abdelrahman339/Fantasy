@@ -54,31 +54,29 @@ void Game::displayStatisitcs(Game currentGame)
 	}
 }
 
-Game::Game()
-{
-	    awayTeam = Teams();
-        homeTeam = Teams();
-        winningTeam = "";
-        score = "";
-        manOfTheMatch = "";
-        statistics = "";
-        date = "";
-        GameId = 0;
+Game::Game() {
+	this->awayTeam = Teams();
+	this->homeTeam = Teams();
+	this->winningTeam = "";
+	this->score = "";
+	this->manOfTheMatch = "";
+	this->statistics = "";
+	this->round = -1;
+	this->GameId = 0;
 }
-//, Teams home, Teams away
 
-Game::Game(int id, string winTeam, string score,
-	string stats, stack<HighlightsOfTheMatch> highlights, string motm, string date)
-{
+
+Game::Game(int id, Teams home, Teams away, string winTeam, string score,
+	string stats, stack<HighlightsOfTheMatch> highlights, string motm, int round) {
 	this->GameId = id;
-	//this->awayTeam = away;
-	//this->homeTeam = home;
+	this->awayTeam = away;
+	this->homeTeam = home;
 	this->winningTeam = winTeam;
 	this->score = score;
 	this->manOfTheMatch = motm;
 	this->statistics = stats;
 	this->highlightsOfTheMatch = highlights;
-	this->date = date;
+	this->round = round;
 }
 
 void Game::displayPlayerHighlights(Game game) {
@@ -130,7 +128,7 @@ void Game::displayGameOverview(queue <Game> currentGame) {
 
 	system("cls");
 	Game::displayBorder(1);
-	cout << left << setw(50) << game.getDate() << right << setw(33) << "Full-time" << endl;
+	cout << left << setw(50) << game.getRound() << right << setw(33) << "Full-time" << endl;
 	cout << "\n";
 	displayTeamsAndScore(game);
 	Game::displayBorder(2);
