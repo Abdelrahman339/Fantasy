@@ -87,13 +87,13 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
 	///////////////////////////////////////////////////////////////////////////////////
-	void static homePage(unordered_map<string, User>& Users, vector <TheLeague> leagues);
+	void static homePage(unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames);
 
-	void static toLogin(unordered_map<string, User>& Users, vector <TheLeague> leagues);
+	void static toLogin(unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames);
 	User static login(unordered_map<string, User>& users, string username, string password);
 	void static signup(unordered_map<string, User>& Users);
 	string static hidePassword(string username);
-	void static userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague> leagues);
+	void static userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Squad and Format
@@ -140,10 +140,18 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	void static play(list<Game> allGames, User currentUser);
 	void static showCurrentMatch(queue<Game>& UserGames);
-	void static FilteringTeams(list<Game> allGames, User currentUser);
+	void static FilteringTeams(list<Game> allGames, User& currentUser, stack<string> oldUserTeams);
 
 	void static insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game>& UserGames);
+
+	void static sortingQueue(queue<Game>& UserGames);
+
+	bool compareGamesByRound(Game& Game1, Game& Game2);
+
+	stack<string> static GetUserTeams(User currentUser);
 	void static findDuplicates(stack<string>& userTeams);
+
+	bool static areStacksEqual(stack<string>stack1, stack<string> stack2);
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
 
