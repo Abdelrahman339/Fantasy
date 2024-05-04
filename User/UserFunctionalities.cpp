@@ -16,15 +16,26 @@ string User::spacing(int spacing, char character) {
 
 
 
-string User::avoidTypos(string& footballerName, User& currentUser, string status, vector <TheLeague> allLeagues, Teams& PlayerTeam)
+string User::avoidTypos(string& SearchName, User& currentUser, string status, vector <TheLeague> allLeagues, Teams& PlayerTeam)
 {
+
 	Teams team;
-	footballerName[0] = toupper(footballerName[0]);
+	size_t whitespace_index = SearchName.find(' ');
+
+	if (whitespace_index != string::npos) {
+		if (whitespace_index + 1 < SearchName.size())
+		{
+			SearchName[whitespace_index + 1] = toupper(SearchName[whitespace_index + 1]);
+		}
+	}
+
+	SearchName[0] = toupper(SearchName[0]);
+
 
 	//checking if the name exist or not in sell function cause i use the user squad not the team squad
 	if (status == "sell") {
-		int it = currentUser.GetMainSquad().count(footballerName);
-		int it2 = currentUser.GetSubstitutionSquad().count(footballerName);
+		int it = currentUser.GetMainSquad().count(SearchName);
+		int it2 = currentUser.GetSubstitutionSquad().count(SearchName);
 		if (it > 0)
 		{
 			return "existMain";
@@ -34,21 +45,36 @@ string User::avoidTypos(string& footballerName, User& currentUser, string status
 		}
 		else
 		{
-			string PlayerName = CheckingPlayer("sellMain", team, currentUser, footballerName);
+			string PlayerName = ReturnRightName("sellMain", team, currentUser, SearchName, {});
 			if (!PlayerName.empty()) {
 				return PlayerName + "main";
 			}
 			else {
-				return CheckingPlayer("sellSub", team, currentUser, footballerName);
+				return ReturnRightName("sellSub", team, currentUser, SearchName, {});
 			}
 		}
 
 	}
 
+	// to check the team name that the user enterd (avoid typos for team name) 
+	else if (status == "Team") {
+		string TeamName;
+		for (int i = 0; i < allLeagues.size(); i++)
+		{
+			TeamName = ReturnRightName("Team", team, currentUser, SearchName, allLeagues[i]);
+			if (TeamName.empty())
+			{
+				continue;
+			}
+			else
+				break;
+		}
+		return TeamName;
+	}
 	//checking if the name exist or not in a team not in user squad
 	else
 	{
-		pair<string, Teams> PlayerName_TeamName = getTeam(allLeagues, currentUser, footballerName);
+		pair<string, Teams> PlayerName_TeamName = GetPlayerName_Team(allLeagues, currentUser, SearchName);
 
 		PlayerTeam = PlayerName_TeamName.second;
 
@@ -59,7 +85,7 @@ string User::avoidTypos(string& footballerName, User& currentUser, string status
 
 
 
-pair<string, Teams> User::getTeam(vector<TheLeague> allLeagues, User currentUser, string FootballerName)
+pair<string, Teams> User::GetPlayerName_Team(vector<TheLeague> allLeagues, User currentUser, string FootballerName)
 {
 	pair<string, Teams> playerExist;
 	for (int i = 0; i < allLeagues.size(); i++)
@@ -67,7 +93,7 @@ pair<string, Teams> User::getTeam(vector<TheLeague> allLeagues, User currentUser
 		for (auto team : allLeagues[i].GetTeams())
 		{
 			// player name| team name
-			playerExist = make_pair(CheckingPlayer("buy", team.second, currentUser, FootballerName), team.second);//the footbalelrName and the team name to use it in search function at market
+			playerExist = make_pair(ReturnRightName("buy", team.second, currentUser, FootballerName, {}), team.second);//the footbalelrName and the team name to use it in search function at market
 			if (playerExist.first.empty()) {
 				continue;
 			}
@@ -81,59 +107,73 @@ pair<string, Teams> User::getTeam(vector<TheLeague> allLeagues, User currentUser
 
 }
 
-string User::CheckingPlayer(string status, Teams team, User currentUser, string inputName)
+string User::ReturnRightName(string status, Teams team, User currentUser, string SearchName, TheLeague League)
 {
-	unordered_map<string, Footballer> currentsquad;
+
 	if (status == "sellMain")
 	{
-		currentsquad = currentUser.GetMainSquad();
+		unordered_map<string, Footballer> dataReference;
+		dataReference = currentUser.GetMainSquad();
+		return typosChecking(SearchName, dataReference);
 	}
 	else if (status == "sellSub")
 	{
-		currentsquad = currentUser.GetSubstitutionSquad();
+		unordered_map<string, Footballer> dataReference = currentUser.GetSubstitutionSquad();
+		return typosChecking(SearchName, dataReference);
+	}
+	else if (status == "Team") {
+		map<string, Teams> dataReference = League.GetTeams();
+		return typosChecking(SearchName, dataReference);
 	}
 	else
 	{
-		currentsquad = team.getFootballPlayer();
+		unordered_map<string, Footballer> dataReference;
+		dataReference = team.getFootballPlayer();
+		return typosChecking(SearchName, dataReference);
 	}
 
-	try
-	{
-		return currentsquad.at(inputName).GetName();
-	}
-	catch (const std::exception&)
-	{
-		int minErrors = 10000;
-		string matchedPlayer;
-		for (auto kv : currentsquad) {
 
-			string currentPlayerName = kv.first;
-			int errors = 0;
-			for (int i = 0; i < min(inputName.size(), currentPlayerName.size()); ++i) {
-				if (inputName[i] != currentPlayerName[i]) {
-					errors++;
-					if (errors > 2) {
-						break;
-					}
-				}
-			}
-			if (errors < minErrors) {
-				minErrors = errors;
-				matchedPlayer = currentPlayerName;
-			}
-		}
-		if (minErrors < 3 && inputName.size()>3)
-		{
-			return matchedPlayer;
-
-		}
-		else
-		{
-			return "";
-		}
-	}
 
 }
+template <typename T>
+string User::typosChecking(string SearchName, T dataReference)
+{
+	/*try
+	{
+		return dataReference.at(SearchName).getName();
+	}
+	catch (const std::exception&)
+	{*/
+	int minErrors = 10000;
+	string matchedPlayer;
+	for (auto kv : dataReference) {
+
+		string currentPlayerName = kv.first;
+		int errors = 0;
+		for (int i = 0; i < min(SearchName.size(), currentPlayerName.size()); ++i) {
+			if (SearchName[i] != currentPlayerName[i]) {
+				errors++;
+				if (errors > 4) {
+					break;
+				}
+			}
+		}
+		if (errors < minErrors) {
+			minErrors = errors;
+			matchedPlayer = currentPlayerName;
+		}
+	}
+	if (SearchName.size() > 3 && minErrors < 5)
+	{
+		return matchedPlayer;
+
+	}
+	else
+	{
+		return "";
+	}
+}
+//}
 
 
 

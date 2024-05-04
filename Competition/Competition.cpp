@@ -255,12 +255,12 @@ void Competition::UpdateFootballerPrice(Footballer& player) // for all the playe
 
 }
 
-void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game,string status) {
+void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game, string status) {
 
 
 	Teams team;
 	User currentUser;
-	string status = "footballer";
+	status = "footballer";
 	HighlightsOfTheMatch highlights = game.getHighlightsOfTheMatch().top();
 
 
@@ -292,12 +292,12 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 			Competition::UpdateFootballerPrice(currentFootballer);
 		}
 
-	
-		
+
+
 	}
 }
 
-void Competition::UpdateFootballerPoints(queue<Game> UserGames,list<Game> gameweek,string status) //for both squads of the match 
+void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> gameweek, string status) //for both squads of the match 
 {
 
 	Game game;
@@ -306,16 +306,16 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames,list<Game> gamewe
 
 	if (status == "usergames") {
 
-	game = UserGames.front();
+		game = UserGames.front();
 
-	while (!game.getHighlightsOfTheMatch().empty()) {
+		while (!game.getHighlightsOfTheMatch().empty()) {
 
-		Competition::searchTeamInMatch(AwayFootballPlayers, game,status);
-		Competition::searchTeamInMatch(HomeFootballPlayers, game,status);
+			Competition::searchTeamInMatch(AwayFootballPlayers, game, status);
+			Competition::searchTeamInMatch(HomeFootballPlayers, game, status);
 
 
-		game.getHighlightsOfTheMatch().pop();
-	 }
+			game.getHighlightsOfTheMatch().pop();
+		}
 	}
 
 	else if (status == "gameweek") {
@@ -329,13 +329,13 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames,list<Game> gamewe
 
 			while (!game.getHighlightsOfTheMatch().empty()) {
 
-				Competition::searchTeamInMatch(AwayFootballPlayers, game,status);
-				Competition::searchTeamInMatch(HomeFootballPlayers, game,status);
+				Competition::searchTeamInMatch(AwayFootballPlayers, game, status);
+				Competition::searchTeamInMatch(HomeFootballPlayers, game, status);
 
 
 				game.getHighlightsOfTheMatch().pop();
 			}
-			
+
 
 
 			CurrentGameWeek.pop_front();
