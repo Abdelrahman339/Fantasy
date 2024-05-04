@@ -75,10 +75,13 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	string static spacing(int spaces, char character);
 
-	string static avoidTypos(string& footballerName, User& currentUser, string status, vector <TheLeague> allLeagues, Teams& PlayerTeam);
-	string static CheckingPlayer(string status, Teams team, User currenUser, string inputName);
+	string static avoidTypos(string& SearchName, User& currentUser, string status, vector <TheLeague> allLeagues, Teams& PlayerTeam);
+	string static ReturnRightName(string status, Teams team, User currenUser, string SearchName, TheLeague Leageu);
 
-	pair<string, Teams> static getTeam(vector <TheLeague> allLeagues, User currentUser, string FootballerName);
+	template <typename T>
+	string static typosChecking(string SearchName, T currentsquad);
+
+	pair<string, Teams> static GetPlayerName_Team(vector <TheLeague> allLeagues, User currentUser, string FootballerName);
 
 	vector<string> static ToVector(unordered_map<string, Footballer> UserSquad);
 
@@ -139,7 +142,9 @@ public:
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////
 	void static play(list<Game> allGames, User currentUser);
+
 	void static showCurrentMatch(queue<Game>& UserGames);
+
 	void static FilteringTeams(list<Game> allGames, User& currentUser, stack<string> oldUserTeams);
 
 	void static insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game>& UserGames);
@@ -149,6 +154,7 @@ public:
 	bool compareGamesByRound(Game& Game1, Game& Game2);
 
 	stack<string> static GetUserTeams(User currentUser);
+
 	void static findDuplicates(stack<string>& userTeams);
 
 	bool static areStacksEqual(stack<string>stack1, stack<string> stack2);

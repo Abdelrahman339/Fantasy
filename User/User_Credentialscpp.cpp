@@ -124,9 +124,9 @@ choice:
 	}
 	else if (choice == 3)
 	{
-		stack<string>oldUserGames = GetUserTeams(currentUser);
+		//stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
-		FilteringTeams(allGames, currentUser, oldUserGames);
+		//FilteringTeams(allGames, currentUser, oldUserGames);
 		userMenu(currentUser, Users, leagues,allGames);
 		return;
 	}

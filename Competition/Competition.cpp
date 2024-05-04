@@ -266,7 +266,7 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 
 	Teams team;
 	User currentUser;
-	string status = "footballer";
+	status = "footballer";
 	HighlightsOfTheMatch highlights = game.getHighlightsOfTheMatch().top();
 
 
@@ -296,8 +296,8 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 		Competition::UpdateFootballerPrice(currentFootballer,tmpPoints);
 		
 
-	
-		
+
+
 	}
 }
 
@@ -308,6 +308,19 @@ void Competition::UpdateFootballerPoints(list<Game> GameWeek) //for both squads 
 	auto AwayFootballPlayers = game.getAwayTeam().getFootballPlayer();
 	auto HomeFootballPlayers = game.getHomeTeam().getFootballPlayer();
 
+	if (status == "usergames") {
+
+	game = UserGames.front();
+
+	while (!game.getHighlightsOfTheMatch().empty()) {
+
+		Competition::searchTeamInMatch(AwayFootballPlayers, game,status);
+		Competition::searchTeamInMatch(HomeFootballPlayers, game,status);
+
+
+		game.getHighlightsOfTheMatch().pop();
+	 }
+	}
 
 		
 		int NumOfMatchesPlayed = 0;
@@ -324,7 +337,7 @@ void Competition::UpdateFootballerPoints(list<Game> GameWeek) //for both squads 
 
 				game.getHighlightsOfTheMatch().pop();
 			}
-			
+
 
 
 			GameWeek.pop_front();
