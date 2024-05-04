@@ -8,6 +8,7 @@
 #include "User.h"
 #include "Teams.h"
 #include "UserValidations.h"
+#undef max
 
 using namespace std;
 
@@ -193,7 +194,6 @@ choices:
 	cout << "Points:" << currentUser.GetPoints() << endl;
 	cout << "Rank:" << currentUser.GetRank() << endl;
 	cout << "--------------------------------------" << endl;
-	cout << endl;
 	cout << "1-Edit User Information\n2-User Squad And Players\n3-Delete User \n4-Go Back" << endl;
 	cout << "Enter your choice: ";
 	cin >> choice;
@@ -208,6 +208,7 @@ choices:
 	}
 	else if (choice == 3)
 	{
+		answer = false;
 		Deletion(Users, currentUser);
 	}
 	else if (choice == 4)
@@ -226,8 +227,11 @@ void Admin::EditProfile(unordered_map<string, User>& Users, User& currentUser)
 	bool valid = false;
 	int choice;
 choices:
-	Sleep(200);
-	cout << "1-Edit Full Name.\n2-Edit Username\n3-Edit Email Address.\n4-Edit Phone Number.\n5-Edit Password.\n6-Edit Balance\n7-Edit Points\n8-Edit Rank\n9-Go Back" << endl;
+	Sleep(400);
+	cout << endl;
+	cout << "What Info Would You Like To Edit?" << endl;
+	cout << "--------------------------------------" << endl;
+	cout << "1-Full Name\t2-Username\t3-Email Address\n4-Phone Number\t5-Password\t6-Balance\n7-Points\t8-Rank\t\t9-Go Back" << endl;
 	cout << "Enter your choice: ";
 	cin >> choice;
 	if (choice == 1)
@@ -239,12 +243,12 @@ choices:
 	else if (choice == 2)
 	{
 		valid = true;
-		auto it = Users.find(currentUser.GetUsername());//old username
-		UserValidations::usernameCheck(Users, currentUser);
-		if (it != Users.end())
+		auto node = Users.extract(currentUser.GetUsername());  //old username
+		UserValidations::usernameCheck(Users, currentUser);  //updated username
+		if (node)    //if old username exists
 		{
-			Users.insert({ currentUser.GetUsername(), it->second });//updated username
-			Users.erase(it);//erasing old username
+			node.key() = currentUser.GetUsername();//update the username
+			Users.insert(move(node));
 		}
 		else
 		{
@@ -296,7 +300,6 @@ choices:
 	}
 	else
 	{
-		system("cls");
 		cout << endl << "Please select a valid choice.." << endl;
 		goto choices;
 	}
@@ -310,76 +313,66 @@ choices:
 		ViewProfile(Users, currentUser);
 	}
 }
-static bool isInteger(string& input)
-{
-	istringstream iss(input);
-	int value;
-	if (iss >> value) {
-		// Check if the entire string was consumed by the conversion
-		return iss.eof() && !iss.fail();
-	}
-	return false;
-}
-static bool isFloat(string& input)
-{
-	istringstream iss(input);
-	double value;
-	if (iss >> value) {
-		// Check if the entire string was consumed by the conversion
-		return iss.eof() && !iss.fail();
-	}
-	return false;
-}
 void Admin::EditBalancePointsRank(User& CurrentUser, int choice, string information)
 {
-	string NewBalance = "1", NewPointsOrRank = "1";
+	float NewBalance = 1;
+	int NewPointsOrRank = 1;
 Redo:
 	cout << "Enter Your " << information << ": " << endl;
 	if (information == "new Balance")
 	{
-		getline(cin, NewBalance);
+		cin >> NewBalance;
+		if (!CheckBalancePointsRank(information))
+		{
+			goto Redo;
+		}
 	}
 	else
 	{
-		getline(cin, NewPointsOrRank);
+		cin >> NewPointsOrRank;
+		if (CheckBalancePointsRank(information))
+		{
+			goto Redo;
+		}
 	}
-	if (!isInteger(NewBalance) && !isFloat(NewBalance))
+	if (NewBalance < 0 || NewPointsOrRank < 0)
+	{
+		cout << "Your " << information << " Cannot Be Negative" << endl;
+		goto Redo;
+	}
+	else if (choice == 3 && NewPointsOrRank == 0)
+	{
+		cout << "Your " << information << " Cannot Be Zero" << endl;
+		goto Redo;
+	}
+	else
+	{
+		if (choice == 1)
+		{
+			CurrentUser.SetBalance(NewBalance);
+		}
+		else if (choice == 2)
+		{
+			CurrentUser.SetPoints(NewPointsOrRank);
+		}
+		else if (choice == 3)
+		{
+			CurrentUser.SetRank(NewPointsOrRank);
+		}
+	}
+}
+bool Admin::CheckBalancePointsRank(string information)
+{
+	if (cin.fail())
 	{
 		cout << "Your " << information << " Must Be A Value!" << endl;
-		goto Redo;
-	}
-	else if (!isInteger(NewPointsOrRank))
-	{
-		cout << "Your " << information << " Must Be Integer!" << endl;
-		goto Redo;
+		cin.clear();
+		cin.ignore(numeric_limits<streamsize>::max(), '\n');
+		return false;
 	}
 	else
 	{
-		if (stof(NewBalance) < 0 || stoi(NewPointsOrRank) < 0)
-		{
-			cout << "Your " << information << " Cannot Be Negative" << endl;
-			goto Redo;
-		}
-		else if (stoi(NewPointsOrRank) == 0 && choice == 3)
-		{
-			cout << "Your " << information << " Cannot Be Zero" << endl;
-			goto Redo;
-		}
-		else
-		{
-			if (choice == 1)
-			{
-				CurrentUser.SetBalance(stof(NewBalance));
-			}
-			else if (choice == 2)
-			{
-				CurrentUser.SetPoints(stoi(NewPointsOrRank));
-			}
-			else if (choice == 3)
-			{
-				CurrentUser.SetRank(stoi(NewPointsOrRank));
-			}
-		}
+		return true;
 	}
 }
 void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
@@ -437,16 +430,14 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 	if (choice == 1)
 	{
 		Users.erase(CurrentUser.GetUsername());
-		cout << "Successfully Deleted User " << CurrentUser.GetUsername() << endl;
+		cout << "Successfully Deleted " << CurrentUser.GetUsername() << endl;
 		counter--;
 	}
 	else if (choice == 2)
 	{
 		if (answer)
 		{
-			cout << "Returning Back To The User Menu..." << endl;
 			Sleep(500);
-			answer = false;
 			AboutUsers(Users);
 		}
 		else
