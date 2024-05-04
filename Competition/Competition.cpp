@@ -46,7 +46,7 @@ char Competition::priceCalculation(int points) {
 
 
 
-void Competition::ReducePoints(string footballerName, User& currentUser, string violence, string status, Teams& team)
+void Competition::ReducePoints(string footballerName, User& currentUser, string violence, string status, Teams& team, int tmpPoints)
 {
 	if (status == "User") {
 		if (violence == "RedCard")
@@ -65,9 +65,11 @@ void Competition::ReducePoints(string footballerName, User& currentUser, string 
 		if (violence == "RedCard")
 		{
 			team.getFootballPlayer().at(footballerName).AddTotalpoints(-2);
+			tmpPoints -= 2;
 		}
 		if (violence == "YellowCard") {
 			team.getFootballPlayer().at(footballerName).AddTotalpoints(-1);
+			tmpPoints -= 1;
 		}
 	}
 
@@ -75,14 +77,14 @@ void Competition::ReducePoints(string footballerName, User& currentUser, string 
 
 }
 
-void Competition::updatePoints(string footballerName, User& currentUser, string contributes, string status, Teams& team, string footballerPosition)
+void Competition::updatePoints(string footballerName, User& currentUser, string contributes, string status, Teams& team, string footballerPosition, int tmpPoints)
 {
 	//"goals 5 & assists 6"
 	regex pattern(R"(&)");
 	int numberofGoals;
 	if (regex_match(contributes, pattern)) { // if the player scord and did assist
 
-		addGoalsAssistPoints(contributes, currentUser, footballerName, status, team);
+		addGoalsAssistPoints(contributes, currentUser, footballerName, status, team,tmpPoints);
 	}
 
 	else if (!regex_match(contributes, pattern))
@@ -91,11 +93,11 @@ void Competition::updatePoints(string footballerName, User& currentUser, string 
 		regex Assistpattern(R"(Assist)");
 		if (regex_match(contributes, Goalpattern)) {
 
-			addPoints(contributes, currentUser, footballerName, Competition::goalPoints, status, team);
+			addPoints(contributes, currentUser, footballerName, Competition::goalPoints, status, team, tmpPoints);
 		}
 		else if (regex_match(contributes, Assistpattern)) {
 
-			addPoints(contributes, currentUser, footballerName, Competition::assistPoints, status, team);
+			addPoints(contributes, currentUser, footballerName, Competition::assistPoints, status, team, tmpPoints);
 		}
 		else {
 			if (checkPosition(footballerPosition)) {
@@ -114,7 +116,7 @@ void Competition::updatePoints(string footballerName, User& currentUser, string 
 }
 
 
-void Competition::addPoints(string contributes, User currentUser, string footballerName, int numPerpoints, string status, Teams& team)
+void Competition::addPoints(string contributes, User currentUser, string footballerName, int numPerpoints, string status, Teams& team, int tmpPoints)
 {
 	int numberOfcontributes;
 	regex pattern(R"(\d+)");
@@ -127,6 +129,7 @@ void Competition::addPoints(string contributes, User currentUser, string footbal
 	}
 	if (status == "footballer") {
 		team.getFootballPlayer().at(footballerName).AddTotalpoints(numPerpoints * numberOfcontributes);
+		tmpPoints = numPerpoints * numberOfcontributes;
 	}
 	else {
 		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(numPerpoints * numberOfcontributes);
@@ -137,12 +140,13 @@ void Competition::addPoints(string contributes, User currentUser, string footbal
 
 
 
-void Competition::addGoalsAssistPoints(string contributes, User currentUser, string footballerName, string status, Teams& team)
+void Competition::addGoalsAssistPoints(string contributes, User currentUser, string footballerName, string status, Teams& team, int tmpPoints)
 {
 	regex pattern(R"(\d+)");
 
 	smatch matches;
 	int goalsnum = 0, assistsnum = 0;
+	int totalPoints = 0;
 
 	int foundNumbers = 0;
 
@@ -156,9 +160,11 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, str
 		contributes = matches.suffix().str();
 		foundNumbers++;
 	}
-	int totalPoints = (goalsnum * Competition::goalPoints) + (assistsnum * Competition::assistPoints);
+	totalPoints += ((goalsnum * Competition::goalPoints) + (assistsnum * Competition::assistPoints));
+
 	if (status == "footballer") {
 		team.getFootballPlayer().at(footballerName).AddTotalpoints(totalPoints);
+		tmpPoints = (goalsnum * Competition::goalPoints) + (assistsnum * Competition::assistPoints);
 	}
 	else {
 		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(totalPoints);
@@ -191,8 +197,8 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string 
 			string footballerName = kv.first;
 			if (footballerName == currentPlayerinMatch)
 			{
-				updatePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team, currentPlayerinMatch);
-				ReducePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getViolation(), "User", team);
+				updatePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team, currentPlayerinMatch,0);
+				ReducePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getViolation(), "User", team,0);
 
 			}
 		}
@@ -216,7 +222,7 @@ void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGa
 	}
 }
 
-void Competition::UpdateFootballerPrice(Footballer& player) // for all the players
+void Competition::UpdateFootballerPrice(Footballer& player,int CurrentPoints) // for all the players
 {
 	char tier = Competition::priceCalculation(player.GetTotalpoints());
 	float currentPlayerPrice = player.GetPrice();
@@ -250,12 +256,12 @@ void Competition::UpdateFootballerPrice(Footballer& player) // for all the playe
 	}
 
 	player.SetPrice(priceChange);
-	player.SetTotalpoints(0);
+	
 
 
 }
 
-void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game,string status) {
+void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game){
 
 
 	Teams team;
@@ -274,63 +280,46 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 		int ManOfTheMatchPoints = 0;
 		string contributions = highlights.getContributions();
 		string violation = highlights.getViolation();
-
+		int tmpPoints = 0; //That gets set to zero after calculating the price
 
 
 		if (Competition::IsManOfTheMatch(currentMOTM, currentFootballer.GetName()) == true) {
 			ManOfTheMatchPoints = Competition::MOTM_Bonus;
 		}
 
-		Competition::updatePoints(playerName, currentUser, contributions, status, team, currentFootballer.GetPosition());
-		Competition::ReducePoints(playerName, currentUser, violation, status, team); // for deducing redCards and yellowcards points
+		Competition::updatePoints(playerName, currentUser, contributions, status, team, currentFootballer.GetPosition(),tmpPoints);
+		Competition::ReducePoints(playerName, currentUser, violation, status, team,tmpPoints); // for deducing redCards and yellowcards points
 
 		int currentPoints = currentFootballer.GetTotalpoints();
-		currentFootballer.AddTotalpoints(currentPoints + ManOfTheMatchPoints);
-
-		//update the player prices of the gameweek to avoid repition
-		if (status == "gameweek") {
-			Competition::UpdateFootballerPrice(currentFootballer);
-		}
+		currentFootballer.AddTotalpoints(currentPoints + ManOfTheMatchPoints);//for the whole season
+		
+		Competition::UpdateFootballerPrice(currentFootballer,tmpPoints);
+		
 
 	
 		
 	}
 }
 
-void Competition::UpdateFootballerPoints(queue<Game> UserGames,list<Game> gameweek,string status) //for both squads of the match 
+void Competition::UpdateFootballerPoints(list<Game> GameWeek) //for both squads of the match for a game week
 {
 
 	Game game;
 	auto AwayFootballPlayers = game.getAwayTeam().getFootballPlayer();
 	auto HomeFootballPlayers = game.getHomeTeam().getFootballPlayer();
 
-	if (status == "usergames") {
 
-	game = UserGames.front();
-
-	while (!game.getHighlightsOfTheMatch().empty()) {
-
-		Competition::searchTeamInMatch(AwayFootballPlayers, game,status);
-		Competition::searchTeamInMatch(HomeFootballPlayers, game,status);
-
-
-		game.getHighlightsOfTheMatch().pop();
-	 }
-	}
-
-	else if (status == "gameweek") {
-
-		list<Game>CurrentGameWeek = gameweek;
+		
 		int NumOfMatchesPlayed = 0;
 
 		while (NumOfMatchesPlayed < 8)
 		{
-			game = CurrentGameWeek.front();
+			game = GameWeek.front();
 
 			while (!game.getHighlightsOfTheMatch().empty()) {
 
-				Competition::searchTeamInMatch(AwayFootballPlayers, game,status);
-				Competition::searchTeamInMatch(HomeFootballPlayers, game,status);
+				Competition::searchTeamInMatch(AwayFootballPlayers, game);
+				Competition::searchTeamInMatch(HomeFootballPlayers, game);
 
 
 				game.getHighlightsOfTheMatch().pop();
@@ -338,7 +327,7 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames,list<Game> gamewe
 			
 
 
-			CurrentGameWeek.pop_front();
+			GameWeek.pop_front();
 			NumOfMatchesPlayed++;
 		}
 
@@ -350,16 +339,9 @@ void Competition::UpdateFootballerPoints(queue<Game> UserGames,list<Game> gamewe
 
 
 
-}
-
-void Competition::UpdateAllFootballerPoints(list<Game> gameweek) {
-
-	list<Game>CurrentGameWeek = gameweek;
-	Game Currentgame;
-	int NumOfMatchesPlayed = 0;
 
 
-}
+
 
 
 
