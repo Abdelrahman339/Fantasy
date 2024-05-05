@@ -1,11 +1,21 @@
+#ifndef GAME_H
+#define GAME_H
+
 #pragma once
 #include <iostream>
+#include <sstream>
+#include <iomanip>
+#include <random>
 #include <string>
 #include <vector>
 #include <queue>
-#include "Teams.h"
 #include <stack>
+#include <regex>
+
+
+#include "Teams.h"
 #include "HighlightsOfTheMatch.h"
+
 
 
 
@@ -21,7 +31,7 @@ protected:
 	string manOfTheMatch;
 	string statistics;	 // preferably written like this -->("shots 10-9, shotsOnTarget 2-3, possession: 55-45, fouls 3-1, offsides 0-0, saves 1-2")
 	stack<HighlightsOfTheMatch> highlightsOfTheMatch;
-	string date;//the date of the match (or the round in league)
+	int round;//the date of the match (or the round in league)
 	int GameId;
 
 public:
@@ -32,10 +42,9 @@ public:
 	void displayStatisitcs(Game currentGame);
 
 	Game();
-	//, Teams home, Teams away
-	
-	Game(int id, string winTeam, string score,
-		string stats, stack<HighlightsOfTheMatch> highlights, string motm, string date);
+
+	Game(int id, Teams home, Teams away, string winTeam, string score,
+		string stats, stack<HighlightsOfTheMatch> highlights, string motm, int round);
 	/////////////////////////////////////////
 	///////////// Setters ///////////////////
 	/////////////////////////////////////////
@@ -46,7 +55,7 @@ public:
 	void setManOfTheMatch(string newManOfTheMatch);
 	void setStatistics(string newStatistics);
 	void setHighlightsOfTheMatch(HighlightsOfTheMatch newHighlights);
-	void setDate(string newDate);
+	void setRound(int newRound);
 
 	void setGameId(int id);
 
@@ -61,7 +70,7 @@ public:
 	string getManOfTheMatch();
 	string getStatistics();
 	stack<HighlightsOfTheMatch> getHighlightsOfTheMatch();
-	string getDate();
+	int getRound();
 	string getwinningTeam();
 	int getGameId();
 
@@ -70,3 +79,4 @@ public:
 
 
 };
+#endif // GAME_H

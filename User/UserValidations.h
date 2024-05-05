@@ -1,5 +1,6 @@
+#ifndef USERVALIDATIONS_H
+#define USERVALIDATIONS_H
 #pragma once
-#include <iostream>
 #include "User.h"
 using namespace std;
 class UserValidations
@@ -13,3 +14,4 @@ public:
     bool static usernameCheck(unordered_map<string, User> users, User& newuser);
     void static signupinfo(User* newUser, string info, bool (*Check)(string), void (User::* set)(string));
 };
+#endif

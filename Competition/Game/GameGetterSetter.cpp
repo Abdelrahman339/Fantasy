@@ -10,7 +10,7 @@ string Game::getScore() { return score; }
 string Game::getManOfTheMatch() { return manOfTheMatch; }
 string Game::getStatistics() { return statistics; }
 stack<HighlightsOfTheMatch> Game::getHighlightsOfTheMatch() { return highlightsOfTheMatch; }
-string Game::getDate() { return date; }
+int Game::getRound() { return round; }
 
 string Game::getwinningTeam()
 {
@@ -31,7 +31,7 @@ void Game::setScore(string newScore) { score = newScore; }
 void Game::setManOfTheMatch(string newManOfTheMatch) { this->manOfTheMatch = newManOfTheMatch; }
 void Game::setStatistics(string newStatistics) { statistics = newStatistics; }
 void Game::setHighlightsOfTheMatch(HighlightsOfTheMatch newHighlights) { highlightsOfTheMatch.push(newHighlights); }
-void Game::setDate(string newDate) { date = newDate; }
+void Game::setRound(int newRound) { round = newRound; }
 
 void Game::setGameId(int id)
 {

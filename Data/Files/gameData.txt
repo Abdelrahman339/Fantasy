@@ -12,7 +12,7 @@ Statistics (Home - Away)
 	Corner kicks
 	Saves
 Man of the Match
-Match Date (dd-mm-yyyy)
+Round (1 - 2 - 3)
 ----
 1
 Atletico Madrid
@@ -27,74 +27,58 @@ Statistics
 1 - 1
 6 - 11
 3 - 1
-Kieran Trippier
-24-09-2023
+Antoine Griezmann
+3
 ----
 2
-Atletico Madrid
-Barcelona
-Barcelona
-0 - 3
-Statistics
-3 - 5
-13 - 9
-40 - 60
-15 - 7
-8 - 0
-7 - 3
-2 - 3
-
-17-03-2023
-----
-3
-Sevilla
-Valencia
-Valencia
-1 - 2
+Juventus
+AS Roma
+Draw
+1 - 1
 Statistics
 3 - 3
-8 - 10
-55 - 45
-15 - 18
-3 - 0
-8 - 1
+13 - 6
+49 - 51
+17 - 7
+0 - 1
+4 - 5
+2 - 2
+Dusan Vlahovic
+3
+----
+3
+Napoli
+Inter Milan
+Napoli
+3 - 1
+Statistics
+9 - 2
+22 - 6
+63 - 37
+9 - 15
 1 - 2
-
-28-10-2023
+4 - 1
+1 - 6
+Giovanni Di Lorenzo
+3
 ----
 4
-Tottenham Hotspur
+Manchester City
 Manchester United
-Tottenham Hotspur
-2 - 0
+Manchester City
+3 - 1
 Statistics
-5 - 6
-14 - 20
-59 - 41
-9 - 8
-1 - 4
-5 - 6
-8 - 4
-
-19-08-2023
+8 - 1
+27 - 2
+73 - 27
+5 - 10
+0 - 1
+15 - 2
+0 - 5
+Phil Foden
+1
 ----
 5
-Arsenal
-Manchester City
-Arsenal
-1 - 0
-Statistics
-2 - 0
-10 - 4
-48 - 52
-8 - 8
-2 - 0
-5 - 4
-0 - 1
-
-08-10-2023
-----
-6
 Chelsea
 Liverpool
 Draw
@@ -107,56 +91,72 @@ Statistics
 3 - 5
 4 - 4
 1 - 4
-
-13-08-2023
+Diaz
+1
+----
+6
+Arsenal
+Tottenham Hotspur
+Draw
+2 - 2
+Statistics
+6 - 4
+12 - 9
+47 - 53
+12 - 19
+2 - 3
+11 - 4
+2 - 5
+Cristian Romero
+1
 ----
 7
-Juventus
-Roma
-Draw
-1 - 1
+Real Madrid
+Barcelona
+Real Madrid
+4 - 1
 Statistics
-3 - 3
-13 - 6
-49 - 51
-17 - 7
-0 - 1
+9 - 5
+14 - 8
+40 - 60
+10 - 12
+0 - 0
+3 - 4
 4 - 5
-2 - 2
-
-27-08-2022
+Vinicius Junior
+1
 ----
 8
-Napoli
-Inter
-Napoli
-3 - 1
+Atletico Madrid
+Sevilla
+Atletico Madrid
+6 - 1
 Statistics
-9 - 2
-22 - 6
-63 - 37
-9 - 15
+8 - 1
+16 - 6
+48 - 52
+12 - 11
+1 - 1
+7 - 3
 1 - 2
-4 - 1
-1 - 6
-
-21-05-2023
+Alvaro Morata
+1
 ----
 9
-Napoli
-Juventus
-Napoli
-5 - 1
+Girona
+Valencia
+Girona
+2 - 1
 Statistics
-10 - 3
-13 - 10
-60 - 40
-10 - 9
-1 - 0
-2 - 5
-2 - 5
-
-13-01-2023
+6 - 3
+10 - 8
+76 - 24
+9 - 6
+8 - 2
+3 - 2
+3 - 4
+Cristhian Stuani
+1
 ----
 10
 AS Roma
@@ -171,6 +171,229 @@ Statistics
 0 - 0
 12 - 5
 2 - 4
-
-06-05-2023
+Federico Dimarco
+1
 ----
+11
+Napoli
+Juventus
+Napoli
+5 - 1
+Statistics
+10 - 3
+13 - 10
+60 - 40
+10 - 9
+1 - 0
+2 - 5
+2 - 5
+Victor Osimhen
+1
+----
+12
+Tottenham Hotspur
+Manchester United
+Tottenham Hotspur
+2 - 0
+Statistics
+5 - 6
+14 - 20
+59 - 41
+9 - 8
+1 - 4
+5 - 6
+8 - 4
+Lisandro Martinez
+2
+----
+13
+Chelsea
+Manchester City
+Draw
+4 - 4
+Statistics
+7 - 10
+4 - 15
+44 - 56
+11 - 14
+0 - 0
+0 - 3
+0 - 5
+Erling Haaland
+2
+----
+14
+Arsenal
+Liverpool
+Arsenal
+3 - 2
+Statistics
+4 - 3
+5 - 7
+44 - 56
+11 - 11
+3 - 6
+4 - 3
+1 - 1
+Bukayo Saka
+2
+----
+15
+Real Madrid
+Girona
+Real Madrid
+4 - 0
+Statistics
+5 - 1
+14 - 6
+53 - 47
+9 - 11
+0 - 0
+0 - 2
+1 - 1
+Jude Bellingham
+2
+----
+16
+Atletico Madrid
+Barcelona
+Barcelona
+0 - 3
+Statistics
+3 - 5
+13 - 9
+40 - 60
+15 - 7
+8 - 0
+7 - 3
+2 - 3
+Robert Lewandowski
+2
+----
+17
+Sevilla
+Valencia
+Valencia
+1 - 2
+Statistics
+3 - 3
+8 - 10
+55 - 45
+15 - 18
+3 - 0
+8 - 1
+1 - 2
+Jesus Navas
+2
+----
+18
+Juventus
+Inter Milan
+Draw
+1 - 1
+Statistics
+4 - 4
+11 - 13
+38 - 62
+8 - 14
+1 - 0
+4 - 3
+3 - 3
+Romelu Lukaku
+2
+----
+19
+Napoli
+AS Roma
+Napoli
+2 - 1
+Statistics
+6 - 3
+11 - 10
+57 - 43
+8 - 13
+0 - 0
+3 - 8
+2 - 4
+Victor Osimhen
+2
+----
+20
+Manchester United
+Liverpool
+Manchester United
+4 - 3
+Statistics
+10 - 11
+22 - 23
+42 - 58
+10 - 12
+3 - 4
+5 - 8
+8 - 6
+Mohamed Salah
+3
+----
+21
+Tottenham Hotspur
+Manchester City
+Tottenham Hotspur
+1 - 0
+Statistics
+3 - 4
+9 - 14
+36 - 64
+19 - 14
+2 - 1
+4 - 6
+4 - 2
+Harry Kane
+3
+----
+22
+Arsenal
+Chelsea
+Arsenal
+5 - 0
+Statistics
+11 - 2
+27 - 8
+45 - 55
+11 - 9
+3 - 0
+4 - 2
+3 - 6
+Gabriel Martinelli
+3
+----
+23
+Girona
+Sevilla
+Girona
+5 - 1
+Statistics
+6 - 3
+11 - 7
+56 - 44
+6 - 9
+1 - 1
+4 - 5
+2 - 1
+Artem Dovbyk
+3
+----
+24
+Barcelona
+Sevilla
+Barcelona
+3 - 0
+Statistics
+8 - 1
+16 - 3
+71 - 29
+8 - 10
+2 - 3
+8 - 3
+1 - 5
+Jordi Alba
+3

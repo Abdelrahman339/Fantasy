@@ -1,18 +1,4 @@
-#include <iostream>
-#include <queue>
-#include<list>
 #include "Competition.h"
-#include "Teams.h"
-#include"Game/Game.h"
-#include <unordered_map>
-#include "User.h"
-#include <regex>
-
-
-using namespace std;
-
-
-
 
 bool Competition::IsManOfTheMatch(string currentMOTM, string playerName)
 {
@@ -56,25 +42,9 @@ char Competition::priceCalculation(int points) {
 
 }
 
-void Competition::removeCurrentGame(queue<Game> UserGames, list<Game>& allGames)
-{
-	while (!UserGames.empty())
-	{
-		auto gameit = allGames.begin();
-		while (gameit != allGames.end())
-		{
-			if ((*gameit).getGameId() == UserGames.front().getGameId()) {
-				break;
-			}
-		}
-		allGames.erase(gameit);
 
 
 
-
-		UserGames.pop();
-	}
-}
 
 void Competition::ReducePoints(string footballerName, User& currentUser, string violence, string status, Teams& team)
 {
@@ -95,9 +65,11 @@ void Competition::ReducePoints(string footballerName, User& currentUser, string 
 		if (violence == "RedCard")
 		{
 			team.getFootballPlayer().at(footballerName).AddTotalpoints(-2);
+			
 		}
 		if (violence == "YellowCard") {
 			team.getFootballPlayer().at(footballerName).AddTotalpoints(-1);
+			
 		}
 	}
 
@@ -157,6 +129,7 @@ void Competition::addPoints(string contributes, User currentUser, string footbal
 	}
 	if (status == "footballer") {
 		team.getFootballPlayer().at(footballerName).AddTotalpoints(numPerpoints * numberOfcontributes);
+		
 	}
 	else {
 		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(numPerpoints * numberOfcontributes);
@@ -172,7 +145,8 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, str
 	regex pattern(R"(\d+)");
 
 	smatch matches;
-	int goalsnum=0, assistsnum=0;
+	int goalsnum = 0, assistsnum = 0;
+	int totalPoints = 0;
 
 	int foundNumbers = 0;
 
@@ -186,9 +160,11 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, str
 		contributes = matches.suffix().str();
 		foundNumbers++;
 	}
-	int totalPoints = (goalsnum * Competition::goalPoints) + (assistsnum * Competition::assistPoints);
+	totalPoints += ((goalsnum * Competition::goalPoints) + (assistsnum * Competition::assistPoints));
+
 	if (status == "footballer") {
 		team.getFootballPlayer().at(footballerName).AddTotalpoints(totalPoints);
+		
 	}
 	else {
 		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(totalPoints);
@@ -196,6 +172,18 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, str
 		currentUser.addBalance(totalPoints * 3);
 	}
 }
+
+
+void Competition::updateAllUserPoints(unordered_map<string, User>& Users)
+{
+	Teams team;
+	for (auto user : Users)
+	{
+		User currentUser = user.second;
+		findPlayers(currentUser.GetUserGames(), currentUser, "User", team);
+	}
+}
+
 
 void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string status, Teams& team)
 {
@@ -209,7 +197,7 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string 
 			string footballerName = kv.first;
 			if (footballerName == currentPlayerinMatch)
 			{
-				updatePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team);
+				updatePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team, currentPlayerinMatch);
 				ReducePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getViolation(), "User", team);
 
 			}
@@ -227,7 +215,6 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string 
 void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGame)
 {
 	char ans;
-	removeCurrentGame(Usergames, allGame);
 	cout << "Highlights of the week" << endl;
 	for (Game game : allGame) {
 		cout << game.getAwayTeam().getName() << User::spacing(10, ' ') << game.getHomeTeam().getName() << endl;
@@ -269,18 +256,19 @@ void Competition::UpdateFootballerPrice(Footballer& player) // for all the playe
 	}
 
 	player.SetPrice(priceChange);
-	player.SetTotalpoints(0);
+	
 
 
 }
 
-void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game) {
+void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game){
 
 
 	Teams team;
 	User currentUser;
 	string status = "footballer";
 	HighlightsOfTheMatch highlights = game.getHighlightsOfTheMatch().top();
+	bool ManOfMatchPointsCalculated = false;
 
 
 	string currentMOTM = game.getManOfTheMatch();
@@ -290,48 +278,65 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 		string playerName = kv.first;
 		Footballer& currentFootballer = kv.second;
 
-		int ManOfTheMatchPoints = 0;
 		string contributions = highlights.getContributions();
 		string violation = highlights.getViolation();
 
-
-
-		if (Competition::IsManOfTheMatch(currentMOTM, currentFootballer.GetName()) == true) {
-			ManOfTheMatchPoints = Competition::MOTM_Bonus;
-		}
-
-		Competition::updatePoints(playerName, currentUser, contributions, status, team,currentFootballer.GetPosition());
+		Competition::updatePoints(playerName, currentUser, contributions, status, team, currentFootballer.GetPosition());
 		Competition::ReducePoints(playerName, currentUser, violation, status, team); // for deducing redCards and yellowcards points
 
-		int currentPoints = currentFootballer.GetTotalpoints();
-		currentFootballer.AddTotalpoints(currentPoints+ManOfTheMatchPoints);
+		//calculating the points for the man of the match
+		if (ManOfMatchPointsCalculated != true) {
+			team.getFootballPlayer().at(currentMOTM).AddTotalpoints(3);
+			ManOfMatchPointsCalculated = true;
+		}
+
+		
+		
 
 
-		Competition::UpdateFootballerPrice(currentFootballer);
 
 	}
 }
 
-void Competition::UpdateFootballerPoints(queue<Game> UserGames, list<Game> CurrentGame) //for both squads of the match
+void Competition::UpdateFootballerPoints(list<Game> GameWeek) //for both squads of the match for a game week
 {
-	removeCurrentGame(UserGames, CurrentGame);
 
-	Game game = UserGames.front();
+	Game game;
 	auto AwayFootballPlayers = game.getAwayTeam().getFootballPlayer();
 	auto HomeFootballPlayers = game.getHomeTeam().getFootballPlayer();
+		
+		int NumOfMatchesPlayed = 0;
+
+		while (NumOfMatchesPlayed < 8)
+		{
+			game = GameWeek.front();
+
+			while (!game.getHighlightsOfTheMatch().empty()) {
+
+				Competition::searchTeamInMatch(AwayFootballPlayers, game);
+				Competition::searchTeamInMatch(HomeFootballPlayers, game);
 
 
-	while (!game.getHighlightsOfTheMatch().empty()) {
-
-		Competition::searchTeamInMatch(AwayFootballPlayers, game);
-		Competition::searchTeamInMatch(HomeFootballPlayers, game);
+				game.getHighlightsOfTheMatch().pop();
+			}
 
 
-		game.getHighlightsOfTheMatch().pop();
+
+			GameWeek.pop_front();
+			NumOfMatchesPlayed++;
+		}
+
+
 	}
 
 
 
 
-}
+
+
+
+
+
+
+
 

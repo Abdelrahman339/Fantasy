@@ -41,7 +41,7 @@ Manchester City
 Ederson
 29
 Goalkeeper
-35000000
+10000
 8.5
 0
 0

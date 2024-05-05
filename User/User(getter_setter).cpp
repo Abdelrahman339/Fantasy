@@ -163,3 +163,8 @@ unordered_map<string, Footballer>& User::GetSubstitutionSquad()
 {
 	return this->SubstitutionSquad;
 }
+
+queue<Game> &User::GetUserGames()
+{
+	return this->UserGames;
+}
