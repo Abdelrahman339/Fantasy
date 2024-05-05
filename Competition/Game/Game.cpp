@@ -121,9 +121,9 @@ void Game::displayPlayerHighlights(Game game) {
 }
 
 
-void Game::displayGameOverview(queue <Game> currentGame) {
+void Game::displayGameOverview(list <Game> currentGame) {
 
-	Game game;
+	Game game = currentGame.front();
 
 
 	system("cls");
