@@ -20,7 +20,7 @@ int main() {
 
 
 	////Get Games now Done!==> USAGE
-	//list<Game> games = fileManipulation::getGamesData(allTeams);
+	list<Game> games = fileManipulation::getGamesData(allTeams);
 	//for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
 	//	string name = it->getHomeTeam().getName();
 	//	//cout << name << endl;
@@ -42,7 +42,10 @@ int main() {
 	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
 	//}
 
-	user.homePage(users, leagues, {});
+
+	//Game::displayGameOverview(games);
+
+	//user.userMenu(user, users, leagues, games);
 
 
 }

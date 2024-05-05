@@ -234,28 +234,28 @@ void Competition::UpdateFootballerPrice(Footballer& player, int tempPoints) // f
 	switch (tier) {
 
 	case '1':
-		priceChange = currentPlayerPrice + 0.5f;
+		priceChange = currentPlayerPrice + 500.0f;
 		break;
 
 	case '2':
-		priceChange = currentPlayerPrice + 1.0f;
+		priceChange = currentPlayerPrice + 1000.0f;
 		break;
 
 	case '3':
-		priceChange = currentPlayerPrice + 1.5f;
+		priceChange = currentPlayerPrice + 1500.0f;
 		break;
 
 	case '4':
-		priceChange = currentPlayerPrice + 2.0f;
+		priceChange = currentPlayerPrice + 2000.0f;
 		break;
 
 	case '5':
-		priceChange = currentPlayerPrice + 2.5f;
+		priceChange = currentPlayerPrice + 2500.0f;
 		break;
 
 	default:
 		//if the player doesn't perfom with any of the tiers
-		priceChange = currentPlayerPrice - 0.2f;
+		priceChange = currentPlayerPrice - 200.0f;
 	}
 
 	player.SetPrice(priceChange);
@@ -290,6 +290,13 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 		Competition::UpdateFootballerPrice(currentFootballer, tempPoints);
 	}
 	//calculating the points for the man of the match
+	int count = TeamType.count(currentMOTM);
+	if (count > 0)
+	{
+		float currentMOTMPlayerPrice = TeamType.at(currentMOTM).GetPrice();
+		TeamType.at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
+		TeamType.at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
+	}
 
 }
 
