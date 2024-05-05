@@ -847,7 +847,7 @@ Real Madrid
 Thibaut Courtois
 29
 Goalkeeper
-40000000
+400
 8.5
 0
 0
@@ -859,7 +859,7 @@ Goalkeeper
 Dani Carvajal
 30
 Right-back
-35000000
+350
 8.2
 0
 0
@@ -871,7 +871,7 @@ Right-back
 Brahim Diaz
 24
 Midfielder
-50000000
+500
 8.6
 0
 0
@@ -883,7 +883,7 @@ Midfielder
 Sergio Ramos
 35
 Centre-back
-25000000
+250
 8.9
 0
 0
@@ -895,7 +895,7 @@ Centre-back
 Ferland Mendy
 25
 Left-back
-30000000
+300
 8.3
 0
 0
@@ -907,7 +907,7 @@ Left-back
 Casemiro
 29
 Defensive midfielder
-60000000
+6000
 8.7
 0
 0
@@ -919,7 +919,7 @@ Defensive midfielder
 Luka Modric
 36
 Central midfielder
-20000000
+200
 8.8
 0
 0
@@ -943,7 +943,7 @@ Central midfielder
 Federico Valverde
 25
 Midfielder
-70000000
+7000
 8.4
 0
 0
@@ -955,7 +955,7 @@ Midfielder
 Karim Benzema
 33
 Striker
-80000000
+8000
 9.0
 0
 0
@@ -967,7 +967,7 @@ Striker
 Eden Hazard
 31
 Right winger
-65000000
+6500
 8.6
 0
 0

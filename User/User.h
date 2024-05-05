@@ -141,7 +141,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////
-	void static play(list<Game> allGames, User currentUser);
+	void static play(list<Game> allGames, User &currentUser,unordered_map<string,User>&Users);
 
 	void static showCurrentMatch(queue<Game>& UserGames);
 

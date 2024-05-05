@@ -9,7 +9,7 @@ Teams Game::getHomeTeam() { return homeTeam; }
 string Game::getScore() { return score; }
 string Game::getManOfTheMatch() { return manOfTheMatch; }
 string Game::getStatistics() { return statistics; }
-stack<HighlightsOfTheMatch> Game::getHighlightsOfTheMatch() { return highlightsOfTheMatch; }
+stack<HighlightsOfTheMatch>& Game::getHighlightsOfTheMatch() { return highlightsOfTheMatch; }
 int Game::getRound() { return round; }
 
 string Game::getwinningTeam()

@@ -120,7 +120,7 @@ void Competition::AddContributesPoints(string footballerName, User& currentUser,
 }
 
 
-void Competition::addPoints(string contributes, User currentUser, string footballerName, int numPerpoints, string status, Teams& team, int& tempPoints)
+void Competition::addPoints(string contributes, User& currentUser, string footballerName, int numPerpoints, string status, Teams& team, int& tempPoints)
 {
 	int numberOfcontributes = 0;
 	regex pattern(R"(\d+)");
@@ -136,7 +136,6 @@ void Competition::addPoints(string contributes, User currentUser, string footbal
 		tempPoints = numPerpoints * numberOfcontributes;
 	}
 	else {
-		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(numPerpoints * numberOfcontributes);
 		currentUser.AddPoints(numPerpoints * numberOfcontributes);
 		currentUser.addBalance(numPerpoints * numberOfcontributes);
 	}
@@ -184,16 +183,16 @@ void Competition::updateAllUserPoints(unordered_map<string, User>& Users)
 	for (auto user : Users)
 	{
 		User currentUser = user.second;
-		findPlayers(currentUser.GetUserGames(), currentUser, "User", team);
+		findPlayers(currentUser, "User", team);
 	}
 }
 
 
-void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string status, Teams& team)
+void Competition::findPlayers(User& currentUser, string status, Teams& team)
 {
 	int tempPoints = 0;
 
-	Game currentGame = UserGames.front();
+	Game currentGame = currentUser.GetUserGames().front();
 	while (!currentGame.getHighlightsOfTheMatch().empty())
 	{
 
@@ -219,7 +218,7 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string 
 
 
 	//The end of the match
-	UserGames.pop();
+	currentUser.GetUserGames().pop();
 }
 
 void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGame)
@@ -271,15 +270,13 @@ void Competition::UpdateFootballerPrice(Footballer& player, int tempPoints) // f
 
 }
 
-void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, Game game) {
+void Competition::searchTeamInMatch(unordered_map<string, Footballer>& TeamType, Game game) {
 
 
 	Teams team;
 	User currentUser;
 	string status = "footballer";
 	HighlightsOfTheMatch highlights = game.getHighlightsOfTheMatch().top();
-	bool ManOfMatchPointsCalculated = false;
-
 
 	string currentMOTM = game.getManOfTheMatch();
 
@@ -307,9 +304,9 @@ void Competition::searchTeamInMatch(unordered_map<string, Footballer> TeamType, 
 
 }
 
-void Competition::UpdateFootballerPoints(list<Game> GameWeek) //for both squads of the match for a game week
+void Competition::UpdateFootballerPoints(list<Game>& GameWeek) //for both squads of the match for a game week
 {
-	Game game;
+	Game game = GameWeek.front();
 	unordered_map<string, Footballer> AwayFootballPlayers;
 	unordered_map<string, Footballer> HomeFootballPlayers;
 	int NumOfMatchesPlayed = 0;

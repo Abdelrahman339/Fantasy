@@ -48,7 +48,7 @@ int main() {
 
 	//Game::displayGameOverview(games);
 
-	user.userMenu(user, users, leagues, games);
+	user.homePage(users, leagues, games);
 
 
 }

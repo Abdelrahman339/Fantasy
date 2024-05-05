@@ -69,7 +69,7 @@ public:
 	string getScore();
 	string getManOfTheMatch();
 	string getStatistics();
-	stack<HighlightsOfTheMatch> getHighlightsOfTheMatch();
+	stack<HighlightsOfTheMatch> &getHighlightsOfTheMatch();
 	int getRound();
 	string getwinningTeam();
 	int getGameId();

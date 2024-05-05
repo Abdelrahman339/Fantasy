@@ -145,7 +145,8 @@ choice:
 	}
 	else if (choice == 4)
 	{
-		// play function
+		play(allGames, currentUser, Users);
+		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 5)

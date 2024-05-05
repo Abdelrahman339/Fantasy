@@ -37,6 +37,7 @@ Yellow Card
 Luka Modric
 Assists: 1
 Yellow Card
+----
 Toni Kroos
 Goals: 1
 None
@@ -45,7 +46,7 @@ Ferland Mendy
 Goals: 0
 Yellow Card
 ----------------
-2
+2 
 --------
 Dusan Vlahovic
 Goals: 1
