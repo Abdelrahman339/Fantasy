@@ -27,7 +27,7 @@ choice:
 	if (choice == 1)
 	{
 		cout << spacing(60, ' '); Admin::PauseAndClear();
-		Admin::CheckAdmin(Users);
+		//Admin::CheckAdmin(Users);
 		homePage(Users, leagues, allGames);
 		return;
 	}

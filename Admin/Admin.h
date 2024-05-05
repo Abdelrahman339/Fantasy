@@ -19,7 +19,6 @@ public:
 	//admin
 	void static CheckAdmin(unordered_map<string, User>& Users, map<string, Teams>& teams, vector<TheLeague> leagues);
 	void static AdminMenu(unordered_map<string, User>& Users, map<string, Teams>& teams, vector<TheLeague> leagues);
-private:
 	//users
 	void static AboutUsers(unordered_map<string, User>& Users, map<string, Teams>& teams, vector<TheLeague> leagues);
 	void static DisplayAllUsers(unordered_map<string, User>& Users, map<string, Teams>& teams, vector<TheLeague> leagues);
