@@ -688,13 +688,13 @@ invalid:
 void User::squadFormat(int choice, unordered_map<string, Footballer>  squad) {
 	if (choice == 1)
 	{
-		User::Format343(squad);
+		User::Format343(squad, "Player");
 	}
 	else if (choice == 2) {
-		User::Format433(squad);
+		User::Format433(squad, "Player");
 	}
 	else if (choice == 3) {
-		User::Format442(squad);
+		User::Format442(squad, "Player");
 	}
 	else {
 		cout << "invalid input!" << endl;
@@ -703,7 +703,7 @@ void User::squadFormat(int choice, unordered_map<string, Footballer>  squad) {
 	}
 
 };
-void User::Format433(unordered_map<string, Footballer> Squad) {
+void User::Format433(unordered_map<string, Footballer> Squad, string squadName) {
 
 	vector <string>MainSquad = ToVector(Squad);
 	while (MainSquad.size() < 11)
@@ -711,7 +711,7 @@ void User::Format433(unordered_map<string, Footballer> Squad) {
 		MainSquad.push_back("XXXXXX");
 	}
 
-	cout << User::spacing(28, ' ') << "                    Players" << endl;
+	cout << User::spacing(28, ' ') << "                    " << squadName << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n\n";
 	cout << User::spacing(30, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8], 0, false, MainSquad[8]), ' ') << "9"; cout << User::spacing(User::Formatdistance(MainSquad[9], 13, true, MainSquad[8]), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10], 13, true, MainSquad[9]), ' ') << "11" << endl;
 	cout << User::spacing(30, ' '); cout << MainSquad[8] << User::spacing(13, ' ') << MainSquad[9] << User::spacing(13, ' ') << MainSquad[10] << "\n\n";
@@ -734,7 +734,7 @@ void User::Format433(unordered_map<string, Footballer> Squad) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void User::Format343(unordered_map<string, Footballer> Squad) {
+void User::Format343(unordered_map<string, Footballer> Squad, string squadName) {
 
 	vector <string>MainSquad = ToVector(Squad);
 	while (MainSquad.size() < 11)
@@ -742,7 +742,7 @@ void User::Format343(unordered_map<string, Footballer> Squad) {
 		MainSquad.push_back("XXXXXX");
 	}
 
-	cout << User::spacing(28, ' ') << "                    Players" << endl;
+	cout << User::spacing(28, ' ') << "                    " << squadName << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
 
 	cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8], 0, false, MainSquad[8]), ' ') << "9"; cout << User::spacing(User::Formatdistance(MainSquad[9], 12, true, MainSquad[8]), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10], 12, true, MainSquad[9]), ' ') << "11" << endl;
@@ -766,7 +766,7 @@ void User::Format343(unordered_map<string, Footballer> Squad) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void User::Format442(unordered_map<string, Footballer> Squad) {
+void User::Format442(unordered_map<string, Footballer> Squad, string squadName) {
 
 	vector <string>MainSquad = ToVector(Squad);
 
@@ -775,7 +775,7 @@ void User::Format442(unordered_map<string, Footballer> Squad) {
 		MainSquad.push_back("XXXXXX");
 	}
 
-	cout << User::spacing(28, ' ') << "                    Players" << endl;
+	cout << User::spacing(28, ' ') << "                    " << squadName << endl;
 	cout << User::spacing(28, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
 
 	cout << User::spacing(38, ' '); cout << User::spacing(User::Formatdistance(MainSquad[9], 0, false, MainSquad[9]), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10], 9, true, MainSquad[9]), ' ') << "11" << endl;

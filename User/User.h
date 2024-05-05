@@ -103,9 +103,9 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 
 	void static squadFormat(int choice, unordered_map<string, Footballer>  squad);
-	void static Format433(unordered_map<string, Footballer> squad);
-	void static Format343(unordered_map<string, Footballer> squad);
-	void static Format442(unordered_map<string, Footballer> squad);
+	void static Format433(unordered_map<string, Footballer> squad,string squadName);
+	void static Format343(unordered_map<string, Footballer> squad,string squadName);
+	void static Format442(unordered_map<string, Footballer> squad,string squadName);
 	void static showSubstitutions(unordered_map<string, Footballer> squad);
 	int  static Formatdistance(string name, int space, bool remaining, string prev);
 	void static ShowSquad(User& currentUser);

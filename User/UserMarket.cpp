@@ -10,7 +10,7 @@ using namespace std;
 void User::Market(User& currentUser, vector <TheLeague> leagues)
 {
 	unordered_map<string, Footballer> TopPlayer = TopFootballers(leagues);
-	Format343(TopPlayer);
+	Format343(TopPlayer,"Top Player");
 	cout << endl << endl << endl;
 
 	cout << "Fatntasy Market" << endl;
@@ -29,7 +29,7 @@ invalid:
 	}
 	else if (choice == 3) {
 		string FootballerName;
-		Format343(currentUser.GetMainSquad());
+		Format343(currentUser.GetMainSquad(),"Player");
 		cout << endl << endl << endl;
 		showSubstitutions(currentUser.GetSubstitutionSquad());
 		cout << endl << endl;
@@ -56,7 +56,7 @@ void User::showtopFootballers(unordered_map<string, Footballer> TopPlayer, User&
 	int choice;
 invalid:
 	cout << "Welcome to top player in the session!" << endl;
-	User::Format343(TopPlayer);
+	User::Format343(TopPlayer,"Top Player");
 
 	cout << "\n\n";
 
@@ -99,7 +99,7 @@ invalid:
 		if (!targetFootballer.GetName().empty())
 		{
 
-			Format442(currentUser.GetMainSquad());
+			Format442(currentUser.GetMainSquad(),"Player");
 
 			cout << endl;
 
@@ -166,7 +166,7 @@ invalid:
 	invalid_input:
 		int choice;
 		string footballerName;
-		User::Format343(Wantedteam.getFootballPlayer());
+		User::Format343(Wantedteam.getFootballPlayer(),Wantedteam.getName());
 		cout << endl;
 		cout << "1- show information about player\n2-buy player\n3-replace player\n4-go back" << endl;
 		cin >> choice;
@@ -196,7 +196,7 @@ invalid:
 			if (!targetFootballer.GetName().empty())
 			{
 
-				Format442(currentUser.GetMainSquad());
+				Format442(currentUser.GetMainSquad(),"Player");
 
 				cout << endl;
 
