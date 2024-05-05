@@ -11,70 +11,70 @@ Violations
 1
 --------
 Jose Maria Gimenez
-Goals: 0 & Assists: 0
+Goals: 0
 Yellow Card
 ----
 Antoine Griezmann
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Alvaro Morata
-Goals: 2 & Assists: 0
+Goals: 2
 None
 ----
 Koke
-Goals: 0 & Assists: 2
+Assists: 2
 None
 ----
 Saul Niguez
-Goals: 0 & Assists: 1
+Assists: 1
 None
 ----
 Jude Bellingham
-Goals: 0 & Assists: 0
+Goals: 0
 Yellow Card
 ----
 Luka Modric
-Goals: 0 & Assists: 1
+Assists: 1
 Yellow Card
 Toni Kroos
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Ferland Mendy
-Goals: 0 & Assists: 0
+Goals: 0
 Yellow Card
 ----------------
 2
-----
+--------
 Dusan Vlahovic
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Manuel Locatelli
-Goals: 0 & Assists: 1
+Assists: 1
 Yellow Card
 ----
 Filip Kostic
-Goals: 0 & Assists: 0
+Goals: 0
 Yellow Card
 ----
 Bryan Cristante
-Goals: 0 & Assists: 1
+Assists: 1
 None
 ----
 Tammy Abraham
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Zeki Celik
-Goals: 0 & Assists: 0
+Goals: 0
 None
 ----------------
 3
-----
+--------
 Gianluca Gaetano
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Giovanni Di Lorenzo
@@ -82,25 +82,25 @@ Goals: 1 & Assists: 1
 None
 ----
 Andre-Frank Zambo Anguissa
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Eljif Elmas
-Goals: 0 & Assists: 2
+Assists: 2
 Yellow Card
 ----
 Romelu Lukaku
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Roberto Gagliardini
-Goals: 0 & Assists: 0
+Goals: 0
 Red Card
 ----------------
 4
-----
+--------
 Erling Haaland
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Phil Foden
@@ -108,19 +108,19 @@ Goals: 2 & Assists: 1
 None
 ----
 Marcus Rashford
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Raphael Varane
-Goals: 0 & Assists: 0
+Goals: 0
 Yellow Card
 ----------------
 5
-----
+--------
 Axel Disasi
-Goals: 1 & Assists: 0
+Goals: 1
 None
 ----
 Luis Diaz
-Goals: 1 & Assists: 0
+Goals: 1
 None

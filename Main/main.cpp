@@ -22,8 +22,11 @@ int main() {
 	////Get Games now Done!==> USAGE
 	list<Game> games = fileManipulation::getGamesData(allTeams);
 	//for (list<Game>::iterator it = games.begin(); it != games.end(); ++it) {
-	//	string name = it->getHomeTeam().getName();
-	//	//cout << name << endl;
+	//	stack<HighlightsOfTheMatch> highlights = it->getHighlightsOfTheMatch();
+	//	while (!highlights.empty()) {
+	//		cout << highlights.top().getContributions() << endl;
+	//		highlights.pop();
+	//	}
 	//}
 
 	//Get User now Done!==> USAGE
