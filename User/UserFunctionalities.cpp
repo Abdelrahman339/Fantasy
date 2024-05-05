@@ -153,7 +153,7 @@ string User::typosChecking(string SearchName, T dataReference)
 		for (int i = 0; i < min(SearchName.size(), currentPlayerName.size()); ++i) {
 			if (SearchName[i] != currentPlayerName[i]) {
 				errors++;
-				if (errors > 4) {
+				if (errors > 2) {
 					break;
 				}
 			}
@@ -163,7 +163,7 @@ string User::typosChecking(string SearchName, T dataReference)
 			matchedPlayer = currentPlayerName;
 		}
 	}
-	if (SearchName.size() > 3 && minErrors < 5)
+	if (SearchName.size() > 3 && minErrors < 3)
 	{
 		return matchedPlayer;
 

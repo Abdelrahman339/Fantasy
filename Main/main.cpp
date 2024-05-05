@@ -30,7 +30,7 @@ int main() {
 
 	map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
 	unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
-	User user;
+	User user=users.at("william_l_81");
 	unordered_map<string, Footballer> squad = user.GetMainSquad();
 
 	//cout << endl;
@@ -42,7 +42,7 @@ int main() {
 	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
 	//}
 
-	user.homePage(users, leagues, games);
+	user.userMenu(user, users, leagues, {});
 
 
 }

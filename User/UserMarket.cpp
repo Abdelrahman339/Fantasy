@@ -550,7 +550,7 @@ invalidSquad:
 
 
 	cout << "enter the name of player from your team that you want to replace " << TeamFootballerName << " with." << endl;
-	cin >> UserFootballerName;
+	getline(cin >> ws, UserFootballerName);
 
 	Footballer TeamFootballer = wantedFootballer;
 	string existPlayer = avoidTypos(UserFootballerName, currentUser, "sell", {}, team);
