@@ -41,9 +41,9 @@ public:
 	void SetPoints(int num);
 	void addPoints(int num);
 
-	//Teams static getTeamByName(vector<League> allleagues, string teamName);
-
-	//Footballer* getFootballerByTeamName(Teams team, string footballerName);
+	void SetName(string);
+	//Footballer getFootballerByTeamName(Teams team, string footballerName);
+	unordered_map<string, Footballer> getFootballersByTeam(Teams team);
 
 };
 

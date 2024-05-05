@@ -60,25 +60,12 @@ void Teams::addPoints(int num)
 {
 	points += num;
 }
-//Teams Teams::getTeamByName(vector<League> allleagues, string teamName) {
-//	Teams team;
-//
-//	for (size_t i = 0; i < allleagues.size(); i++) {
-//		try {
-//			team = allleagues[i].GetTeams().at(teamName);
-//			break;
-//		}
-//		catch (const std::exception&) {
-//			cout << "Couldn't find the specified team";
-//			return {};
-//		}
-//	}
-//	return team;
-//}
-//
-//Footballer* Teams::getFootballerByTeamName(Teams team, string footballerName)
-//{
-//	Footballer* footballerToBeUpdated = nullptr;
-//	*footballerToBeUpdated = team.getFootballPlayer().at(footballerName);
-//	return footballerToBeUpdated;
-//}
+
+void Teams::SetName(string TeamName) {
+	this->name = TeamName;
+}
+
+unordered_map<string, Footballer> Teams::getFootballersByTeam(Teams team) {
+
+	return team.getFootballPlayer();
+}

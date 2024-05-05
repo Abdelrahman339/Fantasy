@@ -1,11 +1,12 @@
 #include "TheLeague.h"
 
-//void League::displayTeams(unordered_map<string, Teams>& teams) {
-//    cout << "Teams in the league:" << endl;
-//    for ( auto& team : teams) {
-//        cout << team.second.getName()<< endl;
-//    }
-//}
+void TheLeague::displayTeams(map<string, Teams> teams) {
+	cout << "Teams in the league.." << endl;
+	cout << "  Name" << '\t' << "Points" << endl;
+	for (auto& team : teams) {
+		cout << team.second.getName() << '\t' << team.second.getPoints() << endl;
+	}
+}
 
 //void League::updatePoints( list <Game> allgames) {
 //    // Update points based on games played
@@ -46,6 +47,15 @@
 //        }
 //    }
 //}
+
+string TheLeague::getLeagueName()
+{
+	return this->name;
+}
+
+void TheLeague::setLeagueName(string newLeagueName) {
+	this->name = newLeagueName;
+}
 
 TheLeague::TheLeague() {
 	this->name = "";
