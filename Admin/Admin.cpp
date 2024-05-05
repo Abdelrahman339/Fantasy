@@ -49,8 +49,6 @@ void Admin::CheckAdmin(unordered_map<string, User>& Users)
 
 void Admin::AdminMenu(unordered_map<string, User>& Users/*, unordered_map<string, Teams>& Team, unordered_map<string, Leagues>& League*/)
 {
-
-
 	int choice;
 Menu:
 	cout << endl << "\t     Admin Menu" << endl;
@@ -104,26 +102,22 @@ Choose:
 		User::signup(Users);
 		cout << "Successfully Added Your New User " << endl;
 		PauseAndClear();
-
 	}
 	if (choice == 2)
 	{
 		ShowAndEditUser(Users);
 		PauseAndClear();
-
 	}
 	else if (choice == 3)
 	{
 		UserSquadAndPlayers(Users);
 		PauseAndClear();
-
 	}
 	else if (choice == 4)
 	{
 		answer = true;
 		DeleteUser(Users);
 		PauseAndClear();
-
 	}
 	else if (choice == 5)
 	{
@@ -169,7 +163,6 @@ void Admin::ShowAndEditUser(unordered_map<string, User>& Users)
 	else
 	{
 		ViewProfile(Users, Users.at(userName));
-
 	}
 }
 void Admin::ViewProfile(unordered_map<string, User>& Users, User& currentUser)
@@ -238,12 +231,12 @@ choices:
 	else if (choice == 2)
 	{
 		valid = true;
-		auto node = Users.extract(currentUser.GetUsername());  //old username
+		auto it = Users.find(currentUser.GetUsername());//old username
 		UserValidations::usernameCheck(Users, currentUser);  //updated username
-		if (node)    //if old username exists
+		if (it != Users.end()) // if old username exists
 		{
-			node.key() = currentUser.GetUsername();//update the username
-			Users.insert(move(node));
+			Users.insert({ currentUser.GetUsername(), it->second });   //update the username
+			Users.erase(it);   //erasing old username
 		}
 		else
 		{
