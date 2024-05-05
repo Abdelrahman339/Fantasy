@@ -51,12 +51,10 @@ void Competition::ReducePoints(string footballerName, User& currentUser, string 
 	if (status == "User") {
 		if (violence == "RedCard")
 		{
-			currentUser.GetMainSquad().at(footballerName).AddTotalpoints(-2);
 			currentUser.AddPoints(-2);
 			currentUser.addBalance(-20);
 		}
 		if (violence == "YellowCard") {
-			currentUser.GetMainSquad().at(footballerName).AddTotalpoints(-1);
 			currentUser.AddPoints(-1);
 			currentUser.addBalance(-5);
 		}
@@ -81,37 +79,42 @@ void Competition::ReducePoints(string footballerName, User& currentUser, string 
 void Competition::AddContributesPoints(string footballerName, User& currentUser, string contributes, string status, Teams& team, string footballerPosition, int& tempPoints)
 {
 	//"goals 5 & assists 6"
-	regex pattern(R"(&)");
-	int numberofGoals;
-	if (regex_match(contributes, pattern)) { // if the player scord and did assist
+	regex Goal_Assist_pattern(R"(&)");
+	//"golas 5"
+	regex Goalpattern(R"(Goal)");
+	//"assist 2"
+	regex Assistpattern(R"(Assist)");
+	//"Clean sheets"
+	regex CleanSheets(R"(CleanSheets)");
+	if (regex_search(contributes, Goal_Assist_pattern)) { // if the player scord and did assist
 
 		addGoalsAssistPoints(contributes, currentUser, footballerName, status, team, tempPoints);
 	}
-
-	else if (!regex_match(contributes, pattern))
+	// the player ethier scored a goal or did assist
+	else if (regex_search(contributes, Goalpattern))
 	{
-		regex Goalpattern(R"(Goal)");
-		regex Assistpattern(R"(Assist)");
-		if (regex_match(contributes, Goalpattern)) {
+		addPoints(contributes, currentUser, footballerName, Competition::goalPoints, status, team, tempPoints);
 
-			addPoints(contributes, currentUser, footballerName, Competition::goalPoints, status, team, tempPoints);
-		}
-		else if (regex_match(contributes, Assistpattern)) {
-
-			addPoints(contributes, currentUser, footballerName, Competition::assistPoints, status, team, tempPoints);
-		}
-		else {
-			if (checkPosition(footballerPosition)) {
-				currentUser.GetMainSquad().at(footballerName).AddTotalpoints(cleanSheetPoints);
-				currentUser.AddPoints(cleanSheetPoints);
-				currentUser.addBalance(10);
-			}
-		}
 	}
+	else if (regex_search(contributes, Assistpattern))
+	{
+		addPoints(contributes, currentUser, footballerName, Competition::assistPoints, status, team, tempPoints);
+	}
+	else if (regex_search(contributes, CleanSheets))
+	{
+		addPoints(contributes, currentUser, footballerName, Competition::cleanSheetPoints, status, team, tempPoints);
+
+	}
+	//the player didnt do any contributes in the match
 	else
 	{
-		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(-10);
-		currentUser.AddPoints(-10);
+		if (status == "User")
+		{
+			currentUser.AddPoints(-2);
+		}
+		else {
+			team.getFootballPlayer().at(footballerName).AddTotalpoints(-10);
+		}
 	}
 
 }
@@ -169,7 +172,6 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, str
 
 	}
 	else {
-		currentUser.GetMainSquad().at(footballerName).AddTotalpoints(totalPoints);
 		currentUser.AddPoints(totalPoints);
 		currentUser.addBalance(totalPoints * 3);
 	}
@@ -197,11 +199,16 @@ void Competition::findPlayers(queue<Game>& UserGames, User& currentUser, string 
 
 		string currentPlayerinMatch = currentGame.getHighlightsOfTheMatch().top().getName();
 		for (auto& kv : currentUser.GetMainSquad()) {
+
+			//get the data from the game
 			string footballerName = kv.first;
+			string contributes = currentGame.getHighlightsOfTheMatch().top().getContributions();
+			string violation = currentGame.getHighlightsOfTheMatch().top().getViolation();
+
 			if (footballerName == currentPlayerinMatch)
 			{
-				AddContributesPoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getContributions(), "User", team, currentPlayerinMatch, tempPoints);
-				ReducePoints(currentPlayerinMatch, currentUser, currentGame.getHighlightsOfTheMatch().top().getViolation(), "User", team, tempPoints);
+				AddContributesPoints(currentPlayerinMatch, currentUser, contributes, "User", team, currentPlayerinMatch, tempPoints);
+				ReducePoints(currentPlayerinMatch, currentUser, violation, "User", team, tempPoints);
 
 			}
 		}

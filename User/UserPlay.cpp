@@ -121,27 +121,27 @@ void User::insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game
 
 }
 
-//void User::sortingQueue(queue<Game>& UserGames)
-//{
-//	vector<Game> usergamesUS;//US for un sorted
-//	while (!UserGames.empty())
-//	{
-//		usergamesUS.push_back(UserGames.front());
-//		UserGames.pop();
-//	}
-//
-//	sort(usergamesUS.begin(), usergamesUS.end(), compareGamesByRound);
-//
-//	for (int i = 0; i < usergamesUS.size(); i++)
-//	{
-//		UserGames.push(usergamesUS[i]);
-//	}
-//
-//}
-//
-//bool User::compareGamesByRound(Game& Game1, Game& Game2) {
-//	return Game2.getRound() > Game2.getRound();
-//}
+void User::sortingQueue(queue<Game>& UserGames)
+{
+	vector<Game> usergamesUS;//US for un sorted
+	while (!UserGames.empty())
+	{
+		usergamesUS.push_back(UserGames.front());
+		UserGames.pop();
+	}
+
+	sort(usergamesUS.begin(), usergamesUS.end(), compareGamesByRound);
+
+	for (int i = 0; i < usergamesUS.size(); i++)
+	{
+		UserGames.push(usergamesUS[i]);
+	}
+
+}
+
+bool User::compareGamesByRound(Game& Game1, Game& Game2) {
+	return Game1.getRound() > Game2.getRound();
+}
 
 bool User::areStacksEqual(stack<string> stack1, stack<string> stack2)
 {
