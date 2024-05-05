@@ -3,7 +3,9 @@
 #include <string>
 #include "Teams.h"
 #include <map>
+
 using namespace std;
+
 class TheLeague
 {
 protected:
@@ -13,9 +15,13 @@ protected:
 public:
 	TheLeague();
 	TheLeague(string name, map <string, Teams> teams);
-	//void displayTeams(unordered_map<string, Teams> & Teams);
+	void static displayTeams(map<string, Teams> Teams);
 	//void updatePoints( list <Game> allgames);
 	//void displayPointTable();
+
+
+	string getLeagueName();
+	void setLeagueName(string);
 
 	map <string, Teams> GetTeams();
 
