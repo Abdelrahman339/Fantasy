@@ -4,8 +4,8 @@ void UserValidations::signupinfo(User* newUser, string info, bool (*Check)(strin
 {
 	string input;
 invalid:
-	cout << "Enter you " << info << ": " << endl;
-	getline(cin >> ws, input);
+	cout << User::spacing(60, ' '); cout << "Enter your " << info << ": " << endl;
+	cout << User::spacing(60, ' '); getline(cin >> ws, input);
 	(newUser->*set)(input);
 	if (Check(input) == false)
 	{
@@ -43,9 +43,9 @@ bool UserValidations::phoneNumberCheck(string phoneNumber)
 bool UserValidations::passwordCheck(string password)
 {
 	bool result = true;
-	regex specialChar_pattern(R"([!@#$%^&*-_=+<>])");
-	regex number_pattern(R"([\d])");
-	regex numberandchar_pattern(R"([\d\S]+)");
+	regex specialChar_pattern(R"([!@#$%]+)");
+	regex number_pattern(R"([\d]+)");
+
 
 
 	if (password.length() < 8)
@@ -68,7 +68,7 @@ bool UserValidations::passwordCheck(string password)
 		result = false;
 	}
 
-	if (!regex_search(password, numberandchar_pattern))
+	if (regex_match(password, number_pattern))
 	{
 		cout << "Too easy password!" << endl;
 		cout << "You must provide a valid password with numbers and characters" << endl;
@@ -80,8 +80,8 @@ bool UserValidations::usernameCheck(unordered_map<string, User> users, User& New
 {
 	string input;
 invalid:
-	cout << "Enter your " << "Username" << ": " << endl;
-	getline(cin >> ws, input);
+	cout << User::spacing(60, ' ') << "Enter your " << "Username" << ": " << endl;
+	cout << User::spacing(60, ' '); getline(cin >> ws, input);
 	auto it = users.find(input);
 	if (it == users.end())
 	{

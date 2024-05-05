@@ -276,14 +276,14 @@ User fileManipulation::parseUser(vector<string> userLines, map<int, pair<unorder
 		mainSquad = usersSquads.at(userID).first;
 	}
 	catch (const std::exception&) {
-		cout << "User \"" << fullname << "\" has 0 Footballers in his main Squad." << endl;
+		//cout << "User \"" << fullname << "\" has 0 Footballers in his main Squad." << endl;
 	}
 
 	try {
 		substitutionSquad = usersSquads.at(userID).second;
 	}
 	catch (const std::exception&) {
-		cout << "User \"" << fullname << "\" has 0 Footballers in his substitution Squad." << endl;
+		//cout << "User \"" << fullname << "\" has 0 Footballers in his substitution Squad." << endl;
 	}
 
 	return User(userID, fullname, username, email, password, phoneNumber, rank, points, balance, mainSquad, substitutionSquad);
@@ -295,7 +295,7 @@ unordered_map<string, Footballer> fileManipulation::parseSquad(Squad squadType, 
 		userTeamsAndFootballerNames = splitByRegex(userIdMainSubSquads[squadType], regex);
 	}
 	catch (const std::exception&) {
-		cout << "Found (0) Footballers in " << (userIdMainSubSquads.size() == 2 ? "SUBSTITUTION Squad" : "MAIN and SUBSTITUTION Squads") << " of User ID : (" << userIdMainSubSquads[0] << ")" << endl;
+		//cout << "Found (0) Footballers in " << (userIdMainSubSquads.size() == 2 ? "SUBSTITUTION Squad" : "MAIN and SUBSTITUTION Squads") << " of User ID : (" << userIdMainSubSquads[0] << ")" << endl;
 		return {};
 	}
 

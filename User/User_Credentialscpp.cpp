@@ -13,13 +13,20 @@ void User::homePage(unordered_map<string, User>& Users, vector <TheLeague> leagu
 	int choice;
 
 choice:
-	cout << "Welcome to Fantasy game!" << endl;
-	cout << "It's time for another season of fantasy football glory!" << endl;
-	cout << "1-Admin \n 2- login \n 3-sign up\n4-Exit" << endl;
-	cout << "Enter your option" << endl;
-	cin >> choice;
+	cout << "\n\n\n";
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << "\n\n";
+	cout << spacing(60, ' ') << "      Welcome to Fantasy game!" << "\n\n";
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << "\n\n\n";
+	cout << spacing(60, ' ') << "**It's time for another season of fantasy football glory!**" << "\n\n\n";
+	cout << spacing(60, ' ') << "Let's start!" << endl;
+	cout << spacing(60, ' '); Admin::PauseAndClear();
+	cout << "\n\n\n\n\n\n";
+	cout << spacing(60, ' ') << "1-Admin   2-Login   3-Sign up   4-Exit" << endl;
+	cout << spacing(60, ' ') << "Enter your option" << endl;
+	cout << spacing(60, ' '); cin >> choice;
 	if (choice == 1)
 	{
+		cout << spacing(60, ' '); Admin::PauseAndClear();
 		Admin::CheckAdmin(Users);
 		homePage(Users, leagues, allGames);
 		return;
@@ -30,8 +37,9 @@ choice:
 	}
 	else if (choice == 3)
 	{
+		cout << spacing(60, ' '); Admin::PauseAndClear();
 		signup(Users);
-		system("pause");
+		cout << spacing(60, ' '); Admin::PauseAndClear();
 		toLogin(Users, leagues, allGames);
 		return;
 	}
@@ -97,12 +105,14 @@ User User::login(unordered_map<string, User>& users, string username, string pas
 void User::signup(unordered_map<string, User>& Users)
 {
 	User newUser;
-	cout << "Sign up" << endl;
+	cout << "\n\n\n\n";
+	cout << spacing(60, ' '); cout << "Sign up" << endl;
 	UserValidations::signupinfo(&newUser, "Fullname", UserValidations::fullnameCheck, &User::SetFullName);
 	UserValidations::usernameCheck(Users, newUser);
 	UserValidations::signupinfo(&newUser, "Password", UserValidations::passwordCheck, &User::SetPassword);
 	UserValidations::signupinfo(&newUser, "PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
 	UserValidations::signupinfo(&newUser, "EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
+	cout << spacing(60, ' ') << "Account created successfully!" << endl;
 	Users.insert_or_assign(newUser.username, newUser);
 }
 void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames)
