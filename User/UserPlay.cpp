@@ -26,7 +26,7 @@ invalid:
 			//Competition::findPlayers(currentUser, "User", team);
 			//cout << endl;
 			//cout << "User point after play the game: " << currentUser.GetPoints();
-			Competition::UpdateFootballerPoints(allGames);
+			Competition::UpdateFootballerPoints(UserGames);
 			return;
 		}
 		else if (ans == 'n')
