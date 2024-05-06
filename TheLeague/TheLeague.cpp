@@ -1,11 +1,23 @@
 #include "TheLeague.h"
 
 void TheLeague::displayTeams(map<string, Teams> teams) {
-	cout << "Teams in the league.." << endl;
-	cout << "  Name" << '\t' << "Points" << endl;
+	cout << "--------------------------------------------------" << endl;
+	cout << "Teams in the League" << endl << endl;
+	cout << "Name" << "\t\t\t       " << "Points" << endl;
 	for (auto& team : teams) {
-		cout << team.second.getName() << '\t' << team.second.getPoints() << endl;
+		cout << team.second.getName() << "\t\t" << checkStringLength(team.second.getName()) << team.second.getPoints() << endl;
 	}
+	cout << "--------------------------------------------------" << endl;
+}
+//Test this later 5/5/2024
+string TheLeague::checkStringLength(const std::string& str) {
+	if (str.length() <= 16 && str.length() >= 8) {
+		return "\t";
+	}
+	else if (str.length() < 8) {
+		return "\t\t";
+	}
+	return "";
 }
 
 //void League::updatePoints( list <Game> allgames) {
