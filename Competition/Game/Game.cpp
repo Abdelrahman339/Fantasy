@@ -82,41 +82,61 @@ Game::Game(int id, Teams home, Teams away, string winTeam, string score,
 void Game::displayPlayerHighlights(Game game) {
 
 	Game CurrentGame = game; // for poping the stack without changing the actual one
-	HighlightsOfTheMatch currentHighlight = CurrentGame.getHighlightsOfTheMatch().top();
-	string playerName = CurrentGame.getHighlightsOfTheMatch().top().getName();
-	string Contributes = CurrentGame.getHighlightsOfTheMatch().top().getContributions();
-	string violation = CurrentGame.getHighlightsOfTheMatch().top().getViolation();
+	stack<HighlightsOfTheMatch> currentHighlight = CurrentGame.getHighlightsOfTheMatch();
+	vector<pair<int, string>> timeStamps; //----> to sort goalscorers timeStamps
 
-	size_t found_goals = Contributes.find("goals");
-	size_t foundYellowCards = violation.find("yellowCard");
-	size_t foundRedCards = violation.find("redCard");
-	random_device rd;
-	mt19937 gen(rd()); // ----> engine used for generating random numbers
+	while (!currentHighlight.empty()) {
 
-	int CurrentMin = 1;
-	int max = 90;
+		string playerName = currentHighlight.top().getName();
+		string Contributes = currentHighlight.top().getContributions();
+		string violation = currentHighlight.top().getViolation();
 
-	uniform_int_distribution<> dis;
+		size_t found_goals = Contributes.find("goals");
+		size_t foundYellowCards = violation.find("yellowCard");
+		size_t foundRedCards = violation.find("redCard");
 
-	int goalsNumber = 0;
-	if (found_goals != string::npos) {
-		// Extracting the number of goals to be used in output
-		goalsNumber = stoi(Contributes.substr(found_goals + 6));
+		random_device rd;
+		mt19937 gen(rd()); // ----> engine used for generating random numbers
 
-		for (int i = 0; i < goalsNumber; i++) {
+	//range for the number generator
+		int CurrentMin = 1;
+		int max = 90;
 
-			dis = uniform_int_distribution<>(CurrentMin, max);
-			int GoalMinute = dis(gen);
-			cout << right << setw(45) << playerName << " " << GoalMinute << "'" << "\U000026BD" << endl;
-			cout << "\n";
-			CurrentMin = GoalMinute + 1;
+		uniform_int_distribution<> dis;
+
+		int goalsNumber = 0;
+		if (found_goals != string::npos) {
+			// Extracting the number of goals to be used in output
+			goalsNumber = stoi(Contributes.substr(found_goals+6 ));
+
+			for (int i = 0; i < goalsNumber; i++) {
+
+				dis = uniform_int_distribution<>(CurrentMin, max);
+				int GoalMinute = dis(gen);
+
+				timeStamps.push_back(make_pair(GoalMinute, playerName));
+				/*cout << right << setw(45) << playerName << " " << GoalMinute << "'" << endl;
+				cout << "\n";
+				*/
+
+			}
 
 		}
 
+
+		CurrentGame.getHighlightsOfTheMatch().pop();
+	}
+
+	sort(timeStamps.begin(), timeStamps.end()); //sorting by goal minutes
+
+	for (const auto& timeStamp : timeStamps) {
+		cout << right << setw(45) << timeStamp.second << " " << timeStamp.first << "'" << endl;
+		cout << "\n";
 	}
 
 
-	CurrentGame.getHighlightsOfTheMatch().pop();
+
+
 
 }
 
@@ -132,12 +152,12 @@ void Game::displayGameOverview(queue <Game> currentGame) {
 	cout << "\n";
 	displayTeamsAndScore(game);
 	Game::displayBorder(2);
-	cout << right << setw(30) << "\u2605" << " Man of the Match : " << game.getManOfTheMatch() << endl;
+	cout << right << setw(30) << " Man of the Match : " << game.getManOfTheMatch() << endl;
 	Game::displayBorder(2);
 	cout << "\n\n";
 	Game::displayPlayerHighlights(game);
 	Game::displayBorder(3);
 
-
+	currentGame.pop();
 }
 
