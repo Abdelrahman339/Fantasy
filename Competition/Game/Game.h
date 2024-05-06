@@ -35,7 +35,7 @@ protected:
 	int GameId;
 
 public:
-	void static displayGameOverview(list<Game>currentGame);
+	void static displayGameOverview(queue<Game>currentGame);
 	void static displayTeamsAndScore(Game currentGame);
 	void static displayBorder(int type);
 	void static displayPlayerHighlights(Game CurrentGame);
