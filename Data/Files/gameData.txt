@@ -14,54 +14,6 @@ Statistics (Home - Away)
 Man of the Match
 Round (1 - 2 - 3)
 ----
-1
-Atletico Madrid
-Real Madrid
-Atletico Madrid
-3 - 1
-Statistics
-4 - 4
-10 - 19
-40 - 60
-17 - 11
-1 - 1
-6 - 11
-3 - 1
-Antoine Griezmann
-3
-----
-2
-Juventus
-AS Roma
-Draw
-1 - 1
-Statistics
-3 - 3
-13 - 6
-49 - 51
-17 - 7
-0 - 1
-4 - 5
-2 - 2
-Dusan Vlahovic
-3
-----
-3
-Inter Milan
-Napoli
-Draw
-1 - 1
-Statistics
-4 - 3
-16 - 10
-49 - 51
-19 - 8
-3 - 0
-5 - 7
-2 - 3
-Juan Jesus
-3
-----
 4
 Manchester City
 Manchester United
@@ -396,4 +348,52 @@ Statistics
 13 - 3
 4 - 6
 Sergio Ramos
+3
+----
+1
+Atletico Madrid
+Real Madrid
+Atletico Madrid
+3 - 1
+Statistics
+4 - 4
+10 - 19
+40 - 60
+17 - 11
+1 - 1
+6 - 11
+3 - 1
+Antoine Griezmann
+3
+----
+2
+Juventus
+AS Roma
+Draw
+1 - 1
+Statistics
+3 - 3
+13 - 6
+49 - 51
+17 - 7
+0 - 1
+4 - 5
+2 - 2
+Dusan Vlahovic
+3
+----
+3
+Inter Milan
+Napoli
+Draw
+1 - 1
+Statistics
+4 - 3
+16 - 10
+49 - 51
+19 - 8
+3 - 0
+5 - 7
+2 - 3
+Juan Jesus
 3
