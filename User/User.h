@@ -90,22 +90,22 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
 	///////////////////////////////////////////////////////////////////////////////////
-	void static homePage(unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames);
+	void static homePage(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames);
 
-	void static toLogin(unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames);
+	void static toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames);
 	User static login(unordered_map<string, User>& users, string username, string password);
 	void static signup(unordered_map<string, User>& Users);
 	string static hidePassword(string username);
-	void static userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames);
+	void static userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Squad and Format
 	///////////////////////////////////////////////////////////////////////////////////
 
 	void static squadFormat(int choice, unordered_map<string, Footballer>  squad);
-	void static Format433(unordered_map<string, Footballer> squad,string squadName);
-	void static Format343(unordered_map<string, Footballer> squad,string squadName);
-	void static Format442(unordered_map<string, Footballer> squad,string squadName);
+	void static Format433(unordered_map<string, Footballer> squad, string squadName);
+	void static Format343(unordered_map<string, Footballer> squad, string squadName);
+	void static Format442(unordered_map<string, Footballer> squad, string squadName);
 	void static showSubstitutions(unordered_map<string, Footballer> squad);
 	int  static Formatdistance(string name, int space, bool remaining, string prev);
 	void static ShowSquad(User& currentUser);
@@ -141,7 +141,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////
-	void static play(list<Game> allGames, User &currentUser,unordered_map<string,User>&Users);
+	void static play(list<Game> allGames, User& currentUser, unordered_map<string, User>& Users);
 
 	void static showCurrentMatch(queue<Game>& UserGames);
 

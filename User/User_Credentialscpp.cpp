@@ -8,7 +8,7 @@
 using namespace std;
 bool loginstat = false;
 
-void User::homePage(unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames)
+void User::homePage(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames)
 {
 	int choice;
 
@@ -55,7 +55,7 @@ choice:
 };
 
 
-void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>leagues, list<Game>allGames) {
+void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames) {
 	int count = 0;
 	string user;
 	string pass;
@@ -115,7 +115,7 @@ void User::signup(unordered_map<string, User>& Users)
 	cout << spacing(60, ' ') << "Account created successfully!" << endl;
 	Users.insert_or_assign(newUser.username, newUser);
 }
-void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague> leagues, list<Game>allGames)
+void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames)
 {
 	int choice;
 choice:
