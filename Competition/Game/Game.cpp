@@ -121,7 +121,7 @@ void Game::displayPlayerHighlights(Game game) {
 }
 
 
-void Game::displayGameOverview(list <Game> currentGame) {
+void Game::displayGameOverview(queue <Game> currentGame) {
 
 	Game game = currentGame.front();
 

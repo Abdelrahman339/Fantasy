@@ -80,7 +80,7 @@ void Competition::AddContributesPoints(User& currentUser, Footballer& TargetedFo
 {
 	//"goals 5 & assists 6"
 	regex Goal_Assist_pattern(R"(&)");
-	//"golas 5"
+	//"goals 5"
 	regex Goalpattern(R"(Goal)");
 	//"assist 2"
 	regex Assistpattern(R"(Assist)");
@@ -267,7 +267,7 @@ void Competition::UpdateFootballerPrice(Footballer& player, int tempPoints, Team
 	}
 
 	team.getFootballPlayer().at(player.GetName()).SetPrice(priceChange);
-	//player.SetPrice(priceChange);
+	
 
 
 
