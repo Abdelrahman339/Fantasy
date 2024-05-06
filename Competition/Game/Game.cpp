@@ -89,11 +89,7 @@ void Game::displayPlayerHighlights(Game game) {
 
 		string playerName = currentHighlight.top().getName();
 		string Contributes = currentHighlight.top().getContributions();
-		string violation = currentHighlight.top().getViolation();
-
 		size_t found_goals = Contributes.find("goals");
-		size_t foundYellowCards = violation.find("yellowCard");
-		size_t foundRedCards = violation.find("redCard");
 
 		random_device rd;
 		mt19937 gen(rd()); // ----> engine used for generating random numbers
@@ -115,10 +111,7 @@ void Game::displayPlayerHighlights(Game game) {
 				int GoalMinute = dis(gen);
 
 				timeStamps.push_back(make_pair(GoalMinute, playerName));
-				/*cout << right << setw(45) << playerName << " " << GoalMinute << "'" << endl;
-				cout << "\n";
-				*/
-
+				
 			}
 
 		}
@@ -157,6 +150,8 @@ void Game::displayGameOverview(queue <Game> currentGame) {
 	cout << "\n\n";
 	Game::displayPlayerHighlights(game);
 	Game::displayBorder(3);
+	displayStatisitcs(game);
+	Game::displayBorder(1);
 
 	currentGame.pop();
 }
