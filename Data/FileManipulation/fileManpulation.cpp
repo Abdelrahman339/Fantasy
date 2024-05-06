@@ -196,7 +196,40 @@ TheLeague fileManipulation::parseLeague(vector<string> leagueLines, map<string, 
 	}
 	return TheLeague(leagueName, leagueTeams);
 }
+stack<HighlightsOfTheMatch> fileManipulation::analyzeTeamHighlights(string& teamName, int& gameID, stack<HighlightsOfTheMatch>& combinedHighlights, map<string, Teams> teams) {
+	stack<HighlightsOfTheMatch> highlights = getHighlights(gameID);
+	unordered_map<string, Footballer> players = teams[teamName].getFootballPlayer();
+	for (auto it = players.begin(); it != players.end(); ++it) {
+		string playerName = it->second.GetName();
+		bool found = false;
+		stack<HighlightsOfTheMatch> tempStack;
 
+		// Check if the player's name matches any object's name in the highlights stack
+		while (!highlights.empty()) {
+			HighlightsOfTheMatch obj = highlights.top();
+			if (obj.getName() == playerName) {
+				found = true;
+				break;
+			}
+			tempStack.push(obj);
+			highlights.pop();
+		}
+		if (!found) {
+			highlights.push(HighlightsOfTheMatch(gameID, playerName));
+		}
+		while (!tempStack.empty()) {
+			highlights.push(tempStack.top());
+			tempStack.pop();
+		}
+	}
+
+	while (!highlights.empty()) {
+		combinedHighlights.push(highlights.top());
+		highlights.pop();
+	}
+
+	return combinedHighlights;
+}
 Game fileManipulation::parseGame(vector<string> gameLines, map<string, Teams> teams) {
 	int gameID = stoi(gameLines[0], nullptr);
 	string homeTeamName = gameLines[1];
@@ -206,10 +239,13 @@ Game fileManipulation::parseGame(vector<string> gameLines, map<string, Teams> te
 	string gameStatistics = parseGameStatistics(gameLines);
 	string manOfTheMatch = gameLines[13];
 	int round = stoi(gameLines[14], nullptr);
-	stack<HighlightsOfTheMatch> highlights = getHighlights(gameID);
+	stack<HighlightsOfTheMatch> combinedHighlights;
 
+	// Append to combinedHighlights
+	analyzeTeamHighlights(homeTeamName, gameID, combinedHighlights, teams);
+	analyzeTeamHighlights(awayTeamName, gameID, combinedHighlights, teams);
 
-	return Game(gameID, Teams::getTeamByName(teams, homeTeamName), Teams::getTeamByName(teams, awayTeamName), winnerTeam, score, gameStatistics, highlights, manOfTheMatch, round);
+	return Game(gameID, Teams::getTeamByName(teams, homeTeamName), Teams::getTeamByName(teams, awayTeamName), winnerTeam, score, gameStatistics, combinedHighlights, manOfTheMatch, round);
 }
 
 
@@ -240,7 +276,6 @@ Footballer fileManipulation::parseFootballer(vector<string> footballerLines, str
 		name, age, teamName, position, price, rating,
 		totalGoals, totalAssists, totalRedCard, totalYellowCard,
 		totalCleansheets, totalPoints
-
 	);
 
 }
@@ -361,8 +396,6 @@ stack<HighlightsOfTheMatch> fileManipulation::getHighlights(int gameID) {
 		regex = R"(\n)";
 		return parseHighlights(highlights, gameID, regex);
 	}
-	// No Highlights found for this game.
-	return {};
 }
 
 HighlightsOfTheMatch fileManipulation::parseHighlight(vector<string> highlightLines, int gameId) {

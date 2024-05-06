@@ -41,6 +41,7 @@ public:
 	User static parseUser(vector<string> userLines, map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> usersSquads);
 	unordered_map<string, Footballer> static parseSquad(Squad squadType, vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>> footballersOfTeam);
 	TheLeague static parseLeague(vector<string> leagueLines, map<string, Teams> allTeams);
+	stack<HighlightsOfTheMatch> static analyzeTeamHighlights(string& teamName, int& gameID, stack<HighlightsOfTheMatch>& combinedHighlights, map<string, Teams> teams);
 	Teams static parseTeam(vector<string> teamLines, unordered_map<string, Footballer> footballers);
 	Footballer static parseFootballer(vector<string> footballerLines, string teamName);
 	unordered_map<string, Footballer> static getSquadUsingAllFootballers(vector<string>userTeamAndFootballerNames, map<string, unordered_map<string, Footballer>> footballersOfTeam);

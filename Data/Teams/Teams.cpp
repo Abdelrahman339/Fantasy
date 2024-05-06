@@ -18,7 +18,7 @@ Teams::Teams(string name, int points, int wins, int lose, int draw, unordered_ma
 	this->players = footballers;
 }
 
-unordered_map<string, Footballer> Teams::getFootballPlayer()
+unordered_map<string, Footballer>& Teams::getFootballPlayer()
 {
 	return this->players;
 }

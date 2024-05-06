@@ -141,7 +141,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////
-	void static play(list<Game> allGames, User currentUser);
+	void static play(list<Game> allGames, User &currentUser,unordered_map<string,User>&Users);
 
 	void static showCurrentMatch(queue<Game>& UserGames);
 
@@ -151,7 +151,7 @@ public:
 
 	void static sortingQueue(queue<Game>& UserGames);
 
-	bool compareGamesByRound(Game& Game1, Game& Game2);
+	bool static compareGamesByRound(Game& Game1, Game& Game2);
 
 	stack<string> static GetUserTeams(User currentUser);
 

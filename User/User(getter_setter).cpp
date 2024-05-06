@@ -15,7 +15,7 @@ User::User() {
 	this->Email = "";
 	this->rank = 0;
 	this->points = 0;
-	this->balance = 0;
+	this->balance = 80000;
 }
 
 User::User(int id, string fullName, string username, string Email, string password,

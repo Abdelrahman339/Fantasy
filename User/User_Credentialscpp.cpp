@@ -137,15 +137,16 @@ choice:
 	}
 	else if (choice == 3)
 	{
-		//stack<string>oldUserGames = GetUserTeams(currentUser);
+		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
-		//FilteringTeams(allGames, currentUser, oldUserGames);
+		FilteringTeams(allGames, currentUser, oldUserGames);
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 4)
 	{
-		// play function
+		play(allGames, currentUser, Users);
+		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 5)

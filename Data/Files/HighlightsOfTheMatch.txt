@@ -10,93 +10,118 @@ Violations
 ----------------
 1
 --------
-Toni Kroos
-Goals: 1 & Assists: 0
-None
-----
-Luka Modric
-Goals: 0 & Assists: 0
+Jose Maria Gimenez
+Goals: 0
 Yellow Card
 ----
-Jude Bellingham
-Goals: 0 & Assists: 0
-Yellow Card
-----
-Ferland Mendy
-Goals: 0 & Assists: 0
-Yellow Card
-----
-Thibaut Courtois
-Goals: 0 & Assists: 0
+Antoine Griezmann
+Goals: 1
 None
 ----
-Dani Carvajal
-Goals: 0 & Assists: 0
-None
-----
-Casemiro
-Goals: 0 & Assists: 0
-None
-----
-Karim Benzema
-Goals: 0 & Assists: 0
-None
-----
-Eden Hazard
-Goals: 0 & Assists: 0
-None
-----
-Federico Valverde
-Goals: 0 & Assists: 0
-None
-----
-Sergio Ramos
-Goals: 0 & Assists: 0
-None
-
-----
-
-Kieran Trippier
-Goals: 2 & Assists: 0
-None
-----
-Jose Gimenez
-Goals: 0 & Assists: 1
-None
-----
-Stefan Savic
-Goals: 0 & Assists: 2
-None
-----
-Renan Lodi
-Goals: 1 & Assists: 0
-None
-----
-Saul Niguez
-Goals: 0 & Assists: 0
-Yellow Card
-----
-Jan Oblak
-Goals: 0 & Assists: 0
-None
-----
-Marcos Llorente
-Goals: 0 & Assists: 0
+Alvaro Morata
+Goals: 2
 None
 ----
 Koke
-Goals: 0 & Assists: 0
+Assists: 2
 None
 ----
-Angel Correa
-Goals: 0 & Assists: 0
+Saul Niguez
+Assists: 1
 None
 ----
-Joao Felix
-Goals: 0 & Assists: 0
+Jude Bellingham
+Goals: 0
+Yellow Card
+----
+Luka Modric
+Assists: 1
+Yellow Card
+----
+Toni Kroos
+Goals: 1
 None
 ----
-Luis Suarez
-Goals: 0 & Assists: 0
+Ferland Mendy
+Goals: 0
+Yellow Card
+----------------
+2 
+--------
+Dusan Vlahovic
+Goals: 1
+None
+----
+Manuel Locatelli
+Assists: 1
+Yellow Card
+----
+Filip Kostic
+Goals: 0
+Yellow Card
+----
+Bryan Cristante
+Assists: 1
+None
+----
+Tammy Abraham
+Goals: 1
+None
+----
+Zeki Celik
+Goals: 0
 None
 ----------------
+3
+--------
+Gianluca Gaetano
+Goals: 1
+None
+----
+Giovanni Di Lorenzo
+Goals: 1 & Assists: 1
+None
+----
+Andre-Frank Zambo Anguissa
+Goals: 1
+None
+----
+Eljif Elmas
+Assists: 2
+Yellow Card
+----
+Romelu Lukaku
+Goals: 1
+None
+----
+Roberto Gagliardini
+Goals: 0
+Red Card
+----------------
+4
+--------
+Erling Haaland
+Goals: 1
+None
+----
+Phil Foden
+Goals: 2 & Assists: 1
+None
+----
+Marcus Rashford
+Goals: 1
+None
+----
+Raphael Varane
+Goals: 0
+Yellow Card
+----------------
+5
+--------
+Axel Disasi
+Goals: 1
+None
+----
+Luis Diaz
+Goals: 1
+None

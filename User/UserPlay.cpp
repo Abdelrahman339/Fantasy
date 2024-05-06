@@ -7,10 +7,11 @@
 #include "Competition.h"
 using namespace std;
 
-void User::play(list<Game> allGames, User currentUser) {
+void User::play(list<Game> allGames, User &currentUser, unordered_map<string, User>& Users) {
 	int choice;
 	char ans;
 	queue <Game>UserGames = currentUser.GetUserGames();
+	Teams team;
 invalid:
 	cout << "1-Play the current match \n 2-show the Games Highlights of the week\n 3-Go back" << endl;
 	cin >> choice;
@@ -21,11 +22,16 @@ invalid:
 		cin >> ans;
 		if (ans == 'y')
 		{
-
+			//Competition::updateAllUserPoints(Users);
+			//Competition::findPlayers(currentUser, "User", team);
+			//cout << endl;
+			//cout << "User point after play the game: " << currentUser.GetPoints();
+			Competition::UpdateFootballerPoints(UserGames);
+			return;
 		}
 		else if (ans == 'n')
 		{
-			User::play(allGames, currentUser);
+			User::play(allGames, currentUser, Users);
 		}
 	}
 	else if (choice == 2)
@@ -33,7 +39,7 @@ invalid:
 
 	}
 	else if (choice == 3) {
-		//User::userMenu();
+		return;
 	}
 	else {
 		cout << "Invalid option please select a valid option" << endl;
@@ -47,7 +53,7 @@ invalid:
 void User::showCurrentMatch(queue<Game>& UserGames)
 {
 	cout << " Current match " << endl;
-	UserGames.front().getHomeTeam(); UserGames.front().getAwayTeam();
+	cout << UserGames.front().getHomeTeam().getName() << UserGames.front().getAwayTeam().getName();
 }
 
 
@@ -121,27 +127,27 @@ void User::insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game
 
 }
 
-//void User::sortingQueue(queue<Game>& UserGames)
-//{
-//	vector<Game> usergamesUS;//US for un sorted
-//	while (!UserGames.empty())
-//	{
-//		usergamesUS.push_back(UserGames.front());
-//		UserGames.pop();
-//	}
-//
-//	sort(usergamesUS.begin(), usergamesUS.end(), compareGamesByRound);
-//
-//	for (int i = 0; i < usergamesUS.size(); i++)
-//	{
-//		UserGames.push(usergamesUS[i]);
-//	}
-//
-//}
-//
-//bool User::compareGamesByRound(Game& Game1, Game& Game2) {
-//	return Game2.getRound() > Game2.getRound();
-//}
+void User::sortingQueue(queue<Game>& UserGames)
+{
+	vector<Game> usergamesUS;//US for un sorted
+	while (!UserGames.empty())
+	{
+		usergamesUS.push_back(UserGames.front());
+		UserGames.pop();
+	}
+
+	sort(usergamesUS.begin(), usergamesUS.end(), compareGamesByRound);
+
+	for (int i = 0; i < usergamesUS.size(); i++)
+	{
+		UserGames.push(usergamesUS[i]);
+	}
+
+}
+
+bool User::compareGamesByRound(Game& Game1, Game& Game2) {
+	return Game1.getRound() > Game2.getRound();
+}
 
 bool User::areStacksEqual(stack<string> stack1, stack<string> stack2)
 {

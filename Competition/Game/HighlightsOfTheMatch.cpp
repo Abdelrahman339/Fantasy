@@ -1,7 +1,21 @@
 #include "HighlightsOfTheMatch.h"
 
-HighlightsOfTheMatch::HighlightsOfTheMatch(int GameId, string name, string contributes, string violation)
+HighlightsOfTheMatch::HighlightsOfTheMatch()
 {
+	this->GameId = 0;
+	this->name = "null";
+	this->contributes = "None";
+	this->violation = "None";
+}
+
+HighlightsOfTheMatch::HighlightsOfTheMatch(int GameId, string name) {
+	this->GameId = GameId;
+	this->name = name;
+	this->contributes = "None";
+	this->violation = "None";
+}
+
+HighlightsOfTheMatch::HighlightsOfTheMatch(int GameId, string name, string contributes, string violation) {
 	this->GameId = GameId;
 	this->name = name;
 	this->contributes = contributes;
