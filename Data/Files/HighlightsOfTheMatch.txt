@@ -18,7 +18,7 @@ Antoine Griezmann
 Goals: 1
 None
 ----
-Alvaro Morata
+Marcos Llorente
 Goals: 2
 None
 ----
@@ -26,7 +26,7 @@ Koke
 Assists: 2
 None
 ----
-Saul Niguez
+Yannick Carrasco
 Assists: 1
 None
 ----
@@ -48,80 +48,90 @@ Yellow Card
 ----------------
 2 
 --------
-Dusan Vlahovic
+Federico Gatti
 Goals: 1
 None
 ----
-Manuel Locatelli
+Thomas Lemar
 Assists: 1
 Yellow Card
 ----
-Filip Kostic
-Goals: 0
-Yellow Card
-----
-Bryan Cristante
-Assists: 1
+Marcos Llorente
 None
-----
-Tammy Abraham
-Goals: 1
-None
-----
-Zeki Celik
-Goals: 0
-None
-----------------
-3
---------
-Gianluca Gaetano
-Goals: 1
-None
-----
-Giovanni Di Lorenzo
-Goals: 1 & Assists: 1
-None
-----
-Andre-Frank Zambo Anguissa
-Goals: 1
-None
-----
-Eljif Elmas
-Assists: 2
 Yellow Card
 ----
 Romelu Lukaku
 Goals: 1
 None
 ----
-Roberto Gagliardini
-Goals: 0
-Red Card
+Bryan Cristante
+None
+Yellow Card
+----------------
+3
 ----------------
 4
 --------
-Erling Haaland
+Rodri
 Goals: 1
 None
 ----
-Phil Foden
+De Bruyne
 Goals: 2 & Assists: 1
 None
 ----
-Marcus Rashford
+Bruno Fernandes
 Goals: 1
 None
 ----
-Raphael Varane
+Casemiro
 Goals: 0
 Yellow Card
 ----------------
 5
 --------
-Axel Disasi
+Nicolas Jackson
 Goals: 1
 None
 ----
 Luis Diaz
 Goals: 1
 None
+----------------
+6
+----------------
+7
+----------------
+8
+----------------
+9
+----------------
+10
+----------------
+11
+----------------
+12
+----------------
+13
+----------------
+14
+----------------
+15
+----------------
+16
+----------------
+17
+----------------
+18
+----------------
+19
+----------------
+20
+----------------
+21
+----------------
+22
+----------------
+23
+----------------
+24

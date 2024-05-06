@@ -39,10 +39,10 @@ Total Points
 Manchester City
 --------
 Ederson
-30  
-Goalkeeper  
+30
+Goalkeeper
 10000
-4.0 
+4.0
 0
 0
 0
@@ -52,9 +52,9 @@ Goalkeeper
 ----
 Walker
 33
-Defender  
+Defender
 9000
-3.6  
+3.6
 0
 0
 0
@@ -63,8 +63,8 @@ Defender
 0
 ----
 Ake
-29 
-Defender 
+29
+Defender
 6000
 3.8
 0
@@ -75,7 +75,7 @@ Defender
 0
 ----
 Ruben Dias
-26 
+26
 Defender
 8000
 3.1
@@ -88,7 +88,7 @@ Defender
 ----
 John Stones
 29
-Defender 
+Defender
 9000
 3.3
 0
@@ -98,10 +98,10 @@ Defender
 0
 0
 ----
-Rodri  
-27  
-Midfielder 
-8000 
+Rodri
+27
+Midfielder
+8000
 3.5
 0
 0
@@ -110,9 +110,9 @@ Midfielder
 0
 0
 ----
-De Bruyne  
-32  
-Midfielder  
+De Bruyne
+32
+Midfielder
 10000
 4.0
 0
@@ -122,23 +122,23 @@ Midfielder
 0
 0
 ----
-Bernardo Silva  
-29 
-Midfielder  
+Bernardo Silva
+29
+Midfielder
 12000
 3.4
-0 
+0
 0
 0
 0
 0
 0
 ----
-Phil Foden  
-23 
+Phil Foden
+23
 Forward
-9000 
-3.8 
+9000
+3.8
 0
 0
 0
@@ -147,10 +147,10 @@ Forward
 0
 ----
 Doku
-21  
-Forward  
-8000 
-3.8 
+21
+Forward
+8000
+3.8
 0
 0
 0
@@ -160,10 +160,10 @@ Forward
 0
 ----
 Erling Haaland
-23   
-Forward  
+23
+Forward
 12000
-4.0 
+4.0
 0
 0
 0
@@ -186,10 +186,10 @@ Goalkeeper
 0
 0
 ----
-Trent Alexander-Arnold  
+Alexander Arnold
 25
-Defender 
-14000 
+Defender
+14000
 3.8
 0
 0
@@ -198,10 +198,10 @@ Defender
 0
 0
 ----
-van Dijk  
-32  
-Defender  
-16000 
+van Dijk
+32
+Defender
+16000
 4.0
 0
 0
@@ -210,11 +210,11 @@ Defender
 0
 0
 ----
-Konate 
-24 
-Defender  
-11000 
-3.6  
+Konate
+24
+Defender
+11000
+3.6
 0
 0
 0
@@ -222,11 +222,11 @@ Defender
 0
 0
 ----
-Robertson  
+Robertson
 30
-Defender  
-15000 
-3.8 
+Defender
+15000
+3.8
 0
 0
 0
@@ -236,8 +236,8 @@ Defender
 ----
 Jones
 23
-Midfielder 
-7000 
+Midfielder
+7000
 3.5
 0
 0
@@ -246,10 +246,10 @@ Midfielder
 0
 0
 ----
-Mac Allister 
-25   
-Midfielder  
-7000  
+Mac Allister
+25
+Midfielder
+7000
 4.0
 0
 0
@@ -259,10 +259,10 @@ Midfielder
 0
 ----
 Szoboszlai
-23  
-Midfielder  
+23
+Midfielder
 5000
-3.8 
+3.8
 0
 0
 0
@@ -270,11 +270,11 @@ Midfielder
 0
 0
 ----
-Luis Diaz 
-27 
-Forward  
+Luis Diaz
+27
+Forward
 11000
-3.9 
+3.9
 0
 0
 0
@@ -282,9 +282,9 @@ Forward
 0
 0
 ----
-Mohamed Salah 
-31   
-Forward  
+Mohamed Salah
+31
+Forward
 20000
 4.1
 0
@@ -295,10 +295,10 @@ Forward
 0
 ----
 Jota
-27   
-Forward  
-9000 
-3.8 
+27
+Forward
+9000
+3.8
 0
 0
 0
@@ -309,10 +309,10 @@ Forward
 Chelsea
 --------
 Robert Sanchez
-24  
-Goalkeeper 
+24
+Goalkeeper
 12000
-3.5 
+3.5
 0
 0
 0
@@ -321,10 +321,10 @@ Goalkeeper
 0
 ----
 Thiago Silva
-39   
-Defender  
+39
+Defender
 12000
-3.4 
+3.4
 0
 0
 0
@@ -333,10 +333,10 @@ Defender
 0
 ----
 Reece James
-24 
-Defender  
-4000  
-3.3 
+24
+Defender
+4000
+3.3
 0
 0
 0
@@ -344,11 +344,11 @@ Defender
 0
 0
 ----
-Axel Disasi 
-26    
-Defender 
-7000 
-3.6  
+Axel Disasi
+26
+Defender
+7000
+3.6
 0
 0
 0
@@ -356,11 +356,11 @@ Defender
 0
 0
 ----
-Ben Chilwell  
-26  
-Defender  
+Ben Chilwell
+26
+Defender
 9000
-4.0 
+4.0
 0
 0
 0
@@ -369,10 +369,10 @@ Defender
 0
 ----
 Enzo Fernandez
-23  
-Midfielder  
-6000 
-3.5 
+23
+Midfielder
+6000
+3.5
 0
 0
 0
@@ -381,10 +381,10 @@ Midfielder
 0
 ----
 Carney Chukwuemeka
-22 
-Midfielder  
-9000  
-3.8 
+22
+Midfielder
+9000
+3.8
 0
 0
 0
@@ -392,11 +392,11 @@ Midfielder
 0
 0
 ----
-Conor Gallagher 
-24  
-Midfielder  
-9000   
-3.8 
+Conor Gallagher
+24
+Midfielder
+9000
+3.8
 0
 0
 0
@@ -405,10 +405,10 @@ Midfielder
 0
 ----
 Nicolas Jackson
-22  
-Forward  
+22
+Forward
 5000
-3.9 
+3.9
 0
 0
 0
@@ -417,10 +417,10 @@ Forward
 0
 ----
 Sterling
-29  
-Forward  
-15000   
-3.8 
+29
+Forward
+15000
+3.8
 0
 0
 0
@@ -430,8 +430,8 @@ Forward
 ----
 Palmer
 21
-Forward  
-9000 
+Forward
+9000
 3.8
 0
 0
@@ -457,7 +457,7 @@ Goalkeeper
 Saliba
 23
 Defender
-9000 
+9000
 2.9
 0
 0
@@ -465,7 +465,7 @@ Defender
 0
 0
 0
----- 
+----
 Gabriel Magalhaes
 26
 Defender
@@ -477,7 +477,7 @@ Defender
 0
 0
 0
----- 
+----
 Ben White
 26
 Defender
@@ -489,11 +489,11 @@ Defender
 0
 0
 0
----- 
+----
 Oleksandr Zinchenko
 27
 Defender
-8000 
+8000
 3.0
 0
 0
@@ -501,11 +501,11 @@ Defender
 0
 0
 0
----- 
+----
 Fabio Vieira
 30
 Midfielder
-8000 
+8000
 3.1
 0
 0
@@ -513,7 +513,7 @@ Midfielder
 0
 0
 0
----- 
+----
 Rice
 25
 Midfielder
@@ -525,7 +525,7 @@ Midfielder
 0
 0
 0
----- 
+----
 Martin Odegaard
 25
 Midfielder
@@ -844,7 +844,7 @@ Forward
 ----------------
 Real Madrid
 --------
-Andriy Lunin
+Courtois
 31
 Goalkeeper
 18000
@@ -964,7 +964,7 @@ Forward
 0
 0
 ----
-luka Modric
+Luka Modric
 38
 Midfielder
 6500
@@ -1244,7 +1244,7 @@ Forward
 0
 0
 ----------------
-Sevilla 
+Sevilla
 --------
 Bono
 30
@@ -1646,7 +1646,7 @@ Forward
 0
 0
 ----------------
-Juventus 
+Juventus
 --------
 Wojciech Szczesny
 45
@@ -2181,6 +2181,3 @@ Forward
 0
 0
 0
-
-
-

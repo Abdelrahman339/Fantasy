@@ -196,40 +196,32 @@ TheLeague fileManipulation::parseLeague(vector<string> leagueLines, map<string, 
 	}
 	return TheLeague(leagueName, leagueTeams);
 }
-stack<HighlightsOfTheMatch> fileManipulation::analyzeTeamHighlights(string& teamName, int& gameID, stack<HighlightsOfTheMatch>& combinedHighlights, map<string, Teams> teams) {
-	stack<HighlightsOfTheMatch> highlights = getHighlights(gameID);
-	unordered_map<string, Footballer> players = teams[teamName].getFootballPlayer();
-	for (auto it = players.begin(); it != players.end(); ++it) {
-		string playerName = it->second.GetName();
-		bool found = false;
-		stack<HighlightsOfTheMatch> tempStack;
+stack<HighlightsOfTheMatch> fileManipulation::analyzeTeamHighlights(string& homeTeamName, string& awayTeamName, int& gameID, map<string, Teams> teams) {
+	map<string, HighlightsOfTheMatch> highlights = getHighlights(gameID);
+	stack<HighlightsOfTheMatch> combinedHighlights;
+	vector<pair<string, Footballer>> homeTeamFootballers(teams[homeTeamName].getFootballPlayer().begin(), teams[homeTeamName].getFootballPlayer().end());
+	vector<pair<string, Footballer>> awayTeamFootballers(teams[awayTeamName].getFootballPlayer().begin(), teams[awayTeamName].getFootballPlayer().end());
 
-		// Check if the player's name matches any object's name in the highlights stack
-		while (!highlights.empty()) {
-			HighlightsOfTheMatch obj = highlights.top();
-			if (obj.getName() == playerName) {
-				found = true;
-				break;
-			}
-			tempStack.push(obj);
-			highlights.pop();
+	for (size_t i = 0; i < homeTeamFootballers.size(); i++) {
+		string homePlayerName = homeTeamFootballers[i].first;
+		string awayPlayerName = awayTeamFootballers[i].first;
+
+		if (highlights.find(homePlayerName) == highlights.end()) {
+			// Player's highlight does not exist, create a new entry
+			highlights[homePlayerName] = HighlightsOfTheMatch(gameID, homePlayerName);
 		}
-		if (!found) {
-			highlights.push(HighlightsOfTheMatch(gameID, playerName));
-		}
-		while (!tempStack.empty()) {
-			highlights.push(tempStack.top());
-			tempStack.pop();
+		if (highlights.find(awayPlayerName) == highlights.end()) {
+			highlights[awayPlayerName] = HighlightsOfTheMatch(gameID, awayPlayerName);
 		}
 	}
 
-	while (!highlights.empty()) {
-		combinedHighlights.push(highlights.top());
-		highlights.pop();
+	// Convert highlights map to a stack
+	for (auto it = highlights.rbegin(); it != highlights.rend(); ++it) {
+		combinedHighlights.push(it->second);
 	}
-
 	return combinedHighlights;
 }
+
 Game fileManipulation::parseGame(vector<string> gameLines, map<string, Teams> teams) {
 	int gameID = stoi(gameLines[0], nullptr);
 	string homeTeamName = gameLines[1];
@@ -240,10 +232,7 @@ Game fileManipulation::parseGame(vector<string> gameLines, map<string, Teams> te
 	string manOfTheMatch = gameLines[13];
 	int round = stoi(gameLines[14], nullptr);
 	stack<HighlightsOfTheMatch> combinedHighlights;
-
-	// Append to combinedHighlights
-	analyzeTeamHighlights(homeTeamName, gameID, combinedHighlights, teams);
-	analyzeTeamHighlights(awayTeamName, gameID, combinedHighlights, teams);
+	combinedHighlights = analyzeTeamHighlights(homeTeamName, awayTeamName, gameID, teams);
 
 	return Game(gameID, Teams::getTeamByName(teams, homeTeamName), Teams::getTeamByName(teams, awayTeamName), winnerTeam, score, gameStatistics, combinedHighlights, manOfTheMatch, round);
 }
@@ -368,19 +357,21 @@ string fileManipulation::parseGameStatistics(vector<string> gameLines) {
 	return parsedStatistics;
 }
 
-stack<HighlightsOfTheMatch> fileManipulation::parseHighlights(vector<string> highlights, int gameId, string regex) {
-	stack<HighlightsOfTheMatch> parsedHighlights;
+map<string, HighlightsOfTheMatch> fileManipulation::parseHighlights(vector<string> highlights, int gameId, string regex) {
+	map<string, HighlightsOfTheMatch> parsedHighlights;
+	regex = R"(\n)";
+
 	for (size_t i = 0; i < highlights.size(); i++) {
 		vector<string> highlightLines = splitByRegex(highlights[i], regex);
 
-		parsedHighlights.push(
-			parseHighlight(highlightLines, gameId)
+		parsedHighlights.insert(
+			make_pair(highlightLines[0], parseHighlight(highlightLines, gameId))
 		);
 	}
 	return parsedHighlights;
 }
 
-stack<HighlightsOfTheMatch> fileManipulation::getHighlights(int gameID) {
+map<string, HighlightsOfTheMatch> fileManipulation::getHighlights(int gameID) {
 	string filename = "HighlightsOfTheMatch.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s*----------------\s*)";
@@ -392,8 +383,11 @@ stack<HighlightsOfTheMatch> fileManipulation::getHighlights(int gameID) {
 		if (stoi(gameHighlights[0], nullptr) != gameID)
 			continue;
 		regex = R"(\s*----\s*)";
-		vector<string> highlights = splitByRegex(gameHighlights[1], regex);
-		regex = R"(\n)";
+		vector<string> highlights;
+		if (gameHighlights.size() > 1)
+			highlights = splitByRegex(gameHighlights[1], regex);
+		else
+			return {};
 		return parseHighlights(highlights, gameID, regex);
 	}
 }

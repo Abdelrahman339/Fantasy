@@ -35,15 +35,7 @@ int main() {
 	unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
 	User user = users.at("william_l_81");
 
-
-	//cout << endl;
-
-	//try {
-	//	cout << footballerName << "\'s Price in market is: " << squad.at(footballerName).GetPrice() << endl;
-	//}
-	//catch (const std::exception&) {
-	//	cout << footballerName << " Not found in " << user.GetFullName() << "\'s squad" << endl;
-	//}
+	//cout << user.GetMainSquad()["Courtois"].GetName() << endl;
 
 
 	//Game::displayGameOverview(games);

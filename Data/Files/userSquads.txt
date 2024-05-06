@@ -21,24 +21,24 @@ Ederson
 Phil Foden
 ----
 Liverpool
-Sadio Mane
+Alexander Arnold
 Mohamed Salah
 ----
 Real Madrid
-Brahim Diaz
-Karim Benzema
-Eden Hazard
-Dani Carvajal
+Toni Kroos
+Ferland Mendy
+Rodrygo
+Carvajal
 ----
 Atletico Madrid
-Luis Suarez
-Joao Felix
+Yannick Carrasco
+Antoine Griezmann
 ----
 Sevilla
 Jesus Navas
 --------
 Real Madrid
-Sergio Ramos
+Courtois
 Luka Modric
 ----------------
 2
@@ -47,22 +47,18 @@ Manchester City
 Ederson
 ----
 Sevilla
-Jules Kounde
-Papu Gomez
+Sergio Ramos
+Nemanja Gudelj
 Joan Jordan
 ----
 Chelsea
-Edouard Mendy
-Antonio Rudiger
+Thiago Silva
 Reece James
 ----
 Liverpool
-Diogo Jota
+van Dijk
 ----
 Real Madrid
-Eden Hazard
-Brahim Diaz
-----
-Atletico Madrid
-Luis Suarez
+Courtois
+Nacho
 ----------------
