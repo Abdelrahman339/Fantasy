@@ -47,19 +47,19 @@ Dusan Vlahovic
 3
 ----
 3
-Napoli
 Inter Milan
 Napoli
-3 - 1
+Draw
+1 - 1
 Statistics
-9 - 2
-22 - 6
-63 - 37
-9 - 15
-1 - 2
-4 - 1
-1 - 6
-Giovanni Di Lorenzo
+4 - 3
+16 - 10
+49 - 51
+19 - 8
+3 - 0
+5 - 7
+2 - 3
+Juan Jesus
 3
 ----
 4
@@ -175,35 +175,35 @@ Federico Dimarco
 1
 ----
 11
-Napoli
 Juventus
 Napoli
-5 - 1
-Statistics
-10 - 3
-13 - 10
-60 - 40
-10 - 9
+Juventus
 1 - 0
-2 - 5
-2 - 5
-Victor Osimhen
+Statistic
+2 - 3
+11 - 13
+32 - 68
+11 - 12
+2 - 1
+3 - 6
+3 - 1
+Federico Gatti
 1
 ----
 12
-Tottenham Hotspur
 Manchester United
 Tottenham Hotspur
-2 - 0
+Draw
+2 - 2
 Statistics
-5 - 6
-14 - 20
-59 - 41
-9 - 8
-1 - 4
-5 - 6
-8 - 4
-Lisandro Martinez
+2 - 5
+7 - 14
+36 - 64
+8 - 5
+3 - 4
+8 - 13
+3 - 0
+Marcus Rashford
 2
 ----
 13
@@ -303,19 +303,19 @@ Romelu Lukaku
 2
 ----
 19
-Napoli
 AS Roma
 Napoli
-2 - 1
+AS Roma
+2 - 0
 Statistics
-6 - 3
-11 - 10
-57 - 43
-8 - 13
-0 - 0
-3 - 8
-2 - 4
-Victor Osimhen
+5 - 2
+19 - 5
+35 - 65
+16 - 7
+2 - 1
+4 - 0
+2 - 3
+Romelu Lukaku
 2
 ----
 20
@@ -347,7 +347,7 @@ Statistics
 2 - 1
 4 - 6
 4 - 2
-Harry Kane
+Son Heung-min
 3
 ----
 22
@@ -386,14 +386,14 @@ Artem Dovbyk
 Barcelona
 Sevilla
 Barcelona
-3 - 0
+1 - 0
 Statistics
-8 - 1
-16 - 3
-71 - 29
-8 - 10
-2 - 3
-8 - 3
-1 - 5
-Jordi Alba
+6 - 4
+14 - 10
+60 - 40
+11 - 13
+1 - 3
+13 - 3
+4 - 6
+Sergio Ramos
 3
