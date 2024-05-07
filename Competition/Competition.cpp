@@ -190,6 +190,7 @@ void Competition::updateAllUserPoints(unordered_map<string, User>& Users, list <
 		if (user.first == UserinMoment.GetUsername())
 		{
 			currentUser = UserinMoment;
+			status = "CurrentUser";
 		}
 		oldUserTeams = User::GetUserTeams(currentUser);
 		User::FilteringTeams(allGames, currentUser, oldUserTeams, status);
