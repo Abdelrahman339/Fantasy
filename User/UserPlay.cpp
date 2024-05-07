@@ -78,6 +78,8 @@ void User::FilteringTeams(list<Game> allGames, User& currentUser, stack<string> 
 
 		insertToQueue(allGames, NewuserTeams, UserGames);
 
+		RemoveDublicates(UserGames);
+
 		currentUser.GetUserGames().swap(UserGames);
 	}
 
@@ -93,23 +95,7 @@ stack<string> User::GetUserTeams(User& currentUser)
 	return userTeams;
 }
 
-void User::findDuplicates(stack<string>& userTeams)
-{
-	set<string> teams;
-	stack<string> temp;
 
-	while (!userTeams.empty()) {
-		string team = userTeams.top();
-		userTeams.pop();
-		if (teams.count(team) == 0) {
-			teams.insert(team);
-			temp.push(team);
-		}
-	}
-
-	userTeams.swap(temp);
-
-}
 
 void User::insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game>& UserGames) {
 
@@ -122,6 +108,7 @@ void User::insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game
 			{
 				Game game = *it;
 				UserGames.push(game);
+
 			}
 		}
 		userTeams.pop();
@@ -169,4 +156,38 @@ bool User::areStacksEqual(stack<string> stack1, stack<string> stack2)
 
 	return v1 == v2;
 
+}
+void User::findDuplicates(stack<string>& userTeams)
+{
+	set<string> teams;
+	stack<string> temp;
+
+	while (!userTeams.empty()) {
+		string team = userTeams.top();
+		userTeams.pop();
+		if (teams.count(team) == 0) {
+			teams.insert(team);
+			temp.push(team);
+		}
+	}
+
+	userTeams.swap(temp);
+
+}
+
+void User::RemoveDublicates(queue<Game>& UserGames)
+{
+	set<int> uniqueGamesID;
+	queue<Game>tempQueue;
+	while (!UserGames.empty())
+	{
+		Game game = UserGames.front();
+		UserGames.pop();
+		if (uniqueGamesID.count(game.getGameId()) == 0)
+		{
+			uniqueGamesID.insert(game.getGameId());
+			tempQueue.push(game);
+		}
+	}
+	UserGames.swap(tempQueue);
 }

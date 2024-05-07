@@ -156,6 +156,7 @@ public:
 	stack<string> static GetUserTeams(User& currentUser);
 
 	void static findDuplicates(stack<string>& userTeams);
+	void static RemoveDublicates(queue<Game>& UserGames);
 
 	bool static areStacksEqual(stack<string>stack1, stack<string> stack2);
 	///////////////////////////////////////////////////////////////////////////////////

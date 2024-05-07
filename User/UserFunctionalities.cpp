@@ -173,7 +173,6 @@ string User::typosChecking(string SearchName, T dataReference)
 		return "";
 	}
 }
-//}
 
 
 

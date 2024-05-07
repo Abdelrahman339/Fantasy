@@ -87,12 +87,21 @@ void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagu
 
 User User::login(unordered_map<string, User>& users, string username, string password)
 {
-	if (users[username].GetPassword() == password)
+	if (users.count(username) > 0)
 	{
-		cout << "Login successful!" << endl;
-		cout << "Welcome back boss!" << endl;
-		loginstat = true;
-		return users.at(username);
+
+		if (users[username].GetPassword() == password)
+		{
+			cout << "Login successful!" << endl;
+			cout << "Welcome back boss!" << endl;
+			loginstat = true;
+			return users.at(username);
+		}
+		else {
+			cout << "Login failed!. Please make sure of your username and password" << endl;
+			loginstat = false;
+			return User();
+		}
 	}
 	else
 	{
@@ -139,7 +148,7 @@ choice:
 	{
 		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
-		FilteringTeams(allGames, currentUser, oldUserGames,"CurrentUser");
+		FilteringTeams(allGames, currentUser, oldUserGames, "CurrentUser");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
