@@ -7,7 +7,7 @@
 #include "Competition.h"
 using namespace std;
 
-void User::play(list<Game> &allGames, User& currentUser, unordered_map<string, User>& Users) {
+void User::play(list<Game>& allGames, User& currentUser, unordered_map<string, User>& Users) {
 	int choice;
 	char ans;
 	queue <Game>UserGames = currentUser.GetUserGames();
@@ -17,17 +17,18 @@ invalid:
 	cin >> choice;
 	if (choice == 1)
 	{
-		User::showCurrentMatch(UserGames);
+		//User::showCurrentMatch(UserGames);
 		cout << " ready to play the current match? (y/n)" << endl;
 		cin >> ans;
 		if (ans == 'y')
 		{
-			//Competition::updateAllUserPoints(Users);
+			Competition::updateAllUserPoints(Users, allGames, currentUser);
 			//Competition::findPlayers(currentUser, "User", team);
 			//cout << endl;
 			//cout << "User point after play the game: " << currentUser.GetPoints();
-			Game::displayGameOverview(currentUser.GetUserGames());
-			Competition::UpdateFootballerPoints(UserGames);
+			//Game::displayGameOverview(currentUser.GetUserGames());
+			//Competition::UpdateFootballerPoints(UserGames);
+
 			return;
 		}
 		else if (ans == 'n')
@@ -58,7 +59,7 @@ void User::showCurrentMatch(queue<Game>& UserGames)
 }
 
 
-void User::FilteringTeams(list<Game> allGames, User& currentUser, stack<string> oldUserTeams) {
+void User::FilteringTeams(list<Game> allGames, User& currentUser, stack<string> oldUserTeams, string status) {
 
 	queue<Game> UserGames = currentUser.GetUserGames();
 
@@ -67,7 +68,7 @@ void User::FilteringTeams(list<Game> allGames, User& currentUser, stack<string> 
 
 	NewuserTeams = GetUserTeams(currentUser);
 
-	if (areStacksEqual(oldUserTeams, NewuserTeams)) {
+	if (status == "CurrentUser" && areStacksEqual(oldUserTeams, NewuserTeams)) {
 		return;
 	}
 
@@ -82,7 +83,7 @@ void User::FilteringTeams(list<Game> allGames, User& currentUser, stack<string> 
 
 }
 
-stack<string> User::GetUserTeams(User currentUser)
+stack<string> User::GetUserTeams(User& currentUser)
 {
 	stack<string> userTeams;
 	for (auto& kv : currentUser.GetMainSquad()) {

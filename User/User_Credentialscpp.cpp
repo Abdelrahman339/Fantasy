@@ -109,9 +109,9 @@ void User::signup(unordered_map<string, User>& Users)
 	cout << spacing(60, ' '); cout << "Sign up" << endl;
 	UserValidations::signupinfo(&newUser, "Fullname", UserValidations::fullnameCheck, &User::SetFullName);
 	UserValidations::usernameCheck(Users, newUser);
-	//UserValidations::signupinfo(&newUser, "Password", UserValidations::passwordCheck, &User::SetPassword);
-	//UserValidations::signupinfo(&newUser, "PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
-	//UserValidations::signupinfo(&newUser, "EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
+	UserValidations::signupinfo(&newUser, "Password", UserValidations::passwordCheck, &User::SetPassword);
+	UserValidations::signupinfo(&newUser, "PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
+	UserValidations::signupinfo(&newUser, "EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
 	cout << spacing(60, ' ') << "Account created successfully!" << endl;
 	Users.insert_or_assign(newUser.username, newUser);
 }
@@ -139,7 +139,7 @@ choice:
 	{
 		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
-		FilteringTeams(allGames, currentUser, oldUserGames);
+		FilteringTeams(allGames, currentUser, oldUserGames,"CurrentUser");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}

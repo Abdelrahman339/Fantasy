@@ -179,13 +179,29 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, Foo
 }
 
 
-void Competition::updateAllUserPoints(unordered_map<string, User>& Users)
+void Competition::updateAllUserPoints(unordered_map<string, User>& Users, list <Game> allGames, User& UserinMoment)
 {
 	Teams team;
 	for (auto user : Users)
 	{
 		User currentUser = user.second;
-		findPlayers(currentUser, "User", team);
+		stack<string> oldUserTeams;
+		string status = "allUsers";
+		if (user.first == UserinMoment.GetUsername())
+		{
+			currentUser = UserinMoment;
+		}
+		oldUserTeams = User::GetUserTeams(currentUser);
+		User::FilteringTeams(allGames, currentUser, oldUserTeams, status);
+
+		//findPlayers(currentUser, "User", team);
+		cout << user.first << " games:" << endl;
+		while (!currentUser.GetUserGames().empty())
+		{
+			cout << currentUser.GetUserGames().front().getHomeTeam().getName() << " X " << currentUser.GetUserGames().front().getAwayTeam().getName() << ". " << endl;
+			currentUser.GetUserGames().pop();
+		}
+		cout << "----------------------------------------------------------------------------------------------------\n";
 	}
 }
 
