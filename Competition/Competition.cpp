@@ -267,13 +267,13 @@ void Competition::UpdateFootballerPrice(Footballer& player, int tempPoints, Team
 	}
 
 	team.getFootballPlayer().at(player.GetName()).SetPrice(priceChange);
-	
+
 
 
 
 }
 
-void Competition::searchTeamInMatch(Teams team, Game game, HighlightsOfTheMatch Highlights) {
+void Competition::searchTeamInMatch(Teams& team, Game game, HighlightsOfTheMatch Highlights) {
 
 
 	User currentUser;
@@ -287,7 +287,7 @@ void Competition::searchTeamInMatch(Teams team, Game game, HighlightsOfTheMatch 
 		if (currentFootballerName == kv.first)
 		{
 			int tempPoints = 0;
-			Footballer& currentFootballer = kv.second;
+			Footballer& currentFootballer = team.getFootballPlayer().at(kv.first);
 
 			string contributions = Highlights.getContributions();
 			string violation = Highlights.getViolation();

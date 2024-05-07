@@ -12,7 +12,7 @@ void Game::displayBorder(int type) {
 	else if (type == 2) {
 		cout << string(86, '_') << endl;
 	}
-	else if (type == 2) {
+	else if (type == 3) {
 		cout << string(86, '-') << endl;
 	}
 }
@@ -30,16 +30,22 @@ void Game::displayStatisitcs(Game currentGame)
 {
 	string matchStats = currentGame.getStatistics();
 
-	regex pattern("(\\w+) (\\d+-\\d+)");
+	regex pattern(R"([\w\s]+: (\d+ - \d+,))");
 
+	regex pattern2(R"(: \d+ - \d+,)");
+
+	regex pattern3(R"(,)");
 	// Iterate over matches
 	auto words_begin = sregex_iterator(matchStats.begin(), matchStats.end(), pattern);
 	auto words_end = sregex_iterator();
 
 	for (sregex_iterator i = words_begin; i != words_end; ++i) {
 		smatch match = *i;
-		string word = "~~" + match[1].str() + "~~"; //statistics names
-		string score = match[2]; //statistics scores
+		string matchStat = match.str();
+		matchStat = regex_replace(matchStat, pattern2, " ");
+		string word = "~~ " + matchStat + "~~"; //statistics names
+		string score;//statistics scores
+		score = regex_replace(match[1].str(), pattern3, " ");
 
 		// Calculate the padding 
 		int padding_name = (89 - word.length()) / 2;
@@ -89,12 +95,12 @@ void Game::displayPlayerHighlights(Game game) {
 
 		string playerName = currentHighlight.top().getName();
 		string Contributes = currentHighlight.top().getContributions();
-		size_t found_goals = Contributes.find("goals");
+		size_t found_goals = Contributes.find("Goals:");
 
 		random_device rd;
 		mt19937 gen(rd()); // ----> engine used for generating random numbers
 
-	//range for the number generator
+		//range for the number generator
 		int CurrentMin = 1;
 		int max = 90;
 
@@ -103,7 +109,7 @@ void Game::displayPlayerHighlights(Game game) {
 		int goalsNumber = 0;
 		if (found_goals != string::npos) {
 			// Extracting the number of goals to be used in output
-			goalsNumber = stoi(Contributes.substr(found_goals+6 ));
+			goalsNumber = stoi(Contributes.substr(7, 8));
 
 			for (int i = 0; i < goalsNumber; i++) {
 
@@ -111,13 +117,13 @@ void Game::displayPlayerHighlights(Game game) {
 				int GoalMinute = dis(gen);
 
 				timeStamps.push_back(make_pair(GoalMinute, playerName));
-				
+
 			}
 
 		}
 
 
-		CurrentGame.getHighlightsOfTheMatch().pop();
+		currentHighlight.pop();
 	}
 
 	sort(timeStamps.begin(), timeStamps.end()); //sorting by goal minutes

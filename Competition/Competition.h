@@ -30,7 +30,7 @@ public:
 	void static UpdateFootballerPoints(queue<Game>& gameweek); // updating all the players in a game
 	void static UpdateFootballerPrice(Footballer& player, int points, Teams& team);//based on points for EVERY player (even if not in user's squad)
 	bool static checkPosition(string footballerPosition); // checks if the player is a goalkeeper or a defender
-	void static searchTeamInMatch(Teams team, Game game, HighlightsOfTheMatch Highlights); //for looping over the hometeam and awayteam 
+	void static searchTeamInMatch(Teams &team, Game game, HighlightsOfTheMatch Highlights); //for looping over the hometeam and awayteam 
 	bool static IsManOfTheMatch(string currentMOTM, string playerName); //checks if the player is the MOTM
 	char static priceCalculation(int points); //containing five tiers for changing the players price 
 

@@ -7,7 +7,7 @@
 #include "Competition.h"
 using namespace std;
 
-void User::play(list<Game> allGames, User &currentUser, unordered_map<string, User>& Users) {
+void User::play(list<Game> &allGames, User& currentUser, unordered_map<string, User>& Users) {
 	int choice;
 	char ans;
 	queue <Game>UserGames = currentUser.GetUserGames();
@@ -18,7 +18,7 @@ invalid:
 	if (choice == 1)
 	{
 		User::showCurrentMatch(UserGames);
-		cout << "ready to play the current match? (y/n)" << endl;
+		cout << " ready to play the current match? (y/n)" << endl;
 		cin >> ans;
 		if (ans == 'y')
 		{
@@ -26,6 +26,7 @@ invalid:
 			//Competition::findPlayers(currentUser, "User", team);
 			//cout << endl;
 			//cout << "User point after play the game: " << currentUser.GetPoints();
+			Game::displayGameOverview(currentUser.GetUserGames());
 			Competition::UpdateFootballerPoints(UserGames);
 			return;
 		}
@@ -53,7 +54,7 @@ invalid:
 void User::showCurrentMatch(queue<Game>& UserGames)
 {
 	cout << " Current match " << endl;
-	cout << UserGames.front().getHomeTeam().getName() << UserGames.front().getAwayTeam().getName();
+	cout << UserGames.front().getHomeTeam().getName() << "   " << UserGames.front().getAwayTeam().getName();
 }
 
 
