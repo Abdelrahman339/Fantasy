@@ -63,11 +63,13 @@ void Competition::ReducePoints(User& currentUser, Footballer& TargetedFootballer
 		if (violence == "RedCard")
 		{
 			TargetedFootballer.AddTotalpoints(-2);
+			TargetedFootballer.SetTotalRedCard(TargetedFootballer.GetTotalRedCard()+1);
 			tempPoints += -2;
 
 		}
 		if (violence == "YellowCard") {
 			TargetedFootballer.AddTotalpoints(-1);
+			TargetedFootballer.SetTotalYellowcard(TargetedFootballer.GetTotalYellowCard() + 1);
 			tempPoints += -1;
 		}
 	}
@@ -102,6 +104,7 @@ void Competition::AddContributesPoints(User& currentUser, Footballer& TargetedFo
 	}
 	else if (regex_search(contributes, CleanSheets))
 	{
+	
 		addPoints(contributes, currentUser, TargetedFootballer, Competition::cleanSheetPoints, status, tempPoints);
 
 	}
@@ -124,6 +127,8 @@ void Competition::addPoints(string contributes, User& currentUser, Footballer& T
 {
 	int numberOfcontributes = 0;
 	regex pattern(R"(\d+)");
+	regex Goalpattern(R"(Goal)");
+	regex Assistpattern(R"(Assist)");
 
 	smatch match;
 
@@ -134,6 +139,17 @@ void Competition::addPoints(string contributes, User& currentUser, Footballer& T
 	if (status == "footballer") {
 		TargetedFootballer.AddTotalpoints(numPerpoints * numberOfcontributes);
 		tempPoints = numPerpoints * numberOfcontributes;
+
+		if (regex_search(contributes, Goalpattern)) {
+			TargetedFootballer.SetTotalGoals(TargetedFootballer.GetTotalGoals() + numberOfcontributes);
+		}
+
+		else if (regex_search(contributes, Assistpattern)) {
+			TargetedFootballer.SetTotalAssists(TargetedFootballer.GetTotalAssists() + numberOfcontributes);
+		}
+
+
+	
 	}
 	else {
 		currentUser.AddPoints(numPerpoints * numberOfcontributes);
@@ -169,6 +185,8 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, Foo
 
 		//TargetedFootballer.AddTotalpoints(totalPoints);
 		team.getFootballPlayer().at(TargetedFootballer.GetName()).AddTotalpoints(totalPoints);
+		team.getFootballPlayer().at(TargetedFootballer.GetName()).SetTotalGoals(TargetedFootballer.GetTotalGoals()+goalsnum);
+		team.getFootballPlayer().at(TargetedFootballer.GetName()).SetTotalAssists(TargetedFootballer.GetTotalAssists() + assistsnum);
 		tempPoints = totalPoints;
 
 	}

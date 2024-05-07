@@ -1,4 +1,5 @@
 #include "Game.h"
+#include<set>
 //#include "League.h"
 
 void Game::displayBorder(int type) {
@@ -22,7 +23,14 @@ void Game::displayTeamsAndScore(Game currentGame)
 	string homeTeamName = currentGame.getHomeTeam().getName();
 	string awayTeamName = currentGame.getAwayTeam().getName();
 
-	cout << right << setw(20) << "\u2022" << homeTeamName << setw(20) << currentGame.getScore() << setw(25) << "\u2022" << awayTeamName << endl;
+	int totalWidth = 86;
+
+	// Calculate padding for home team and away team
+	int paddingHome =( (totalWidth - 5) - homeTeamName.length() - awayTeamName.length()) / 2;
+	int paddingAway = totalWidth - 5 - homeTeamName.length() - awayTeamName.length() - paddingHome;
+
+
+	cout << right << setw(paddingHome) <<"# " << homeTeamName << "  " << currentGame.getScore() << " " <<" # " << awayTeamName << endl;
 
 }
 
@@ -96,6 +104,7 @@ void Game::displayPlayerHighlights(Game game) {
 		string playerName = currentHighlight.top().getName();
 		string Contributes = currentHighlight.top().getContributions();
 		size_t found_goals = Contributes.find("Goals:");
+		set<int> generatedMinutes; //----------->keeping track of GoalMinutes to avoid repitiion and keep it unique
 
 		random_device rd;
 		mt19937 gen(rd()); // ----> engine used for generating random numbers
@@ -116,6 +125,12 @@ void Game::displayPlayerHighlights(Game game) {
 				dis = uniform_int_distribution<>(CurrentMin, max);
 				int GoalMinute = dis(gen);
 
+				// Check if the generated minute is already in the set if it is then it will generate a new minute
+				while (generatedMinutes.find(GoalMinute) != generatedMinutes.end()) {
+					GoalMinute = dis(gen); 
+				}
+				generatedMinutes.insert(GoalMinute);
+
 				timeStamps.push_back(make_pair(GoalMinute, playerName));
 
 			}
@@ -129,7 +144,7 @@ void Game::displayPlayerHighlights(Game game) {
 	sort(timeStamps.begin(), timeStamps.end()); //sorting by goal minutes
 
 	for (const auto& timeStamp : timeStamps) {
-		cout << right << setw(45) << timeStamp.second << " " << timeStamp.first << "'" << endl;
+		cout << right << setw(48) << timeStamp.second << " " << timeStamp.first << "'" << endl;
 		cout << "\n";
 	}
 
@@ -147,11 +162,12 @@ void Game::displayGameOverview(queue <Game> currentGame) {
 
 	system("cls");
 	Game::displayBorder(1);
-	cout << left << setw(50) << game.getRound() << right << setw(33) << "Full-time" << endl;
+	cout <<"Game-week : " << game.getRound() << right << setw(35) << "Full-time" << endl;
 	cout << "\n";
 	displayTeamsAndScore(game);
 	Game::displayBorder(2);
-	cout << right << setw(30) << " Man of the Match : " << game.getManOfTheMatch() << endl;
+	cout << "\n";
+	cout << right << setw(45) << " Man of the Match : " << game.getManOfTheMatch() << endl;
 	Game::displayBorder(2);
 	cout << "\n\n";
 	Game::displayPlayerHighlights(game);
