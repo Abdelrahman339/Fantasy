@@ -112,7 +112,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)User;$(SolutionDir)TheLeague</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)LuckyWheel;$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)User;$(SolutionDir)TheLeague</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -131,7 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)User;$(SolutionDir)TheLeague</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)LuckyWheel;$(SolutionDir)Admin;$(SolutionDir)Competition;$(SolutionDir)Competition\Game;$(SolutionDir)Data\Teams;$(SolutionDir)Data\FileManipulation;$(SolutionDir)User;$(SolutionDir)TheLeague</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <LanguageStandard_C>Default</LanguageStandard_C>
     </ClCompile>
@@ -156,6 +156,7 @@
     <ClCompile Include="Data\FileManipulation\fileManpulation.cpp" />
     <ClCompile Include="Data\Teams\Teams.cpp" />
     <ClCompile Include="Data\Teams\FootballerGetterSetter.cpp" />
+    <ClCompile Include="LuckyWheel\LuckyWheel.cpp" />
     <ClCompile Include="Main\main.cpp" />
     <ClCompile Include="TheLeague\TheLeague.cpp" />
     <ClCompile Include="User\TopUsers_Footballers.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="Data\FileManipulation\fileManpulation.h" />
     <ClInclude Include="Data\Teams\Footballer.h" />
     <ClInclude Include="Data\Teams\Teams.h" />
+    <ClInclude Include="LuckyWheel\LuckyWheel.h" />
     <ClInclude Include="TheLeague\TheLeague.h" />
     <ClInclude Include="User\User.h" />
     <ClInclude Include="User\UserValidations.h" />

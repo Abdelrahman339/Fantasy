@@ -10,7 +10,7 @@ void TheLeague::displayTeams(map<string, Teams> teams) {
 	cout << "--------------------------------------------------" << endl;
 }
 //Test this later 5/5/2024
-string TheLeague::checkStringLength(const std::string& str) {
+string TheLeague::checkStringLength(const string& str) {
 	if (str.length() <= 16 && str.length() >= 8) {
 		return "\t";
 	}
@@ -82,5 +82,14 @@ TheLeague::TheLeague(string name, map<string, Teams> teams) {
 map<string, Teams> TheLeague::GetTeams()
 {
 	return this->teams;
+}
+
+vector<string> TheLeague::getTeamNames(map<string, Teams> teams) {
+	vector<string> teamNames;
+
+	for (auto& [teamName, teamData] : teams)
+		teamNames.push_back(teamName);
+
+	return teamNames;
 }
 

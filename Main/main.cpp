@@ -6,6 +6,7 @@
 #include "Competition.h"
 #include "Admin.h"
 #include "Game.h"
+#include "LuckyWheel.h"
 #include "fileManpulation.h"
 
 // Data structures
@@ -37,8 +38,9 @@ int main() {
 
 	//cout << user.GetMainSquad()["Courtois"].GetName() << endl;
 
-
 	//Game::displayGameOverview(games);
+
+	//LuckyWheel::playLuckyWheel(leagues, user);
 
 	user.homePage(users, leagues, games);
 

@@ -25,7 +25,7 @@ public:
 	void setLeagueName(string);
 
 	map <string,Teams> GetTeams();
-
+	vector<string> static getTeamNames(map<string, Teams> teams);
 
 private:
 

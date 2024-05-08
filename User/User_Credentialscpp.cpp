@@ -4,6 +4,7 @@
 #include "UserValidations.h"
 #include "User.h"
 #include "Admin.h"
+#include "LuckyWheel.h"
 
 using namespace std;
 bool loginstat = false;
@@ -129,7 +130,8 @@ void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vecto
 	int choice;
 choice:
 	cout << "Main Menu" << endl;
-	cout << "1-Profile \n 2-Squad \n 3-Market \n 4-Play \n 5-logout" << endl;
+	cout << string(30, '-') << endl;
+	cout << "1- Profile.\n2- Squad.\n3- Market.\n4- Play.\n5- Spin The Wheel.\n6- logout." << endl;
 	cout << "Enter you option..." << endl;
 	cin >> choice;
 	if (choice == 1)
@@ -159,6 +161,12 @@ choice:
 		return;
 	}
 	else if (choice == 5)
+	{
+		LuckyWheel::playLuckyWheel(leagues, currentUser);
+		userMenu(currentUser, Users, leagues, allGames);
+		return;
+	}
+	else if (choice == 6)
 	{
 		currentUser.homePage(Users, leagues, allGames);
 		return;
