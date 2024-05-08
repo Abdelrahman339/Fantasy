@@ -79,7 +79,7 @@ TheLeague::TheLeague(string name, map<string, Teams> teams) {
 	this->teams = teams;
 }
 
-map<string, Teams> TheLeague::GetTeams()
+map<string, Teams>& TheLeague::GetTeams()
 {
 	return this->teams;
 }

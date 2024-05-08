@@ -16,10 +16,14 @@ User::User() {
 	this->rank = 0;
 	this->points = 0;
 	this->balance = 80000;
+	this->lastDatePlayedWheel = -1;
+	this->nextSpinDate = -1;
 }
 
 User::User(int id, string fullName, string username, string Email, string password,
-	string phoneNumber, int rank, int points, float balance, unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad) {
+	string phoneNumber, int rank, int points, float balance,
+	unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad,
+	time_t lastDatePlayedWheel, time_t nextSpinDate) {
 	this->fullName = fullName;
 	this->username = username;
 	this->password = password;
@@ -31,6 +35,8 @@ User::User(int id, string fullName, string username, string Email, string passwo
 	this->balance = balance;
 	this->TheMainSquad = mainSquad;
 	this->SubstitutionSquad = substitutionSquad;
+	this->lastDatePlayedWheel = lastDatePlayedWheel;
+	this->nextSpinDate = nextSpinDate;
 }
 
 
@@ -97,6 +103,8 @@ bool User::playWheel() {
 		system("cls");
 		return false;
 	}
+
+	cout << this->lastDatePlayedWheel << endl;
 	this->lastDatePlayedWheel = time(nullptr);
 	scheduleNextSpin();
 	return true;
@@ -210,7 +218,7 @@ string User::formatDate(time_t date) const {
 	stringstream ss;
 
 	localtime_s(&timeinfo, &date);
-
+	cout << date << endl;
 	ss << put_time(&timeinfo, "%Y-%m-%d %H:%M:%S");
 
 	return ss.str();

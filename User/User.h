@@ -13,7 +13,6 @@
 #include "Footballer.h"
 #include "TheLeague.h"
 #include "Game.h"
-#include "Admin.h"
 using namespace std;
 
 class User
@@ -39,7 +38,9 @@ public:
 	User();
 	//unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad
 	User(int id, string fullName, string username, string Email, string password,
-		string phoneNumber, int rank, int points, float balance, unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad);
+		string phoneNumber, int rank, int points, float balance,
+		unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad,
+		time_t lastDatePlayedWheel, time_t nextSpinDate);
 
 	// getter and setter and constructor
 	///////////////////////////////////////////////////////////////////////////////////
