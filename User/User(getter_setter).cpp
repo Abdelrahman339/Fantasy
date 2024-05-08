@@ -125,7 +125,7 @@ string User::GetFullName()
 }
 
 
-bool User::SetFootballer(Footballer footballer)
+bool User::SetFootballer(Footballer &footballer)
 {
 	if (TheMainSquad.size() < 11)
 	{

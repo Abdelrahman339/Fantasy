@@ -63,7 +63,7 @@ void Competition::ReducePoints(User& currentUser, Footballer& TargetedFootballer
 		if (violence == "RedCard")
 		{
 			TargetedFootballer.AddTotalpoints(-2);
-			TargetedFootballer.SetTotalRedCard(TargetedFootballer.GetTotalRedCard()+1);
+			TargetedFootballer.SetTotalRedCard(TargetedFootballer.GetTotalRedCard() + 1);
 			tempPoints += -2;
 
 		}
@@ -104,7 +104,7 @@ void Competition::AddContributesPoints(User& currentUser, Footballer& TargetedFo
 	}
 	else if (regex_search(contributes, CleanSheets))
 	{
-	
+
 		addPoints(contributes, currentUser, TargetedFootballer, Competition::cleanSheetPoints, status, tempPoints);
 
 	}
@@ -149,11 +149,11 @@ void Competition::addPoints(string contributes, User& currentUser, Footballer& T
 		}
 
 
-	
+
 	}
 	else {
 		currentUser.AddPoints(numPerpoints * numberOfcontributes);
-		currentUser.addBalance(numPerpoints * numberOfcontributes);
+		currentUser.addBalance(200 * numberOfcontributes);
 	}
 }
 
@@ -185,7 +185,7 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, Foo
 
 		//TargetedFootballer.AddTotalpoints(totalPoints);
 		team.getFootballPlayer().at(TargetedFootballer.GetName()).AddTotalpoints(totalPoints);
-		team.getFootballPlayer().at(TargetedFootballer.GetName()).SetTotalGoals(TargetedFootballer.GetTotalGoals()+goalsnum);
+		team.getFootballPlayer().at(TargetedFootballer.GetName()).SetTotalGoals(TargetedFootballer.GetTotalGoals() + goalsnum);
 		team.getFootballPlayer().at(TargetedFootballer.GetName()).SetTotalAssists(TargetedFootballer.GetTotalAssists() + assistsnum);
 		tempPoints = totalPoints;
 
@@ -243,7 +243,7 @@ void Competition::findPlayers(User& currentUser, string status, Teams& team)
 
 			if (footballerName == currentPlayerinMatch)
 			{
-				//AddContributesPoints(currentUser, kv.second, contributes, "User", tempPoints);
+				AddContributesPoints(currentUser, kv.second, contributes, "User", tempPoints, team);
 				ReducePoints(currentUser, kv.second, violation, "User", tempPoints);
 
 			}

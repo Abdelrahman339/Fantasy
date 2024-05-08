@@ -17,17 +17,17 @@ invalid:
 	cin >> choice;
 	if (choice == 1)
 	{
-		//User::showCurrentMatch(UserGames);
+		User::showCurrentMatch(UserGames);
 		cout << " ready to play the current match? (y/n)" << endl;
 		cin >> ans;
 		if (ans == 'y')
 		{
-			Competition::updateAllUserPoints(Users, allGames, currentUser);
-			//Competition::findPlayers(currentUser, "User", team);
-			//cout << endl;
-			//cout << "User point after play the game: " << currentUser.GetPoints();
-			//Game::displayGameOverview(currentUser.GetUserGames());
-			//Competition::UpdateFootballerPoints(UserGames);
+			//Competition::updateAllUserPoints(Users, allGames, currentUser);
+			Competition::findPlayers(currentUser, "User", team);
+			cout << endl;
+			cout << "User point after play the game: " << currentUser.GetPoints();
+			Game::displayGameOverview(currentUser.GetUserGames());
+			Competition::UpdateFootballerPoints(UserGames);
 
 			return;
 		}
