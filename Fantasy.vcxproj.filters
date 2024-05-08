@@ -63,7 +63,10 @@
     <ClCompile Include="User\TopUsers_Footballers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Data\Teams\League.cpp">
+    <ClCompile Include="TheLeague\TheLeague.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LuckyWheel\LuckyWheel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -93,6 +96,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Data\Teams\Footballer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TheLeague\TheLeague.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LuckyWheel\LuckyWheel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
