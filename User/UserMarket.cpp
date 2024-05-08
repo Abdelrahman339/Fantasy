@@ -5,47 +5,55 @@
 #include "Competition.h"
 #include "User.h"
 
+
 using namespace std;
 
 void User::Market(User& currentUser, vector <TheLeague> leagues)
 {
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << spacing(60, ' ') << "             Fatntasy Market" << endl;
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+
 	unordered_map<string, Footballer> TopPlayer = TopFootballers(leagues);
-	Format343(TopPlayer,"Top Player");
+	Format343(TopPlayer, "Top Player");
 	cout << endl << endl << endl;
 
-	cout << "Fatntasy Market" << endl;
 	int choice = 0;
 
 invalid:
-	cout << "1-search.\n2-Choose Top player.\n3-Sell your players.\n4-Go back." << endl;
-	cin >> choice;
+	cout << spacing(60, ' ') << "1-search. 2-Choose Top player. 3-Sell your players. 4-Go back." << endl;
+	cout << spacing(60, ' '); cin >> choice;
 	if (choice == 1) {
-		search(currentUser, leagues);
-		Market(currentUser, leagues);
+		cout << spacing(60, ' '); search(currentUser, leagues);
+		//cout << spacing(60, ' '); Admin::PauseAndClear();
+		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
 	else if (choice == 2) {
-		showtopFootballers(TopPlayer, currentUser, leagues);
-		Market(currentUser, leagues);
+		cout << spacing(60, ' '); showtopFootballers(TopPlayer, currentUser, leagues);
+		//cout << spacing(60, ' '); Admin::PauseAndClear();
+		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
 	else if (choice == 3) {
-		string FootballerName;
-		Format343(currentUser.GetMainSquad(),"Player");
-		cout << endl << endl << endl;
-		showSubstitutions(currentUser.GetSubstitutionSquad());
-		cout << endl << endl;
+		//cout << spacing(60, ' '); Admin::PauseAndClear();
+		cout << spacing(60, ' '); string FootballerName;
+		cout << spacing(60, ' '); Format343(currentUser.GetMainSquad(), "Player");
+		cout << spacing(60, ' '); cout << endl << endl << endl;
+		cout << spacing(60, ' '); showSubstitutions(currentUser.GetSubstitutionSquad());
+		cout << spacing(60, ' '); cout << endl << endl;
 
-		cout << "Enter Footballer name that you want to sell." << endl;
-		getline(cin >> ws, FootballerName);
-		sell(currentUser, TopPlayer, FootballerName);
-		fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
-		system("cls");
-		Market(currentUser, leagues);
+		cout << spacing(60, ' '); cout << "Enter Footballer name that you want to sell." << endl;
+		cout << spacing(60, ' '); getline(cin >> ws, FootballerName);
+		cout << spacing(60, ' '); sell(currentUser, TopPlayer, FootballerName);
+		cout << spacing(60, ' '); fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
+		cout << spacing(60, ' '); system("cls");
+		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
 	else if (choice == 4) {
+		//Admin::PauseAndClear();
 		return;
 	}
 	else {
-		cout << "Invalid input.Please try again." << endl;
+		cout << spacing(60, ' '); cout << "Invalid input.Please try again." << endl;
 		goto invalid;
 	}
 };
@@ -56,7 +64,7 @@ void User::showtopFootballers(unordered_map<string, Footballer> TopPlayer, User&
 	int choice;
 invalid:
 	cout << "Welcome to top player in the session!" << endl;
-	User::Format343(TopPlayer,"Top Player");
+	User::Format343(TopPlayer, "Top Player");
 
 	cout << "\n\n";
 
@@ -99,7 +107,7 @@ invalid:
 		if (!targetFootballer.GetName().empty())
 		{
 
-			Format442(currentUser.GetMainSquad(),"Player");
+			Format442(currentUser.GetMainSquad(), "Player");
 
 			cout << endl;
 
@@ -166,7 +174,7 @@ invalid:
 	invalid_input:
 		int choice;
 		string footballerName;
-		User::Format343(Wantedteam.getFootballPlayer(),Wantedteam.getName());
+		User::Format343(Wantedteam.getFootballPlayer(), Wantedteam.getName());
 		cout << endl;
 		cout << "1- show information about player\n2-buy player\n3-replace player\n4-go back" << endl;
 		cin >> choice;
@@ -196,7 +204,7 @@ invalid:
 			if (!targetFootballer.GetName().empty())
 			{
 
-				Format442(currentUser.GetMainSquad(),"Player");
+				Format442(currentUser.GetMainSquad(), "Player");
 
 				cout << endl;
 

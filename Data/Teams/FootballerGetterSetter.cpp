@@ -124,7 +124,12 @@ int Footballer::GetTotalpoints() {
 
 void Footballer::SetTotalCleansheets(int cleanSheets) {
 	this->totalCleansheets = cleanSheets;
-};
+}
+float Footballer::calculateDiscountedPrice(float discount) {
+	float discountedPrice = price * (1.0 - discount);
+	return discountedPrice;
+}
+;
 void Footballer::SetTotalpoints(int points) {
 	this->totalPoints = points;
 }

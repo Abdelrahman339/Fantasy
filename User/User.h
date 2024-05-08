@@ -13,7 +13,7 @@
 #include "Footballer.h"
 #include "TheLeague.h"
 #include "Game.h"
-
+#include "Admin.h"
 using namespace std;
 
 class User
@@ -31,6 +31,9 @@ protected:
 	unordered_map <string, Footballer >TheMainSquad;
 	unordered_map <string, Footballer >SubstitutionSquad;
 	queue<Game> UserGames; // queue of the user games that he will play in the round.
+	time_t lastDatePlayedWheel; // Store the last date the wheel was played by this user.
+	time_t nextSpinDate; // Store the next time the user will play the wheel.
+
 public:
 
 	User();
@@ -53,7 +56,12 @@ public:
 	void AddPoints(int points);
 	void SetBalance(float balance);
 	void addBalance(float balance);
+	bool playWheel();
+	int remainingMinutesUntilNextSpin() const;
+	void scheduleNextSpin();
+
 	bool SetFootballer(Footballer footbaler);
+	bool canPlayNextSpin() const;
 	string GetFullName();
 	string GetUsername();
 	string GetPassword();
@@ -67,6 +75,19 @@ public:
 	unordered_map<string, Footballer>& GetSubstitutionSquad();
 
 	queue<Game>& GetUserGames();
+
+	time_t getLastDatePlayedWheel() const;
+
+	time_t getNextSpinDate() const;
+
+	string formatDate(time_t date) const;
+
+	bool hasFootballer(string& footballerName);
+
+	// Method to handle playing the lucky wheel and handling the discounted footballer
+	void handleLuckyWheelResult(pair<string, pair<float, Footballer>> result);
+
+
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
 
@@ -90,13 +111,13 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
 	///////////////////////////////////////////////////////////////////////////////////
-	void static homePage(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames);
+	void static homePage(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames);
 
-	void static toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames);
+	void static toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames);
 	User static login(unordered_map<string, User>& users, string username, string password);
 	void static signup(unordered_map<string, User>& Users);
 	string static hidePassword(string username);
-	void static userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames);
+	void static userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Squad and Format
@@ -141,11 +162,11 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////
-	void static play(list<Game> allGames, User& currentUser, unordered_map<string, User>& Users);
+	void static play(list<Game>& allGames, User& currentUser, unordered_map<string, User>& Users);
 
 	void static showCurrentMatch(queue<Game>& UserGames);
 
-	void static FilteringTeams(list<Game> allGames, User& currentUser, stack<string> oldUserTeams);
+	void static FilteringTeams(list<Game> allGames, User& currentUser, stack<string> oldUserTeams, string status);
 
 	void static insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game>& UserGames);
 
@@ -153,9 +174,10 @@ public:
 
 	bool static compareGamesByRound(Game& Game1, Game& Game2);
 
-	stack<string> static GetUserTeams(User currentUser);
+	stack<string> static GetUserTeams(User& currentUser);
 
 	void static findDuplicates(stack<string>& userTeams);
+	void static RemoveDublicates(queue<Game>& UserGames);
 
 	bool static areStacksEqual(stack<string>stack1, stack<string> stack2);
 	///////////////////////////////////////////////////////////////////////////////////

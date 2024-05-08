@@ -82,3 +82,12 @@ map<string, Teams>& TheLeague::GetTeams()
 	return this->teams;
 }
 
+vector<string> TheLeague::getTeamNames(map<string, Teams> teams) {
+	vector<string> teamNames;
+
+	for (auto& [teamName, teamData] : teams)
+		teamNames.push_back(teamName);
+
+	return teamNames;
+}
+

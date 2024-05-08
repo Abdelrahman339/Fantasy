@@ -89,6 +89,36 @@ void User::addBalance(float balance)
 	this->balance += balance;
 }
 
+bool User::playWheel() {
+	if (!canPlayNextSpin()) {
+		int remainingMinutes = remainingMinutesUntilNextSpin();
+		cout << "Next spin in " << remainingMinutes << " minutes." << endl;
+		system("pause");
+		system("cls");
+		return false;
+	}
+	this->lastDatePlayedWheel = time(nullptr);
+	scheduleNextSpin();
+	return true;
+}
+
+int User::remainingMinutesUntilNextSpin() const {
+	time_t currentTime = time(nullptr);
+	int remainingSeconds = nextSpinDate - currentTime;
+	int remainingMinutes = remainingSeconds / 60;
+
+	return remainingMinutes + 1;
+}
+
+void User::scheduleNextSpin() {
+	this->nextSpinDate = this->lastDatePlayedWheel + 180;
+}
+bool User::canPlayNextSpin() const {
+	time_t currentTime = time(nullptr);
+
+	return currentTime >= this->nextSpinDate;
+}
+
 string User::GetFullName()
 {
 	return fullName;
@@ -164,7 +194,52 @@ unordered_map<string, Footballer>& User::GetSubstitutionSquad()
 	return this->SubstitutionSquad;
 }
 
-queue<Game> &User::GetUserGames()
+queue<Game>& User::GetUserGames()
 {
 	return this->UserGames;
+}
+
+time_t User::getLastDatePlayedWheel() const {
+	return this->lastDatePlayedWheel;
+}
+time_t User::getNextSpinDate() const {
+	return this->nextSpinDate;
+}
+string User::formatDate(time_t date) const {
+	struct tm timeinfo;
+	stringstream ss;
+
+	localtime_s(&timeinfo, &date);
+
+	ss << put_time(&timeinfo, "%Y-%m-%d %H:%M:%S");
+
+	return ss.str();
+}
+
+bool User::hasFootballer(string& footballerName) {
+	return TheMainSquad.find(footballerName) != TheMainSquad.end() || SubstitutionSquad.find(footballerName) != SubstitutionSquad.end();
+}
+
+void User::handleLuckyWheelResult(pair<string, pair<float, Footballer>> result) {
+	if (!result.first.empty()) {
+		string& footballerName = result.first;
+		float discount = result.second.first;
+		Footballer& footballer = result.second.second;
+
+		// Calculate discounted price
+		float discountedPrice = footballer.calculateDiscountedPrice(discount);
+
+		// Check if the user already has the footballer
+		if (hasFootballer(footballerName)) {
+			cout << "You already have this player in your main or substitution squad!" << endl;
+			return;
+		}
+
+		// Print footballer name and discounted price
+		cout << footballerName << endl;
+		cout << "Price before -> " << footballer.GetPrice() << "\n(Discounted) Price -> " << discountedPrice << endl;
+		cout << "Buy or replace or do nothing? -- m7tagak y 3mr aw ya indian fi di" << endl;
+
+		system("pause");
+	}
 }

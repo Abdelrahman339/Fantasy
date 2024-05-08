@@ -4,11 +4,12 @@
 #include "UserValidations.h"
 #include "User.h"
 #include "Admin.h"
+#include "LuckyWheel.h"
 
 using namespace std;
 bool loginstat = false;
 
-void User::homePage(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames)
+void User::homePage(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames)
 {
 	int choice;
 
@@ -19,15 +20,15 @@ choice:
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << "\n\n\n";
 	cout << spacing(60, ' ') << "**It's time for another season of fantasy football glory!**" << "\n\n\n";
 	cout << spacing(60, ' ') << "Let's start!" << endl;
-	cout << spacing(60, ' '); Admin::PauseAndClear();
+	//cout << spacing(60, ' '); Admin::PauseAndClear();
 	cout << "\n\n\n\n\n\n";
 	cout << spacing(60, ' ') << "1-Admin   2-Login   3-Sign up   4-Exit" << endl;
 	cout << spacing(60, ' ') << "Enter your option" << endl;
 	cout << spacing(60, ' '); cin >> choice;
 	if (choice == 1)
 	{
-		cout << spacing(60, ' '); Admin::PauseAndClear();
-		Admin::CheckAdmin(Users, leagues);
+		//cout << spacing(60, ' '); Admin::PauseAndClear();
+		//Admin::CheckAdmin(Users, leagues);
 		homePage(Users, leagues, allGames);
 		return;
 	}
@@ -37,9 +38,9 @@ choice:
 	}
 	else if (choice == 3)
 	{
-		cout << spacing(60, ' '); Admin::PauseAndClear();
+		//cout << spacing(60, ' '); Admin::PauseAndClear();
 		signup(Users);
-		cout << spacing(60, ' '); Admin::PauseAndClear();
+		//cout << spacing(60, ' '); Admin::PauseAndClear();
 		toLogin(Users, leagues, allGames);
 		return;
 	}
@@ -55,7 +56,7 @@ choice:
 };
 
 
-void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames) {
+void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames) {
 	int count = 0;
 	string user;
 	string pass;
@@ -87,12 +88,21 @@ void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagu
 
 User User::login(unordered_map<string, User>& users, string username, string password)
 {
-	if (users[username].GetPassword() == password)
+	if (users.count(username) > 0)
 	{
-		cout << "Login successful!" << endl;
-		cout << "Welcome back boss!" << endl;
-		loginstat = true;
-		return users.at(username);
+
+		if (users[username].GetPassword() == password)
+		{
+			cout << "Login successful!" << endl;
+			cout << "Welcome back boss!" << endl;
+			loginstat = true;
+			return users.at(username);
+		}
+		else {
+			cout << "Login failed!. Please make sure of your username and password" << endl;
+			loginstat = false;
+			return User();
+		}
 	}
 	else
 	{
@@ -115,12 +125,13 @@ void User::signup(unordered_map<string, User>& Users)
 	cout << spacing(60, ' ') << "Account created successfully!" << endl;
 	Users.insert_or_assign(newUser.username, newUser);
 }
-void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>allGames)
+void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames)
 {
 	int choice;
 choice:
 	cout << "Main Menu" << endl;
-	cout << "1-Profile \n 2-Squad \n 3-Market \n 4-Play \n 5-logout" << endl;
+	cout << string(30, '-') << endl;
+	cout << "1- Profile.\n2- Squad.\n3- Market.\n4- Play.\n5- Spin The Wheel.\n6- logout." << endl;
 	cout << "Enter you option..." << endl;
 	cin >> choice;
 	if (choice == 1)
@@ -139,7 +150,7 @@ choice:
 	{
 		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
-		FilteringTeams(allGames, currentUser, oldUserGames);
+		FilteringTeams(allGames, currentUser, oldUserGames, "CurrentUser");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
@@ -150,6 +161,12 @@ choice:
 		return;
 	}
 	else if (choice == 5)
+	{
+		LuckyWheel::playLuckyWheel(leagues, currentUser);
+		userMenu(currentUser, Users, leagues, allGames);
+		return;
+	}
+	else if (choice == 6)
 	{
 		currentUser.homePage(Users, leagues, allGames);
 		return;

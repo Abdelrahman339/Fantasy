@@ -1,4 +1,5 @@
 #include "Game.h"
+#include<set>
 //#include "League.h"
 
 void Game::displayBorder(int type) {
@@ -12,7 +13,7 @@ void Game::displayBorder(int type) {
 	else if (type == 2) {
 		cout << string(86, '_') << endl;
 	}
-	else if (type == 2) {
+	else if (type == 3) {
 		cout << string(86, '-') << endl;
 	}
 }
@@ -22,7 +23,14 @@ void Game::displayTeamsAndScore(Game currentGame)
 	string homeTeamName = currentGame.getHomeTeam().getName();
 	string awayTeamName = currentGame.getAwayTeam().getName();
 
-	cout << right << setw(20) << "\u2022" << homeTeamName << setw(20) << currentGame.getScore() << setw(25) << "\u2022" << awayTeamName << endl;
+	int totalWidth = 86;
+
+	// Calculate padding for home team and away team
+	int paddingHome =( (totalWidth - 5) - homeTeamName.length() - awayTeamName.length()) / 2;
+	int paddingAway = totalWidth - 5 - homeTeamName.length() - awayTeamName.length() - paddingHome;
+
+
+	cout << right << setw(paddingHome) <<"# " << homeTeamName << "  " << currentGame.getScore() << " " <<" # " << awayTeamName << endl;
 
 }
 
@@ -30,16 +38,22 @@ void Game::displayStatisitcs(Game currentGame)
 {
 	string matchStats = currentGame.getStatistics();
 
-	regex pattern("(\\w+) (\\d+-\\d+)");
+	regex pattern(R"([\w\s]+: (\d+ - \d+,))");
 
+	regex pattern2(R"(: \d+ - \d+,)");
+
+	regex pattern3(R"(,)");
 	// Iterate over matches
 	auto words_begin = sregex_iterator(matchStats.begin(), matchStats.end(), pattern);
 	auto words_end = sregex_iterator();
 
 	for (sregex_iterator i = words_begin; i != words_end; ++i) {
 		smatch match = *i;
-		string word = "~~" + match[1].str() + "~~"; //statistics names
-		string score = match[2]; //statistics scores
+		string matchStat = match.str();
+		matchStat = regex_replace(matchStat, pattern2, " ");
+		string word = "~~ " + matchStat + "~~"; //statistics names
+		string score;//statistics scores
+		score = regex_replace(match[1].str(), pattern3, " ");
 
 		// Calculate the padding 
 		int padding_name = (89 - word.length()) / 2;
@@ -89,12 +103,13 @@ void Game::displayPlayerHighlights(Game game) {
 
 		string playerName = currentHighlight.top().getName();
 		string Contributes = currentHighlight.top().getContributions();
-		size_t found_goals = Contributes.find("goals");
+		size_t found_goals = Contributes.find("Goals:");
+		set<int> generatedMinutes; //----------->keeping track of GoalMinutes to avoid repitiion and keep it unique
 
 		random_device rd;
 		mt19937 gen(rd()); // ----> engine used for generating random numbers
 
-	//range for the number generator
+		//range for the number generator
 		int CurrentMin = 1;
 		int max = 90;
 
@@ -103,27 +118,33 @@ void Game::displayPlayerHighlights(Game game) {
 		int goalsNumber = 0;
 		if (found_goals != string::npos) {
 			// Extracting the number of goals to be used in output
-			goalsNumber = stoi(Contributes.substr(found_goals+6 ));
+			goalsNumber = stoi(Contributes.substr(7, 8));
 
 			for (int i = 0; i < goalsNumber; i++) {
 
 				dis = uniform_int_distribution<>(CurrentMin, max);
 				int GoalMinute = dis(gen);
 
+				// Check if the generated minute is already in the set if it is then it will generate a new minute
+				while (generatedMinutes.find(GoalMinute) != generatedMinutes.end()) {
+					GoalMinute = dis(gen); 
+				}
+				generatedMinutes.insert(GoalMinute);
+
 				timeStamps.push_back(make_pair(GoalMinute, playerName));
-				
+
 			}
 
 		}
 
 
-		CurrentGame.getHighlightsOfTheMatch().pop();
+		currentHighlight.pop();
 	}
 
 	sort(timeStamps.begin(), timeStamps.end()); //sorting by goal minutes
 
 	for (const auto& timeStamp : timeStamps) {
-		cout << right << setw(45) << timeStamp.second << " " << timeStamp.first << "'" << endl;
+		cout << right << setw(48) << timeStamp.second << " " << timeStamp.first << "'" << endl;
 		cout << "\n";
 	}
 
@@ -141,11 +162,12 @@ void Game::displayGameOverview(queue <Game> currentGame) {
 
 	system("cls");
 	Game::displayBorder(1);
-	cout << left << setw(50) << game.getRound() << right << setw(33) << "Full-time" << endl;
+	cout <<"Game-week : " << game.getRound() << right << setw(35) << "Full-time" << endl;
 	cout << "\n";
 	displayTeamsAndScore(game);
 	Game::displayBorder(2);
-	cout << right << setw(30) << " Man of the Match : " << game.getManOfTheMatch() << endl;
+	cout << "\n";
+	cout << right << setw(45) << " Man of the Match : " << game.getManOfTheMatch() << endl;
 	Game::displayBorder(2);
 	cout << "\n\n";
 	Game::displayPlayerHighlights(game);

@@ -63,11 +63,13 @@ void Competition::ReducePoints(User& currentUser, Footballer& TargetedFootballer
 		if (violence == "RedCard")
 		{
 			TargetedFootballer.AddTotalpoints(-2);
+			TargetedFootballer.SetTotalRedCard(TargetedFootballer.GetTotalRedCard()+1);
 			tempPoints += -2;
 
 		}
 		if (violence == "YellowCard") {
 			TargetedFootballer.AddTotalpoints(-1);
+			TargetedFootballer.SetTotalYellowcard(TargetedFootballer.GetTotalYellowCard() + 1);
 			tempPoints += -1;
 		}
 	}
@@ -102,6 +104,7 @@ void Competition::AddContributesPoints(User& currentUser, Footballer& TargetedFo
 	}
 	else if (regex_search(contributes, CleanSheets))
 	{
+	
 		addPoints(contributes, currentUser, TargetedFootballer, Competition::cleanSheetPoints, status, tempPoints);
 
 	}
@@ -124,6 +127,8 @@ void Competition::addPoints(string contributes, User& currentUser, Footballer& T
 {
 	int numberOfcontributes = 0;
 	regex pattern(R"(\d+)");
+	regex Goalpattern(R"(Goal)");
+	regex Assistpattern(R"(Assist)");
 
 	smatch match;
 
@@ -134,6 +139,17 @@ void Competition::addPoints(string contributes, User& currentUser, Footballer& T
 	if (status == "footballer") {
 		TargetedFootballer.AddTotalpoints(numPerpoints * numberOfcontributes);
 		tempPoints = numPerpoints * numberOfcontributes;
+
+		if (regex_search(contributes, Goalpattern)) {
+			TargetedFootballer.SetTotalGoals(TargetedFootballer.GetTotalGoals() + numberOfcontributes);
+		}
+
+		else if (regex_search(contributes, Assistpattern)) {
+			TargetedFootballer.SetTotalAssists(TargetedFootballer.GetTotalAssists() + numberOfcontributes);
+		}
+
+
+	
 	}
 	else {
 		currentUser.AddPoints(numPerpoints * numberOfcontributes);
@@ -169,6 +185,8 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, Foo
 
 		//TargetedFootballer.AddTotalpoints(totalPoints);
 		team.getFootballPlayer().at(TargetedFootballer.GetName()).AddTotalpoints(totalPoints);
+		team.getFootballPlayer().at(TargetedFootballer.GetName()).SetTotalGoals(TargetedFootballer.GetTotalGoals()+goalsnum);
+		team.getFootballPlayer().at(TargetedFootballer.GetName()).SetTotalAssists(TargetedFootballer.GetTotalAssists() + assistsnum);
 		tempPoints = totalPoints;
 
 	}
@@ -179,13 +197,30 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, Foo
 }
 
 
-void Competition::updateAllUserPoints(unordered_map<string, User>& Users)
+void Competition::updateAllUserPoints(unordered_map<string, User>& Users, list <Game> allGames, User& UserinMoment)
 {
 	Teams team;
 	for (auto user : Users)
 	{
 		User currentUser = user.second;
-		findPlayers(currentUser, "User", team);
+		stack<string> oldUserTeams;
+		string status = "allUsers";
+		if (user.first == UserinMoment.GetUsername())
+		{
+			currentUser = UserinMoment;
+			status = "CurrentUser";
+		}
+		oldUserTeams = User::GetUserTeams(currentUser);
+		User::FilteringTeams(allGames, currentUser, oldUserTeams, status);
+
+		//findPlayers(currentUser, "User", team);
+		cout << user.first << " games:" << endl;
+		while (!currentUser.GetUserGames().empty())
+		{
+			cout << currentUser.GetUserGames().front().getHomeTeam().getName() << " X " << currentUser.GetUserGames().front().getAwayTeam().getName() << ". " << endl;
+			currentUser.GetUserGames().pop();
+		}
+		cout << "----------------------------------------------------------------------------------------------------\n";
 	}
 }
 
@@ -267,13 +302,13 @@ void Competition::UpdateFootballerPrice(Footballer& player, int tempPoints, Team
 	}
 
 	team.getFootballPlayer().at(player.GetName()).SetPrice(priceChange);
-	
+
 
 
 
 }
 
-void Competition::searchTeamInMatch(Teams team, Game game, HighlightsOfTheMatch Highlights) {
+void Competition::searchTeamInMatch(Teams& team, Game game, HighlightsOfTheMatch Highlights) {
 
 
 	User currentUser;
@@ -287,7 +322,7 @@ void Competition::searchTeamInMatch(Teams team, Game game, HighlightsOfTheMatch 
 		if (currentFootballerName == kv.first)
 		{
 			int tempPoints = 0;
-			Footballer& currentFootballer = kv.second;
+			Footballer& currentFootballer = team.getFootballPlayer().at(kv.first);
 
 			string contributions = Highlights.getContributions();
 			string violation = Highlights.getViolation();

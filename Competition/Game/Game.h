@@ -45,6 +45,7 @@ public:
 
 	Game(int id, Teams home, Teams away, string winTeam, string score,
 		string stats, stack<HighlightsOfTheMatch> highlights, string motm, int round);
+
 	/////////////////////////////////////////
 	///////////// Setters ///////////////////
 	/////////////////////////////////////////
@@ -69,7 +70,7 @@ public:
 	string getScore();
 	string getManOfTheMatch();
 	string getStatistics();
-	stack<HighlightsOfTheMatch> &getHighlightsOfTheMatch();
+	stack<HighlightsOfTheMatch>& getHighlightsOfTheMatch();
 	int getRound();
 	string getwinningTeam();
 	int getGameId();

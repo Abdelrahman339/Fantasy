@@ -71,6 +71,8 @@ public:
 	void SetTotalRedCard(int redCard);
 	void SetTotalCleansheets(int yellowCard);
 
+	float calculateDiscountedPrice(float discount);
+
 	void SetTotalpoints(int points);
 	void AddTotalpoints(int points);
 
