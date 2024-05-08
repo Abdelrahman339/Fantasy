@@ -68,7 +68,8 @@ Menu:
 	}
 	else if (choice == 2)
 	{
-		displayTeamsForSpecificLeague(leagues);
+		TeamMenu(leagues);
+		goto Menu;
 	}
 	else if (choice == 3)
 	{
@@ -448,21 +449,32 @@ void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser, vecto
 	}
 }
 
-void Admin::TeamMenu(map<string, Teams> teams) {
+void Admin::TeamMenu(vector<TheLeague> leagues) {
 	int choice = -1;
 	int InputInt = -1;
+	string leagueName;
+	TheLeague leagueToBeModified;
+	cin.ignore();
+beginning:
+	cout << "Enter a League Name: ";
+	getline(cin, leagueName);
+	vector<TheLeague>::iterator it;
+	if (!handleLeagueExistance(leagues, leagueToBeModified, leagueName)) {
+		goto beginning;
+	}
 start:
+	displayTeamsForSpecificLeague(leagueToBeModified);
 	cout << "1) Modify a Team" << endl;
 	cout << "2) Display Footballers in a Team" << endl;
 	cout << "3) Go Back" << endl;
 	cout << "Choice: ";
 	cin >> choice;
 	if (choice == 1) {
-		ModifyTeams(teams);
-		return;
+		ModifyTeams(leagueToBeModified.GetTeams());
+		goto start;
 	}
 	else if (choice == 2) {
-		DisplayFootballersForSpecificTeam(teams);
+		FootballerMenu(leagueToBeModified.GetTeams());
 		goto start;
 
 	}
@@ -476,39 +488,41 @@ start:
 	}
 }
 
-void Admin::ModifyTeams(map<string, Teams> teams) {
+void Admin::ModifyTeams(map<string, Teams>& teams) {
 	Teams TeamToBeModified;
 	int choice;
+	string teamName;
 	string InputString;
 	int InputInt;
 TeamNotFound:
 	cout << "Enter Team Name: ";
 	cin.ignore();
-	getline(cin, InputString);
-	if (!handleTeamExistance(teams, TeamToBeModified, InputString)) {
+	getline(cin, teamName);
+	if (!handleTeamExistance(teams, TeamToBeModified, teamName)) {
 		goto TeamNotFound;
 	}
+	system("cls");
 	do {
 	ModifySameTeam:
+		cout << "\tModifying " << teams[TeamToBeModified.getName()].getName() << " information" << endl;
 		cout << "--------------------------------------------------" << endl;
-		cout << "Modifying " << TeamToBeModified.getName() << " information" << endl;
 		cout << "What do you wish to Edit?" << endl;
 		cout << "1) Name" << endl;
 		cout << "2) Points" << endl;
 		cout << "3) Delete the Team" << endl;
 		cout << "4) Go Back" << endl;
+		cout << "Choice: ";
 		cin >> choice;
 
 		switch (choice) {
 		case 1:
-			cout << "Enter new Name: ";
-			cin >> InputString;
-			TeamToBeModified.SetName(InputString);
+			handleTeamsUpdate(teams, teamName);
 			break;
 		case 2:
 			cout << "Enter new Points: ";
 			cin >> InputInt;
-			TeamToBeModified.SetPoints(InputInt);
+			teams[TeamToBeModified.getName()].SetPoints(InputInt);
+			cout << "Updated Successfully!" << endl;
 			break;
 		case 3:
 			teams.erase(TeamToBeModified.getName());
@@ -518,64 +532,50 @@ TeamNotFound:
 		case 4:
 			return;
 		default:
-			cout << "Invalid choice!" << endl;
+			cout << "Invalid Choice!" << endl;
 			Sleep(1000);
-			break;
+			goto ModifySameTeam;
 		}
 		cout << "Continue Modifying? (Yes/No)" << endl;
+		cout << "Answer: ";
 		cin.ignore();
 		getline(cin, InputString);
-		PauseAndClear();
-	} while (InputString == "Yes" || "yes" || "YES");
-
+	} while (InputString._Starts_with("yes") || InputString._Starts_with("Yes"));
+	return;
 }
 
-void Admin::displayTeamsForSpecificLeague(vector<TheLeague> leagues) {
-	string leagueName;
-	cin.ignore();
-beginning:
-	cout << "Enter a League Name: ";
-	getline(cin, leagueName);
-	vector<TheLeague>::iterator it;
-	it = leagues.begin();
-	if (it != leagues.end()) {
-		cout << "League: " << leagueName << endl;
-		for (it; it != leagues.end(); ++it) {
-			if (leagueName._Equal(it->getLeagueName())) {
-				TheLeague::displayTeams(it->GetTeams());
-				TeamMenu(it->GetTeams());
-				return;
-			}
-		}
-	}
-	if (it == leagues.end()) {
-		cout << "Invalid League Name!" << endl;
-		goto beginning;
-	}
+void Admin::displayTeamsForSpecificLeague(TheLeague league) {
+	system("cls");
+	cout << "\t\t~" << league.getLeagueName() << " Teams~" << endl << endl;
+	TheLeague::displayTeams(league.GetTeams());
 }
 
 
 bool Admin::handleFootballerExistance(unordered_map<string, Footballer> players, Footballer& PlayerToBeModified, string& playerName) {
-	PlayerToBeModified = players.at(playerName);
-	if (!PlayerToBeModified.GetName()._Equal(playerName)) {
+	auto it = players.find(playerName);
+	if (it != players.end()) {
+		PlayerToBeModified = it->second;
+		return true;
+	}
+	else {
 		cout << "Couldn't Find This Footballer.." << endl;
 		Sleep(700);
 		return false;
 	}
-	return true;
 }
 
-void Admin::FootballerMenu(unordered_map<string, Footballer>& players) {
-	Footballer footballerToBeModified;
-	string footballerName;
-PlayerNotFound:
-	cout << "Enter a footballer's Name: ";
+void Admin::FootballerMenu(map<string, Teams> teams) {
+	string teamName;
+	Teams selectedTeam;
 	cin.ignore();
-	getline(cin, footballerName);
-	if (!handleFootballerExistance(players, footballerToBeModified, footballerName)) {
-		goto PlayerNotFound;
+TeamNotFound:
+	cout << "Enter a Team Name: ";
+	getline(cin, teamName);
+	if (!handleTeamExistance(teams, selectedTeam, teamName)) {
+		goto TeamNotFound;
 	}
-start:
+footballersDisplay:
+	DisplayFootballersForSpecificTeam(selectedTeam);
 	cout << "1) Modify a Footballer" << endl;
 	cout << "2) Go Back" << endl;
 	cout << "Choice: ";
@@ -584,29 +584,33 @@ start:
 	switch (choice) {
 	case 1:
 		//Updating the player
-		ModifyFootballer(players, footballerToBeModified);
-		goto start;
-		break;
+		ModifyFootballer(selectedTeam.getFootballPlayer());
+		goto footballersDisplay;
 	case 2:
 		return;
 	default:
 		break;
 	}
-	//Updating the hash table
-	players.at(footballerName) = footballerToBeModified;
 }
 
-void Admin::ModifyFootballer(unordered_map<string, Footballer> players, Footballer& footballerToBeModified) {
+void Admin::ModifyFootballer(unordered_map<string, Footballer>& players) {
 	int choice;
 	string InputString;
 	float InputInt;
 	bool InputBool;
-
-	do
-	{
+	Footballer footballerToBeModified;
+	string footballerName;
+	cin.ignore();
+PlayerNotFound:
+	cout << "Enter a footballer's Name: ";
+	getline(cin, footballerName);
+	if (!handleFootballerExistance(players, footballerToBeModified, footballerName)) {
+		goto PlayerNotFound;
+	}
+	system("cls");
+	do {
 		cout << "Modify " << footballerToBeModified.GetName() << "'s information" << endl;
 		cout << "What do you wish to Edit?" << endl;
-
 		cout << "1) Name" << endl;
 		cout << "2) Age" << endl;
 		cout << "3) Captain" << endl;
@@ -616,20 +620,26 @@ void Admin::ModifyFootballer(unordered_map<string, Footballer> players, Football
 		cout << "7) Rating" << endl;
 		cout << "8) Delete the Player" << endl;
 		cout << "9) Go Back" << endl;
-
+		cout << "Choice: ";
+	retryChoice:
 		cin >> choice;
-
 		switch (choice) {
 		case 1:
-			cout << "Enter new name: ";
-			cin >> InputString;
-			footballerToBeModified.SetName(InputString);
+			handlePlayersUpdate(players, footballerName);
 			break;
 		case 2:
+		retryAgeInput:
 			cout << "Enter new age: ";
 			cin >> InputInt;
-			footballerToBeModified.SetAge(InputInt);
-			break;
+			if (InputInt < 17) {
+				cout << "Age should be more than 17 years old." << endl;
+				Sleep(2000);
+				goto retryAgeInput;
+			}
+			else {
+				footballerToBeModified.SetAge(InputInt);
+				break;
+			}
 		case 3:
 			cout << "Is the Player a Captain? (1 for Yes / 0 for No): ";
 			cin >> InputBool;
@@ -637,12 +647,14 @@ void Admin::ModifyFootballer(unordered_map<string, Footballer> players, Football
 			break;
 		case 4:
 			cout << "Enter new position: ";
-			cin >> InputString;
+			cin.ignore();
+			getline(cin, InputString);
 			footballerToBeModified.SetPosition(InputString);
 			break;
 		case 5:
 			cout << "Enter new team: ";
-			cin >> InputString;
+			cin.ignore();
+			getline(cin, InputString);
 			footballerToBeModified.SetTeam(InputString);
 			break;
 		case 6:
@@ -658,28 +670,33 @@ void Admin::ModifyFootballer(unordered_map<string, Footballer> players, Football
 			break;
 		case 8:
 			players.erase(footballerToBeModified.GetName());
-			Sleep(1000);
 			break;
 		case 9:
-			//test this pls
 			return;
 		default:
 			cout << "Invalid choice!" << endl;
 			Sleep(1000);
-			break;
+			goto retryChoice;
 		}
 		if (choice == 8) {
 			cout << "Deleted Successfully!" << endl;
 
 		}
+		else if (choice == 1) {
+			cout << "Successfully Updated." << endl;
+
+		}
 		else {
 			cout << "Successfully Updated." << endl;
+			//Updating the hash table
+			players.at(footballerName) = footballerToBeModified;
 		}
 		Sleep(1000);
 		cout << "Continue Modifying? (Yes/No)" << endl;
-		cin >> InputString;
-		PauseAndClear();
-	} while (InputString == "Yes" || "yes" || "YES");
+		cin.ignore();
+		getline(cin, InputString);
+		system("cls");
+	} while (InputString._Starts_with("yes") || InputString._Starts_with("Yes"));
 
 }
 bool Admin::handleTeamExistance(map<string, Teams> teams, Teams& TeamToBeModified, string teamName) {
@@ -692,25 +709,33 @@ bool Admin::handleTeamExistance(map<string, Teams> teams, Teams& TeamToBeModifie
 	return true;
 }
 
-void Admin::DisplayFootballersForSpecificTeam(map<string, Teams> teams) {
-	string teamName;
-TeamNotFound:
-	cout << "Enter a Team Name: ";
+void Admin::handleTeamsUpdate(map<string, Teams>& teams, string oldName){
+	string newName;
+	cout << "Enter new name: ";
 	cin.ignore();
-	getline(cin, teamName);
-	if (!handleTeamExistance(teams, teams.at(teamName), teamName)) {
-		goto TeamNotFound;
+	getline(cin, newName);
+	auto it = teams.find(oldName);
+	if (it != teams.end()) {
+		teams[newName] = it->second;
+		teams[newName].SetName(newName);
+		teams.erase(it);
 	}
+	else {
+		cout << "Key " << oldName << " not found." << endl;
+	}
+}
 
-	unordered_map<string, Footballer> TeamSquad = teams.at(teamName).getFootballPlayer();
-	unordered_map<string, Footballer>::iterator it;
-	it = TeamSquad.begin();
-	cout << "Team: " << teamName << endl;
-	for (it; it != TeamSquad.end(); ++it) {
-		cout << it->first << endl;
+void Admin::DisplayFootballersForSpecificTeam(Teams selectedTeam) {
+	unordered_map<string, Footballer> players = selectedTeam.getFootballPlayer();
+	unordered_map<string, Footballer>::iterator it = players.begin();
+	system("cls");
+	cout << "\t\t~Players in " << selectedTeam.getName() << "~" << endl;
+	cout << "------------------------------------------------" << endl;
+	cout << "\t  Name" << User::spacing(15, ' ') << "\tPosition" << endl << endl;
+	for (it; it != players.end(); ++it) {
+		cout << "\t" << it->second.GetName() << "\t" << checkStrLengthFootballers(it->first) << it->second.GetPosition() << endl;
 	}
-	FootballerMenu(TeamSquad);
-	return;
+	cout << "------------------------------------------------" << endl;
 }
 
 //vector<TheLeague> allleagues
@@ -718,7 +743,20 @@ TeamNotFound:
 //map ll team
 //unordered map ll footballer
 
-void Admin::LeaguesMenu(vector<TheLeague> leagues) {
+bool Admin::handleLeagueExistance(vector<TheLeague> leagues, TheLeague& leagueToBeModified, string leagueName)
+{
+	for (int i = 0; i < leagues.size(); i++) {
+		if (leagues[i].getLeagueName() == leagueName) {
+			leagueToBeModified = leagues[i];
+			return true;
+		}
+	}
+	cout << "Invalid League Name!" << endl;
+	Sleep(700);
+	return false;
+}
+
+void Admin::LeaguesMenu(vector<TheLeague>& leagues) {
 	int choice;
 	string leagueName;
 	string newLeagueName;
@@ -731,7 +769,7 @@ LeagueMenu:
 	cout << "Choice: ";
 	cin >> choice;
 	if (choice == 1) {
-		displayTeamsForSpecificLeague(leagues);
+		TeamMenu(leagues);
 		goto LeagueMenu;
 	}
 	else if (choice == 2) {
@@ -743,41 +781,72 @@ LeagueMenu:
 	}
 	else {
 		cout << "Invalid Choice!" << endl;
+		Sleep(1000);
+		goto LeagueMenu;
 	}
 }
 
 void Admin::DisplayAllLeagues(vector<TheLeague> leagues) {
 	vector<TheLeague>::iterator it;
+	cout << "\t\t~All Leagues~" << endl;
+	cout << "------------------------------------------------" << endl;
 	for (it = leagues.begin(); it != leagues.end(); ++it) {
-		cout << it->getLeagueName() << std::endl;
+		cout << "\t\t" << it->getLeagueName() << std::endl;
+	}
+	cout << "------------------------------------------------" << endl;
+
+}
+
+void Admin::UpdateLeagueName(vector<TheLeague>& leagues) {
+	string leagueName;
+	string newLeagueName;
+	TheLeague leagueToBeModified;
+	cin.ignore();
+beginning:
+	cout << "Enter a League Name: ";
+	getline(cin, leagueName);
+	if (!handleLeagueExistance(leagues, leagueToBeModified, leagueName)) {
+		goto beginning;
+	}
+	else {
+		cout << "Enter the new Name: ";
+		getline(cin, newLeagueName);
+		for (int i = 0; i < leagues.size(); i++) {
+			if (leagues[i].getLeagueName() == leagueName) {
+				leagues[i].setLeagueName(newLeagueName);
+				cout << "Updated Successfully!" << endl;
+				Sleep(1000);
+			}
+		}
 	}
 }
 
-void Admin::UpdateLeagueName(vector<TheLeague> leagues) {
-	string leagueName;
-	string newLeagueName;
-	vector<TheLeague>::iterator it = leagues.begin();
-beginning:
-	cout << "Enter a League Name: ";
+void Admin::handlePlayersUpdate(unordered_map<string, Footballer>& players, string oldName) {
+	string newName;
+	cout << "Enter new name: ";
 	cin.ignore();
-	getline(cin, leagueName);
-	while (it != leagues.end()) {
-		if (it->getLeagueName() == leagueName) {
+	getline(cin, newName);
+	auto it = players.find(oldName);
+	if (it != players.end()) {
+		// Inserting a new element with the new key and same value
+		players[newName] = it->second;
+		players[newName].SetName(newName);
+		// Erasing the old element
+		players.erase(it);
+	}
+	else {
+		cout << "Key " << oldName << " not found." << endl;
+	}
+}
 
-			cout << "Enter the new Name: ";
-			cin.ignore();
-			getline(cin, newLeagueName);
-			it->setLeagueName(newLeagueName);
-			cout << "Updated Successfully!" << endl;
-			break;
-		}
-		it++;
+string Admin::checkStrLengthFootballers(string str) {
+	if (str.length() < 16 && str.length() >= 8) {
+		return "\t";
 	}
-	if (it == leagues.end()) {
-		cout << "Invalid League Name!" << endl;
-		Sleep(1000);
-		goto beginning;
+	else if (str.length() < 8) {
+		return "\t\t";
 	}
+	return "";
 }
 
 void Admin::PauseAndClear()

@@ -16,7 +16,7 @@ public:
 	TheLeague();
 	TheLeague(string name, map <string, Teams> teams);
 	void static displayTeams(map<string, Teams> Teams);
-	string static checkStringLength(const std::string& str);
+	string static checkStrLengthTeams(const std::string& str);
 	//void updatePoints( list <Game> allgames);
 	//void displayPointTable();
 
@@ -24,7 +24,7 @@ public:
 	string getLeagueName();
 	void setLeagueName(string);
 
-	map <string,Teams> GetTeams();
+	map <string,Teams>& GetTeams();
 
 
 private:

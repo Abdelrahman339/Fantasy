@@ -1,16 +1,14 @@
 #include "TheLeague.h"
 
 void TheLeague::displayTeams(map<string, Teams> teams) {
-	cout << "--------------------------------------------------" << endl;
-	cout << "Teams in the League" << endl << endl;
 	cout << "Name" << "\t\t\t       " << "Points" << endl;
 	for (auto& team : teams) {
-		cout << team.second.getName() << "\t\t" << checkStringLength(team.second.getName()) << team.second.getPoints() << endl;
+		cout << team.second.getName() << "\t\t" << checkStrLengthTeams(team.second.getName()) << team.second.getPoints() << endl;
 	}
 	cout << "--------------------------------------------------" << endl;
 }
 //Test this later 5/5/2024
-string TheLeague::checkStringLength(const std::string& str) {
+string TheLeague::checkStrLengthTeams(const std::string& str) {
 	if (str.length() <= 16 && str.length() >= 8) {
 		return "\t";
 	}
@@ -79,7 +77,7 @@ TheLeague::TheLeague(string name, map<string, Teams> teams) {
 	this->teams = teams;
 }
 
-map<string, Teams> TheLeague::GetTeams()
+map<string, Teams>& TheLeague::GetTeams()
 {
 	return this->teams;
 }

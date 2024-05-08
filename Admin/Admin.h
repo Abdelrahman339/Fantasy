@@ -32,23 +32,27 @@ public:
 	void static Deletion(unordered_map<string, User>& Users, User DeletedUser, vector<TheLeague> leagues);
 
 	//players
+	void static handlePlayersUpdate(unordered_map<string, Footballer>& players, string oldName);
+	string static checkStrLengthFootballers(string strs);
 	bool static handleFootballerExistance(unordered_map<string, Footballer> players, Footballer& PlayerToBeModified, string& playerName);
 
-	void static FootballerMenu(unordered_map<string, Footballer>& players);
-	void static ModifyFootballer(unordered_map<string, Footballer> players, Footballer& footballerToBeModified);
-	void static DisplayFootballersForSpecificTeam(map<string, Teams> teams);
+	void static FootballerMenu(map<string, Teams> teams);
+	void static ModifyFootballer(unordered_map<string, Footballer>& players);
+	void static DisplayFootballersForSpecificTeam(Teams selectedTeam);
 
 
 	bool static handleTeamExistance(map<string, Teams> teams, Teams& TeamToBeModified, string teamName);
 	//teams
-	void static TeamMenu(map<string, Teams> teams);
-	void static ModifyTeams(map<string, Teams> teams);
-	void static displayTeamsForSpecificLeague(vector<TheLeague> leagues);
-	//leagues
-	void static LeaguesMenu(vector<TheLeague> leagues);
-	void static DisplayAllLeagues(vector<TheLeague> allleagues);
-	void static UpdateLeagueName(vector<TheLeague> leagues);
-	void DeleteLeague(void);
+	void static handleTeamsUpdate(map<string, Teams>& teams, string oldName);
 
+	void static TeamMenu(vector<TheLeague> leagues);
+	void static ModifyTeams(map<string, Teams>& teams);
+	void static displayTeamsForSpecificLeague(TheLeague league);
+	//leagues
+	bool static handleLeagueExistance(vector<TheLeague> leagues, TheLeague& leagueToBeModified, string leagueName);
+	void static LeaguesMenu(vector<TheLeague>& leagues);
+	void static DisplayAllLeagues(vector<TheLeague> leagues);
+	void static UpdateLeagueName(vector<TheLeague>& leagues);
+	void DeleteLeague(void);
 	void static PauseAndClear();
 };
