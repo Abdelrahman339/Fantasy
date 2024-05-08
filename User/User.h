@@ -53,7 +53,7 @@ public:
 	void AddPoints(int points);
 	void SetBalance(float balance);
 	void addBalance(float balance);
-	bool SetFootballer(Footballer footbaler);
+	bool SetFootballer(Footballer &footbaler);
 	string GetFullName();
 	string GetUsername();
 	string GetPassword();
