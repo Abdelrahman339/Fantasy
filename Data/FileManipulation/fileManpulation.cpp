@@ -290,13 +290,12 @@ User fileManipulation::parseUser(vector<string> userLines, map<int, pair<unorder
 	string email = userLines[3];
 	string password = userLines[4];
 	string phoneNumber = userLines[5];
-	int rank = stoi(userLines[6], nullptr);
-	int points = stoi(userLines[7], nullptr);
-	float balance = stof(userLines[8], nullptr);
+	int points = stoi(userLines[6], nullptr);
+	float balance = stof(userLines[7], nullptr);
 	unordered_map<string, Footballer> mainSquad = {};
 	unordered_map<string, Footballer> substitutionSquad = {};
-	time_t lastDatePlayedWheel = static_cast<time_t>(stoll(userLines[9]));
-	time_t nextSpinDate = static_cast<time_t>(stoll(userLines[10]));
+	time_t lastDatePlayedWheel = static_cast<time_t>(stoll(userLines[8]));
+	time_t nextSpinDate = static_cast<time_t>(stoll(userLines[9]));
 
 	try {
 		mainSquad = usersSquads.at(userID).first;
@@ -312,7 +311,7 @@ User fileManipulation::parseUser(vector<string> userLines, map<int, pair<unorder
 		//cout << "User \"" << fullname << "\" has 0 Footballers in his substitution Squad." << endl;
 	}
 
-	return User(userID, fullname, username, email, password, phoneNumber, rank, points, balance, mainSquad, substitutionSquad, lastDatePlayedWheel, nextSpinDate);
+	return User(userID, fullname, username, email, password, phoneNumber, points, balance, mainSquad, substitutionSquad, lastDatePlayedWheel, nextSpinDate);
 }
 unordered_map<string, Footballer> fileManipulation::parseSquad(Squad squadType, vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>> footballersOfTeam) {
 	vector<string> userTeamsAndFootballerNames;

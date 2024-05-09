@@ -170,7 +170,6 @@ choices:
 	cout << "Id:" << currentUser.GetId() << endl;
 	cout << "Balance:" << currentUser.GetBalance() << endl;
 	cout << "Points:" << currentUser.GetPoints() << endl;
-	cout << "Rank:" << currentUser.GetRank() << endl;
 	cout << "--------------------------------------" << endl;
 	cout << "1-Edit User Information\n2-User Squad And Players\n3-Delete User \n4-Go Back" << endl;
 	cout << "Enter your choice: ";
@@ -338,7 +337,7 @@ Redo:
 		}
 		else if (choice == 3)
 		{
-			CurrentUser.SetRank(NewPointsOrRank);
+			//CurrentUser.SetRank(NewPointsOrRank);
 		}
 	}
 }

@@ -24,7 +24,6 @@ protected:
 	string phoneNumber;
 	string Email;
 	int id;
-	int rank;
 	int points;
 	float balance;
 	unordered_map <string, Footballer >TheMainSquad;
@@ -38,7 +37,7 @@ public:
 	User();
 	//unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad
 	User(int id, string fullName, string username, string Email, string password,
-		string phoneNumber, int rank, int points, float balance,
+		string phoneNumber, int points, float balance,
 		unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad,
 		time_t lastDatePlayedWheel, time_t nextSpinDate);
 
@@ -131,7 +130,7 @@ public:
 	void static showSubstitutions(unordered_map<string, Footballer> squad);
 	int  static Formatdistance(string name, int space, bool remaining, string prev);
 	void static ShowSquad(User& currentUser);
-	void static showPlayerInfo(Footballer footballer);
+	void static showPlayerInfo(Footballer footballer, string status);
 
 	void static showPlayerInfolayout();
 	void static Substitution(User& currentUser);
@@ -204,9 +203,14 @@ public:
 	//Top Users functions
 	////////////////////////////////////////////////////////////////////////////////////
 
-	vector <User> moveTovector(unordered_map<string, User> Users);
-	void sortingUsers(vector<User> users);
+	vector <User> static moveTovector(unordered_map<string, User> Users);
 
+	vector<string> static  sortingUsers(vector<User> TopUsers);
+
+
+	bool static compareUsersByPoints(User& User1, User& User2);
+
+	void static showTopUsers(unordered_map<string, User> Users);
 };
 
 

@@ -25,16 +25,16 @@ invalid:
 	cout << spacing(60, ' '); cin >> choice;
 	if (choice == 1) {
 		cout << spacing(60, ' '); search(currentUser, leagues);
-		//cout << spacing(60, ' '); Admin::PauseAndClear();
+		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
 	else if (choice == 2) {
 		cout << spacing(60, ' '); showtopFootballers(TopPlayer, currentUser, leagues);
-		//cout << spacing(60, ' '); Admin::PauseAndClear();
+		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
 	else if (choice == 3) {
-		//cout << spacing(60, ' '); Admin::PauseAndClear();
+		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); string FootballerName;
 		cout << spacing(60, ' '); Format343(currentUser.GetMainSquad(), "Player");
 		cout << spacing(60, ' '); cout << endl << endl << endl;
@@ -49,7 +49,7 @@ invalid:
 		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
 	else if (choice == 4) {
-		//Admin::PauseAndClear();
+		system("pause"); system("cls");
 		return;
 	}
 	else {
@@ -225,8 +225,7 @@ invalid:
 			return;
 		default:
 			cout << "Enter a valid option" << endl;
-			system("pause");
-			system("cls");
+			system("pause"); system("cls");
 			goto invalid_input;
 			break;
 		}
@@ -693,7 +692,7 @@ void User::PlayerFunction(Footballer& targetFootballer, User& currentUser)
 {
 	int choice;
 invalidOption:
-	User::showPlayerInfo(targetFootballer);
+	User::showPlayerInfo(targetFootballer, "market");
 	cout << "1-buy the player\n2-Replace the player\n3-Go back" << endl;
 	cin >> choice;
 	switch (choice)

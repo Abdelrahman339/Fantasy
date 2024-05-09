@@ -13,7 +13,6 @@ User::User() {
 	this->password = "";
 	this->phoneNumber = "";
 	this->Email = "";
-	this->rank = 0;
 	this->points = 0;
 	this->balance = 80000;
 	this->lastDatePlayedWheel = -1;
@@ -21,7 +20,7 @@ User::User() {
 }
 
 User::User(int id, string fullName, string username, string Email, string password,
-	string phoneNumber, int rank, int points, float balance,
+	string phoneNumber, int points, float balance,
 	unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad,
 	time_t lastDatePlayedWheel, time_t nextSpinDate) {
 	this->fullName = fullName;
@@ -30,7 +29,6 @@ User::User(int id, string fullName, string username, string Email, string passwo
 	this->phoneNumber = phoneNumber;
 	this->Email = Email;
 	this->id = id;
-	this->rank = rank;
 	this->points = points;
 	this->balance = balance;
 	this->TheMainSquad = mainSquad;
@@ -70,10 +68,6 @@ void User::SetId(int id)
 	this->id = id;
 }
 
-void User::SetRank(int rank)
-{
-	this->rank = rank;
-}
 
 void User::SetPoints(int points)
 {
@@ -177,10 +171,6 @@ int User::GetId()
 	return id;
 }
 
-int User::GetRank()
-{
-	return rank;
-}
 
 int User::GetPoints()
 {

@@ -129,46 +129,59 @@ void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vecto
 {
 	int choice;
 choice:
-	cout << "Main Menu" << endl;
-	cout << string(30, '-') << endl;
-	cout << "1- Profile.\n2- Squad.\n3- Market.\n4- Play.\n5- Spin The Wheel.\n6- logout." << endl;
-	cout << "Enter you option..." << endl;
-	cin >> choice;
+	cout << "\n\n\n\n";
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << spacing(60, ' ') << "            **Main Menu**             " << endl;
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+	cout << spacing(60, ' ') << "1- Profile. 2- Squad. 3- Market. 4- Play. 5- Spin The Wheel. 6- logout." << endl;
+	cout << spacing(60, ' ') << "Enter you option..." << endl;
+	cout << spacing(60, ' '); cin >> choice;
 	if (choice == 1)
 	{
+		system("pause"); system("cls");
 		profile(currentUser, Users);
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 2)
 	{
+		system("pause"); system("cls");
 		ShowSquad(currentUser);
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 3)
 	{
+		system("pause"); system("cls");
 		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
 		FilteringTeams(allGames, currentUser, oldUserGames, "CurrentUser");
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 4)
 	{
+		system("pause"); system("cls");
 		play(allGames, currentUser, Users);
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 5)
 	{
+		system("pause"); system("cls");
 		LuckyWheel::playLuckyWheel(leagues, currentUser);
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 6)
 	{
 		currentUser.homePage(Users, leagues, allGames);
+		system("pause"); system("cls");
 		return;
 	}
 	else
