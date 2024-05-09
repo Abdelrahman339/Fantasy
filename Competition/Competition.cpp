@@ -78,7 +78,7 @@ void Competition::ReducePoints(User* currentUser, Footballer& TargetedFootballer
 
 }
 
-void Competition::AddContributesPoints(User* currentUser, Footballer& TargetedFootballer, string contributes, string status, int& tempPoints, Teams& team)
+void Competition::AddContributesPoints(User* currentUser, Footballer& TargetedFootballer, string contributes, string status, int& tempPoints, Teams* team)
 {
 	//"goals 5 & assists 6"
 	regex Goal_Assist_pattern(R"(&)");
@@ -159,7 +159,7 @@ void Competition::addPoints(string contributes, User* currentUser, Footballer& T
 
 
 
-void Competition::addGoalsAssistPoints(string contributes, User currentUser, Footballer& TargetedFootballer, string status, int& tempPoints, Teams& team)
+void Competition::addGoalsAssistPoints(string contributes, User* currentUser, Footballer& TargetedFootballer, string status, int& tempPoints, Teams* team)
 {
 	regex pattern(R"(\d+)");
 
@@ -194,13 +194,15 @@ void Competition::addGoalsAssistPoints(string contributes, User currentUser, Foo
 		currentUser->AddPoints(totalPoints);
 		currentUser->addBalance(totalPoints * 3);
 	}
+
 }
 
 
 void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <Game> allGames, User currentUser)
 {
+	
 	int gameRound = currentUser.GetUserGames().front().getRound();
-	Teams team;
+	Teams* team=nullptr;
 	for (auto& user : *Users)
 	{
 		User* currentUser = &user.second;
@@ -210,7 +212,7 @@ void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <
 }
 
 
-void Competition::findPlayers(User* currentUser, string status, Teams& team, int round)
+void Competition::findPlayers(User* currentUser, string status, Teams* team, int round)
 {
 	int tempPoints = 0;
 	Game currentGame;
@@ -254,15 +256,15 @@ void Competition::findPlayers(User* currentUser, string status, Teams& team, int
 
 }
 
-void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGame)
-{
-	char ans;
-	cout << "Highlights of the week" << endl;
-	for (Game game : allGame) {
-		cout << game.getAwayTeam().getName() << User::spacing(10, ' ') << game.getHomeTeam().getName() << endl;
-		cout << game.getScore() << endl;
-	}
-}
+//void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGame)
+//{
+//	char ans;
+//	cout << "Highlights of the week" << endl;
+//	for (Game game : allGame) {
+//		cout << game.getAwayTeam().getName() << User::spacing(10, ' ') << game.getHomeTeam().getName() << endl;
+//		cout << game.getScore() << endl;
+//	}
+//}
 
 void Competition::UpdateFootballerPrice(Footballer& player, int tempPoints, Teams* team) // for all the players
 {
@@ -307,7 +309,7 @@ void Competition::UpdateFootballerPrice(Footballer& player, int tempPoints, Team
 void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch Highlights) {
 
 
-	User currentUser;
+	User *currentUser=nullptr;
 	string status = "footballer";
 	string currentFootballerName = Highlights.getName();
 
@@ -323,9 +325,9 @@ void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch
 			string contributions = Highlights.getContributions();
 			string violation = Highlights.getViolation();
 
-			//Competition::AddContributesPoints(currentUser, currentFootballer, contributions, status, tempPoints, team);
-			//Competition::ReducePoints(currentUser, currentFootballer, violation, status, tempPoints); // for deducing redCards and yellowcards points
-			//Competition::UpdateFootballerPrice(currentFootballer, tempPoints, team);
+			Competition::AddContributesPoints(currentUser, currentFootballer, contributions, status, tempPoints, team);
+			Competition::ReducePoints(currentUser, currentFootballer, violation, status, tempPoints); // for deducing redCards and yellowcards points
+			Competition::UpdateFootballerPrice(currentFootballer, tempPoints, team);
 		}
 
 
