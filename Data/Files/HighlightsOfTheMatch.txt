@@ -11,7 +11,7 @@ Violations
 1
 --------
 Jose Maria Gimenez
-Goals: 0
+None
 Yellow Card
 ----
 Antoine Griezmann
@@ -31,7 +31,7 @@ Assists: 1
 None
 ----
 Jude Bellingham
-Goals: 0
+None
 Yellow Card
 ----
 Luka Modric
@@ -43,7 +43,7 @@ Goals: 1
 None
 ----
 Ferland Mendy
-Goals: 0
+None
 Yellow Card
 ----------------
 2 
@@ -85,7 +85,7 @@ Goals: 1
 None
 ----
 Casemiro
-Goals: 0
+None
 Yellow Card
 ----------------
 5

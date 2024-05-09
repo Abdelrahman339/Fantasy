@@ -39,7 +39,7 @@ int main() {
 
 	//Game::displayGameOverview(games);
 
-	user.homePage(users, leagues, games);
+	user.homePage(&users, leagues, games);
 
 
 }

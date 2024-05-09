@@ -14,7 +14,7 @@ _alice_johnson92
 alice.johnson92@hotmail.com
 123
 +20 115 550 1478
-78
+0
 23456.78
 1715167868
 1715169048
@@ -25,41 +25,8 @@ william_l_81
 william.lee81@yahoo.com
 123
 +20 100 794 6123
-45
+0
 34567.23
 1715067868
 1715267561
-----
-3
-Olivia Brown
-cheerful_liv
-olivia.brown.cheerful@gmail.com
-123
-+20 121 938 1471
-98
-56782.1
-1715017868
-1715297561
-----
-4
-David Miller
-david_m._24
-davidmiller.24@gmail.com
-123
-+20 118 678 9000
-32
-67890.0
-1715062868
-1715269961
-----
-5
-Sophia Garcia
-sophia_garcia_99
-sophia.garcia99@hotmail.com
-123
-+20 100 328 7650
-100
-78900.0
-1712062868
-1715569961
 ----

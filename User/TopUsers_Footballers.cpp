@@ -88,15 +88,15 @@ vector <User> User::moveTovector(unordered_map<string, User> Users) {
 };
 
 
-vector<string> User::sortingUsers(vector<User> TopUsers) {
+vector<User> User::sortingUsers(vector<User> TopUsers) {
 
 	sort(TopUsers.begin(), TopUsers.end(), compareUsersByPoints);
 
-	vector<string>top5users;
+	vector<User>top5users;
 
-	for (int i = 0; i < 5; i++)
+	for (int i = 0; i < 3; i++)
 	{
-		top5users.push_back(TopUsers[i].GetUsername());
+		top5users.push_back(TopUsers[i]);
 	}
 	return top5users;
 };
@@ -113,23 +113,23 @@ bool User::compareUsersByPoints(User& User1, User& User2) {
 void User::showTopUsers(unordered_map<string, User> Users) {
 	vector<User> users;
 	users = moveTovector(Users);
-	vector<string>topUsersNames;
-	topUsersNames = sortingUsers(users);
+	vector<User>topUsers;
+	topUsers = sortingUsers(users);
 
 
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << spacing(60, ' ') << "         ##Top Users in the season!!##           " << endl;
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
-	if (topUsersNames.size() <= 0) {
+	if (topUsers.size() <= 0) {
 		cout << spacing(60, ' ') << "Season not started yet!" << endl;
 	}
 	else {
-		for (int i = 0; i < topUsersNames.size(); i++) {
+		for (int i = 0; i < topUsers.size(); i++) {
 
-			cout << spacing(topUsersNames[i].size() + 6, '*') << endl;
-			cout << "* " << i + 1 << " -" << topUsersNames[i] << " * " << endl;
-			cout << spacing(topUsersNames[i].size() + 6, '*') << endl;
+			//cout << spacing(topUsers[i].GetUsername().size() + 6, '*') << endl;
+			cout << "* " << i + 1 << " -" << topUsers[i].GetUsername() << " Points: " << topUsers[i].GetPoints() << " * " << endl;
+			//cout << spacing(topUsers[i].size() + 6, '*') << endl;
 		}
 	}
 };

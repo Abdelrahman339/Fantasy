@@ -76,14 +76,14 @@ bool UserValidations::passwordCheck(string password)
 	}
 	return result;
 };
-bool UserValidations::usernameCheck(unordered_map<string, User> users, User& Newser)
+bool UserValidations::usernameCheck(unordered_map<string, User> *users, User &Newser)
 {
 	string input;
 invalid:
 	cout << User::spacing(60, ' ') << "Enter your " << "Username" << ": " << endl;
 	cout << User::spacing(60, ' '); getline(cin >> ws, input);
-	auto it = users.find(input);
-	if (it == users.end())
+	auto it = users->find(input);
+	if (it == users->end())
 	{
 		Newser.SetUsername(input);
 		return true;
