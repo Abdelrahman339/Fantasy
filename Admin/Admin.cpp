@@ -172,7 +172,6 @@ choices:
 	cout << "Id:" << currentUser.GetId() << endl;
 	cout << "Balance:" << currentUser.GetBalance() << endl;
 	cout << "Points:" << currentUser.GetPoints() << endl;
-	cout << "Rank:" << currentUser.GetRank() << endl;
 	cout << "--------------------------------------" << endl;
 	cout << "1-Edit User Information\n2-User Squad And Players\n3-Delete User \n4-Go Back" << endl;
 	cout << "Enter your choice: ";
@@ -259,21 +258,21 @@ choices:
 	}
 	else if (choice == 6)
 	{
-		EditBalancePointsRank(currentUser, 1, "new Balance", leagues);
-		cout << "Balance updated successfully" << endl;
-		PauseAndClear();
+		//EditBalancePointsRank(currentUser, 1, "new Balance", leagues);
+		//cout << "Balance updated successfully" << endl;
+		//PauseAndClear();
 	}
 	else if (choice == 7)
 	{
-		EditBalancePointsRank(currentUser, 2, "new Points", leagues);
-		cout << "Points updated successfully" << endl;
-		PauseAndClear();
+		//EditBalancePointsRank(currentUser, 2, "new Points", leagues);
+		//cout << "Points updated successfully" << endl;
+		//PauseAndClear();
 	}
 	else if (choice == 8)
 	{
-		EditBalancePointsRank(currentUser, 3, "new Rank", leagues);
-		cout << "Rank updated successfully" << endl;
-		PauseAndClear();
+		//EditBalancePointsRank(currentUser, 3, "new Rank", leagues);
+		//cout << "Rank updated successfully" << endl;
+		//PauseAndClear();
 	}
 	else if (choice == 9)
 	{
@@ -340,7 +339,7 @@ Redo:
 		}
 		else if (choice == 3)
 		{
-			CurrentUser.SetRank(NewPointsOrRank);
+			//CurrentUser.SetRank(NewPointsOrRank);
 		}
 	}
 }

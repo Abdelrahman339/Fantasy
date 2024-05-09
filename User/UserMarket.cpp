@@ -4,7 +4,7 @@
 
 #include "Competition.h"
 #include "User.h"
-#include "Admin.h"
+
 
 using namespace std;
 

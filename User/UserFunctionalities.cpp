@@ -14,11 +14,6 @@ string User::spacing(int spacing, char character) {
 	return space;
 }
 
-void User::PauseAndClear()
-{
-	system("paues");
-	system("cls");
-}
 
 
 
@@ -618,7 +613,6 @@ void User::profile(User& currentUser, unordered_map<string, User>& Users) {
 	cout << spacing(60, ' ') << "Id:\t\t" << currentUser.GetId() << endl;
 	cout << spacing(60, ' ') << "Balance:\t\t" << currentUser.GetBalance() << endl;
 	cout << spacing(60, ' ') << "Points:\t\t" << currentUser.GetPoints() << endl;
-	cout << spacing(60, ' ') << "Rank:\t\t" << currentUser.GetRank() << endl;
 	cout << spacing(60, ' ') << "--------------------------------------------------------------------------------\n" << endl;
 	cout << spacing(60, ' ') << "1-Edit information." << endl;
 	cout << spacing(60, ' ') << "2-Go back" << endl;

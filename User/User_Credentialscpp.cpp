@@ -138,50 +138,50 @@ choice:
 	cout << spacing(60, ' '); cin >> choice;
 	if (choice == 1)
 	{
-		PauseAndClear();
+		system("pause"); system("cls");
 		profile(currentUser, Users);
-		PauseAndClear();
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 2)
 	{
-		PauseAndClear();
+		system("pause"); system("cls");
 		ShowSquad(currentUser);
-		PauseAndClear();
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 3)
 	{
-		PauseAndClear();
+		system("pause"); system("cls");
 		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
 		FilteringTeams(allGames, currentUser, oldUserGames, "CurrentUser");
-		PauseAndClear();
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 4)
 	{
-		PauseAndClear();
+		system("pause"); system("cls");
 		play(allGames, currentUser, Users);
-		PauseAndClear();
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 5)
 	{
-		PauseAndClear();
+		system("pause"); system("cls");
 		LuckyWheel::playLuckyWheel(leagues, currentUser);
-		PauseAndClear();
+		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 6)
 	{
 		currentUser.homePage(Users, leagues, allGames);
-		PauseAndClear();
+		system("pause"); system("cls");
 		return;
 	}
 	else
