@@ -129,46 +129,59 @@ void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vecto
 {
 	int choice;
 choice:
-	cout << "Main Menu" << endl;
-	cout << string(30, '-') << endl;
-	cout << "1- Profile.\n2- Squad.\n3- Market.\n4- Play.\n5- Spin The Wheel.\n6- logout." << endl;
-	cout << "Enter you option..." << endl;
-	cin >> choice;
+	cout << "\n\n\n\n";
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << spacing(60, ' ') << "            **Main Menu**             " << endl;
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
+	cout << spacing(60, ' ') << "1- Profile. 2- Squad. 3- Market. 4- Play. 5- Spin The Wheel. 6- logout." << endl;
+	cout << spacing(60, ' ') << "Enter you option..." << endl;
+	cout << spacing(60, ' '); cin >> choice;
 	if (choice == 1)
 	{
+		PauseAndClear();
 		profile(currentUser, Users);
+		PauseAndClear();
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 2)
 	{
+		PauseAndClear();
 		ShowSquad(currentUser);
+		PauseAndClear();
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 3)
 	{
+		PauseAndClear();
 		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
 		FilteringTeams(allGames, currentUser, oldUserGames, "CurrentUser");
+		PauseAndClear();
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 4)
 	{
+		PauseAndClear();
 		play(allGames, currentUser, Users);
+		PauseAndClear();
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 5)
 	{
+		PauseAndClear();
 		LuckyWheel::playLuckyWheel(leagues, currentUser);
+		PauseAndClear();
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 6)
 	{
 		currentUser.homePage(Users, leagues, allGames);
+		PauseAndClear();
 		return;
 	}
 	else

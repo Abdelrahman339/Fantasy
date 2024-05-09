@@ -130,7 +130,7 @@ public:
 	void static showSubstitutions(unordered_map<string, Footballer> squad);
 	int  static Formatdistance(string name, int space, bool remaining, string prev);
 	void static ShowSquad(User& currentUser);
-	void static showPlayerInfo(Footballer footballer);
+	void static showPlayerInfo(Footballer footballer,string status);
 
 	void static showPlayerInfolayout();
 	void static Substitution(User& currentUser);
