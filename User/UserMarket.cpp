@@ -1,7 +1,6 @@
 #include <deque>
 #include <stack>
 #include <set>
-
 #include "Competition.h"
 #include "User.h"
 
@@ -18,22 +17,22 @@ void User::Market(User& currentUser, vector <TheLeague> leagues)
 	Format343(TopPlayer, "Top Player");
 	cout << endl << endl << endl;
 
-	int choice = 0;
+invlaidMarket:
+	string choice;
 
-invalid:
 	cout << spacing(60, ' ') << "1-search. 2-Choose Top player. 3-Sell your players. 4-Go back." << endl;
 	cout << spacing(60, ' '); cin >> choice;
-	if (choice == 1) {
+	if (choice == "1") {
 		cout << spacing(60, ' '); search(currentUser, leagues);
 		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
-	else if (choice == 2) {
+	else if (choice == "2") {
 		cout << spacing(60, ' '); showtopFootballers(TopPlayer, currentUser, leagues);
 		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
-	else if (choice == 3) {
+	else if (choice == "3") {
 		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); string FootballerName;
 		cout << spacing(60, ' '); Format343(currentUser.GetMainSquad(), "Player");
@@ -48,14 +47,15 @@ invalid:
 		cout << spacing(60, ' '); system("cls");
 		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
-	else if (choice == 4) {
+	else if (choice == "4") {
 		system("pause"); system("cls");
 		return;
 	}
 	else {
-		cout << spacing(60, ' '); cout << "Invalid input.Please try again." << endl;
-		goto invalid;
+		cout << "invalid input.Please try again ";
+		goto invlaidMarket;
 	}
+
 };
 
 void User::showtopFootballers(unordered_map<string, Footballer> TopPlayer, User& currentUser, vector<TheLeague> Leageus)

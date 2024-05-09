@@ -450,7 +450,7 @@ choice:
 
 
 void User::showPlayerInfo(Footballer footballer, string status) {
-	cout<<right;
+	cout << right;
 	cout << "--------------------------------------------------------------------------------" << endl;
 	cout << "Name:" << footballer.GetName() << endl;
 	cout << "Age:" << footballer.GetAge() << endl;
@@ -599,7 +599,7 @@ void User::SubstituteFunction(User& currentUser, string subFootballer, Footballe
 	currentUser.GetSubstitutionSquad().insert_or_assign(mainFootballer.GetName(), mainFootballer);
 };
 
-void User::profile(User& currentUser, unordered_map<string, User>& Users) {
+void User::profile(User& currentUser, unordered_map<string, User>* Users) {
 	int choice;
 	cout << "\n\n\n\n\n\n\n";
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
@@ -619,7 +619,7 @@ void User::profile(User& currentUser, unordered_map<string, User>& Users) {
 	cin >> choice;
 	if (choice == 1)
 	{
-		editInfo(currentUser, Users);
+		editInfo(&currentUser, Users);
 	}
 	else if (choice == 2)
 	{
@@ -627,7 +627,7 @@ void User::profile(User& currentUser, unordered_map<string, User>& Users) {
 	}
 };
 
-void User::editInfo(User& currentUser, unordered_map<string, User>& Users) {
+void User::editInfo(User* currentUser, unordered_map<string, User>* Users) {
 	int choice;
 invalid:
 	cout << spacing(60, ' ') << "What info you want to update:" << endl;
@@ -641,54 +641,53 @@ invalid:
 	if (choice == 1)
 	{
 
-		UserValidations::signupinfo(&currentUser, "new Fullname", UserValidations::fullnameCheck, &User::SetFullName);
+		UserValidations::signupinfo(currentUser, "new Fullname", UserValidations::fullnameCheck, &User::SetFullName);
 		cout << spacing(60, ' ') << "full name updated successfully" << endl;
 		system("pause");
 		system("cls");
-		profile(currentUser, Users);
+		profile(*currentUser, Users);
 	}
 	else if (choice == 2)
 	{
-		User oldUser = currentUser;
-		UserValidations::usernameCheck(Users, currentUser);
-		string newUserName = currentUser.GetUsername();
-		Users.erase(oldUser.GetUsername());
-		Users.insert_or_assign(newUserName, currentUser);
+		//User oldUser = *currentUser;
+		//UserValidations::usernameCheck(*Users, *currentUser);
+		//Users->erase(oldUser.GetUsername());
+		//Users->insert_or_assign(currentUser->GetUsername(), currentUser);
 
 		cout << "Username updated successfully" << endl;
 		system("pause");
 		system("cls");
-		profile(currentUser, Users);
+		profile(*currentUser, Users);
 	}
 	else if (choice == 3)
 	{
-		UserValidations::signupinfo(&currentUser, "new EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
+		UserValidations::signupinfo(currentUser, "new EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
 		cout << "EmailAddress updated successfully" << endl;
 		system("pause");
 		system("cls");
-		profile(currentUser, Users);
+		profile(*currentUser, Users);
 	}
 	else if (choice == 4)
 	{
 
-		UserValidations::signupinfo(&currentUser, "new PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
+		UserValidations::signupinfo(currentUser, "new PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
 		cout << "PhoneNumber updated successfully" << endl;
 		system("pause");
 		system("cls");
-		profile(currentUser, Users);
+		profile(*currentUser, Users);
 	}
 
 	else if (choice == 5)
 	{
-		UserValidations::signupinfo(&currentUser, "new Password", UserValidations::passwordCheck, &User::SetPassword);
+		UserValidations::signupinfo(currentUser, "new Password", UserValidations::passwordCheck, &User::SetPassword);
 		cout << "Password updated successfully" << endl;
 		system("pause");
 		system("cls");
-		profile(currentUser, Users);
+		profile(*currentUser, Users);
 	}
 	else if (choice == 6)
 	{
-		profile(currentUser, Users);
+		profile(*currentUser, Users);
 	}
 	else {
 		cout << "invalid input.Please select a valid option" << endl;

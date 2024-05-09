@@ -6,14 +6,33 @@
 
 #include "Competition.h"
 using namespace std;
+bool loaded = false;
 
-void User::play(list<Game>& allGames, User& currentUser, unordered_map<string, User>& Users) {
+void User::play(list<Game>& allGames, User& currentUser, unordered_map<string, User>* Users) {
+	//get all usergames for all user
+	if (loaded == false)
+	{
+
+		for (auto& user : *Users)
+		{
+			User* currentUser = &user.second;
+			stack<string> oldUserTeams;
+			string status = "allUsers";
+			User::FilteringTeams(allGames, currentUser, {}, status);
+		}
+		loaded = true;
+	}
+
+	FilteringTeams(allGames, &currentUser, {}, "Team");
 	int choice;
 	char ans;
 	queue <Game>UserGames = currentUser.GetUserGames();
 	Teams team;
 invalid:
-	cout << "1-Play the current match \n 2-show the Games Highlights of the week\n 3-Go back" << endl;
+	cout << "\n\n\n\n";
+
+	cout << spacing(30, ' ') << "1-Play the current match" << endl;
+	cout << spacing(30, ' ') << "2-Go back" << endl;
 	cin >> choice;
 	if (choice == 1)
 	{
@@ -22,13 +41,7 @@ invalid:
 		cin >> ans;
 		if (ans == 'y')
 		{
-			//Competition::updateAllUserPoints(Users, allGames, currentUser);
-			Competition::findPlayers(currentUser, "User", team);
-			cout << endl;
-			cout << "User point after play the game: " << currentUser.GetPoints();
-			Game::displayGameOverview(currentUser.GetUserGames());
-			Competition::UpdateFootballerPoints(UserGames);
-
+			Competition::updateAllUserPoints(Users, allGames, currentUser);
 			return;
 		}
 		else if (ans == 'n')
@@ -38,9 +51,6 @@ invalid:
 	}
 	else if (choice == 2)
 	{
-
-	}
-	else if (choice == 3) {
 		return;
 	}
 	else {
@@ -54,19 +64,20 @@ invalid:
 
 void User::showCurrentMatch(queue<Game>& UserGames)
 {
-	cout << " Current match " << endl;
-	cout << UserGames.front().getHomeTeam().getName() << "   " << UserGames.front().getAwayTeam().getName();
+	cout << spacing(30, ' ') << " Current match " << endl;
+	cout << spacing(30, ' ') << UserGames.front().getHomeTeam().getName() << "   " << UserGames.front().getAwayTeam().getName() << endl;
+	cout << spacing(30, ' ') << "round:" << UserGames.front().getRound() << endl;
 }
 
 
-void User::FilteringTeams(list<Game> allGames, User& currentUser, stack<string> oldUserTeams, string status) {
+void User::FilteringTeams(list<Game> allGames, User* currentUser, stack<string> oldUserTeams, string status) {
 
-	queue<Game> UserGames = currentUser.GetUserGames();
+	queue<Game> UserGames = currentUser->GetUserGames();
 
 
 	stack<string> NewuserTeams;
 
-	NewuserTeams = GetUserTeams(currentUser);
+	NewuserTeams = GetUserTeams(*currentUser);
 
 	if (status == "CurrentUser" && areStacksEqual(oldUserTeams, NewuserTeams)) {
 		return;
@@ -80,7 +91,7 @@ void User::FilteringTeams(list<Game> allGames, User& currentUser, stack<string> 
 
 		RemoveDublicates(UserGames);
 
-		currentUser.GetUserGames().swap(UserGames);
+		currentUser->GetUserGames().swap(UserGames);
 	}
 
 }
@@ -99,13 +110,16 @@ stack<string> User::GetUserTeams(User& currentUser)
 
 void User::insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game>& UserGames) {
 
-
+	bool round1 = true;
+	bool round2 = true;
+	bool round3 = true;
 
 	while (!userTeams.empty())
 	{
 		for (auto it = allGames.begin(); it != allGames.end(); ++it) {
 			if (userTeams.top() == it->getAwayTeam().getName() || userTeams.top() == it->getHomeTeam().getName())
 			{
+
 				Game game = *it;
 				UserGames.push(game);
 

@@ -19,46 +19,10 @@ User Substitution Footballer Name 3
 Manchester City
 Ederson
 Phil Foden
-----
-Liverpool
-Alexander Arnold
-Mohamed Salah
-----
-Real Madrid
-Toni Kroos
-Ferland Mendy
-Rodrygo
-Carvajal
-----
-Atletico Madrid
-Yannick Carrasco
-Antoine Griezmann
-----
-Sevilla
-Jesus Navas
---------
-Real Madrid
-Courtois
-Luka Modric
+
 ----------------
 2
 --------
 Manchester City
 Ederson
-----
-Sevilla
-Sergio Ramos
-Nemanja Gudelj
-Joan Jordan
-----
-Chelsea
-Thiago Silva
-Reece James
-----
-Liverpool
-van Dijk
-----
-Real Madrid
-Courtois
-Nacho
 ----------------
