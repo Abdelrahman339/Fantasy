@@ -31,6 +31,10 @@ string Teams::getName()
 	return name;
 }
 
+void Teams::setPlayers(unordered_map<string, Footballer> players){
+	this->players = players;
+}
+
 int Teams::getwins()
 {
 	return wins;

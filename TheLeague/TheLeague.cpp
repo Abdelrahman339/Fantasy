@@ -82,6 +82,10 @@ map<string, Teams>& TheLeague::GetTeams()
 	return this->teams;
 }
 
+void TheLeague::SetTeams(map<string, Teams> teams){
+	this->teams = teams;
+}
+
 vector<string> TheLeague::getTeamNames(map<string, Teams> teams) {
 	vector<string> teamNames;
 

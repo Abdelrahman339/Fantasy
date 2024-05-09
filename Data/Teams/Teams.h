@@ -34,6 +34,7 @@ public:
 	Teams static getTeamByName(map<string, Teams> teams, string name);
 
 	string getName();
+	void setPlayers(unordered_map<string, Footballer> players);
 	int getwins();
 	int getlose();
 	int getdraw();
