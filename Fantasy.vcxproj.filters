@@ -27,9 +27,6 @@
     <ClCompile Include="User\UserFunctionalities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Admin\Admin.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Competition\Competition.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,15 +66,15 @@
     <ClCompile Include="LuckyWheel\LuckyWheel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Admin\Admin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="User\User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="User\UserValidations.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Admin\Admin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Competition\Competition.h">
@@ -102,6 +99,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LuckyWheel\LuckyWheel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Admin\Admin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,9 +1,9 @@
 #include <iostream>
+#include "Admin.h"
 #include <string>
 #include <conio.h>
 #include "UserValidations.h"
 #include "User.h"
-#include "Admin.h"
 #include "LuckyWheel.h"
 
 using namespace std;
@@ -28,7 +28,7 @@ choice:
 	if (choice == 1)
 	{
 		//cout << spacing(60, ' '); Admin::PauseAndClear();
-		//Admin::CheckAdmin(Users, leagues);
+		Admin::CheckAdmin(Users, leagues);
 		homePage(Users, leagues, allGames);
 		return;
 	}
