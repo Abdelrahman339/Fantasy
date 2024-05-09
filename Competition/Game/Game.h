@@ -65,8 +65,8 @@ public:
 	///////////// getters ///////////////////
 	/////////////////////////////////////////
 
-	Teams getAwayTeam();
-	Teams getHomeTeam();
+	Teams* getAwayTeam();
+	Teams* getHomeTeam();
 	string getScore();
 	string getManOfTheMatch();
 	string getStatistics();
