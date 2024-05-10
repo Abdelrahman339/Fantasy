@@ -16,7 +16,7 @@ using namespace chrono_literals;
 
 class LuckyWheel {
 public:
-	void static playLuckyWheel(vector<TheLeague> leagues, User& user);
+	void static playLuckyWheel(vector<TheLeague> leagues, User* user);
 private:
 	//Method to use leagues to randomly display a vector of footballers in which one picked from.
 	void static getFootballPlayersToBeDisplayed(vector<TheLeague> leagues, int& numberOfFootballersToBeDisplayed, unordered_map<string, Footballer>& footballersToBeDisplayed, bool& isRandomGeneratorSeeded);

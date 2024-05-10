@@ -1,25 +1,25 @@
 #include "LuckyWheel.h"
 
 
-void LuckyWheel::playLuckyWheel(vector<TheLeague> leagues, User& user) {
+void LuckyWheel::playLuckyWheel(vector<TheLeague> leagues, User*user) {
 	system("cls");
 
-	if (!user.playWheel()) {
-		user.handleLuckyWheelResult({});
+	if (!user->playWheel()) {
+		user->handleLuckyWheelResult({},user);
 		return;
 	}
-	time_t lastDate = user.getLastDatePlayedWheel();
-	time_t nextSpinDate = user.getNextSpinDate();
+	time_t lastDate = user->getLastDatePlayedWheel();
+	time_t nextSpinDate = user->getNextSpinDate();
 
-	cout << "Last date played: " << user.formatDate(lastDate) << endl;
-	cout << "Next spin scheduled for: " << user.formatDate(nextSpinDate) << endl;
+	cout << "Last date played: " << user->formatDate(lastDate) << endl;
+	cout << "Next spin scheduled for: " << user->formatDate(nextSpinDate) << endl;
 
 	system("pause");
 	system("cls");
 
 	pair<string, pair<float, Footballer>> discountedFootballer = displayLuckyWheel(leagues);
 
-	user.handleLuckyWheelResult(discountedFootballer);
+	user->handleLuckyWheelResult(discountedFootballer,user);
 }
 
 void LuckyWheel::getFootballPlayersToBeDisplayed(vector<TheLeague> leagues, int& numberOfFootballersToBeDisplayed, unordered_map<string, Footballer>& footballersToBeDisplayed, bool& isRandomGeneratorSeeded) {

@@ -9,12 +9,13 @@ using namespace std;
 
 void User::Market(User* currentUser, vector <TheLeague> leagues)
 {
-	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-	cout << spacing(60, ' ') << "             Fatntasy Market" << endl;
-	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-
+	cout << "\n\n\n\n";
+	cout << spacing(70, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << spacing(70, ' ') << "             Fatntasy Market" << endl;
+	cout << spacing(70, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << "\n\n\n\n";
 	unordered_map<string, Footballer> TopPlayer = TopFootballers(leagues);
-	Format343(TopPlayer, "Top Player");
+	Format433(TopPlayer, "Top Player");
 	cout << endl << endl << endl;
 
 invlaidMarket:
@@ -25,19 +26,19 @@ invlaidMarket:
 	if (choice == "1") {
 		cout << spacing(60, ' '); search(currentUser, leagues);
 		cout << spacing(60, ' '); system("pause"); system("cls");
-		cout << spacing(60, ' '); Market(currentUser, leagues);
+		Market(currentUser, leagues);
 	}
 	else if (choice == "2") {
 		cout << spacing(60, ' '); showtopFootballers(TopPlayer, currentUser, leagues);
 		cout << spacing(60, ' '); system("pause"); system("cls");
-		cout << spacing(60, ' '); Market(currentUser, leagues);
+		Market(currentUser, leagues);
 	}
 	else if (choice == "3") {
 		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); string FootballerName;
-		cout << spacing(60, ' '); Format343(currentUser->GetMainSquad(), "Player");
+		Format343(currentUser->GetMainSquad(), "Player");
 		cout << spacing(60, ' '); cout << endl << endl << endl;
-		cout << spacing(60, ' '); showSubstitutions(currentUser->GetSubstitutionSquad());
+		showSubstitutions(currentUser->GetSubstitutionSquad());
 		cout << spacing(60, ' '); cout << endl << endl;
 
 		cout << spacing(60, ' '); cout << "Enter Footballer name that you want to sell." << endl;
@@ -45,7 +46,7 @@ invlaidMarket:
 		cout << spacing(60, ' '); sell(currentUser, TopPlayer, FootballerName);
 		cout << spacing(60, ' '); fromSubtoMain(currentUser->GetMainSquad(), currentUser->GetSubstitutionSquad());
 		cout << spacing(60, ' '); system("cls");
-		cout << spacing(60, ' '); Market(currentUser, leagues);
+		Market(currentUser, leagues);
 	}
 	else if (choice == "4") {
 		system("pause"); system("cls");
@@ -646,10 +647,27 @@ void User::replaceFunction(User* currentUser, string UserFootballerName, Footbal
 	float cost = UserFootballer.GetPrice() - TeamFootballer.GetPrice();
 	if (cost > 0)
 	{
+		char ans;
 		cout << "The cost of replacement will be:" << cost << "$ and will added to your account" << endl;
-		currentUser->addBalance(cost);
-		currentUser->GetMainSquad().erase(UserFootballerName);
-		currentUser->SetFootballer(TeamFootballer);
+		cout << "Are you sure you want to continue?(y/n)\n";
+		cin >> ans;
+		switch (ans)
+		{
+		case'y':
+			currentUser->addBalance(cost);
+			currentUser->GetMainSquad().erase(UserFootballerName);
+			currentUser->SetFootballer(TeamFootballer);
+			cout << "\n\n\n";
+			cout << spacing(60, ' ') << "Player Replaced successfully"<<endl;
+			system("pause");
+			system("cls");
+			break;
+		case'n':
+			system("cls");
+			return;
+		default:
+			break;
+		}
 	}
 	else
 	{
@@ -667,10 +685,16 @@ void User::replaceFunction(User* currentUser, string UserFootballerName, Footbal
 				currentUser->addBalance(cost);
 				currentUser->GetMainSquad().erase(UserFootballerName);
 				currentUser->SetFootballer(TeamFootballer);
+				cout << "\n\n\n";
+				cout << spacing(60, ' ') << "Player Replaced successfully"<<endl;
+				system("pause");
+				system("cls");
 			}
 			else
 			{
 				cout << "You don't have enough money to pay the cost" << endl;
+				system("pause");
+				system("cls");
 				return;
 			}
 			break;
