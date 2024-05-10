@@ -3,60 +3,52 @@
 
 
 
-vector<Footballer> User::GetAllFootballers(TheLeague TheLeague) {
-
-
-	vector <Footballer> allPlayersLeageu;
-
+void User::GetAllFootballers(TheLeague& TheLeague, vector <Footballer*>* allPlayersLeageu) {
 	// looping on all teams in the TheLeague
-	for (auto currentTeam : TheLeague.GetTeams()) {
+	for (auto& currentTeam : *TheLeague.GetTeams()) {
 
 		//loop through all players in the team
-		for (auto currentPlayer : currentTeam.second.getFootballPlayer()) {
-
+		for (auto& currentPlayer : *currentTeam.second->getFootballPlayer()) {
+			Footballer* footballer = &currentPlayer.second;
 			//add the player in the vector of players
-			allPlayersLeageu.push_back(currentPlayer.second);
+			allPlayersLeageu->push_back(footballer);
 		}
 	}
-	return allPlayersLeageu;
 
 }
-vector<Footballer> User::TopFootballersinLeague(vector<Footballer> Footballers)
+vector<Footballer> User::TopFootballersinLeague(vector<Footballer*>* Footballers)
 {
 	vector<Footballer> top5players;
-	sort(Footballers.begin(), Footballers.end(), comparePlayersByPoints);
+	sort(Footballers->begin(), Footballers->end(), comparePlayersByPoints);
 	for (int i = 0; i < 5; i++)
 	{
-		top5players.push_back(Footballers.at(i));
+		top5players.push_back(*Footballers->at(i));
 	}
 	return top5players;
 }
 
 
-void User::toUnordredMap(unordered_map<string, Footballer>& topPlayers, vector<Footballer> top5players)
+void User::toUnordredMap(unordered_map<string, Footballer*>& topPlayers, vector<Footballer>& top5players)
 {
-	for (auto player : top5players)
-	{
-		topPlayers.insert_or_assign(player.GetName(), player);
+	for (auto& player : top5players) {
+		Footballer* footballer = &player;
+		topPlayers.insert_or_assign(footballer->GetName(), footballer);
 	}
 }
 
 
-unordered_map<string, Footballer> User::TopFootballers(vector<TheLeague> leageus)
+void User::TopFootballers(unordered_map<string, Footballer*>* topPlayers, vector<TheLeague>& leageus)
 {
-	unordered_map<string, Footballer> topPlayers;
+	vector <Footballer*>* allPlayersinLeague = new vector <Footballer*>();
+	vector<Footballer> top5;
 
-	vector <Footballer> allPlayersinLeague;
-
-	vector<Footballer>top5;
 	for (int i = 0; i < leageus.size(); i++)
 	{
-		allPlayersinLeague = GetAllFootballers(leageus[i]);
+		GetAllFootballers(leageus[i], allPlayersinLeague);
 		top5 = TopFootballersinLeague(allPlayersinLeague);
-		toUnordredMap(topPlayers, top5);
+		toUnordredMap(*topPlayers, top5);
+		allPlayersinLeague = new vector <Footballer*>();
 	}
-
-	return topPlayers;
 };
 
 
@@ -65,8 +57,8 @@ unordered_map<string, Footballer> User::TopFootballers(vector<TheLeague> leageus
 
 
 
-bool User::comparePlayersByPoints(Footballer& player1, Footballer& player2) {
-	return player1.GetTotalpoints() > player2.GetTotalpoints();
+bool User::comparePlayersByPoints(Footballer* player1, Footballer* player2) {
+	return player1->GetTotalpoints() > player2->GetTotalpoints();
 }
 
 
@@ -81,7 +73,7 @@ bool User::comparePlayersByPoints(Footballer& player1, Footballer& player2) {
 vector <User> User::moveTovector(unordered_map<string, User> Users) {
 
 	vector <User> topUsers;
-	for (auto kv : Users) {
+	for (auto& kv : Users) {
 		topUsers.push_back(kv.second);
 	}
 	return topUsers;

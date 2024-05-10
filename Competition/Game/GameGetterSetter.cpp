@@ -4,8 +4,8 @@ using namespace std;
 #include <stack>
 #include "highlightsOfTheMatch.h"
 
-Teams* Game::getAwayTeam() { return &awayTeam; }
-Teams* Game::getHomeTeam() { return &homeTeam; }
+Teams* Game::getAwayTeam() { return awayTeam; }
+Teams* Game::getHomeTeam() { return homeTeam; }
 string Game::getScore() { return score; }
 string Game::getManOfTheMatch() { return manOfTheMatch; }
 string Game::getStatistics() { return statistics; }
@@ -25,8 +25,8 @@ int Game::getGameId()
 
 
 // Setters
-void Game::setAwayTeam(Teams team) { awayTeam = team; }
-void Game::setHomeTeam(Teams team) { homeTeam = team; }
+void Game::setAwayTeam(Teams* team) { awayTeam = team; }
+void Game::setHomeTeam(Teams* team) { homeTeam = team; }
 void Game::setScore(string newScore) { score = newScore; }
 void Game::setManOfTheMatch(string newManOfTheMatch) { this->manOfTheMatch = newManOfTheMatch; }
 void Game::setStatistics(string newStatistics) { statistics = newStatistics; }

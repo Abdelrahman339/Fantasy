@@ -128,16 +128,16 @@ string User::GetFullName()
 }
 
 
-bool User::SetFootballer(Footballer footballer)
+bool User::SetFootballer(Footballer* footballer)
 {
 	if (TheMainSquad.size() < 11)
 	{
 
-		TheMainSquad.insert_or_assign(footballer.GetName(), footballer);
+		TheMainSquad.insert_or_assign(footballer->GetName(), footballer);
 		return true;
 	}
 	else if (TheMainSquad.size() == 11 && SubstitutionSquad.size() < 4) {
-		SubstitutionSquad.insert_or_assign(footballer.GetName(), footballer);
+		SubstitutionSquad.insert_or_assign(footballer->GetName(), footballer);
 		return true;
 	}
 	else if (TheMainSquad.size() == 11 && SubstitutionSquad.size() == 4)

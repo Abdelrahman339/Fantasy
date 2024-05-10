@@ -152,7 +152,7 @@ stack<string> User::GetUserTeams(User* currentUser)
 {
 	stack<string> userTeams;
 	for (auto& kv : currentUser->GetMainSquad()) {
-		string teamName = kv.second.GetTeam();
+		string teamName = kv.second->GetTeam();
 		userTeams.push(teamName);
 	}
 	return userTeams;
