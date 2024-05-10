@@ -27,10 +27,10 @@ choice:
 	cout << spacing(60, ' '); cin >> choice;
 	if (choice == 1)
 	{
-		//cout << spacing(60, ' '); Admin::PauseAndClear();
-		//Admin::CheckAdmin(*Users, leagues);
-		homePage(Users, leagues, allGames);
-		return;
+		cout << spacing(60, ' '); Admin::PauseAndClear();
+		Admin::CheckAdmin(*Users, leagues);
+		//homePage(Users, leagues, allGames);
+		goto choice;
 	}
 	else if (choice == 2)
 	{

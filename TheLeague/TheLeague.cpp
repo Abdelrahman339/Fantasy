@@ -3,11 +3,11 @@
 #include <algorithm> // for sort
 
 
-void TheLeague::displayTeams(map<string, Teams> teams) {
+void TheLeague::displayTeams(map<string, Teams*>* teams) {
 	cout << string(48, '-') << endl;
 	cout << "Name" << "\t\t\t       " << "Points" << endl;
-	for (auto it = teams.begin(); it != teams.end(); ++it) {
-		cout << it->second.getName() << "\t\t" << checkStrLengthTeams(it->second.getName()) << it->second.getPoints() << endl;
+	for (auto it = teams->begin(); it != teams->end(); ++it) {
+		cout << it->second->getName() << "\t\t" << checkStrLengthTeams(it->second->getName()) << it->second->getPoints() << endl;
 	}
 	cout << string(48, '-') << endl;
 }

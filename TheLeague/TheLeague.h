@@ -15,7 +15,7 @@ protected:
 public:
 	TheLeague();
 	TheLeague(string name, map<string, Teams*>* teams);
-	void static displayTeams(map<string, Teams> Teams);
+	void static displayTeams(map<string, Teams*>* Teams);
 	string static checkStrLengthTeams(const std::string& str);
 	//void updatePoints( list <Game> allgames);
 	//void displayPointTable();

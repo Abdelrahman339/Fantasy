@@ -28,21 +28,21 @@ public:
 	void static Deletion(unordered_map<string, User>& Users, User DeletedUser);
 
 	//players
-	void static handlePlayersUpdate(unordered_map<string, Footballer>& players, string oldName);
+	void static handlePlayersUpdate(unordered_map<string, Footballer>* players, string oldName);
 	string static checkStrLengthFootballers(string strs);
-	static Footballer* handleFootballerExistance(unordered_map<string, Footballer>& players, string playerName);
+	static Footballer* handleFootballerExistance(unordered_map<string, Footballer>* players, string playerName);
 
-	void static FootballerMenu(map<string, Teams>& teams);
-	unordered_map<string, Footballer> static ModifyFootballer(unordered_map<string, Footballer>& players);
+	void static FootballerMenu(map<string, Teams*>* teams);
+	static unordered_map<string, Footballer>* ModifyFootballer(unordered_map<string, Footballer>* players);
 	void static DisplayFootballersForSpecificTeam(Teams& selectedTeam);
 
 
-	static Teams* handleTeamExistance(map<string, Teams>& teams, string teamName);
+	static Teams* handleTeamExistance(map<string, Teams*>* teams, string teamName);
 	//teams
-	void static handleTeamsUpdate(map<string, Teams>& teams, string oldName);
+	void static handleTeamsUpdate(map<string, Teams*>* teams, string oldName);
 
 	void static TeamMenu(vector<TheLeague>& leagues);
-	map<string, Teams> static ModifyTeams(map<string, Teams>& teams);
+	static map<string, Teams*>*  ModifyTeams(map<string, Teams*>* teams);
 	void static displayTeamsForSpecificLeague(TheLeague& league);
 	//leagues
 	static TheLeague* handleLeagueExistance(vector<TheLeague>& leagues, string leagueName);
@@ -50,8 +50,8 @@ public:
 	void static DisplayAllLeagues(vector<TheLeague>& leagues);
 	void static UpdateLeagueName(vector<TheLeague>& leagues);
 	vector<string> static getStringsToSearchIn(vector<TheLeague>& leagues);
-	vector<string> static getStringsToSearchIn(map<string, Teams>& teams);
-	vector<string> static getStringsToSearchIn(unordered_map<string, Footballer>& players);
+	vector<string> static getStringsToSearchIn(map<string, Teams*>* teams);
+	vector<string> static getStringsToSearchIn(unordered_map<string, Footballer>* players);
 	string static getCorrectedString(vector<string> allNames, string stringToSearchFor);
 	string static toLowerCase(const string& str);
 	string static toProperCase(const string& str);

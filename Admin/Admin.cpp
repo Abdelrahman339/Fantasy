@@ -92,7 +92,7 @@ Choose:
 	cin >> choice;
 	if (choice == 1)
 	{
-		User::signup(Users);
+		User::signup(&Users);
 		cout << "Successfully Added Your New User " << endl;
 		PauseAndClear();
 		goto Choose;
@@ -180,7 +180,7 @@ choices:
 	}
 	else if (choice == 2)
 	{
-		User::ShowSquad(currentUser);
+		User::ShowSquad(&currentUser);
 		ViewProfile(Users, currentUser);
 	}
 	else if (choice == 3)
@@ -223,7 +223,7 @@ choices:
 		User newusername;
 		valid = true;
 		auto it = Users.find(currentUser.GetUsername());//old username
-		UserValidations::usernameCheck(Users, currentUser);  //updated username
+		UserValidations::usernameCheck(&Users, currentUser);  //updated username
 		if (it != Users.end()) // if old username exists
 		{
 			Users.insert({ currentUser.GetUsername(), currentUser });   //update the username
@@ -357,7 +357,7 @@ void Admin::UserSquadAndPlayers(unordered_map<string, User>& Users)
 	}
 	else
 	{
-		User::ShowSquad(Users.at(userName));
+		User::ShowSquad(&Users.at(userName));
 		AboutUsers(Users);
 	}
 }
@@ -442,7 +442,7 @@ beginning:
 	if (leagueToBeModified == nullptr) {
 		goto beginning;
 	}
-	map<string, Teams> modifiedTeams = leagueToBeModified->GetTeams();
+	map<string, Teams*>* modifiedTeams = leagueToBeModified->GetTeams();
 start:
 	displayTeamsForSpecificLeague(*leagueToBeModified);
 	cout << "1) Modify a Team" << endl;
@@ -470,7 +470,7 @@ start:
 	}
 }
 
-map<string, Teams> Admin::ModifyTeams(map<string, Teams>& teams) {
+map<string, Teams*>* Admin::ModifyTeams(map<string, Teams*>* teams) {
 	int choice;
 	string teamName;
 	string InputString;
@@ -489,7 +489,8 @@ TeamNotFound:
 	system("cls");
 	do {
 	ModifySameTeam:
-		cout << "\tModifying " << teams[TeamToBeModified->getName()].getName() << " information" << endl;
+		Teams* currentTeam = teams->at(TeamToBeModified->getName());
+		cout << "\tModifying " << currentTeam->getName() << " information" << endl;
 		cout << string(48, '-') << endl;
 		cout << "What do you wish to Edit?" << endl;
 		cout << "1) Name" << endl;
@@ -506,11 +507,11 @@ TeamNotFound:
 		case 2:
 			cout << "Enter new Points: ";
 			cin >> InputInt;
-			teams[TeamToBeModified->getName()].SetPoints(InputInt);
+			currentTeam->SetPoints(InputInt);
 			cout << "Updated Successfully!" << endl;
 			break;
 		case 3:
-			teams.erase(TeamToBeModified->getName());
+			teams->erase(currentTeam->getName());
 			cout << "Deleted Successfully!" << endl;
 			Sleep(1000);
 			break;
@@ -536,9 +537,9 @@ void Admin::displayTeamsForSpecificLeague(TheLeague& league) {
 }
 
 
-Footballer* Admin::handleFootballerExistance(unordered_map<string, Footballer>& players, string playerName) {
-	auto it = players.find(toProperCase(playerName));
-	if (it != players.end()) {
+Footballer* Admin::handleFootballerExistance(unordered_map<string, Footballer>* players, string playerName) {
+	auto it = players->find(toProperCase(playerName));
+	if (it != players->end()) {
 		return &it->second;
 	}
 	else {
@@ -548,7 +549,7 @@ Footballer* Admin::handleFootballerExistance(unordered_map<string, Footballer>& 
 	}
 }
 
-void Admin::FootballerMenu(map<string, Teams>& teams) {
+void Admin::FootballerMenu(map<string, Teams*>* teams) {
 	string teamName;
 	vector<string> allNames = getStringsToSearchIn(teams);
 	cin.ignore();
@@ -561,7 +562,7 @@ TeamNotFound:
 	if (selectedTeam == nullptr) {
 		goto TeamNotFound;
 	}
-	unordered_map<string, Footballer> modifiedPlayers = selectedTeam->getFootballPlayer();
+	unordered_map<string, Footballer>* modifiedPlayers = selectedTeam->getFootballPlayer();
 footballersDisplay:
 	DisplayFootballersForSpecificTeam(*selectedTeam);
 	cout << "1) Modify a Footballer" << endl;
@@ -584,7 +585,7 @@ footballersDisplay:
 	}
 }
 
-unordered_map<string, Footballer> Admin::ModifyFootballer(unordered_map<string, Footballer>& players) {
+unordered_map<string, Footballer>* Admin::ModifyFootballer(unordered_map<string, Footballer>* players) {
 	int choice;
 	string InputString;
 	float InputInt;
@@ -603,7 +604,8 @@ PlayerNotFound:
 	}
 	system("cls");
 	do {
-		cout << "Modify " << footballerToBeModified->GetName() << "'s information" << endl;
+		Footballer currentFootballer = players->at(footballerToBeModified->GetName());
+		cout << "\tModifying " << currentFootballer.GetName() << " information" << endl;		cout << "Modify " << footballerToBeModified->GetName() << "'s information" << endl;
 		cout << "What do you wish to Edit?" << endl;
 		cout << "1) Name" << endl;
 		cout << "2) Age" << endl;
@@ -632,46 +634,46 @@ PlayerNotFound:
 				goto retryAgeInput;
 			}
 			else {
-				players[footballerToBeModified->GetName()].SetAge(InputInt);
+				currentFootballer.SetAge(InputInt);
 				cout << "Successfully Updated." << endl;
 				break;
 			}
 		case 3:
 			cout << "Is the Player a Captain? (1 for Yes / 0 for No): ";
 			cin >> InputBool;
-			players[footballerToBeModified->GetName()].SetCaptain(InputBool);
+			currentFootballer.SetCaptain(InputBool);
 			cout << "Successfully Updated." << endl;
 			break;
 		case 4:
 			cout << "Enter new position: ";
 			cin.ignore();
 			getline(cin, InputString);
-			players[footballerToBeModified->GetName()].SetPosition(InputString);
+			currentFootballer.SetPosition(InputString);
 			cout << "Successfully Updated." << endl;
 			break;
 		case 5:
 			cout << "Enter new team: ";
 			cin.ignore();
 			getline(cin, InputString);
-			players[footballerToBeModified->GetName()].SetTeam(InputString);
+			currentFootballer.SetTeam(InputString);
 			cout << "Successfully Updated." << endl;
 			break;
 		case 6:
 			cout << "Enter new price: ";
 
 			cin >> InputInt;
-			players[footballerToBeModified->GetName()].SetPrice(InputInt);
+			currentFootballer.SetPrice(InputInt);
 			cout << "Successfully Updated." << endl;
 			break;
 		case 7:
 			cout << "Enter new rating: ";
 			cin >> InputInt;
-			players[footballerToBeModified->GetName()].SetRating(InputInt);
+			currentFootballer.SetRating(InputInt);
 			cout << "Successfully Updated." << endl;
 			break;
 		case 8:
 			cout << "Deleted Successfully!" << endl;
-			players.erase(footballerToBeModified->GetName());
+			players->erase(footballerToBeModified->GetName());
 			break;
 		case 9:
 			return players;
@@ -690,11 +692,11 @@ PlayerNotFound:
 	} while (InputString._Starts_with("yes") || InputString._Starts_with("Yes"));
 	return players;
 }
-Teams* Admin::handleTeamExistance(map<string, Teams>& teams, string teamName) {
+Teams* Admin::handleTeamExistance(map<string, Teams*>* teams, string teamName) {
 
-	auto it = teams.find(toProperCase(teamName));
-	if (it != teams.end()) {
-		return &it->second;
+	auto it = teams->find(toProperCase(teamName));
+	if (it != teams->end()) {
+		return it->second;
 	}
 	else {
 		cout << "Couldn't Find This Team.." << endl;
@@ -725,17 +727,17 @@ string Admin::toProperCase(const std::string& str) {
 	return result;
 }
 
-void Admin::handleTeamsUpdate(map<string, Teams>& teams, string oldName) {
+void Admin::handleTeamsUpdate(map<string, Teams*>* teams, string oldName) {
 	string newName;
 	cout << "Enter new name: ";
 	cin.ignore();
 	getline(cin, newName);
 	string properNewName = toProperCase(newName);
-	auto it = teams.find(toProperCase(oldName));
-	if (it != teams.end()) {
-		teams[properNewName] = it->second;
-		teams[properNewName].SetName(newName);
-		teams.erase(it);
+	auto it = teams->find(toProperCase(oldName));
+	if (it != teams->end()) {
+		teams->insert(make_pair(properNewName, it->second));
+		teams->at(properNewName)->SetName(newName);
+		teams->erase(it);
 	}
 	else {
 		cout << "Key " << oldName << " not found." << endl;
@@ -743,13 +745,13 @@ void Admin::handleTeamsUpdate(map<string, Teams>& teams, string oldName) {
 }
 
 void Admin::DisplayFootballersForSpecificTeam(Teams& selectedTeam) {
-	unordered_map<string, Footballer> players = selectedTeam.getFootballPlayer();
-	unordered_map<string, Footballer>::iterator it = players.begin();
+	unordered_map<string, Footballer>* players = selectedTeam.getFootballPlayer();
+	unordered_map<string, Footballer>::iterator it = players->begin();
 	system("cls");
 	cout << "\t\t~Players in " << selectedTeam.getName() << "~" << endl;
 	cout << string(60,'-') << endl;
 	cout << "\t  Name" << User::spacing(15, ' ') << "\tPosition" << User::spacing(15, ' ') << "\tPrice" << endl << endl;
-	for (it; it != players.end(); ++it) {
+	for (it; it != players->end(); ++it) {
 		cout << "\t" << it->second.GetName() << "\t" << checkStrLengthFootballers(it->first) << it->second.GetPosition() << "\t" << checkStrLengthFootballers(it->second.GetPosition()) << it->second.GetPrice() << endl;
 	}
 	cout << string(60, '-') << endl;
@@ -871,39 +873,39 @@ vector<string> Admin::getStringsToSearchIn(vector<TheLeague>& leagues) {
 	return leagueNames;
 }
 
-vector<string> Admin::getStringsToSearchIn(map<string, Teams>& teams) {
+vector<string> Admin::getStringsToSearchIn(map<string, Teams*>* teams) {
 	vector<string> teamNames;
 
-	for (auto it = teams.begin(); it != teams.end(); ++it) {
+	for (auto it = teams->begin(); it != teams->end(); ++it) {
 		string teamName = toLowerCase(it->first);
 		teamNames.push_back(teamName);
 	}
 	return teamNames;
 }
 
-vector<string> Admin::getStringsToSearchIn(unordered_map<string, Footballer>& players)
+vector<string> Admin::getStringsToSearchIn(unordered_map<string, Footballer>* players)
 {
 	vector<string> playerNames;
-	for (auto it = players.begin(); it != players.end(); ++it) {
+	for (auto it = players->begin(); it != players->end(); ++it) {
 		string playerName = toLowerCase(it->first);
 		playerNames.push_back(playerName);
 	}
 	return playerNames;
 }
 
-void Admin::handlePlayersUpdate(unordered_map<string, Footballer>& players, string oldName) {
+void Admin::handlePlayersUpdate(unordered_map<string, Footballer>* players, string oldName) {
 	string newName;
 	cout << "Enter new name: ";
 	cin.ignore();
 	getline(cin, newName);
 	string properNewName = toProperCase(newName);
-	auto it = players.find(toProperCase(oldName));
-	if (it != players.end()) {
+	auto it = players->find(toProperCase(oldName));
+	if (it != players->end()) {
 		// Inserting a new element with the new key and same value
-		players[properNewName] = it->second;
-		players[properNewName].SetName(newName);
+		players->insert(make_pair(properNewName, it->second));
+		players->at(properNewName).SetName(newName);
 		// Erasing the old element
-		players.erase(it);
+		players->erase(it);
 	}
 	else {
 		cout << "Key " << oldName << " not found." << endl;
