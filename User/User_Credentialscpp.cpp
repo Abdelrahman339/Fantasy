@@ -38,9 +38,12 @@ choice:
 	}
 	else if (choice == 3)
 	{
-		//cout << spacing(60, ' '); Admin::PauseAndClear();
+		system("pause");
+		system("cls");
+		cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << spacing(60, ' ') << "        -Sign up-" << endl;
+		cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 		signup(Users);
-		//cout << spacing(60, ' '); Admin::PauseAndClear();
 		toLogin(Users, leagues, allGames);
 		return;
 	}
@@ -127,6 +130,7 @@ void User::signup(unordered_map<string, User>* Users)
 }
 void User::userMenu(User* currentUser, unordered_map<string, User>* Users, vector <TheLeague>& leagues, list<Game>* allGames)
 {
+	endOfSeasonScreen(allGames, *Users);
 	int choice;
 choice:
 	cout << "\n\n\n\n";
@@ -140,6 +144,7 @@ choice:
 	{
 		system("cls");
 		profile(currentUser, Users);
+		system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
@@ -147,6 +152,7 @@ choice:
 	{
 		system("cls");
 		ShowSquad(currentUser);
+		system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
@@ -156,6 +162,7 @@ choice:
 		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
 		FilteringTeams(*allGames, currentUser, oldUserGames, "CurrentUser");
+		system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
@@ -163,13 +170,15 @@ choice:
 	{
 		system("cls");
 		play(allGames, currentUser, Users);
+		system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 5)
 	{
 		system("cls");
-		LuckyWheel::playLuckyWheel(leagues, *currentUser);
+		LuckyWheel::playLuckyWheel(leagues, currentUser);
+		system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
@@ -177,6 +186,7 @@ choice:
 	{
 		system("cls");
 		showTopUsers(*Users);
+		system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}

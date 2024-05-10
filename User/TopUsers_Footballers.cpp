@@ -84,13 +84,13 @@ vector<User> User::sortingUsers(vector<User> TopUsers) {
 
 	sort(TopUsers.begin(), TopUsers.end(), compareUsersByPoints);
 
-	vector<User>top5users;
+	vector<User>top3users;
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < TopUsers.size(); i++)
 	{
-		top5users.push_back(TopUsers[i]);
+		top3users.push_back(TopUsers[i]);
 	}
-	return top5users;
+	return top3users;
 };
 
 
@@ -106,9 +106,18 @@ void User::showTopUsers(unordered_map<string, User> Users) {
 	vector<User> users;
 	users = moveTovector(Users);
 	vector<User>topUsers;
-	topUsers = sortingUsers(users);
+	try
+	{
 
+		topUsers = sortingUsers(users);
+	}
+	catch (const std::exception&)
+	{
+		cout << "The season didnt start yet!" << endl;
+		return;
+	}
 
+	cout << "\n\n\n\n";
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << spacing(60, ' ') << "         ##Top Users in the season!!##           " << endl;
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
@@ -120,10 +129,34 @@ void User::showTopUsers(unordered_map<string, User> Users) {
 		for (int i = 0; i < topUsers.size(); i++) {
 
 			//cout << spacing(topUsers[i].GetUsername().size() + 6, '*') << endl;
-			cout << "* " << i + 1 << " -" << topUsers[i].GetUsername() << " Points: " << topUsers[i].GetPoints() << " * " << endl;
+			cout << spacing(60, ' ') << "* " << i + 1 << " -" << topUsers[i].GetUsername() << " Points: " << topUsers[i].GetPoints() << " * " << endl;
 			//cout << spacing(topUsers[i].size() + 6, '*') << endl;
 		}
+
+		system("pause");
 	}
 };
 
 
+void User::endOfSeasonScreen(list<Game>* allGames, unordered_map<string, User>Users) {
+
+	User topUser;
+	vector<User> topUsers = moveTovector(Users);
+	topUsers = sortingUsers(topUsers);
+	topUser = topUsers.front();
+
+	if (allGames->size() == 0)
+	{
+		cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << spacing(60, ' ') << "     Fantasy season has ended!!!" << endl;
+		cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "\n\n\n";
+		cout << spacing(60, ' ') << "congratulations to our first rank winner!!!" << endl;
+
+		cout << spacing(60, ' ') << spacing(topUser.GetUsername().size() + 4, '*');
+		cout << spacing(20, ' ') << "* " << topUser.GetUsername() << " *" << endl;
+		cout << spacing(60, ' ') << spacing(topUser.GetUsername().size() + 4, '*');
+		system("pause");
+		system("cls");
+	}
+};

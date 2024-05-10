@@ -9,6 +9,7 @@
 #include <stack>
 #include "unordered_map"
 #include <algorithm>
+#include<ctime>
 
 #include "Footballer.h"
 #include "TheLeague.h"
@@ -26,8 +27,8 @@ protected:
 	int id;
 	int points;
 	float balance;
-	unordered_map <string, Footballer*>TheMainSquad;
-	unordered_map <string, Footballer*>SubstitutionSquad;
+	unordered_map <string, Footballer>TheMainSquad;
+	unordered_map <string, Footballer>SubstitutionSquad;
 	queue<Game> UserGames; // queue of the user games that he will play in the round.
 	time_t lastDatePlayedWheel; // Store the last date the wheel was played by this user.
 	time_t nextSpinDate; // Store the next time the user will play the wheel.
@@ -38,7 +39,7 @@ public:
 	//unordered_map<string, Footballer*> mainSquad, unordered_map<string, Footballer*> substitutionSquad
 	User(int id, string fullName, string username, string Email, string password,
 		string phoneNumber, int points, float balance,
-		unordered_map<string, Footballer*> mainSquad, unordered_map<string, Footballer*> substitutionSquad,
+		unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad,
 		time_t lastDatePlayedWheel, time_t nextSpinDate);
 
 	// getter and setter and constructor
@@ -71,8 +72,8 @@ public:
 	int GetRank();
 	int GetPoints();
 	float GetBalance();
-	unordered_map<string, Footballer*>& GetMainSquad();
-	unordered_map<string, Footballer*>& GetSubstitutionSquad();
+	unordered_map<string, Footballer>& GetMainSquad();
+	unordered_map<string, Footballer>& GetSubstitutionSquad();
 
 	queue<Game>& GetUserGames();
 
@@ -85,7 +86,7 @@ public:
 	bool hasFootballer(string& footballerName);
 
 	// Method to handle playing the lucky wheel and handling the discounted footballer
-	void handleLuckyWheelResult(pair<string, pair<float, Footballer>> result);
+	void handleLuckyWheelResult(pair<string, pair<float, Footballer>> result,User *user);
 
 
 	///////////////////////////////////////////////////////////////////////////////////
@@ -163,7 +164,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	void static play(list<Game>* allGames, User* currentUser, unordered_map<string, User>* Users);
 
-	void static showCurrentMatch(queue<Game>& UserGames);
+	bool static showCurrentMatch(queue<Game>& UserGames,list<Game>*allGames);
 
 	void static FilteringTeams(list<Game> allGames, User* currentUser, stack<string> oldUserTeams, string status);
 
@@ -210,6 +211,8 @@ public:
 	bool static compareUsersByPoints(User& User1, User& User2);
 
 	void static showTopUsers(unordered_map<string, User> Users);
+
+	void static endOfSeasonScreen(list<Game>* allGames, unordered_map<string, User>Users);
 };
 
 

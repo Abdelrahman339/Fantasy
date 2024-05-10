@@ -14,6 +14,54 @@ Statistics (Home - Away)
 Man of the Match
 Round (1 - 2 - 3)
 ----
+1
+Atletico Madrid
+Real Madrid
+Atletico Madrid
+3 - 1
+Statistics
+4 - 4
+10 - 19
+40 - 60
+17 - 11
+1 - 1
+6 - 11
+3 - 1
+Antoine Griezmann
+3
+----
+2
+Juventus
+AS Roma
+Draw
+1 - 1
+Statistics
+3 - 3
+13 - 6
+49 - 51
+17 - 7
+0 - 1
+4 - 5
+2 - 2
+Dusan Vlahovic
+3
+----
+3
+Inter Milan
+Napoli
+Draw
+1 - 1
+Statistics
+4 - 3
+16 - 10
+49 - 51
+19 - 8
+3 - 0
+5 - 7
+2 - 3
+Juan Jesus
+3
+----
 4
 Manchester City
 Manchester United
@@ -82,16 +130,16 @@ Vinicius Junior
 Atletico Madrid
 Sevilla
 Atletico Madrid
-6 - 1
+1 - 0
 Statistics
-8 - 1
-16 - 6
+3 - 3
+7 - 6
 48 - 52
 12 - 11
 1 - 1
 7 - 3
 1 - 2
-Alvaro Morata
+Marcos Llorente
 1
 ----
 9
@@ -178,7 +226,7 @@ Erling Haaland
 Arsenal
 Liverpool
 Arsenal
-3 - 2
+3 - 1
 Statistics
 4 - 3
 5 - 7
@@ -225,8 +273,8 @@ Robert Lewandowski
 17
 Sevilla
 Valencia
-Valencia
-1 - 2
+Draw
+0 - 0
 Statistics
 3 - 3
 8 - 10
@@ -273,8 +321,8 @@ Romelu Lukaku
 20
 Manchester United
 Liverpool
-Manchester United
-4 - 3
+Draw
+0 - 0
 Statistics
 10 - 11
 22 - 23
@@ -289,8 +337,8 @@ Mohamed Salah
 21
 Tottenham Hotspur
 Manchester City
-Tottenham Hotspur
-1 - 0
+Manchester City
+0 - 1
 Statistics
 3 - 4
 9 - 14
@@ -299,7 +347,7 @@ Statistics
 2 - 1
 4 - 6
 4 - 2
-Son Heung-min
+Ake
 3
 ----
 22
@@ -322,7 +370,7 @@ Gabriel Martinelli
 Girona
 Sevilla
 Girona
-5 - 1
+2 - 1
 Statistics
 6 - 3
 11 - 7
@@ -348,52 +396,4 @@ Statistics
 13 - 3
 4 - 6
 Sergio Ramos
-3
-----
-1
-Atletico Madrid
-Real Madrid
-Atletico Madrid
-3 - 1
-Statistics
-4 - 4
-10 - 19
-40 - 60
-17 - 11
-1 - 1
-6 - 11
-3 - 1
-Antoine Griezmann
-3
-----
-2
-Juventus
-AS Roma
-Draw
-1 - 1
-Statistics
-3 - 3
-13 - 6
-49 - 51
-17 - 7
-0 - 1
-4 - 5
-2 - 2
-Dusan Vlahovic
-3
-----
-3
-Inter Milan
-Napoli
-Draw
-1 - 1
-Statistics
-4 - 3
-16 - 10
-49 - 51
-19 - 8
-3 - 0
-5 - 7
-2 - 3
-Juan Jesus
 3

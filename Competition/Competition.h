@@ -49,7 +49,7 @@ public:
 
 	void static updatecurrentUserPoint(Game currentGame, User* currentUser);
 
-	void static deletefromList(list<Game>* allGames, int gameid);
+	void static deletefromList(list<Game>& allGames, int gameid);
 
 	void static deleteallGameRound(list<Game>* allgames);
 	//suspend functions
