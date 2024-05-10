@@ -6,6 +6,11 @@
 string Footballer::GetName() {
 	return this->name;
 }
+string& Footballer::GetAddressName() {
+	return this->name;
+}
+Footballer::~Footballer() {
+}
 Footballer::Footballer() {
 	this->name = "";
 	this->age = 0;

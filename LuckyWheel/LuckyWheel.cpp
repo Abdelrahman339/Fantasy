@@ -5,7 +5,7 @@ void LuckyWheel::playLuckyWheel(vector<TheLeague> leagues, User*user) {
 	system("cls");
 
 	if (!user->playWheel()) {
-		user->handleLuckyWheelResult({},user);
+		user->handleLuckyWheelResult({},*user);
 		return;
 	}
 	time_t lastDate = user->getLastDatePlayedWheel();
@@ -19,10 +19,13 @@ void LuckyWheel::playLuckyWheel(vector<TheLeague> leagues, User*user) {
 
 	pair<string, pair<float, Footballer>> discountedFootballer = displayLuckyWheel(leagues);
 
-	user->handleLuckyWheelResult(discountedFootballer,user);
+	user->handleLuckyWheelResult(discountedFootballer,*user);
 }
 
-void LuckyWheel::getFootballPlayersToBeDisplayed(vector<TheLeague> leagues, int& numberOfFootballersToBeDisplayed, unordered_map<string, Footballer>& footballersToBeDisplayed, bool& isRandomGeneratorSeeded) {
+void LuckyWheel::getFootballPlayersToBeDisplayed(vector<TheLeague> leagues,
+	int& numberOfFootballersToBeDisplayed,
+	unordered_map<string, Footballer>& footballersToBeDisplayed,
+	bool& isRandomGeneratorSeeded) {
 
 	// Seed the random number generator (optional but recommended)
 	if (!isRandomGeneratorSeeded) {
@@ -36,7 +39,7 @@ void LuckyWheel::getFootballPlayersToBeDisplayed(vector<TheLeague> leagues, int&
 	// Select a random league
 	int random_league_index = rand() % leagues.size();
 	TheLeague selectedLeague = leagues[random_league_index];
-	map<string, Teams> teams = selectedLeague.GetTeams();
+	map<string, Teams*>* teams = selectedLeague.GetTeams();
 	// Print league information
 	//cout << "Selected League: " << selectedLeague.getLeagueName() << endl;
 
@@ -53,11 +56,11 @@ void LuckyWheel::getFootballPlayersToBeDisplayed(vector<TheLeague> leagues, int&
 	}
 	int random_team_index = rand() % teamNames.size();
 	string selectedTeamName = teamNames[random_team_index];
-	Teams selectedTeam = teams[selectedTeamName];
+	Teams* selectedTeam = teams->at(selectedTeamName);
 
 	// Print selected team name
 	//cout << "Selected Team Name: " << selectedTeamName << endl;
-	unordered_map<string, Footballer> footballers = selectedTeam.getFootballPlayer();
+	unordered_map<string, Footballer> footballers = *selectedTeam->getFootballPlayer();
 
 	if (footballers.empty()) {
 		cout << "No footballers found in selected league." << endl;

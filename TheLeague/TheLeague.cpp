@@ -75,24 +75,24 @@ TheLeague::TheLeague() {
 	this->teams = {};
 }
 
-TheLeague::TheLeague(string name, map<string, Teams> teams) {
+TheLeague::TheLeague(string name, map<string, Teams*>* teams) {
 	this->name = name;
 	this->teams = teams;
 }
 
-map<string, Teams>& TheLeague::GetTeams()
+map<string, Teams*>* TheLeague::GetTeams()
 {
 	return this->teams;
 }
 
-void TheLeague::SetTeams(map<string, Teams> teams) {
+void TheLeague::SetTeams(map<string, Teams*>* teams) {
 	this->teams = teams;
 }
 
-vector<string> TheLeague::getTeamNames(map<string, Teams> teams) {
+vector<string> TheLeague::getTeamNames(map<string, Teams*>* teams) {
 	vector<string> teamNames;
 
-	for (auto& [teamName, teamData] : teams)
+	for (auto& [teamName, teamData] : *teams)
 		teamNames.push_back(teamName);
 
 	return teamNames;

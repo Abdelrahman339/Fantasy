@@ -68,8 +68,8 @@ void Game::displayStatisitcs(Game currentGame)
 }
 
 Game::Game() {
-	this->awayTeam = Teams();
-	this->homeTeam = Teams();
+	this->awayTeam = {};
+	this->homeTeam = {};
 	this->winningTeam = "";
 	this->score = "";
 	this->manOfTheMatch = "";
@@ -79,7 +79,7 @@ Game::Game() {
 }
 
 
-Game::Game(int id, Teams home, Teams away, string winTeam, string score,
+Game::Game(int id, Teams* home, Teams* away, string winTeam, string score,
 	string stats, stack<HighlightsOfTheMatch> highlights, string motm, int round) {
 	this->GameId = id;
 	this->awayTeam = away;
@@ -100,7 +100,7 @@ void Game::displayPlayerHighlights(Game game) {
 
 	while (!currentHighlight.empty()) {
 
-		string playerName = currentHighlight.top().getName();
+		string playerName = *currentHighlight.top().getName();
 		string Contributes = currentHighlight.top().getContributions();
 		size_t found_goals = Contributes.find("Goals:");
 		set<int> generatedMinutes; //----------->keeping track of GoalMinutes to avoid repitiion and keep it unique

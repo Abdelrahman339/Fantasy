@@ -38,6 +38,7 @@ protected:
 
 
 public:
+	~Footballer();
 	Footballer();
 	Footballer(string name, int age, string team, string position, float price, float rating,
 		int totalGoals, int totalAssists, int totalRedCard, int totalYellowCard,
@@ -86,6 +87,7 @@ public:
 	/////////////////////////////////////////////////
 
 	string GetName();
+	string& GetAddressName();
 	int GetAge();
 	string GetPosition();
 	string GetTeam();

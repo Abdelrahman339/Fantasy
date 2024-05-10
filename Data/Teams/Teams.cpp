@@ -1,5 +1,12 @@
 #include "Teams.h"
 
+Teams::~Teams() {
+	//if (players != nullptr) {
+	//	delete this->players;
+	//	players = nullptr;
+	//}
+}
+
 Teams::Teams() {
 	this->name = "";
 	this->points = 0;
@@ -9,7 +16,7 @@ Teams::Teams() {
 	this->players = {};
 }
 
-Teams::Teams(string name, int points, int wins, int lose, int draw, unordered_map<string, Footballer> footballers) {
+Teams::Teams(string name, int points, int wins, int lose, int draw, unordered_map<string, Footballer>* footballers) {
 	this->name = name;
 	this->points = points;
 	this->wins = wins;
@@ -18,12 +25,13 @@ Teams::Teams(string name, int points, int wins, int lose, int draw, unordered_ma
 	this->players = footballers;
 }
 
-unordered_map<string, Footballer>& Teams::getFootballPlayer()
+unordered_map<string, Footballer>* Teams::getFootballPlayer()
 {
 	return this->players;
 }
-Teams Teams::getTeamByName(map<string, Teams> teams, string name) {
-	return teams.at(name);
+Teams* Teams::getTeamByName(map<string, Teams>& allTeams, string name) {
+	Teams* team = &(allTeams.at(name));
+	return team;
 }
 
 string Teams::getName()
@@ -31,7 +39,7 @@ string Teams::getName()
 	return name;
 }
 
-void Teams::setPlayers(unordered_map<string, Footballer> players){
+void Teams::setPlayers(unordered_map<string, Footballer>* players) {
 	this->players = players;
 }
 
@@ -69,7 +77,7 @@ void Teams::SetName(string TeamName) {
 	this->name = TeamName;
 }
 
-unordered_map<string, Footballer> Teams::getFootballersByTeam(Teams team) {
+unordered_map<string, Footballer>* Teams::getFootballersByTeam(Teams team) {
 
 	return team.getFootballPlayer();
 }

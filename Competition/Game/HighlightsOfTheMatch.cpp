@@ -3,26 +3,26 @@
 HighlightsOfTheMatch::HighlightsOfTheMatch()
 {
 	this->GameId = 0;
-	this->name = "null";
+	this->name = nullptr;
 	this->contributes = "None";
 	this->violation = "None";
 }
 
-HighlightsOfTheMatch::HighlightsOfTheMatch(int GameId, string name) {
+HighlightsOfTheMatch::HighlightsOfTheMatch(int GameId, string* name) {
 	this->GameId = GameId;
 	this->name = name;
 	this->contributes = "None";
 	this->violation = "None";
 }
 
-HighlightsOfTheMatch::HighlightsOfTheMatch(int GameId, string name, string contributes, string violation) {
+HighlightsOfTheMatch::HighlightsOfTheMatch(int GameId, string* name, string contributes, string violation) {
 	this->GameId = GameId;
 	this->name = name;
 	this->contributes = contributes;
 	this->violation = violation;
 }
 
-void HighlightsOfTheMatch::setName(string name)
+void HighlightsOfTheMatch::setName(string* name)
 {
 	this->name = name;
 }
@@ -37,7 +37,7 @@ void HighlightsOfTheMatch::setViolation(string violation)
 	this->violation = violation;
 }
 
-string HighlightsOfTheMatch::getName()
+string* HighlightsOfTheMatch::getName()
 {
 	return name;
 }

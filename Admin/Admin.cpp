@@ -5,7 +5,7 @@
 int counter = 0;
 bool answer = false;
 
-void Admin::CheckAdmin(unordered_map<string, User>& Users, vector<TheLeague> leagues)
+void Admin::CheckAdmin(unordered_map<string, User>& Users, vector<TheLeague>& leagues)
 {
 	int count = 0;
 	string username, password;
@@ -37,7 +37,7 @@ void Admin::CheckAdmin(unordered_map<string, User>& Users, vector<TheLeague> lea
 	} while (count != 3);
 }
 
-void Admin::AdminMenu(unordered_map<string, User>& Users, vector<TheLeague> leagues)
+void Admin::AdminMenu(unordered_map<string, User>& Users, vector<TheLeague>& leagues)
 {
 	int choice;
 Menu:
@@ -490,7 +490,7 @@ TeamNotFound:
 	do {
 	ModifySameTeam:
 		cout << "\tModifying " << teams[TeamToBeModified->getName()].getName() << " information" << endl;
-		cout << "--------------------------------------------------" << endl;
+		cout << string(48, '-') << endl;
 		cout << "What do you wish to Edit?" << endl;
 		cout << "1) Name" << endl;
 		cout << "2) Points" << endl;
@@ -501,7 +501,7 @@ TeamNotFound:
 
 		switch (choice) {
 		case 1:
-			handleTeamsUpdate(teams, teamName);
+			handleTeamsUpdate(teams, correctedName);
 			break;
 		case 2:
 			cout << "Enter new Points: ";
@@ -619,7 +619,7 @@ PlayerNotFound:
 		cin >> choice;
 		switch (choice) {
 		case 1:
-			handlePlayersUpdate(players, footballerName);
+			handlePlayersUpdate(players, correctedName);
 			cout << "Successfully Updated." << endl;
 			break;
 		case 2:
@@ -730,10 +730,11 @@ void Admin::handleTeamsUpdate(map<string, Teams>& teams, string oldName) {
 	cout << "Enter new name: ";
 	cin.ignore();
 	getline(cin, newName);
-	auto it = teams.find(oldName);
+	string properNewName = toProperCase(newName);
+	auto it = teams.find(toProperCase(oldName));
 	if (it != teams.end()) {
-		teams[newName] = it->second;
-		teams[newName].SetName(newName);
+		teams[properNewName] = it->second;
+		teams[properNewName].SetName(newName);
 		teams.erase(it);
 	}
 	else {
@@ -746,12 +747,12 @@ void Admin::DisplayFootballersForSpecificTeam(Teams& selectedTeam) {
 	unordered_map<string, Footballer>::iterator it = players.begin();
 	system("cls");
 	cout << "\t\t~Players in " << selectedTeam.getName() << "~" << endl;
-	cout << "------------------------------------------------" << endl;
-	cout << "\t  Name" << User::spacing(15, ' ') << "\tPosition" << endl << endl;
+	cout << string(60,'-') << endl;
+	cout << "\t  Name" << User::spacing(15, ' ') << "\tPosition" << User::spacing(15, ' ') << "\tPrice" << endl << endl;
 	for (it; it != players.end(); ++it) {
-		cout << "\t" << it->second.GetName() << "\t" << checkStrLengthFootballers(it->first) << it->second.GetPosition() << endl;
+		cout << "\t" << it->second.GetName() << "\t" << checkStrLengthFootballers(it->first) << it->second.GetPosition() << "\t" << checkStrLengthFootballers(it->second.GetPosition()) << it->second.GetPrice() << endl;
 	}
-	cout << "------------------------------------------------" << endl;
+	cout << string(60, '-') << endl;
 }
 
 //vector<TheLeague> allleagues
@@ -805,11 +806,11 @@ LeagueMenu:
 void Admin::DisplayAllLeagues(vector<TheLeague>& leagues) {
 	vector<TheLeague>::iterator it;
 	cout << "\t\t~All Leagues~" << endl;
-	cout << "------------------------------------------------" << endl;
+	cout << string(48, '-') << endl;
 	for (it = leagues.begin(); it != leagues.end(); ++it) {
 		cout << "\t\t" << it->getLeagueName() << std::endl;
 	}
-	cout << "------------------------------------------------" << endl;
+	cout << string(48, '-') << endl;
 
 }
 
@@ -895,11 +896,12 @@ void Admin::handlePlayersUpdate(unordered_map<string, Footballer>& players, stri
 	cout << "Enter new name: ";
 	cin.ignore();
 	getline(cin, newName);
-	auto it = players.find(oldName);
+	string properNewName = toProperCase(newName);
+	auto it = players.find(toProperCase(oldName));
 	if (it != players.end()) {
 		// Inserting a new element with the new key and same value
-		players[newName] = it->second;
-		players[newName].SetName(newName);
+		players[properNewName] = it->second;
+		players[properNewName].SetName(newName);
 		// Erasing the old element
 		players.erase(it);
 	}

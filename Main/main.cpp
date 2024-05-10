@@ -15,15 +15,21 @@ int main() {
 	//cout << "Reading from files: " << endl << endl;
 	////League Data now Done!==> Usage
 	map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
-	map<string, Teams> allTeams = fileManipulation::getTeamsData(footballersOfTeam);
+	map<string, Teams> allTeams;
+	fileManipulation::getTeamsData(footballersOfTeam, allTeams);
 	vector<TheLeague> leagues = fileManipulation::getLeagueData(allTeams);
+	map<string, Teams*>* leagueTeams = leagues[0].GetTeams();
+	Teams* team = leagueTeams->at("Chelsea");
+	unordered_map<string, Footballer>* footballers = team->getFootballPlayer();
+	//footballers->erase("Robert Sanchez");
+	//leagueTeams->erase("Arsenal");
+	//footballer->SetPrice(34.0f);
 	
 	//Writing in files leagueData, teamsData, footballersOfTeam
 
 	/*fileManipulation::writeInfoInSpecificFile("leagueDataNew.txt", leagues);
 	fileManipulation::writeInfoInSpecificFile("teamsDataNew.txt", allTeams);
 	fileManipulation::writeInfoInSpecificFile("footballersOfTeamNew.txt", footballersOfTeam);*/
-
 
 	////Get Games now Done!==> USAGE
 	list<Game> games = fileManipulation::getGamesData(allTeams);
@@ -34,10 +40,10 @@ int main() {
 	//		highlights.pop();
 	//	}
 	//}
-
+	//games.begin()->getAwayTeam()
 	//Get User now Done!==> USAGE
 
-	map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
+	map<int, pair<unordered_map<string, Footballer*>, unordered_map<string, Footballer*>>> userSquads = fileManipulation::getUserSquadsData(footballersOfTeam);
 	unordered_map<string, User> users = fileManipulation::getUsersData(userSquads);
 	User user = users.at("william_l_81");
 
