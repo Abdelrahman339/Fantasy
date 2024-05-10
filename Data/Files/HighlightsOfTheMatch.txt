@@ -213,23 +213,27 @@ None
 Yellow Card
 ----
 Stefan Savic
-None
+CleanSheets
 Yellow Card
 ----
 Mario Hermoso
-None
+CleanSheets
 Yellow Card
 ----
 Axel Witsel
-None
+CleanSheets
 Yellow Card
+----
+Jan Oblak
+CleanSheets
+None
 ----
 Stefan Savic
 None 
 Red Card
 ----
 Jose Maria Gimenez
-None
+CleanSheets
 Yellow Card
 ----
 Thomas Lemar
@@ -280,6 +284,10 @@ Yellow Card
 ----------------
 10
 -------
+Yann Sommer
+CleanSheets
+None
+----
 Leandro Paredes
 None
 Yellow Card
@@ -305,7 +313,19 @@ Goals: 1
 None
 ----
 Federico Dimarco
-Goals: 1
+Goals: 1 & CleanSheets
+None
+----
+Alessandro Bastoni
+CleanSheets
+None
+----
+Matteo Darmian
+CleanSheets
+None
+----
+Francesco Acerbi
+CleanSheets
 None
 ----------------
 11
@@ -315,7 +335,7 @@ None
 Yellow Card
 ----
 Bremer
-None
+CleanSheets
 Yellow Card
 ----
 Federico Gatti
@@ -341,6 +361,22 @@ Yellow Card
 Khvicha Kvaratskhelia
 None
 Yellow Card
+----
+Wojciech Szczesny
+CleanSheets
+None
+----
+Danilo
+CleanSheets
+None
+----
+Federico Gatti
+CleanSheets
+None
+----
+Federico Chiesa
+CleanSheets
+None
 ----------------
 12
 Mctominay
@@ -481,6 +517,24 @@ Yellow Card
 ----------------
 15
 --------
+Real Madrid
+--------
+Courtois
+CleanSheets
+None
+----
+Carvajal
+CleanSheets
+None
+---
+Antonio Rudiger
+CleanSheets
+None
+----
+Nacho
+CleanSheets
+None
+----
 Ferland Mendy
 None
 Yellow Card
@@ -528,7 +582,7 @@ None
 Yellow Card
 ----
 Jules Kounde
-None
+CleanSheets
 Yellow Card
 ----
 Ferran Torres
@@ -542,12 +596,64 @@ None
 Ilkay Gundogan
 Goals: 1
 None
+----
+Inaki Pena
+CleanSheets
+None
+----
+Andreas Christensen
+CleanSheets
+None
+----
+Ronald Araujo
+CleanSheets
+None
+----
+Alejandro Balde
+CleanSheets
+None
 ----------------
 17
 --------
 Marcos Acuna
-None
+CleanSheets
 Yellow Card
+----
+Bono
+CleanSheets
+None
+----
+Gonzalo Montiel
+CleanSheets
+None
+----
+Sergio Ramos
+CleanSheets
+None
+----
+Jesus Navas
+CleanSheets
+None
+----
+Giorgi Mamardashvili
+CleanSheets
+None
+----
+Thierry Correia
+CleanSheets
+None
+----
+Gabriel Paulista
+CleanSheets
+None
+----
+Cristhian Mosquera
+CleanSheets
+None
+----
+Yarek Gasiorowski
+CleanSheets
+None
 ----------------
 18
 --------
@@ -581,6 +687,22 @@ Yellow Card
 ----------------
 19
 --------
+Mile Svilar
+CleanSheets
+None
+----
+Angelino
+CleanSheets
+None
+----
+Diego Llorente
+CleanSheets
+None
+----
+Evan N Dicka
+CleanSheets
+None
+----
 Tommaso Baldanzi
 None
 Yellow Card
@@ -606,7 +728,7 @@ None
 Yellow Card
 ----
 Rasmus Kristensen
-None
+CleanSheets
 Yellow Card
 ----
 Leandro Paredes
@@ -635,12 +757,28 @@ Red Card
 ----------------
 20
 --------
-van Dijk
+Onana
+CleanSheets
 None
+----
+Varane
+CleanSheets
+None
+----
+Jonny Evans
+CleanSheets
+None
+----
+LindelOf
+CleanSheets
+None
+----
+van Dijk
+CleanSheets
 Yellow Card
 ----
 Alexander Arnold
-None
+CleanSheets
 Yellow Card
 ----
 Bruno Fernandes
@@ -660,11 +798,27 @@ None
 Yellow Card
 ----
 Diogo Dalot
-None
+CleanSheets
 Red Card
+----
+Alisson Becker
+CleanSheets
+None
+----
+Konate
+CleanSheets
+None
+----
+Robertson
+CleanSheets
+None
 ----------------
 21
 --------
+Ederson
+CleanSheets
+None
+----
 Iyenoma Destiny Udogie
 None
 Yellow Card
@@ -674,23 +828,35 @@ None
 Yellow Card
 ----
 John Stones
-None
+CleanSheets
 Yellow Card
 ----
 Ruben Dias
-None
+CleanSheets
 Yellow Card
 ----
 Walker
-None
+CleanSheets
 Yellow Card
 ----
 Ake
-Goals: 1
+Goals: 1 & CleanSheets
 None
 ----------------
 22
 --------
+Raya
+cleanSheets
+None
+----
+Gabriel Magalhaes
+CleanSheets
+None
+----
+Oleksandr Zinchenko
+CleanSheets
+None
+----
 Ben White
 Goals: 2
 Yellow Card
@@ -699,8 +865,8 @@ Fabio Vieira
 Goals: 2
 None
 ----
-Saliba
-Goals: 1
+Saliba 
+Goals: 1 & CleanSheets
 Yellow Card
 ----
 Martin Odegaard
@@ -747,12 +913,28 @@ None
 ----------------
 24
 --------
+Inaki Pena
+CleanSheets
+None
+----
+Andreas Christensen
+CleanSheets
+None
+----
+Ronald Araujo
+CleanSheets
+None
+----
+Jules Kounde
+CleanSheets
+None
+----
 Ilkay Gundogan
 None
 Yellow Card
 ----
 Alejandro Balde
-None
+CleanSheets
 Yellow Card
 ----
 Robert Lewandowski

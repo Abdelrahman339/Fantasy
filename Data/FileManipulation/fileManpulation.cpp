@@ -34,7 +34,7 @@ vector<string> splitByRegex(string data, string reg) {
 }
 
 
-vector<TheLeague> fileManipulation::getLeagueData(map<string, Teams> allTeams) {
+vector<TheLeague> fileManipulation::getLeagueData(map<string, Teams>& allTeams) {
 	string filename = "leagueData.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s*----\s*)";
@@ -45,7 +45,7 @@ vector<TheLeague> fileManipulation::getLeagueData(map<string, Teams> allTeams) {
 	return parseLeagues(parts, regex, allTeams);
 }
 
-list<Game> fileManipulation::getGamesData(map<string, Teams> teams) {
+list<Game> fileManipulation::getGamesData(map<string, Teams>& teams) {
 	string filename = "gameData.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s*----\s*)";
@@ -56,14 +56,14 @@ list<Game> fileManipulation::getGamesData(map<string, Teams> teams) {
 	return parseGames(parts, regex, teams);
 }
 
-map<string, Teams> fileManipulation::getTeamsData(map<string, unordered_map<string, Footballer>> footballersOfTeam) {
+void fileManipulation::getTeamsData(map<string, unordered_map<string, Footballer>>& footballersOfTeam, map<string, Teams>& parsedTeams) {
 	string filename = "teamsData.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s*----\s*)";
 	vector<string> parts = splitByRegex(file_data, regex);
 	//cout << parts[0] << endl << parts[1] << endl;
 	regex = R"(\n)";
-	return parseTeams(footballersOfTeam, parts, regex);
+	parseTeams(footballersOfTeam, parsedTeams, parts, regex);
 }
 
 map<string, unordered_map<string, Footballer>> fileManipulation::getFootballersOfTeamData() {
@@ -84,7 +84,7 @@ map<string, unordered_map<string, Footballer>> fileManipulation::getFootballersO
 	return parsedFootballersOfTeam;
 }
 
-unordered_map<string, User> fileManipulation::getUsersData(map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> usersSquads) {
+unordered_map<string, User> fileManipulation::getUsersData(map<int, pair<unordered_map<string, Footballer*>, unordered_map<string, Footballer*>>>& usersSquads) {
 	string filename = "userData.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s*----\s*)";
@@ -95,8 +95,11 @@ unordered_map<string, User> fileManipulation::getUsersData(map<int, pair<unorder
 	return parseUsers(parts, regex, usersSquads);
 }
 
+//map<string, Teams> parseTeamsOfLeagues(map<string, Teams>& allTeams) {
+//	for
+//}
 
-vector<TheLeague> fileManipulation::parseLeagues(vector<string> parts, string regex, map<string, Teams> allTeams) {
+vector<TheLeague> fileManipulation::parseLeagues(vector<string> parts, string regex, map<string, Teams>& allTeams) {
 	vector<TheLeague> parsedLeagues;
 
 	for (size_t i = 1; i < parts.size(); ++i) {
@@ -110,40 +113,30 @@ vector<TheLeague> fileManipulation::parseLeagues(vector<string> parts, string re
 	return parsedLeagues;
 }
 
-list<Game> fileManipulation::parseGames(vector<string> parts, string regex, map<string, Teams> teams) {
+list<Game> fileManipulation::parseGames(vector<string> parts, string regex, map<string, Teams>& allteams) {
 	list<Game> parsedGames;
 
 	for (size_t i = 1; i < parts.size(); ++i) {
 		vector<string> gameLines = splitByRegex(parts[i], regex);
 
 		parsedGames.push_back(
-			parseGame(gameLines, teams)
+			parseGame(gameLines, allteams)
 		);
 	}
 
 	return parsedGames;
 }
 
-map<string, Teams> fileManipulation::parseTeams(map<string, unordered_map<string, Footballer>> footballersOfTeam, vector<string> parts, string regex) {
-	map<string, Teams> parsedTeams;
+void fileManipulation::parseTeams(map<string, unordered_map<string, Footballer>>& footballersOfTeam, map<string, Teams>& parsedTeams, vector<string> parts, string regex) {
 
 	for (size_t i = 1; i < parts.size(); ++i) {
 		vector<string> teamLines = splitByRegex(parts[i], regex);
-		try {
-			parsedTeams.insert(
-				make_pair(teamLines[0], parseTeam(teamLines, footballersOfTeam.at(teamLines[0]))
-				)
-			);
-		}
-		catch (const std::exception&) {
-			parsedTeams.insert(
-				make_pair(teamLines[0], parseTeam(teamLines, { {teamLines[0], {}} })
-				)
-			);
-		}
-	}
+		map<string, unordered_map<string, Footballer>>::iterator footballers = footballersOfTeam.find(teamLines[0]);
+		unordered_map<string, Footballer>* footballersOfTeam = &footballers->second;
 
-	return parsedTeams;
+		Teams* team = parseTeam(teamLines, footballersOfTeam);
+		parsedTeams.emplace(teamLines[0], *team);
+	}
 }
 
 pair<string, unordered_map<string, Footballer>> fileManipulation::parseFootballersOfTeam(pair<string, string> teamFootballers, string regex) {
@@ -160,7 +153,7 @@ pair<string, unordered_map<string, Footballer>> fileManipulation::parseFootballe
 	return make_pair(teamFootballers.first, parsedFootballersOfTeam);
 }
 
-pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>> fileManipulation::parseUserSquads(vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>> footballersOfTeam) {
+pair<unordered_map<string, Footballer*>, unordered_map<string, Footballer*>> fileManipulation::parseUserSquads(vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>>& footballersOfTeam) {
 	return make_pair(
 		parseSquad(MAIN, userIdMainSubSquads, regex, footballersOfTeam),
 		parseSquad(SUBSTITUTION, userIdMainSubSquads, regex, footballersOfTeam)
@@ -168,7 +161,7 @@ pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>> fileM
 }
 
 
-unordered_map<string, User> fileManipulation::parseUsers(vector<string> parts, string regex, map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> usersSquads) {
+unordered_map<string, User> fileManipulation::parseUsers(vector<string> parts, string regex, map<int, pair<unordered_map<string, Footballer*>, unordered_map<string, Footballer*>>>& usersSquads) {
 	unordered_map<string, User> parsedUsers;
 
 	for (size_t i = 1; i < parts.size(); ++i) {
@@ -183,38 +176,42 @@ unordered_map<string, User> fileManipulation::parseUsers(vector<string> parts, s
 }
 
 
-TheLeague fileManipulation::parseLeague(vector<string> leagueLines, map<string, Teams> allTeams) {
+TheLeague fileManipulation::parseLeague(vector<string> leagueLines, map<string, Teams>& allTeams) {
 	string leagueName = leagueLines[0];
-	map<string, Teams> leagueTeams;
+	map<string, Teams*>* teamsOfLeague = new map<string, Teams*>();
 
 	for (size_t i = 1; i < leagueLines.size(); i++) {
-		Teams team = Teams::getTeamByName(allTeams, leagueLines[i]);
+		Teams* team = Teams::getTeamByName(allTeams, leagueLines[i]);
 
-		leagueTeams.insert(
-			make_pair(team.getName(), team)
+		teamsOfLeague->insert(
+			make_pair(team->getName(), team)
 		);
 	}
-	return TheLeague(leagueName, leagueTeams);
+	return TheLeague(leagueName, teamsOfLeague);
 }
-stack<HighlightsOfTheMatch> fileManipulation::analyzeTeamHighlights(string& homeTeamName, string& awayTeamName, int& gameID, map<string, Teams> teams) {
-	map<string, HighlightsOfTheMatch> highlights = getHighlights(gameID);
+stack<HighlightsOfTheMatch> fileManipulation::analyzeTeamHighlights(string& homeTeamName, string& awayTeamName, int& gameID, map<string, Teams>& teams) {
+	map<string, HighlightsOfTheMatch> highlights = getHighlights(gameID, teams, homeTeamName, awayTeamName);
 	stack<HighlightsOfTheMatch> combinedHighlights;
-	vector<pair<string, Footballer>> homeTeamFootballers(teams[homeTeamName].getFootballPlayer().begin(), teams[homeTeamName].getFootballPlayer().end());
-	vector<pair<string, Footballer>> awayTeamFootballers(teams[awayTeamName].getFootballPlayer().begin(), teams[awayTeamName].getFootballPlayer().end());
+	unordered_map<string, Footballer>* homeTeam = teams[homeTeamName].getFootballPlayer();
+	unordered_map<string, Footballer>* awayTeam = teams[awayTeamName].getFootballPlayer();
+	vector<pair<string, Footballer>> homeTeamFootballers(homeTeam->begin(), homeTeam->end());
+	vector<pair<string, Footballer>> awayTeamFootballers(awayTeam->begin(), awayTeam->end());
 
 	for (size_t i = 0; i < homeTeamFootballers.size(); i++) {
-		string homePlayerName = homeTeamFootballers[i].first;
-		string awayPlayerName = awayTeamFootballers[i].first;
+		string* homePlayerName = &homeTeam->at(homeTeamFootballers[i].first).GetAddressName();
+		string* awayPlayerName = &awayTeam->at(awayTeamFootballers[i].first).GetAddressName();
 
-		if (highlights.find(homePlayerName) == highlights.end()) {
+		if (highlights.find(*homePlayerName) == highlights.end()) {
 			// Player's highlight does not exist, create a new entry
-			highlights[homePlayerName] = HighlightsOfTheMatch(gameID, homePlayerName);
+			highlights[*homePlayerName] = HighlightsOfTheMatch(gameID, homePlayerName);
 		}
-		if (highlights.find(awayPlayerName) == highlights.end()) {
-			highlights[awayPlayerName] = HighlightsOfTheMatch(gameID, awayPlayerName);
+		if (highlights.find(*awayPlayerName) == highlights.end()) {
+			highlights[*awayPlayerName] = HighlightsOfTheMatch(gameID, awayPlayerName);
 		}
 	}
-
+	//cout << "Address From Teams Data: " << &teams["Manchester City"].getFootballPlayer()->at("Walker").GetName() << endl;
+	//cout << "Address From Highlights: " << highlights["Walker"].getName() << endl;
+	//teams["Manchester City"].getFootballPlayer()->at("Walker").SetName("Moooo");
 	// Convert highlights map to a stack
 	for (auto it = highlights.rbegin(); it != highlights.rend(); ++it) {
 		combinedHighlights.push(it->second);
@@ -222,7 +219,7 @@ stack<HighlightsOfTheMatch> fileManipulation::analyzeTeamHighlights(string& home
 	return combinedHighlights;
 }
 
-Game fileManipulation::parseGame(vector<string> gameLines, map<string, Teams> teams) {
+Game fileManipulation::parseGame(vector<string> gameLines, map<string, Teams>& allteams) {
 	int gameID = stoi(gameLines[0], nullptr);
 	string homeTeamName = gameLines[1];
 	string awayTeamName = gameLines[2];
@@ -232,20 +229,22 @@ Game fileManipulation::parseGame(vector<string> gameLines, map<string, Teams> te
 	string manOfTheMatch = gameLines[13];
 	int round = stoi(gameLines[14], nullptr);
 	stack<HighlightsOfTheMatch> combinedHighlights;
-	combinedHighlights = analyzeTeamHighlights(homeTeamName, awayTeamName, gameID, teams);
 
-	return Game(gameID, Teams::getTeamByName(teams, homeTeamName), Teams::getTeamByName(teams, awayTeamName), winnerTeam, score, gameStatistics, combinedHighlights, manOfTheMatch, round);
+	combinedHighlights = analyzeTeamHighlights(homeTeamName, awayTeamName, gameID, allteams);
+
+	return Game(gameID, Teams::getTeamByName(allteams, homeTeamName), Teams::getTeamByName(allteams, awayTeamName), winnerTeam, score, gameStatistics, combinedHighlights, manOfTheMatch, round);
 }
 
 
-Teams fileManipulation::parseTeam(vector<string> teamLines, unordered_map<string, Footballer> footballers) {
+Teams* fileManipulation::parseTeam(vector<string> teamLines, unordered_map<string, Footballer>* footballers) {
 	string name = teamLines[0];
 	int points = stoi(teamLines[2], nullptr);
 	int wins = stoi(teamLines[3], nullptr);
 	int losses = stoi(teamLines[4], nullptr);
 	int draws = stoi(teamLines[5], nullptr);
+	Teams* team = new Teams(name, points, wins, losses, draws, footballers);
 
-	return Teams(name, points, wins, losses, draws, footballers);
+	return team;
 }
 
 Footballer fileManipulation::parseFootballer(vector<string> footballerLines, string teamName) {
@@ -269,21 +268,21 @@ Footballer fileManipulation::parseFootballer(vector<string> footballerLines, str
 
 }
 
-unordered_map<string, Footballer> fileManipulation::getSquadUsingAllFootballers(vector<string>userTeamAndFootballerNames, map<string, unordered_map<string, Footballer>> footballersOfTeam) {
-	unordered_map<string, Footballer> squad;
+unordered_map<string, Footballer*> fileManipulation::getSquadUsingAllFootballers(vector<string>userTeamAndFootballerNames, map<string, unordered_map<string, Footballer>>& footballersOfTeam) {
+	unordered_map<string, Footballer*> squad;
 
 	for (size_t i = 1; i < userTeamAndFootballerNames.size(); i++) {
-		unordered_map<string, Footballer> allFootballersInTeam = footballersOfTeam.at(userTeamAndFootballerNames[0]);
+		unordered_map<string, Footballer>* allFootballersInTeam = &footballersOfTeam.at(userTeamAndFootballerNames[0]);
+		Footballer* footballer = &allFootballersInTeam->at(userTeamAndFootballerNames[i]);
 
 		squad.insert(
-			make_pair(userTeamAndFootballerNames[i], allFootballersInTeam.at(userTeamAndFootballerNames[i])
-			)
+			make_pair(userTeamAndFootballerNames[i], footballer)
 		);
 	}
 	return squad;
 }
 
-User fileManipulation::parseUser(vector<string> userLines, map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> usersSquads) {
+User fileManipulation::parseUser(vector<string> userLines, map<int, pair<unordered_map<string, Footballer*>, unordered_map<string, Footballer*>>>& usersSquads) {
 	int userID = stoi(userLines[0], nullptr);
 	string fullname = userLines[1];
 	string username = userLines[2];
@@ -292,8 +291,8 @@ User fileManipulation::parseUser(vector<string> userLines, map<int, pair<unorder
 	string phoneNumber = userLines[5];
 	int points = stoi(userLines[6], nullptr);
 	float balance = stof(userLines[7], nullptr);
-	unordered_map<string, Footballer> mainSquad = {};
-	unordered_map<string, Footballer> substitutionSquad = {};
+	unordered_map<string, Footballer*> mainSquad = {};
+	unordered_map<string, Footballer*> substitutionSquad = {};
 	time_t lastDatePlayedWheel = static_cast<time_t>(stoll(userLines[8]));
 	time_t nextSpinDate = static_cast<time_t>(stoll(userLines[9]));
 
@@ -313,9 +312,9 @@ User fileManipulation::parseUser(vector<string> userLines, map<int, pair<unorder
 
 	return User(userID, fullname, username, email, password, phoneNumber, points, balance, mainSquad, substitutionSquad, lastDatePlayedWheel, nextSpinDate);
 }
-unordered_map<string, Footballer> fileManipulation::parseSquad(Squad squadType, vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>> footballersOfTeam) {
+unordered_map<string, Footballer*> fileManipulation::parseSquad(Squad squadType, vector<string> userIdMainSubSquads, string regex, map<string, unordered_map<string, Footballer>>& footballersOfTeam) {
 	vector<string> userTeamsAndFootballerNames;
-	unordered_map<string, Footballer> footballers;
+	unordered_map<string, Footballer*> footballers;
 	try {
 		userTeamsAndFootballerNames = splitByRegex(userIdMainSubSquads[squadType], regex);
 	}
@@ -328,7 +327,7 @@ unordered_map<string, Footballer> fileManipulation::parseSquad(Squad squadType, 
 
 	for (const string& teamAndFootballerNamesString : userTeamsAndFootballerNames) {
 		vector<string> userTeamAndFootballerNames = splitByRegex(teamAndFootballerNamesString, regex);
-		unordered_map<string, Footballer> subSquad = getSquadUsingAllFootballers(userTeamAndFootballerNames, footballersOfTeam);
+		unordered_map<string, Footballer*> subSquad = getSquadUsingAllFootballers(userTeamAndFootballerNames, footballersOfTeam);
 
 		footballers.insert(
 			make_move_iterator(subSquad.begin()),
@@ -358,21 +357,39 @@ string fileManipulation::parseGameStatistics(vector<string> gameLines) {
 	return parsedStatistics;
 }
 
-map<string, HighlightsOfTheMatch> fileManipulation::parseHighlights(vector<string> highlights, int gameId, string regex) {
+map<string, HighlightsOfTheMatch> fileManipulation::parseHighlights(vector<string> highlights, int gameId, map<string, Teams>& teams, string regex, string& homeTeamName, string& awayTeamName) {
 	map<string, HighlightsOfTheMatch> parsedHighlights;
+	unordered_map<string, Footballer>* homefootballers = teams[homeTeamName].getFootballPlayer();
+	unordered_map<string, Footballer>* awayfootballers = teams[awayTeamName].getFootballPlayer();
 	regex = R"(\n)";
 
 	for (size_t i = 0; i < highlights.size(); i++) {
 		vector<string> highlightLines = splitByRegex(highlights[i], regex);
+		string* footballerNamePtr = nullptr;
 
-		parsedHighlights.insert(
-			make_pair(highlightLines[0], parseHighlight(highlightLines, gameId))
-		);
+		for (auto& footballer_it : *homefootballers) {
+			footballerNamePtr = &footballer_it.second.GetAddressName();
+			if (*footballerNamePtr == highlightLines[0])
+				break;
+			footballerNamePtr = nullptr;
+		}
+		if (footballerNamePtr == nullptr) {
+			for (auto& footballer_it : *awayfootballers) {
+				footballerNamePtr = &footballer_it.second.GetAddressName();
+				if (*footballerNamePtr == highlightLines[0])
+					break;
+				footballerNamePtr = nullptr;
+			}
+		}
+		if (footballerNamePtr != nullptr)
+			parsedHighlights.insert(
+				make_pair(highlightLines[0], parseHighlight(highlightLines, gameId, footballerNamePtr))
+			);
 	}
 	return parsedHighlights;
 }
 
-map<string, HighlightsOfTheMatch> fileManipulation::getHighlights(int gameID) {
+map<string, HighlightsOfTheMatch> fileManipulation::getHighlights(int gameID, map<string, Teams>& teams, string& homeTeamName, string& awayTeamName) {
 	string filename = "HighlightsOfTheMatch.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s*----------------\s*)";
@@ -389,24 +406,24 @@ map<string, HighlightsOfTheMatch> fileManipulation::getHighlights(int gameID) {
 			highlights = splitByRegex(gameHighlights[1], regex);
 		else
 			return {};
-		return parseHighlights(highlights, gameID, regex);
+		return parseHighlights(highlights, gameID, teams, regex, homeTeamName, awayTeamName);
 	}
 }
 
-HighlightsOfTheMatch fileManipulation::parseHighlight(vector<string> highlightLines, int gameId) {
-	string name = highlightLines[0];
+HighlightsOfTheMatch fileManipulation::parseHighlight(vector<string> highlightLines, int gameId, string* name) {
+	string* footballerName = name;
 	string contributes = highlightLines[1];
 	string violation = highlightLines[2];
 
 	return HighlightsOfTheMatch(gameId, name, contributes, violation);
 }
 
-map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> fileManipulation::getUserSquadsData(map<string, unordered_map<string, Footballer>> footballersOfTeam) {
+map<int, pair<unordered_map<string, Footballer*>, unordered_map<string, Footballer*>>> fileManipulation::getUserSquadsData(map<string, unordered_map<string, Footballer>>& footballersOfTeam) {
 	string filename = "userSquads.txt";
 	string file_data = readFileData(filename);
 	string regex = R"(\s*----------------\s*)";
 	vector<string> parts = splitByRegex(file_data, regex);
-	map<int, pair<unordered_map<string, Footballer>, unordered_map<string, Footballer>>> parsedUserSquads;
+	map<int, pair<unordered_map<string, Footballer*>, unordered_map<string, Footballer*>>> parsedUserSquads;
 
 	for (size_t i = 1; i < parts.size(); ++i) {
 		vector<string> userIdMainSubSquads;

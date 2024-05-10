@@ -10,11 +10,11 @@ class TheLeague
 {
 protected:
 	string name;
-	map <string, Teams> teams;
+	map<string, Teams*>* teams;
 
 public:
 	TheLeague();
-	TheLeague(string name, map <string, Teams> teams);
+	TheLeague(string name, map<string, Teams*>* teams);
 	void static displayTeams(map<string, Teams> Teams);
 	string static checkStrLengthTeams(const std::string& str);
 	//void updatePoints( list <Game> allgames);
@@ -24,9 +24,9 @@ public:
 	string getLeagueName();
 	void setLeagueName(string);
 
-	map <string,Teams>& GetTeams();
-	void SetTeams(map <string, Teams> teams);
-	vector<string> static getTeamNames(map<string, Teams> teams);
+	map<string, Teams*>* GetTeams();
+	void SetTeams(map<string, Teams*>* teams);
+	vector<string> static getTeamNames(map<string, Teams*>* teams);
 
 private:
 

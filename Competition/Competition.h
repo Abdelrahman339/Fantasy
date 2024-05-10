@@ -27,9 +27,8 @@ protected:
 public:
 
 
-	void static UpdateFootballerPoints(list<Game>& gameweek); // updating all the players in a game
-	void static UpdateFootballerPrice(Footballer& player, int points, Teams* team);//based on points for EVERY player (even if not in user's squad)
-	bool static checkPosition(string footballerPosition); // checks if the player is a goalkeeper or a defender
+	void static UpdateFootballerPoints(list<Game>* gameweek); // updating all the players in a game
+	void static UpdateFootballerPrice(Footballer* player, int points, Teams* team);//based on points for EVERY player (even if not in user's squad)
 	void static searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch Highlights); //for looping over the hometeam and awayteam 
 	bool static IsManOfTheMatch(string currentMOTM, string playerName); //checks if the player is the MOTM
 	char static priceCalculation(int points); //containing five tiers for changing the players price 
@@ -37,11 +36,11 @@ public:
 
 
 	void static updateAllUserPoints(unordered_map<string, User>* Users, list <Game> allGames, User *currentUser);
-	void static ReducePoints(User* currentUser, Footballer& TargetedFootballer, string violation, string status, int& tempPoints);//this function used to reduce user points,balance and footballer points
+	void static ReducePoints(User* currentUser, Footballer* TargetedFootballer, string violation, string status, int& tempPoints);//this function used to reduce user points,balance and footballer points
 
-	void static AddContributesPoints(User* currentUser, Footballer& TargetedFootballer, string contributes, string status, int& tempPoints, Teams* team);//this function used to update user points,balance and footballer points
-	void static addPoints(string contributes, User* currentUser, Footballer& TargetedFootballer, int numPerpoints, string status, int& tempPoints); // goals or assits
-	void static addGoalsAssistPoints(string contributes, User* currentUser, Footballer& TargetedFootballer, string status, int& tempPoints, Teams* team);// add both goals and assits
+	void static AddContributesPoints(User* currentUser, Footballer* TargetedFootballer, string contributes, string status, int& tempPoints, Teams* team);//this function used to update user points,balance and footballer points
+	void static addPoints(string contributes, User* currentUser, Footballer* TargetedFootballer, int numPerpoints, string status, int& tempPoints); // goals or assits
+	void static addGoalsAssistPoints(string contributes, User* currentUser, Footballer* TargetedFootballer, string status, int& tempPoints, Teams* team);// add both goals and assits
 	void static findPlayers(User* currentUser, string status, Teams* team, int round);
 
 
