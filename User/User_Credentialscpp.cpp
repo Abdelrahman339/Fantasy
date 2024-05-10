@@ -9,7 +9,7 @@
 using namespace std;
 bool loginstat = false;
 
-void User::homePage(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames)
+void User::homePage(unordered_map<string, User>* Users, vector <TheLeague>& leagues, list<Game>* allGames)
 {
 	int choice;
 
@@ -28,7 +28,7 @@ choice:
 	if (choice == 1)
 	{
 		//cout << spacing(60, ' '); Admin::PauseAndClear();
-		Admin::CheckAdmin(Users, leagues);
+		//Admin::CheckAdmin(*Users, leagues);
 		homePage(Users, leagues, allGames);
 		return;
 	}
@@ -56,7 +56,7 @@ choice:
 };
 
 
-void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames) {
+void User::toLogin(unordered_map<string, User>* Users, vector <TheLeague>& leagues, list<Game>* allGames) {
 	int count = 0;
 	string user;
 	string pass;
@@ -68,7 +68,7 @@ void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagu
 		cin >> user;
 		cout << "Password(Press '+' to show password): " << endl;
 		pass = hidePassword(user);
-		User CurrentUser = login(Users, user, pass);
+		User* CurrentUser = login(Users, user, pass);
 		if (loginstat == true)
 		{
 			system("pause");
@@ -86,33 +86,33 @@ void User::toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagu
 	} while (count != 3);
 }
 
-User User::login(unordered_map<string, User>& users, string username, string password)
+User* User::login(unordered_map<string, User>* users, string username, string password)
 {
-	if (users.count(username) > 0)
+	if (users->count(username) > 0)
 	{
 
-		if (users[username].GetPassword() == password)
+		if (users->at(username).GetPassword() == password)
 		{
 			cout << "Login successful!" << endl;
 			cout << "Welcome back boss!" << endl;
 			loginstat = true;
-			return users.at(username);
+			return &users->at(username);
 		}
 		else {
 			cout << "Login failed!. Please make sure of your username and password" << endl;
 			loginstat = false;
-			return User();
+			return nullptr;
 		}
 	}
 	else
 	{
 		cout << "Login failed!. Please make sure of your username and password" << endl;
 		loginstat = false;
-		return User();
+		return nullptr;
 	}
 };
 
-void User::signup(unordered_map<string, User>& Users)
+void User::signup(unordered_map<string, User>* Users)
 {
 	User newUser;
 	cout << "\n\n\n\n";
@@ -123,9 +123,9 @@ void User::signup(unordered_map<string, User>& Users)
 	UserValidations::signupinfo(&newUser, "PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
 	UserValidations::signupinfo(&newUser, "EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
 	cout << spacing(60, ' ') << "Account created successfully!" << endl;
-	Users.insert_or_assign(newUser.username, newUser);
+	Users->insert_or_assign(newUser.GetUsername(), newUser);
 }
-void User::userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames)
+void User::userMenu(User* currentUser, unordered_map<string, User>* Users, vector <TheLeague>& leagues, list<Game>* allGames)
 {
 	int choice;
 choice:
@@ -133,54 +133,56 @@ choice:
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << spacing(60, ' ') << "            **Main Menu**             " << endl;
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl << endl;
-	cout << spacing(60, ' ') << "1- Profile. 2- Squad. 3- Market. 4- Play. 5- Spin The Wheel. 6- logout." << endl;
+	cout << spacing(60, ' ') << "1- Profile. 2- Squad. 3- Market. 4- Play. 5- Spin The Wheel. 6-Top Users  7- logout." << endl;
 	cout << spacing(60, ' ') << "Enter you option..." << endl;
 	cout << spacing(60, ' '); cin >> choice;
 	if (choice == 1)
 	{
-		system("pause"); system("cls");
+		system("cls");
 		profile(currentUser, Users);
-		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 2)
 	{
-		system("pause"); system("cls");
+		system("cls");
 		ShowSquad(currentUser);
-		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 3)
 	{
-		system("pause"); system("cls");
+		system("cls");
 		stack<string>oldUserGames = GetUserTeams(currentUser);
 		Market(currentUser, leagues);
-		FilteringTeams(allGames, currentUser, oldUserGames, "CurrentUser");
-		system("pause"); system("cls");
+		FilteringTeams(*allGames, currentUser, oldUserGames, "CurrentUser");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 4)
 	{
-		system("pause"); system("cls");
+		system("cls");
 		play(allGames, currentUser, Users);
-		system("pause"); system("cls");
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 5)
 	{
-		system("pause"); system("cls");
-		LuckyWheel::playLuckyWheel(leagues, currentUser);
-		system("pause"); system("cls");
+		system("cls");
+		LuckyWheel::playLuckyWheel(leagues, *currentUser);
 		userMenu(currentUser, Users, leagues, allGames);
 		return;
 	}
 	else if (choice == 6)
 	{
-		currentUser.homePage(Users, leagues, allGames);
+		system("cls");
+		showTopUsers(*Users);
+		userMenu(currentUser, Users, leagues, allGames);
+		return;
+	}
+	else if (choice == 7)
+	{
+		currentUser->homePage(Users, leagues, allGames);
 		system("pause"); system("cls");
 		return;
 	}

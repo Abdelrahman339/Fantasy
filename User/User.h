@@ -26,8 +26,8 @@ protected:
 	int id;
 	int points;
 	float balance;
-	unordered_map <string, Footballer >TheMainSquad;
-	unordered_map <string, Footballer >SubstitutionSquad;
+	unordered_map <string, Footballer*>TheMainSquad;
+	unordered_map <string, Footballer*>SubstitutionSquad;
 	queue<Game> UserGames; // queue of the user games that he will play in the round.
 	time_t lastDatePlayedWheel; // Store the last date the wheel was played by this user.
 	time_t nextSpinDate; // Store the next time the user will play the wheel.
@@ -38,7 +38,7 @@ public:
 	//unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad
 	User(int id, string fullName, string username, string Email, string password,
 		string phoneNumber, int points, float balance,
-		unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad,
+		unordered_map<string, Footballer*> mainSquad, unordered_map<string, Footballer*> substitutionSquad,
 		time_t lastDatePlayedWheel, time_t nextSpinDate);
 
 	// getter and setter and constructor
@@ -71,8 +71,8 @@ public:
 	int GetRank();
 	int GetPoints();
 	float GetBalance();
-	unordered_map<string, Footballer>& GetMainSquad();
-	unordered_map<string, Footballer>& GetSubstitutionSquad();
+	unordered_map<string, Footballer*>& GetMainSquad();
+	unordered_map<string, Footballer*>& GetSubstitutionSquad();
 
 	queue<Game>& GetUserGames();
 
@@ -111,13 +111,13 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	//User credentials
 	///////////////////////////////////////////////////////////////////////////////////
-	void static homePage(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames);
+	void static homePage(unordered_map<string, User>* Users, vector <TheLeague>& leagues, list<Game>* allGames);
 
-	void static toLogin(unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames);
-	User static login(unordered_map<string, User>& users, string username, string password);
-	void static signup(unordered_map<string, User>& Users);
+	void static toLogin(unordered_map<string, User>* Users, vector <TheLeague>& leagues, list<Game>* allGames);
+	static User* login(unordered_map<string, User>* users, string username, string password);
+	void static signup(unordered_map<string, User>* Users);
 	string static hidePassword(string username);
-	void static userMenu(User& currentUser, unordered_map<string, User>& Users, vector <TheLeague>& leagues, list<Game>& allGames);
+	void static userMenu(User* currentUser, unordered_map<string, User>* Users, vector <TheLeague>& leagues, list<Game>* allGames);
 
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Squad and Format
@@ -129,44 +129,43 @@ public:
 	void static Format442(unordered_map<string, Footballer> squad, string squadName);
 	void static showSubstitutions(unordered_map<string, Footballer> squad);
 	int  static Formatdistance(string name, int space, bool remaining, string prev);
-	void static ShowSquad(User& currentUser);
-	void static showPlayerInfo(Footballer footballer, string status);
+	void static ShowSquad(User* currentUser);
 
-	void static showPlayerInfolayout();
-	void static Substitution(User& currentUser);
-	void static SubstituteFunction(User& currentUser, string subFootballer, Footballer mainFootballer);
+	void static showPlayerInfo(Footballer footballer, string status);
+	void static Substitution(User* currentUser);
+	void static SubstituteFunction(User* currentUser, string subFootballer, Footballer mainFootballer);
 	///////////////////////////////////////////////////////////////////////////////////
 	//User Information
 	///////////////////////////////////////////////////////////////////////////////////
-	void static profile(User& currentUser, unordered_map<string, User>& Users);
-	void static editInfo(User& currentUser, unordered_map<string, User>& Users);
+	void static profile(User* currentUser, unordered_map<string, User>* Users);
+	void static editInfo(User* currentUser, unordered_map<string, User>* Users);
 	///////////////////////////////////////////////////////////////////////////////////
 	//Market functions
 	///////////////////////////////////////////////////////////////////////////////////
-	void static Market(User& currentUser, vector<TheLeague>leageus);
+	void static Market(User* currentUser, vector<TheLeague>leageus);
 
-	bool static sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, string footballerName);
-	void static sellFunction(User& currentUser, string footballerName, string stauts);
-	void static buy(User& currentUser, vector<TheLeague> leagues);
-	void static buyFunction(User& currentUser, Footballer footballer);
+	bool static sell(User* currentUser, unordered_map<string, Footballer> TopPlayer, string footballerName);
+	void static sellFunction(User* currentUser, string footballerName, string stauts);
+	void static buy(User* currentUser, vector<TheLeague> leagues);
+	void static buyFunction(User* currentUser, Footballer footballer);
 
 	bool static checkBalance(float& currentUserBalance, float& footballerPrice);
-	void static replace(User& currentUser, Footballer WantedFootballer);
+	void static replace(User* currentUser, Footballer WantedFootballer);
 
-	void static replaceFunction(User& currentUser, string UserFootballerName, Footballer TeamFootballer, string status);
-	void static search(User& currentUser, vector<TheLeague> leagues);
+	void static replaceFunction(User* currentUser, string UserFootballerName, Footballer TeamFootballer, string status);
+	void static search(User* currentUser, vector<TheLeague> leagues);
 	Footballer static returnPlayer(string footballerName, User currentUser, string status, vector<TheLeague>  leagues, Teams& footballerTeam);
 	Teams static  findTeam(vector<TheLeague> TheLeague, string TeamName);
 
-	void static PlayerFunction(Footballer& targetFootballer, User& currentUser);
+	void static PlayerFunction(Footballer& targetFootballer, User* currentUser);
 	///////////////////////////////////////////////////////////////////////////////////
 	//Play game functions
 	///////////////////////////////////////////////////////////////////////////////////
-	void static play(list<Game>& allGames, User& currentUser, unordered_map<string, User>& Users);
+	void static play(list<Game>* allGames, User* currentUser, unordered_map<string, User>* Users);
 
 	void static showCurrentMatch(queue<Game>& UserGames);
 
-	void static FilteringTeams(list<Game> allGames, User& currentUser, stack<string> oldUserTeams, string status);
+	void static FilteringTeams(list<Game> allGames, User* currentUser, stack<string> oldUserTeams, string status);
 
 	void static insertToQueue(list<Game> allGames, stack<string>userTeams, queue<Game>& UserGames);
 
@@ -174,7 +173,7 @@ public:
 
 	bool static compareGamesByRound(Game& Game1, Game& Game2);
 
-	stack<string> static GetUserTeams(User& currentUser);
+	stack<string> static GetUserTeams(User* currentUser);
 
 	void static findDuplicates(stack<string>& userTeams);
 	void static RemoveDublicates(queue<Game>& UserGames);
@@ -195,7 +194,7 @@ public:
 
 	unordered_map <string, Footballer> static TopFootballers(vector <TheLeague> leageus);// this function used to return unordered map of top players in leageus (5 players per TheLeague).
 
-	void static showtopFootballers(unordered_map<string, Footballer> TopPlayer, User& currentUser, vector<TheLeague> Leageus);
+	void static showtopFootballers(unordered_map<string, Footballer> TopPlayer, User* currentUser, vector<TheLeague> Leageus);
 
 	bool static comparePlayersByPoints(Footballer& player1, Footballer& player2);
 
@@ -205,7 +204,7 @@ public:
 
 	vector <User> static moveTovector(unordered_map<string, User> Users);
 
-	vector<string> static  sortingUsers(vector<User> TopUsers);
+	vector<User> static  sortingUsers(vector<User> TopUsers);
 
 
 	bool static compareUsersByPoints(User& User1, User& User2);
