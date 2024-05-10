@@ -36,7 +36,7 @@ public:
 
 
 
-	void static updateAllUserPoints(unordered_map<string, User>* Users, list <Game> allGames, User currentUser);
+	void static updateAllUserPoints(unordered_map<string, User>* Users, list <Game> allGames, User *currentUser);
 	void static ReducePoints(User* currentUser, Footballer& TargetedFootballer, string violation, string status, int& tempPoints);//this function used to reduce user points,balance and footballer points
 
 	void static AddContributesPoints(User* currentUser, Footballer& TargetedFootballer, string contributes, string status, int& tempPoints, Teams* team);//this function used to update user points,balance and footballer points
@@ -47,7 +47,11 @@ public:
 
 	void showAllGameHighlights(queue<Game>Usergames, list <Game>& allGames);// show all the games that played in this week or round.
 
+	void static updatecurrentUserPoint(Game currentGame, User* currentUser);
 
+	void static deletefromList(list<Game>* allGames, int gameid);
+
+	void static deleteallGameRound(list<Game>* allgames);
 	//suspend functions
 
 };

@@ -21,7 +21,7 @@ User::User() {
 
 User::User(int id, string fullName, string username, string Email, string password,
 	string phoneNumber, int points, float balance,
-	unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad,
+	unordered_map<string, Footballer*> mainSquad, unordered_map<string, Footballer*> substitutionSquad,
 	time_t lastDatePlayedWheel, time_t nextSpinDate) {
 	this->fullName = fullName;
 	this->username = username;
@@ -182,12 +182,12 @@ float User::GetBalance()
 	return balance;
 }
 
-unordered_map<string, Footballer>& User::GetMainSquad()
+unordered_map<string, Footballer*>& User::GetMainSquad()
 {
 	return this->TheMainSquad;
 }
 
-unordered_map<string, Footballer>& User::GetSubstitutionSquad()
+unordered_map<string, Footballer*>& User::GetSubstitutionSquad()
 {
 	return this->SubstitutionSquad;
 }

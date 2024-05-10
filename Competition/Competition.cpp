@@ -1,5 +1,6 @@
 #include "Competition.h"
 
+int GameIdcounter = 0;
 bool Competition::IsManOfTheMatch(string currentMOTM, string playerName)
 {
 	return (currentMOTM == playerName);
@@ -198,15 +199,23 @@ void Competition::addGoalsAssistPoints(string contributes, User* currentUser, Fo
 }
 
 
-void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <Game> allGames, User currentUser)
+void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <Game> allGames, User *currentUser)
 {
-	
-	int gameRound = currentUser.GetUserGames().front().getRound();
-	Teams* team=nullptr;
+
+	int gameRound = currentUser->GetUserGames().front().getRound();
+	Teams* team = nullptr;
 	for (auto& user : *Users)
 	{
-		User* currentUser = &user.second;
-		findPlayers(currentUser, "User", team, gameRound);
+		User* User = &user.second;
+		if (currentUser->GetUsername() == user.first)
+		{
+			findPlayers(currentUser, "currentUser", team, gameRound);
+		}
+		else
+		{
+
+			findPlayers(User, "allUser", team, gameRound);
+		}
 
 	}
 }
@@ -216,42 +225,82 @@ void Competition::findPlayers(User* currentUser, string status, Teams* team, int
 {
 	int tempPoints = 0;
 	Game currentGame;
-
-	while (!currentUser->GetUserGames().empty())
+	if (status == "currentUser")
 	{
 		currentGame = currentUser->GetUserGames().front();
+		updatecurrentUserPoint(currentGame, currentUser);
+		currentUser->GetUserGames().pop();
+	}
+	else
+	{
 
-		if (currentGame.getRound() != round)
+		while (!currentUser->GetUserGames().empty())
 		{
-			currentUser->GetUserGames().pop();
-			continue;
-		}
-		while (!currentGame.getHighlightsOfTheMatch().empty())
-		{
+			currentGame = currentUser->GetUserGames().front();
 
-			string currentPlayerinMatch = currentGame.getHighlightsOfTheMatch().top().getName();
-			for (auto& kv : currentUser->GetMainSquad()) {
-
-				//get the data from the game
-				string footballerName = kv.first;
-				string contributes = currentGame.getHighlightsOfTheMatch().top().getContributions();
-				string violation = currentGame.getHighlightsOfTheMatch().top().getViolation();
-
-				if (footballerName == currentPlayerinMatch)
-				{
-					AddContributesPoints(currentUser, kv.second, contributes, "User", tempPoints, team);
-					ReducePoints(currentUser, kv.second, violation, "User", tempPoints);
-
-				}
+			if (currentGame.getRound() != round)
+			{
+				currentUser->GetUserGames().pop();
+				continue;
 			}
 
-			//go to the next player
-			currentGame.getHighlightsOfTheMatch().pop();
+			updatecurrentUserPoint(currentGame, currentUser);
+
+			//The end of the match
+			currentUser->GetUserGames().pop();
+		}
+	}
+
+}
+
+void Competition::updatecurrentUserPoint(Game currentGame, User* currentUser)
+{
+	int tempPoints = 0;
+	Teams* team = nullptr;
+
+	while (!currentGame.getHighlightsOfTheMatch().empty())
+	{
+
+		string currentPlayerinMatch = currentGame.getHighlightsOfTheMatch().top().getName();
+		for (auto& kv : currentUser->GetMainSquad()) {
+
+			//get the data from the game
+			string footballerName = kv.first;
+			string contributes = currentGame.getHighlightsOfTheMatch().top().getContributions();
+			string violation = currentGame.getHighlightsOfTheMatch().top().getViolation();
+
+			if (footballerName == currentPlayerinMatch)
+			{
+				AddContributesPoints(currentUser, kv.second, contributes, "User", tempPoints, team);
+				ReducePoints(currentUser, kv.second, violation, "User", tempPoints);
+
+			}
 		}
 
+		//go to the next player
+		currentGame.getHighlightsOfTheMatch().pop();
+	}
+}
 
-		//The end of the match
-		currentUser->GetUserGames().pop();
+void Competition::deletefromList(list<Game>* allGames, int gameid)
+{
+	GameIdcounter++;
+	for (auto i = allGames->begin(); i != allGames->end(); i++)
+	{
+		if (gameid == i->getGameId()) {
+			allGames->erase(i);
+		}
+	}
+}
+
+void Competition::deleteallGameRound(list<Game>* allgames)
+{
+	auto j = allgames->begin();
+	for (int i = 0; i < 8 - GameIdcounter; i++)
+	{
+		allgames->erase(j);
+		j++;
+
 	}
 
 }
@@ -309,7 +358,7 @@ void Competition::UpdateFootballerPrice(Footballer& player, int tempPoints, Team
 void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch Highlights) {
 
 
-	User *currentUser=nullptr;
+	User* currentUser = nullptr;
 	string status = "footballer";
 	string currentFootballerName = Highlights.getName();
 
