@@ -387,7 +387,7 @@ void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch
 
 }
 
-void Competition::UpdateFootballerPoints(queue<Game>& GameWeek) //for both squads of the match for a game week
+void Competition::UpdateFootballerPoints(list<Game>& GameWeek) //for both squads of the match for a game week
 {
 	Game game = GameWeek.front();
 	Teams* awayTeam = game.getAwayTeam();
