@@ -168,9 +168,11 @@ void Game::displayGameOverview(Game currentGame) {
 	cout << "\n";
 	cout << right << setw(45) << " Man of the Match : " << game.getManOfTheMatch() << endl;
 	Game::displayBorder(2);
-	cout << "\n\n";
+	cout << "\n";
+	cout << right << setw(47) << "Goals" << endl;
 	Game::displayPlayerHighlights(game);
 	Game::displayBorder(3);
+	cout << right << setw(52) << "Game Statistics" << endl;
 	displayStatisitcs(game);
 	Game::displayBorder(1);
 

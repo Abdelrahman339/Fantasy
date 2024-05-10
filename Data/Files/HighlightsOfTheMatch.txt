@@ -74,6 +74,10 @@ Matteo Darmian
 Goals: 1
 None
 ----
+Alessandro Bastoni
+Assists: 1
+None
+---
 Nicolo Barella
 None
 Yellow Card
@@ -114,8 +118,16 @@ Nicolas Jackson
 Goals: 1
 None
 ----
+Ben Chilwell
+Assists: 1
+None
+---
 Luis Diaz
 Goals: 1
+None
+---
+Mohamed Salah
+Assists: 1
 None
 ----------------
 6
@@ -136,6 +148,10 @@ Son Heung-min
 Goals: 2
 None
 ----
+James Maddison
+Assists: 2
+None
+---
 Cristian Romero
 None
 Yellow Card
@@ -155,7 +171,7 @@ Yellow Card
 7
 --------
 Rodrygo
-Goals: 1
+Goals: 1 & Assists: 1
 None
 ----
 Antonio Rudiger
@@ -163,7 +179,7 @@ None
 Yellow Card
 ----
 Jude Bellingham
-None
+Assists: 1
 Yellow Card
 ----
 Vinicius Junior
@@ -229,7 +245,7 @@ None
 Yellow Card
 ----
 Lucas Ocampos
-None
+Assists: 1
 Yellow Card
 ----
 Suso
@@ -251,7 +267,7 @@ None
 Yellow Card
 ----
 Daley Blind
-None
+Assists: 1
 Yellow Card
 ----
 Gabriel Paulista
@@ -289,7 +305,7 @@ None
 Yellow Card
 ----
 Lautaro Martinez
-None
+Assists: 2
 Yellow Card
 ----
 Romelu Lukaku
@@ -326,6 +342,10 @@ Federico Gatti
 Goals: 1
 None
 ----
+Andrea Cambiaso
+Assists: 1
+None
+---
 Giovanni Di Lorenzo
 None
 Yellow Card
@@ -379,8 +399,12 @@ Rodrigo Bentancur
 Goals: 1
 Yellow Card
 ----
+Timo Werner
+Assists: 1
+None
+---
 Pedro Porro
-Goals: 1
+Goals: 1 & Assists: 2
 None
 ----------------
 13
@@ -389,6 +413,10 @@ Sterling
 Goals: 1
 Yellow Card
 ----
+Conor Gallagher
+Assists: 1
+None
+---
 Palmer
 Goals: 1
 Yellow Card
@@ -406,7 +434,7 @@ None
 Yellow Card
 ----
 Reece James
-None
+Assists: 1
 Yellow Card
 ----
 Phil Foden
@@ -422,9 +450,13 @@ Goals: 1
 Yellow Card
 ----
 Erling Haaland
-Goals: 2
+Goals: 2 & Assists: 1
 None
 ----
+Bernardo Silva
+Assists: 2
+None
+---
 Walker
 None
 Yellow Card
@@ -432,7 +464,7 @@ Yellow Card
 14
 --------
 Martin Odegaard
-None
+Assists: 1
 Yellow Card
 ----
 Rice
@@ -473,7 +505,7 @@ Yellow Card
 ----
 Konate
 None
-Card Card
+Red Card
 ----
 Gabriel Magalhaes
 Goals: 1
@@ -515,8 +547,12 @@ Jude Bellingham
 Goals: 2
 None
 ----
+Federico Valverde
+Assists: 1
+None
+---
 Vinicius Junior
-Goals: 1
+Goals: 1 & Assists: 2
 None
 ----
 Eric Garcia
@@ -550,11 +586,11 @@ CleanSheets
 Yellow Card
 ----
 Ferran Torres
-Goals: 1
+Goals: 1 & Assists: 1
 None
 ----
 Robert Lewandowski
-Goals: 1
+Goals: 1 & Assists: 2
 None
 ----
 Ilkay Gundogan
@@ -629,6 +665,10 @@ Dusan Vlahovic
 Goals: 1
 None
 ----
+Federico Chiesa
+Assists: 1
+None
+---
 Andrea Cambiaso
 None
 Yellow Card
@@ -637,6 +677,10 @@ Lautaro Martinez
 Goals: 1
 None
 ----
+Marcus Thuram
+Assists: 1
+None
+---
 Adrien Rabiot
 None
 Yellow Card
@@ -668,7 +712,7 @@ None
 Yellow Card
 ----
 Lorenzo Pellegrini
-Goals: 1
+Goals: 1 & Assists: 2
 None
 ----
 Bryan Cristante
@@ -676,7 +720,7 @@ None
 Yellow Card
 ----
 Romelu Lukaku
-None
+Goals: 1
 Yellow Card
 ----
 Bryan Cristante
@@ -825,6 +869,18 @@ Saliba
 Goals: 1 & CleanSheets
 Yellow Card
 ----
+Martin Odegaard
+Assists: 2
+None
+---
+Rice
+Assists: 1
+None
+---
+Bukayo Saka
+Assists: 1
+None
+---
 Reece James
 None
 Yellow Card
@@ -844,16 +900,16 @@ None
 Yellow Card
 ----
 Eric Garcia
-None
+Assists: 1
 Yellow Card
 ----
-Cristhian Stuani
-Goals
+Aleix Garcia
+Goals: 1
 None
 ----
-David Lopez
+Nemanja Gudelj
+Goals: 1
 None
-Yellow Card
 ----------------
 24
 --------
