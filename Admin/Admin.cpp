@@ -95,8 +95,9 @@ Choose:
 		User::signup(Users);
 		cout << "Successfully Added Your New User " << endl;
 		PauseAndClear();
+		goto Choose;
 	}
-	if (choice == 2)
+	else if (choice == 2)
 	{
 		ShowAndEditUser(Users);
 		goto Choose;
@@ -104,7 +105,6 @@ Choose:
 	else if (choice == 3)
 	{
 		UserSquadAndPlayers(Users);
-
 	}
 	else if (choice == 4)
 	{
@@ -190,7 +190,6 @@ choices:
 	}
 	else if (choice == 4)
 	{
-		AboutUsers(Users);
 		return;
 	}
 	else
@@ -202,6 +201,7 @@ choices:
 }
 void Admin::EditProfile(unordered_map<string, User>& Users, User& currentUser)
 {
+
 	bool valid = false;
 	int choice;
 choices:
@@ -209,7 +209,7 @@ choices:
 	cout << endl;
 	cout << "What Info Would You Like To Edit?" << endl;
 	cout << "--------------------------------------" << endl;
-	cout << "1-Full Name\t2-Username\t3-Email Address\n4-Phone Number\t5-Password\t6-Balance\n7-Points\t8-Rank\t\t9-Go Back" << endl;
+	cout << "1-Full Name\t2-Username\n3-Email Address\t4-Phone Number\n5-Password\t6-Balance\n7-Points\t8-Go Back" << endl;
 	cout << "Enter your choice: ";
 	cin >> choice;
 	if (choice == 1)
@@ -220,12 +220,14 @@ choices:
 	}
 	else if (choice == 2)
 	{
+		User newusername;
 		valid = true;
 		auto it = Users.find(currentUser.GetUsername());//old username
 		UserValidations::usernameCheck(Users, currentUser);  //updated username
 		if (it != Users.end()) // if old username exists
 		{
-			Users.insert({ currentUser.GetUsername(), it->second });   //update the username
+			Users.insert({ currentUser.GetUsername(), currentUser });   //update the username
+			newusername = currentUser;
 			Users.erase(it);   //erasing old username
 		}
 		else
@@ -235,6 +237,7 @@ choices:
 		}
 		cout << "Username updated successfully" << endl;
 		PauseAndClear();
+		ViewProfile(Users, newusername);
 	}
 	else if (choice == 3)
 	{
@@ -256,25 +259,20 @@ choices:
 	}
 	else if (choice == 6)
 	{
-		EditBalancePointsRank(currentUser, 1, "new Balance");
+		EditBalancePoints(currentUser, 1, "new Balance");
 		cout << "Balance updated successfully" << endl;
 		PauseAndClear();
 	}
 	else if (choice == 7)
 	{
-		EditBalancePointsRank(currentUser, 2, "new Points");
+		EditBalancePoints(currentUser, 2, "new Points");
 		cout << "Points updated successfully" << endl;
 		PauseAndClear();
 	}
 	else if (choice == 8)
 	{
-		EditBalancePointsRank(currentUser, 3, "new Rank");
-		cout << "Rank updated successfully" << endl;
-		PauseAndClear();
-	}
-	else if (choice == 9)
-	{
 		ViewProfile(Users, currentUser);
+		return;
 	}
 	else
 	{
@@ -283,7 +281,6 @@ choices:
 	}
 	if (valid)
 	{
-		ViewProfile(Users, currentUser);
 		return;
 	}
 	else
@@ -293,36 +290,31 @@ choices:
 		return;
 	}
 }
-void Admin::EditBalancePointsRank(User& CurrentUser, int choice, string information)
+void Admin::EditBalancePoints(User& CurrentUser, int choice, string information)
 {
 	float NewBalance = 1;
-	int NewPointsOrRank = 1;
+	int NewPoints = 1;
 Redo:
 	cout << "Enter Your " << information << ": " << endl;
 	if (information == "new Balance")
 	{
 		cin >> NewBalance;
-		if (!CheckBalancePointsRank(information))
+		if (!CheckBalancePoints(information))
 		{
 			goto Redo;
 		}
 	}
 	else
 	{
-		cin >> NewPointsOrRank;
-		if (CheckBalancePointsRank(information))
+		cin >> NewPoints;
+		if (!CheckBalancePoints(information))
 		{
 			goto Redo;
 		}
 	}
-	if (NewBalance < 0 || NewPointsOrRank < 0)
+	if (NewBalance < 0 || NewPoints < 0)
 	{
 		cout << "Your " << information << " Cannot Be Negative" << endl;
-		goto Redo;
-	}
-	else if (choice == 3 && NewPointsOrRank == 0)
-	{
-		cout << "Your " << information << " Cannot Be Zero" << endl;
 		goto Redo;
 	}
 	else
@@ -331,17 +323,13 @@ Redo:
 		{
 			CurrentUser.SetBalance(NewBalance);
 		}
-		else if (choice == 2)
+		else
 		{
-			CurrentUser.SetPoints(NewPointsOrRank);
-		}
-		else if (choice == 3)
-		{
-			//CurrentUser.SetRank(NewPointsOrRank);
+			CurrentUser.SetPoints(NewPoints);
 		}
 	}
 }
-bool Admin::CheckBalancePointsRank(string information)
+bool Admin::CheckBalancePoints(string information)
 {
 	if (cin.fail())
 	{
@@ -404,7 +392,7 @@ start:
 
 void Admin::Deletion(unordered_map<string, User>& Users, User CurrentUser)
 {
-	start:
+start:
 	int choice;
 	cout << "Are you sure you want to delete " << CurrentUser.GetUsername() << "?" << endl;
 	cout << "1. Yes \n2. No" << endl;
