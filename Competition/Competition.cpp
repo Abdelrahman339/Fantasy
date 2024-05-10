@@ -8,16 +8,8 @@ bool Competition::IsManOfTheMatch(string currentMOTM, string playerName)
 }
 
 
-bool Competition::checkPosition(string footballerPosition) {
 
-	if (footballerPosition == "defender" || footballerPosition == "goalkeeper") {
-		return true;
-	}
 
-	else
-		return false;
-
-}
 
 char Competition::priceCalculation(int points) {
 
