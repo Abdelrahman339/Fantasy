@@ -85,7 +85,7 @@ public:
 	bool hasFootballer(string& footballerName);
 
 	// Method to handle playing the lucky wheel and handling the discounted footballer
-	void handleLuckyWheelResult(pair<string, pair<float, Footballer>> result, User& user);
+	void handleLuckyWheelResult(pair<string, pair<float, Footballer*>>* result, User& user);
 
 
 	///////////////////////////////////////////////////////////////////////////////////
