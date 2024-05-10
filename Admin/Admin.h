@@ -13,8 +13,8 @@ class Admin {
 public:
 //
 //	//admin
-	void static CheckAdmin(unordered_map<string, User>& Users, vector<TheLeague> leagues);
-	void static AdminMenu(unordered_map<string, User>& Users, vector<TheLeague> leagues);
+	void static CheckAdmin(unordered_map<string, User>& Users, vector<TheLeague>& leagues);
+	void static AdminMenu(unordered_map<string, User>& Users, vector<TheLeague>& leagues);
 	//users
 	void static AboutUsers(unordered_map<string, User>& Users);
 	void static DisplayAllUsers(unordered_map<string, User>& Users);
