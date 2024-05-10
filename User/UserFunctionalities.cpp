@@ -217,9 +217,11 @@ void User::ShowSquad(User& currentUser) {
 	unordered_map <string, Footballer> SubstitutionSquad = currentUser.GetSubstitutionSquad();
 
 	cout << spacing(60, ' ') << "**Your fantasy squad**" << endl;
-	cout << spacing(60, ' '); squadFormat(formatchoice, MainSquad);
+	cout << spacing(60, ' '); 
+	squadFormat(formatchoice, MainSquad);
 	cout << "\n\n\ ";
-	cout << spacing(60, ' '); showSubstitutions(SubstitutionSquad);
+	cout << spacing(60, ' '); 
+	showSubstitutions(SubstitutionSquad);
 	cout << "\n\n\ ";
 choice:
 	cout << spacing(60, ' ') << "1-Show information about your players\n2-Change your format\n3-Substitution\n4-Go back " << endl;
@@ -747,7 +749,7 @@ void User::Format433(unordered_map<string, Footballer> Squad, string squadName) 
 
 void User::Format343(unordered_map<string, Footballer> Squad, string squadName) {
 
-	vector <string>MainSquad = ToVector(Squad);
+	vector <string> MainSquad = ToVector(Squad);
 	while (MainSquad.size() < 11)
 	{
 		MainSquad.push_back("XXXXXX");

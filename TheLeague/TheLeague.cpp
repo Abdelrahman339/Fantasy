@@ -1,14 +1,18 @@
 #include "TheLeague.h"
 
+#include <algorithm> // for sort
+
+
 void TheLeague::displayTeams(map<string, Teams> teams) {
+	cout << string(48, '-') << endl;
 	cout << "Name" << "\t\t\t       " << "Points" << endl;
-	for (auto& team : teams) {
-		cout << team.second.getName() << "\t\t" << checkStrLengthTeams(team.second.getName()) << team.second.getPoints() << endl;
+	for (auto it = teams.begin(); it != teams.end(); ++it) {
+		cout << it->second.getName() << "\t\t" << checkStrLengthTeams(it->second.getName()) << it->second.getPoints() << endl;
 	}
-	cout << "--------------------------------------------------" << endl;
+	cout << string(48, '-') << endl;
 }
 //Test this later 5/5/2024
-string TheLeague::checkStrLengthTeams(const std::string& str) {
+string TheLeague::checkStrLengthTeams(const string& str) {
 	if (str.length() <= 16 && str.length() >= 8) {
 		return "\t";
 	}
@@ -17,7 +21,6 @@ string TheLeague::checkStrLengthTeams(const std::string& str) {
 	}
 	return "";
 }
-
 //void League::updatePoints( list <Game> allgames) {
 //    // Update points based on games played
 //    for ( auto& game : allgames) {
@@ -82,7 +85,7 @@ map<string, Teams>& TheLeague::GetTeams()
 	return this->teams;
 }
 
-void TheLeague::SetTeams(map<string, Teams> teams){
+void TheLeague::SetTeams(map<string, Teams> teams) {
 	this->teams = teams;
 }
 
