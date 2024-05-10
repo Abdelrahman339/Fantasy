@@ -39,7 +39,7 @@ invalid:
 	cin >> choice;
 	if (choice == 1)
 	{
-		bool seasonEnded = showCurrentMatch(UserGames);
+		bool seasonEnded = showCurrentMatch(UserGames,allGames);
 
 		if (seasonEnded)
 		{
@@ -101,11 +101,14 @@ invalid:
 };
 
 
-bool User::showCurrentMatch(queue<Game>& UserGames)
+bool User::showCurrentMatch(queue<Game>& UserGames,list<Game>*allGames)
 {
 	if (UserGames.size() == 0)
 	{
 		cout << spacing(30, ' ') << "##The season not started yet!##" << endl;
+		Competition::deleteallGameRound(allGames);
+		system("pause");
+		system("cls");
 		return false;
 	}
 	else

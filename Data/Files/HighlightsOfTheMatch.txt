@@ -125,7 +125,7 @@ Goals: 1
 None
 ----
 Cristian Romero
-Golas: 1
+Goals: 1
 None
 ----
 Martin Odegaard
@@ -133,7 +133,7 @@ None
 Yellow Card
 ----
 Son Heung-min
-Golas: 2
+Goals: 2
 None
 ----
 Cristian Romero
@@ -167,7 +167,7 @@ None
 Yellow Card
 ----
 Vinicius Junior
-Golas: 3
+Goals: 3
 None
 ----
 Ronald Araujo
@@ -183,7 +183,7 @@ None
 Yellow Card
 ----
 Robert Lewandowski
-Golas: 1
+Goals: 1
 None
 ----------------
 8
@@ -239,7 +239,7 @@ None
 Yellow Card
 ----
 Cristhian Stuani
-Gools: 2
+Goals: 2
 None
 ----
 Miguel Gutierrez
@@ -255,7 +255,7 @@ None
 Yellow Card
 ----
 Hugo Duro
-Golas: 1
+Goals: 1
 Yellow Card
 ----
 Yarek Gasiorowski
@@ -285,11 +285,11 @@ None
 Yellow Card
 ----
 Romelu Lukaku
-Golas: 1
+Goals: 1
 None
 ----
 Federico Dimarco
-Golas: 1
+Goals: 1
 None
 ----------------
 11
@@ -303,7 +303,7 @@ None
 Yellow Card
 ----
 Federico Gatti
-Golas: 1
+Goals: 1
 None
 ----
 Giovanni Di Lorenzo
@@ -328,7 +328,7 @@ None
 Yellow Card
 ----
 Marcus Rashford
-Golas: 1
+Goals: 1
 None
 ----
 Casemiro
@@ -336,29 +336,29 @@ None
 Yellow Card
 ----
 LindelOf
-Golas: 1
+Goals: 1
 None
 ----
 Rodrigo Bentancur
-Golas: 1
+Goals: 1
 Yellow Card
 ----
 Pedro Porro
-Golas: 1
+Goals: 1
 None
 ----------------
 13
 --------
 Sterling
-Golas: 1
+Goals: 1
 Yellow Card
 ----
 Palmer
-Golas: 1
+Goals: 1
 Yellow Card
 ----
 Nicolas Jackson
-Golas: 1
+Goals: 1
 Yellow Card
 ----
 Axel Disasi
@@ -378,15 +378,15 @@ None
 Yellow Card
 ----
 Rodri
-Golas: 1
+Goals: 1
 Yellow Card
 ----
 Doku
-None
+Goals: 1
 Yellow Card
 ----
 Erling Haaland
-Golas: 2
+Goals: 2
 None
 ----
 Walker
@@ -404,7 +404,7 @@ None
 Yellow Card
 ----
 Oleksandr Zinchenko
-Golas: 1
+Goals: 1
 None
 ----
 William Saliba
@@ -416,7 +416,7 @@ None
 Yellow Card
 ----
 Gabriel Martinelli
-Golas: 1
+Goals: 1
 None
 ----
 Gabriel Magalhaes
@@ -428,7 +428,7 @@ None
 Yellow Card
 ----
 Bukayo Saka
-Golas: 1
+Goals: 1
 None
 ----
 Robertson
@@ -440,7 +440,7 @@ None
 Card Card
 ----
 Gabriel Magalhaes
-Golas: 1
+Goals: 1
 None
 ----
 Alexander Arnold
@@ -454,15 +454,15 @@ None
 Yellow Card
 ----
 Rodrygo
-Golas: 1
+Goals: 1
 None
 ----
 Jude Bellingham
-Golas: 2
+Goals: 2
 None
 ----
 Vinicius Junior
-Golas: 1
+Goals: 1
 None
 ----
 Eric Garcia
@@ -496,15 +496,15 @@ None
 Yellow Card
 ----
 Ferran Torres
-Golas: 1
+Goals: 1
 None
 ----
 Robert Lewandowski
-Golas: 1
+Goals: 1
 None
 ----
 Ilkay Gundogan
-Golas: 1
+Goals: 1
 None
 ----------------
 17
@@ -520,7 +520,7 @@ None
 Yellow Card
 ----
 Dusan Vlahovic
-Golas: 1
+Goals: 1
 None
 ----
 Andrea Cambiaso
@@ -528,7 +528,7 @@ None
 Yellow Card
 ----
 Lautaro Martinez
-Golas: 1
+Goals: 1
 None
 ----
 Adrien Rabiot
@@ -546,7 +546,7 @@ None
 Yellow Card
 ----
 Lorenzo Pellegrini
-Golas: 1
+Goals: 1
 None
 ----
 Bryan Cristante
@@ -700,7 +700,7 @@ None
 Yellow Card
 ----
 Robert Lewandowski
-Golas: 1
+Goals: 1
 None
 ----
 Jesus Navas

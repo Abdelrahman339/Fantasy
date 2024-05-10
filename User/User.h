@@ -163,7 +163,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	void static play(list<Game>* allGames, User* currentUser, unordered_map<string, User>* Users);
 
-	bool static showCurrentMatch(queue<Game>& UserGames);
+	bool static showCurrentMatch(queue<Game>& UserGames,list<Game>*allGames);
 
 	void static FilteringTeams(list<Game> allGames, User* currentUser, stack<string> oldUserTeams, string status);
 
@@ -210,6 +210,8 @@ public:
 	bool static compareUsersByPoints(User& User1, User& User2);
 
 	void static showTopUsers(unordered_map<string, User> Users);
+
+	void static endOfSeasonScreen(list<Game>* allGames, unordered_map<string, User>Users);
 };
 
 

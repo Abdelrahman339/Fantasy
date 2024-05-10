@@ -304,7 +304,7 @@ void Competition::deleteallGameRound(list<Game>* allgames)
 		j++;
 
 	}
-
+	GameIdcounter = 0;
 }
 
 //void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGame)

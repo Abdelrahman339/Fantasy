@@ -127,6 +127,7 @@ void User::signup(unordered_map<string, User>* Users)
 }
 void User::userMenu(User* currentUser, unordered_map<string, User>* Users, vector <TheLeague>& leagues, list<Game>* allGames)
 {
+	endOfSeasonScreen(allGames, *Users);
 	int choice;
 choice:
 	cout << "\n\n\n\n";

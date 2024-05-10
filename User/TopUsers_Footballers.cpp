@@ -144,3 +144,23 @@ void User::showTopUsers(unordered_map<string, User> Users) {
 };
 
 
+void User::endOfSeasonScreen(list<Game>* allGames, unordered_map<string, User>Users) {
+
+	User topUser;
+	vector<User> topUsers = moveTovector(Users);
+	topUsers = sortingUsers(topUsers);
+	topUser = topUsers.front();
+
+	if (allGames->size() == 0)
+	{
+		cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << spacing(60, ' ') << "     Fantasy season has ended!!!" << endl;
+		cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+		cout << "\n\n\n";
+		cout << spacing(60, ' ') << "congratulations to our first rank winner!!!" << endl;
+
+		cout << spacing(60, ' ') << spacing(topUser.GetUsername().size() + 4, '*');
+		cout << spacing(60, ' ') << "* " << topUser.GetUsername() << " *" << endl;
+		cout << spacing(60, ' ') << spacing(topUser.GetUsername().size() + 4, '*');
+	}
+};
