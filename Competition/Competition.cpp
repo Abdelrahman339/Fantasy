@@ -382,13 +382,14 @@ void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch
 
 }
 
-void Competition::UpdateFootballerPoints(list<Game>& GameWeek) //for both squads of the match for a game week
+void Competition::UpdateFootballerPoints(list<Game>* GameWeek) //for both squads of the match for a game week
 {
-	list<Game> tempGameWeek = GameWeek;
+	list<Game>* tempGameWeek = GameWeek;
 	int Gamecounte = 0;
+
 	while (Gamecounte < 8) {
 
-		Game game = tempGameWeek.front();
+		Game game = tempGameWeek->front();
 		Teams* awayTeam = game.getAwayTeam();
 		Teams* homeTeam = game.getHomeTeam();
 		HighlightsOfTheMatch highlights;
@@ -411,24 +412,24 @@ void Competition::UpdateFootballerPoints(list<Game>& GameWeek) //for both squads
 		}
 
 		//calculating the points for the man of the match
-		int countAwayTeam = awayTeam->getFootballPlayer().count(currentMOTM);
-		int countHomeTeam = homeTeam->getFootballPlayer().count(currentMOTM);
+		int countAwayTeam = awayTeam->getFootballPlayer()->count(currentMOTM);
+		int countHomeTeam = homeTeam->getFootballPlayer()->count(currentMOTM);
 		if (countAwayTeam > 0)
 		{
-			float currentMOTMPlayerPrice = awayTeam->getFootballPlayer().at(currentMOTM).GetPrice();
-			awayTeam->getFootballPlayer().at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-			awayTeam->getFootballPlayer().at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
+			float currentMOTMPlayerPrice = awayTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
+			awayTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
+			awayTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
 		}
 		else
 		{
-			float currentMOTMPlayerPrice = homeTeam->getFootballPlayer().at(currentMOTM).GetPrice();
-			homeTeam->getFootballPlayer().at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-			homeTeam->getFootballPlayer().at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
+			float currentMOTMPlayerPrice = homeTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
+			homeTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
+			homeTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
 		}
 
 		//the end of one game
 		Gamecounte++;
-		tempGameWeek.pop_front();
+		tempGameWeek->pop_front();
 	}
 }
 

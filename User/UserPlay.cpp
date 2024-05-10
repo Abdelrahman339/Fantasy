@@ -39,7 +39,7 @@ invalid:
 	cin >> choice;
 	if (choice == 1)
 	{
-		bool seasonEnded = showCurrentMatch(UserGames,allGames);
+		bool seasonEnded = showCurrentMatch(UserGames, allGames);
 
 		if (seasonEnded)
 		{
@@ -52,6 +52,7 @@ invalid:
 					Game::displayGameOverview(UserGames.front());
 					int gameid = currentUser->GetUserGames().front().getGameId();
 					Competition::updateAllUserPoints(Users, *allGames, currentUser);
+					Competition::UpdateFootballerPoints(allGames);
 					Competition::deletefromList(*allGames, gameid);
 					firstPlay = true;
 				}
@@ -66,6 +67,7 @@ invalid:
 					if (currentRound != oldGameround)
 					{
 						Competition::updateAllUserPoints(Users, *allGames, currentUser);
+						Competition::UpdateFootballerPoints(allGames);
 						Competition::deleteallGameRound(allGames);
 						oldGameround = currentRound;
 					}
@@ -98,15 +100,13 @@ invalid:
 	}
 	//comp func
 
-};
-
-
-bool User::showCurrentMatch(queue<Game>& UserGames,list<Game>*allGames)
+}
+bool User::showCurrentMatch(queue<Game>& UserGames, list<Game>* allgames)
 {
 	if (UserGames.size() == 0)
 	{
 		cout << spacing(30, ' ') << "##The season not started yet!##" << endl;
-		Competition::deleteallGameRound(allGames);
+		Competition::deleteallGameRound(allgames);
 		system("pause");
 		system("cls");
 		return false;
@@ -119,6 +119,9 @@ bool User::showCurrentMatch(queue<Game>& UserGames,list<Game>*allGames)
 		return true;
 	}
 }
+;
+
+
 
 
 void User::FilteringTeams(list<Game> allGames, User* currentUser, stack<string> oldUserTeams, string status) {

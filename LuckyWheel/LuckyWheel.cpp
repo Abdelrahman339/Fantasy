@@ -5,7 +5,7 @@ void LuckyWheel::playLuckyWheel(vector<TheLeague> leagues, User*user) {
 	system("cls");
 
 	if (!user->playWheel()) {
-		user->handleLuckyWheelResult({},user);
+		user->handleLuckyWheelResult({},*user);
 		return;
 	}
 	time_t lastDate = user->getLastDatePlayedWheel();
@@ -19,7 +19,7 @@ void LuckyWheel::playLuckyWheel(vector<TheLeague> leagues, User*user) {
 
 	pair<string, pair<float, Footballer>> discountedFootballer = displayLuckyWheel(leagues);
 
-	user->handleLuckyWheelResult(discountedFootballer,user);
+	user->handleLuckyWheelResult(discountedFootballer,*user);
 }
 
 void LuckyWheel::getFootballPlayersToBeDisplayed(vector<TheLeague> leagues,

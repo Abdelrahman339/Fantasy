@@ -22,7 +22,7 @@ User::User() {
 
 User::User(int id, string fullName, string username, string Email, string password,
 	string phoneNumber, int points, float balance,
-	unordered_map<string, Footballer> mainSquad, unordered_map<string, Footballer> substitutionSquad,
+	unordered_map<string, Footballer*> mainSquad, unordered_map<string, Footballer*> substitutionSquad,
 	time_t lastDatePlayedWheel, time_t nextSpinDate) {
 	this->fullName = fullName;
 	this->username = username;
@@ -183,12 +183,12 @@ float User::GetBalance()
 	return balance;
 }
 
-unordered_map<string, Footballer>& User::GetMainSquad()
+unordered_map<string, Footballer*>& User::GetMainSquad()
 {
 	return this->TheMainSquad;
 }
 
-unordered_map<string, Footballer>& User::GetSubstitutionSquad()
+unordered_map<string, Footballer*>& User::GetSubstitutionSquad()
 {
 	return this->SubstitutionSquad;
 }
@@ -219,15 +219,15 @@ bool User::hasFootballer(string& footballerName) {
 	return TheMainSquad.find(footballerName) != TheMainSquad.end() || SubstitutionSquad.find(footballerName) != SubstitutionSquad.end();
 }
 
-void User::handleLuckyWheelResult(pair<string, pair<float, Footballer>> result, User* user) {
+void User::handleLuckyWheelResult(pair<string, pair<float, Footballer>> result, User& user) {
 	string choice;
 	if (!result.first.empty()) {
 		string& footballerName = result.first;
 		float discount = result.second.first;
-		Footballer& footballer = result.second.second;
+		Footballer* footballer = &result.second.second;
 
 		// Calculate discounted price
-		float discountedPrice = footballer.calculateDiscountedPrice(discount);
+		float discountedPrice = footballer->calculateDiscountedPrice(discount);
 
 		// Check if the user already has the footballer
 		if (hasFootballer(footballerName)) {
@@ -237,20 +237,20 @@ void User::handleLuckyWheelResult(pair<string, pair<float, Footballer>> result, 
 	invalid:
 		// Print footballer name and discounted price
 		cout << footballerName << endl;
-		cout << "Price before -> " << footballer.GetPrice() << "\n(Discounted) Price -> " << discountedPrice << endl;
+		cout << "Price before -> " << footballer->GetPrice() << "\n(Discounted) Price -> " << discountedPrice << endl;
 		cout << "1-Buy\n2-Replace\n3-Go back";
 		cin >> choice;
 		if (choice == "1")
 		{
-			buyFunction(user, footballer);
+			buyFunction(&user, footballer);
 			system("pause");
 			system("cls");
 		}
 		else if (choice == "2")
 		{
-			Format433(user->GetMainSquad(), "Your player");
+			Format433(user.GetMainSquad(), "Your player");
 			cout << "\n\n\n";
-			replace(user, footballer);
+			replace(&user, footballer);
 			system("pause");
 			system("cls");
 		}
@@ -264,6 +264,5 @@ void User::handleLuckyWheelResult(pair<string, pair<float, Footballer>> result, 
 			system("cls");
 			goto invalid;
 		}
-		system("pause");
 	}
 }

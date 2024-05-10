@@ -15,10 +15,10 @@ void User::Market(User* currentUser, vector <TheLeague>& leagues)
 	cout << spacing(70, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << "\n\n\n\n";
 
-	unordered_map<string, Footballer*>* topPlayers = new unordered_map<string, Footballer*>();
-	TopFootballers(topPlayers, leagues);
-	Format343(*topPlayers, "Top Player");
-	cout << endl << endl << endl;
+	//unordered_map<string, Footballer*>* topPlayers = new unordered_map<string, Footballer*>();
+	//TopFootballers(topPlayers, leagues);
+	//Format343(*topPlayers, "Top Player");
+	//cout << endl << endl << endl;
 
 invlaidMarket:
 	string choice;
@@ -31,7 +31,7 @@ invlaidMarket:
 		Market(currentUser, leagues);
 	}
 	else if (choice == "2") {
-		cout << spacing(60, ' '); showtopFootballers(*topPlayers, currentUser, leagues);
+		//cout << spacing(60, ' '); showtopFootballers(*topPlayers, currentUser, leagues);
 		cout << spacing(60, ' '); system("pause"); system("cls");
 		Market(currentUser, leagues);
 	}
@@ -45,7 +45,7 @@ invlaidMarket:
 
 		cout << spacing(60, ' '); cout << "Enter Footballer name that you want to sell." << endl;
 		cout << spacing(60, ' '); getline(cin >> ws, FootballerName);
-		cout << spacing(60, ' '); sell(currentUser, *topPlayers, FootballerName);
+		//cout << spacing(60, ' '); sell(currentUser, *topPlayers, FootballerName);
 		cout << spacing(60, ' '); fromSubtoMain(&currentUser->GetMainSquad(), &currentUser->GetSubstitutionSquad());
 		cout << spacing(60, ' '); system("cls");
 		Market(currentUser, leagues);
