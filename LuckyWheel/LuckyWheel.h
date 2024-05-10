@@ -16,12 +16,12 @@ using namespace chrono_literals;
 
 class LuckyWheel {
 public:
-	void static playLuckyWheel(vector<TheLeague> leagues, User* user);
+	void static playLuckyWheel(vector<TheLeague>& leagues, User* user, pair<string, pair<float, Footballer*>>* discountedFootballer, Footballer* winnerFootballer);
 private:
 	//Method to use leagues to randomly display a vector of footballers in which one picked from.
-	void static getFootballPlayersToBeDisplayed(vector<TheLeague> leagues, int& numberOfFootballersToBeDisplayed, unordered_map<string, Footballer>& footballersToBeDisplayed, bool& isRandomGeneratorSeeded);
+	void static getFootballPlayersToBeDisplayed(vector<TheLeague>& leagues, int& numberOfFootballersToBeDisplayed, unordered_map<string, Footballer>& footballersToBeDisplayed, bool& isRandomGeneratorSeeded);
 	string static generateCongratulatoryMessage(string lottery, float discount);
-	pair<string, pair<float, Footballer>> static displayLuckyWheel(vector<TheLeague> leagues);
+	void static displayLuckyWheel(vector<TheLeague>& leagues, pair<string, pair<float, Footballer*>>* discountedFootballer, Footballer* winnerFootballer);
 	void static displayFootballersInLuckyWheel(unordered_map<string, Footballer>& footballersToBeDisplayed);
 
 };

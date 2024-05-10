@@ -1,11 +1,11 @@
 #include "LuckyWheel.h"
 
 
-void LuckyWheel::playLuckyWheel(vector<TheLeague> leagues, User*user) {
+void LuckyWheel::playLuckyWheel(vector<TheLeague>& leagues, User* user, pair<string, pair<float, Footballer*>>* discountedFootballer, Footballer* winnerFootballer) {
 	system("cls");
 
 	if (!user->playWheel()) {
-		user->handleLuckyWheelResult({},*user);
+		user->handleLuckyWheelResult(discountedFootballer, *user);
 		return;
 	}
 	time_t lastDate = user->getLastDatePlayedWheel();
@@ -17,12 +17,12 @@ void LuckyWheel::playLuckyWheel(vector<TheLeague> leagues, User*user) {
 	system("pause");
 	system("cls");
 
-	pair<string, pair<float, Footballer>> discountedFootballer = displayLuckyWheel(leagues);
+	displayLuckyWheel(leagues, discountedFootballer, winnerFootballer);
 
-	user->handleLuckyWheelResult(discountedFootballer,*user);
+	user->handleLuckyWheelResult(discountedFootballer, *user);
 }
 
-void LuckyWheel::getFootballPlayersToBeDisplayed(vector<TheLeague> leagues,
+void LuckyWheel::getFootballPlayersToBeDisplayed(vector<TheLeague>& leagues,
 	int& numberOfFootballersToBeDisplayed,
 	unordered_map<string, Footballer>& footballersToBeDisplayed,
 	bool& isRandomGeneratorSeeded) {
@@ -106,7 +106,7 @@ string LuckyWheel::generateCongratulatoryMessage(string lottery, float discount)
 	return messages[index] + '\n' + string(30, '-') + '\n' + "Congrats you've won " + discountOfTwoDigits + "% on -> " + lottery;
 }
 
-pair<string, pair<float, Footballer>> LuckyWheel::displayLuckyWheel(vector<TheLeague> leagues) {
+void LuckyWheel::displayLuckyWheel(vector<TheLeague>& leagues, pair<string, pair<float, Footballer*>>* discountedFootballer, Footballer* winnerFootballer) {
 	int numberOfFootballersToBeDisplayed = 6;
 	unordered_map<string, Footballer> footballersToBeDisplayed;
 	bool isRandomGeneratorSeeded = false;
@@ -117,6 +117,7 @@ pair<string, pair<float, Footballer>> LuckyWheel::displayLuckyWheel(vector<TheLe
 
 	unordered_map<string, Footballer>::iterator random_it = footballersToBeDisplayed.begin();
 	advance(random_it, rand() % footballersToBeDisplayed.size());
+	*winnerFootballer = random_it->second;
 
 	float discount = static_cast<float>(rand()) / RAND_MAX * 0.35f;
 
@@ -124,10 +125,9 @@ pair<string, pair<float, Footballer>> LuckyWheel::displayLuckyWheel(vector<TheLe
 
 	system("pause");
 	system("cls");
-
-	return make_pair(
+	*discountedFootballer = make_pair(
 		random_it->first,
-		make_pair(discount, random_it->second)
+		make_pair(discount, winnerFootballer)
 	);
 }
 void LuckyWheel::displayFootballersInLuckyWheel(unordered_map<string, Footballer>& footballersToBeDisplayed) {

@@ -219,12 +219,12 @@ bool User::hasFootballer(string& footballerName) {
 	return TheMainSquad.find(footballerName) != TheMainSquad.end() || SubstitutionSquad.find(footballerName) != SubstitutionSquad.end();
 }
 
-void User::handleLuckyWheelResult(pair<string, pair<float, Footballer>> result, User& user) {
+void User::handleLuckyWheelResult(pair<string, pair<float, Footballer*>>* result, User& user) {
 	string choice;
-	if (!result.first.empty()) {
-		string& footballerName = result.first;
-		float discount = result.second.first;
-		Footballer* footballer = &result.second.second;
+	if (!result->first.empty()) {
+		string& footballerName = result->first;
+		float discount = result->second.first;
+		Footballer* footballer = result->second.second;
 
 		// Calculate discounted price
 		float discountedPrice = footballer->calculateDiscountedPrice(discount);
