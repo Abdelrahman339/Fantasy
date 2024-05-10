@@ -24,8 +24,8 @@ using namespace std;
 class Game {
 
 protected:
-	Teams awayTeam;
-	Teams homeTeam;
+	Teams* awayTeam;
+	Teams* homeTeam;
 	string winningTeam;
 	string score;
 	string manOfTheMatch;
@@ -43,15 +43,15 @@ public:
 
 	Game();
 
-	Game(int id, Teams home, Teams away, string winTeam, string score,
+	Game(int id, Teams* home, Teams* away, string winTeam, string score,
 		string stats, stack<HighlightsOfTheMatch> highlights, string motm, int round);
 
 	/////////////////////////////////////////
 	///////////// Setters ///////////////////
 	/////////////////////////////////////////
 
-	void setAwayTeam(Teams team);
-	void setHomeTeam(Teams team);
+	void setAwayTeam(Teams* team);
+	void setHomeTeam(Teams* team);
 	void setScore(string newScore);
 	void setManOfTheMatch(string newManOfTheMatch);
 	void setStatistics(string newStatistics);

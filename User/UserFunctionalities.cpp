@@ -91,10 +91,10 @@ pair<string, Teams> User::GetPlayerName_Team(vector<TheLeague> allLeagues, User 
 	pair<string, Teams> playerExist;
 	for (int i = 0; i < allLeagues.size(); i++)
 	{
-		for (auto team : allLeagues[i].GetTeams())
+		for (auto& team : *allLeagues[i].GetTeams())
 		{
 			// player name| team name
-			playerExist = make_pair(ReturnRightName("buy", team.second, currentUser, FootballerName, {}), team.second);//the footbalelrName and the team name to use it in search function at market
+			playerExist = make_pair(ReturnRightName("buy", *team.second, currentUser, FootballerName, {}), *team.second);//the footbalelrName and the team name to use it in search function at market
 			if (playerExist.first.empty()) {
 				continue;
 			}
@@ -113,23 +113,23 @@ string User::ReturnRightName(string status, Teams team, User currentUser, string
 
 	if (status == "sellMain")
 	{
-		unordered_map<string, Footballer> dataReference;
+		unordered_map<string, Footballer*> dataReference;
 		dataReference = currentUser.GetMainSquad();
 		return typosChecking(SearchName, dataReference);
 	}
 	else if (status == "sellSub")
 	{
-		unordered_map<string, Footballer> dataReference = currentUser.GetSubstitutionSquad();
+		unordered_map<string, Footballer*> dataReference = currentUser.GetSubstitutionSquad();
 		return typosChecking(SearchName, dataReference);
 	}
 	else if (status == "Team") {
-		map<string, Teams> dataReference = League.GetTeams();
+		map<string, Teams*> dataReference = *League.GetTeams();
 		return typosChecking(SearchName, dataReference);
 	}
 	else
 	{
 		unordered_map<string, Footballer> dataReference;
-		dataReference = team.getFootballPlayer();
+		dataReference = *team.getFootballPlayer();
 		return typosChecking(SearchName, dataReference);
 	}
 
@@ -178,13 +178,13 @@ string User::typosChecking(string SearchName, T dataReference)
 
 
 
-vector<string> User::ToVector(unordered_map<string, Footballer> map)
+vector<string> User::ToVector(unordered_map<string, Footballer*>& map)
 {
 	vector<string> Squad;
 
-	for (auto kv : map)
+	for (auto& kv : map)
 	{
-		Squad.push_back(kv.second.GetName());
+		Squad.push_back(kv.second->GetName());
 	}
 
 	return Squad;
@@ -192,17 +192,17 @@ vector<string> User::ToVector(unordered_map<string, Footballer> map)
 
 
 
-void User::fromSubtoMain(unordered_map<string, Footballer>& mainSquad, unordered_map<string, Footballer>& SubSquad)
+void User::fromSubtoMain(unordered_map<string, Footballer*>* mainSquad, unordered_map<string, Footballer*>* SubSquad)
 {
-	if (mainSquad.size() < 11)
+	if (mainSquad->size() < 11)
 	{
-		if (SubSquad.size() > 0) {
+		if (SubSquad->size() > 0) {
 
-			auto it = SubSquad.begin();
+			auto it = SubSquad->begin();
 
-			Footballer footballer = it->second;
-			mainSquad.insert_or_assign(footballer.GetName(), footballer);
-			SubSquad.erase(it);
+			Footballer* footballer = it->second;
+			mainSquad->insert_or_assign(footballer->GetName(), footballer);
+			SubSquad->erase(it);
 
 		}
 	}
@@ -213,14 +213,14 @@ void User::fromSubtoMain(unordered_map<string, Footballer>& mainSquad, unordered
 
 void User::ShowSquad(User* currentUser) {
 	int choice;
-	unordered_map <string, Footballer> MainSquad = currentUser->GetMainSquad();
-	unordered_map <string, Footballer> SubstitutionSquad = currentUser->GetSubstitutionSquad();
+	unordered_map <string, Footballer*> MainSquad = currentUser->GetMainSquad();
+	unordered_map <string, Footballer*> SubstitutionSquad = currentUser->GetSubstitutionSquad();
 
 	cout << spacing(60, ' ') << "**Your fantasy squad**" << endl;
-	cout << spacing(60, ' '); 
+	cout << spacing(60, ' ');
 	squadFormat(formatchoice, MainSquad);
 	cout << "\n\n\ ";
-	cout << spacing(60, ' '); 
+	cout << spacing(60, ' ');
 	showSubstitutions(SubstitutionSquad);
 	cout << "\n\n\ ";
 choice:
@@ -240,7 +240,8 @@ choice:
 
 		string existPlayer = avoidTypos(footballerName, *currentUser, "sell", { TheLeague() }, team);
 
-
+		unordered_map<string, Footballer*>* userMainSquad;
+		unordered_map<string, Footballer*>* userSubSquad;
 
 		regex pattern(R"(main)");
 
@@ -249,7 +250,7 @@ choice:
 		if (existPlayer == "existMain")
 		{
 			//the player is from main squad
-			showPlayerInfo(MainSquad.at(footballerName), "User");
+			showPlayerInfo(*MainSquad.at(footballerName), "User");
 			do
 			{
 				cout << "1-sell this player\n2-Go back " << endl;
@@ -257,16 +258,16 @@ choice:
 				switch (choice)
 				{
 				case 1:
+					userMainSquad = &currentUser->GetMainSquad();
+					userSubSquad = &currentUser->GetMainSquad();
 
 					sellFunction(currentUser, footballerName, "main");
-					fromSubtoMain(currentUser->GetMainSquad(), currentUser->GetSubstitutionSquad());
+					fromSubtoMain(userMainSquad, userSubSquad);
 					ShowSquad(currentUser);
 					return;
-					break;
 				case 2:
 					ShowSquad(currentUser);
 					return;
-					break;
 				default:
 					cout << "Enter a valid choice please";
 					break;
@@ -277,7 +278,7 @@ choice:
 
 		//player is from sub squad
 		else if (existPlayer == "existSub") {
-			showPlayerInfo(SubstitutionSquad.at(footballerName), "User");
+			showPlayerInfo(*SubstitutionSquad.at(footballerName), "User");
 
 			do
 			{
@@ -319,7 +320,7 @@ choice:
 				cin >> ans;
 				if (ans == 'y')
 				{
-					showPlayerInfo(MainSquad.at(existPlayer), "User");
+					showPlayerInfo(*MainSquad.at(existPlayer), "User");
 
 					do
 					{
@@ -330,7 +331,7 @@ choice:
 						case 1:
 
 							sellFunction(currentUser, existPlayer, "main");
-							fromSubtoMain(currentUser->GetMainSquad(), currentUser->GetSubstitutionSquad());
+							fromSubtoMain(&currentUser->GetMainSquad(), &currentUser->GetSubstitutionSquad());
 							ShowSquad(currentUser);
 							return;
 							break;
@@ -362,7 +363,7 @@ choice:
 				if (ans == 'y')
 				{
 
-					showPlayerInfo(SubstitutionSquad.at(existPlayer), "User");
+					showPlayerInfo(*SubstitutionSquad.at(existPlayer), "User");
 					do
 					{
 						cout << "1-sell this player\n2-Go back " << endl;
@@ -479,7 +480,7 @@ void User::Substitution(User* currentUser) {
 	string PlayerName1;
 	string PlayerName2;
 	string existPlayer;
-	Footballer tempPlayer;
+	Footballer* tempPlayer = nullptr;
 	Teams team;
 	regex pattern(R"(main)");
 invalid_main:
@@ -590,15 +591,15 @@ invalid_Sub:
 	ShowSquad(currentUser);
 }
 
-void User::SubstituteFunction(User* currentUser, string subFootballer, Footballer mainFootballer)
+void User::SubstituteFunction(User* currentUser, string subFootballer, Footballer* mainFootballer)
 {
 
-	Footballer Subplayer = currentUser->GetSubstitutionSquad().at(subFootballer);
-	currentUser->GetMainSquad().erase(mainFootballer.GetName());
-	currentUser->GetMainSquad().insert_or_assign(Subplayer.GetName(), Subplayer);
+	Footballer* Subplayer = currentUser->GetSubstitutionSquad().at(subFootballer);
+	currentUser->GetMainSquad().erase(mainFootballer->GetName());
+	currentUser->GetMainSquad().insert_or_assign(Subplayer->GetName(), Subplayer);
 
-	currentUser->GetSubstitutionSquad().erase(Subplayer.GetName());
-	currentUser->GetSubstitutionSquad().insert_or_assign(mainFootballer.GetName(), mainFootballer);
+	currentUser->GetSubstitutionSquad().erase(Subplayer->GetName());
+	currentUser->GetSubstitutionSquad().insert_or_assign(mainFootballer->GetName(), mainFootballer);
 };
 
 void User::profile(User* currentUser, unordered_map<string, User>* Users) {
@@ -697,7 +698,7 @@ invalid:
 	}
 };
 
-void User::squadFormat(int choice, unordered_map<string, Footballer>  squad) {
+void User::squadFormat(int choice, unordered_map<string, Footballer*>&  squad) {
 	if (choice == 1)
 	{
 		User::Format343(squad, "Player");
@@ -715,7 +716,7 @@ void User::squadFormat(int choice, unordered_map<string, Footballer>  squad) {
 	}
 
 };
-void User::Format433(unordered_map<string, Footballer> Squad, string squadName) {
+void User::Format433(unordered_map<string, Footballer*>& Squad, string squadName) {
 
 	vector <string>MainSquad = ToVector(Squad);
 	while (MainSquad.size() < 11)
@@ -746,7 +747,7 @@ void User::Format433(unordered_map<string, Footballer> Squad, string squadName) 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void User::Format343(unordered_map<string, Footballer> Squad, string squadName) {
+void User::Format343(unordered_map<string, Footballer*>& Squad, string squadName) {
 
 	vector <string> MainSquad = ToVector(Squad);
 	while (MainSquad.size() < 11)
@@ -778,7 +779,7 @@ void User::Format343(unordered_map<string, Footballer> Squad, string squadName) 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void User::Format442(unordered_map<string, Footballer> Squad, string squadName) {
+void User::Format442(unordered_map<string, Footballer*>& Squad, string squadName) {
 
 	vector <string>MainSquad = ToVector(Squad);
 
@@ -805,7 +806,7 @@ void User::Format442(unordered_map<string, Footballer> Squad, string squadName) 
 
 
 
-void User::showSubstitutions(unordered_map<string, Footballer> Squad)
+void User::showSubstitutions(unordered_map<string, Footballer*>& Squad)
 {
 
 	vector <string>substitutionList = ToVector(Squad);
