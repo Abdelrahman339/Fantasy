@@ -7,7 +7,8 @@ using namespace std;
 
 
 User::User() {
-	this->id = -1;
+	srand(time(0));
+	this->id = rand();
 	this->fullName = "";
 	this->username = "";
 	this->password = "";
@@ -218,7 +219,8 @@ bool User::hasFootballer(string& footballerName) {
 	return TheMainSquad.find(footballerName) != TheMainSquad.end() || SubstitutionSquad.find(footballerName) != SubstitutionSquad.end();
 }
 
-void User::handleLuckyWheelResult(pair<string, pair<float, Footballer>> result) {
+void User::handleLuckyWheelResult(pair<string, pair<float, Footballer>> result, User* user) {
+	string choice;
 	if (!result.first.empty()) {
 		string& footballerName = result.first;
 		float discount = result.second.first;
@@ -232,12 +234,36 @@ void User::handleLuckyWheelResult(pair<string, pair<float, Footballer>> result) 
 			cout << "You already have this player in your main or substitution squad!" << endl;
 			return;
 		}
-
+	invalid:
 		// Print footballer name and discounted price
 		cout << footballerName << endl;
 		cout << "Price before -> " << footballer.GetPrice() << "\n(Discounted) Price -> " << discountedPrice << endl;
-		cout << "Buy or replace or do nothing? -- m7tagak y 3mr aw ya indian fi di" << endl;
-
+		cout << "1-Buy\n2-Replace\n3-Go back";
+		cin >> choice;
+		if (choice == "1")
+		{
+			buyFunction(user, footballer);
+			system("pause");
+			system("cls");
+		}
+		else if (choice == "2")
+		{
+			Format433(user->GetMainSquad(), "Your player");
+			cout << "\n\n\n";
+			replace(user, footballer);
+			system("pause");
+			system("cls");
+		}
+		else if (choice == "3")
+		{
+			system("cls");
+			return;
+		}
+		else {
+			cout << "Invalid input. Please try again." << endl;
+			system("cls");
+			goto invalid;
+		}
 		system("pause");
 	}
 }

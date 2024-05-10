@@ -9,6 +9,7 @@
 #include <stack>
 #include "unordered_map"
 #include <algorithm>
+#include<ctime>
 
 #include "Footballer.h"
 #include "TheLeague.h"
@@ -85,7 +86,7 @@ public:
 	bool hasFootballer(string& footballerName);
 
 	// Method to handle playing the lucky wheel and handling the discounted footballer
-	void handleLuckyWheelResult(pair<string, pair<float, Footballer>> result);
+	void handleLuckyWheelResult(pair<string, pair<float, Footballer>> result,User *user);
 
 
 	///////////////////////////////////////////////////////////////////////////////////
