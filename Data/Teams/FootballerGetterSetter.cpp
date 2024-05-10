@@ -62,6 +62,9 @@ void Footballer::SetTeam(string team) {
 string Footballer::GetTeam() {
 	return team;
 }
+float Footballer::GetRating(){
+	return this->rating;
+}
 string Footballer::GetPosition() {
 	return position;
 }

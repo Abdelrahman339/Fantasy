@@ -17,6 +17,12 @@ int main() {
 	map<string, unordered_map<string, Footballer>> footballersOfTeam = fileManipulation::getFootballersOfTeamData();
 	map<string, Teams> allTeams = fileManipulation::getTeamsData(footballersOfTeam);
 	vector<TheLeague> leagues = fileManipulation::getLeagueData(allTeams);
+	
+	//Writing in files leagueData, teamsData, footballersOfTeam
+
+	/*fileManipulation::writeInfoInSpecificFile("leagueDataNew.txt", leagues);
+	fileManipulation::writeInfoInSpecificFile("teamsDataNew.txt", allTeams);
+	fileManipulation::writeInfoInSpecificFile("footballersOfTeamNew.txt", footballersOfTeam);*/
 
 
 	////Get Games now Done!==> USAGE

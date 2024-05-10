@@ -89,6 +89,7 @@ public:
 	int GetAge();
 	string GetPosition();
 	string GetTeam();
+	float GetRating();
 	float GetPrice();
 	bool GetCaptain();
 

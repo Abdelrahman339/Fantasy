@@ -34,6 +34,147 @@ vector<string> splitByRegex(string data, string reg) {
 }
 
 
+void fileManipulation::writeInfoInSpecificFile(string filename, vector<TheLeague> leagues) {
+	//leagueDataNew.txt
+
+	string currentDir = "Data/Files/";
+	filename = currentDir + filename;
+
+	ofstream file(filename);
+	if (file.is_open()) {
+		stringstream ss;
+		ss << "Name of Team (Unique)\n";
+		ss << "league\n";
+		ss << "Points\n";
+		ss << "Number of Wins\n";
+		ss << "Number of Losses\n";
+		ss << "Number of Draws\n";
+		ss << "----\n";
+		for (auto it = leagues.begin(); it != leagues.end(); ++it) {
+			ss << it->getLeagueName() << "\n";
+			const vector<string>& teamNames = it->getTeamNames(it->GetTeams());
+			for (const auto& teamName : teamNames) {
+				ss << teamName << "\n";
+			}
+			if (next(it) != leagues.end()) {
+				ss << "----\n";
+			}
+		}
+
+		// Write the content string to the file
+		file << ss.str();
+
+		// Close the file
+		file.close();
+
+		cout << "Data has been written to the file.\n";
+	}
+	else {
+		cerr << "Unable to open the file.\n";
+	}
+}
+void fileManipulation::writeInfoInSpecificFile(string filename, map<string, Teams> teams) {
+	//teamsDataNew.txt
+
+	string currentDir = "Data/Files/";
+	filename = currentDir + filename;
+
+	ofstream file(filename);
+	if (file.is_open()) {
+		stringstream ss;
+		ss << "Name of Team (Unique)\n";
+		ss << "league\n";
+		ss << "Points\n";
+		ss << "Number of Wins\n";
+		ss << "Number of Losses\n";
+		ss << "Number of Draws\n";
+		ss << "----\n";
+		for (auto it = teams.begin(); it != teams.end(); ++it) {
+			ss << it->first << "\n";
+			ss << it->second.getPoints() << "\n";
+			ss << it->second.getwins() << "\n";
+			ss << it->second.getlose() << "\n";
+			ss << it->second.getdraw() << "\n";
+			if (next(it) != teams.end()) {
+				ss << "----\n";
+			}
+		}
+		// Write the content string to the file
+		file << ss.str();
+
+		// Close the file
+		file.close();
+
+		cout << "Data has been written to the file.\n";
+	}
+	else {
+		cerr << "Unable to open the file.\n";
+	}
+}
+void fileManipulation::writeInfoInSpecificFile(string filename, map<string, unordered_map<string, Footballer>> footballersOfTeam) {
+	string currentDir = "Data/Files/";
+	filename = currentDir + filename;
+
+	ofstream file(filename);
+	if (file.is_open()) {
+		stringstream ss;
+
+		ss << "Name of Team\n";
+		ss << "--------\n";
+		for (int i = 0; i < 2; i++) {
+			ss << "Name (Unique)\n";
+			ss << "Age\n";
+			ss << "Position\n";
+			ss << "Price in market\n";
+			ss << "Rating\n";
+			ss << "Total Goals\n";
+			ss << "Total Assists\n";
+			ss << "Total RedCards\n";
+			ss << "Total YellowCards\n";
+			ss << "Total Cleansheets\n";
+			ss << "Total Points\n----\n";
+		}
+		ss << "----------------\n";
+
+
+		for (auto it = footballersOfTeam.begin(); it != footballersOfTeam.end(); ++it) {
+			ss << it->first << "\n";
+			ss << "--------\n";
+			// Create an iterator for the inner unordered map
+			for (auto inner_it = it->second.begin(); inner_it != it->second.end(); ++inner_it) {
+
+				// Access footballer details using inner_it->second
+				ss << inner_it->first << "\n";
+				ss << inner_it->second.GetAge() << "\n";
+				ss << inner_it->second.GetPosition() << "\n";
+				ss << inner_it->second.GetPrice() << "\n";
+				ss << inner_it->second.GetRating() << "\n";
+				ss << inner_it->second.GetTotalGoals() << "\n";
+				ss << inner_it->second.GetTotalAssists() << "\n";
+				ss << inner_it->second.GetTotalRedCard() << "\n";
+				ss << inner_it->second.GetTotalYellowCard() << "\n";
+				ss << inner_it->second.GetTotalCleansheets() << "\n";
+				ss << inner_it->second.GetTotalpoints() << "\n";
+				if (next(inner_it) != it->second.end()) {
+					ss << "----\n";
+				}
+			}
+			ss << "----------------\n";
+		}
+		// Write the content string to the file
+		file << ss.str();
+
+		// Close the file
+		file.close();
+
+		cout << "Data has been written to the file.\n";
+	}
+	else {
+		cerr << "Unable to open the file.\n";
+	}
+
+}
+
 vector<TheLeague> fileManipulation::getLeagueData(map<string, Teams> allTeams) {
 	string filename = "leagueData.txt";
 	string file_data = readFileData(filename);
@@ -135,7 +276,7 @@ map<string, Teams> fileManipulation::parseTeams(map<string, unordered_map<string
 				)
 			);
 		}
-		catch (const std::exception&) {
+		catch (const exception&) {
 			parsedTeams.insert(
 				make_pair(teamLines[0], parseTeam(teamLines, { {teamLines[0], {}} })
 				)
@@ -300,14 +441,14 @@ User fileManipulation::parseUser(vector<string> userLines, map<int, pair<unorder
 	try {
 		mainSquad = usersSquads.at(userID).first;
 	}
-	catch (const std::exception&) {
+	catch (const exception&) {
 		//cout << "User \"" << fullname << "\" has 0 Footballers in his main Squad." << endl;
 	}
 
 	try {
 		substitutionSquad = usersSquads.at(userID).second;
 	}
-	catch (const std::exception&) {
+	catch (const exception&) {
 		//cout << "User \"" << fullname << "\" has 0 Footballers in his substitution Squad." << endl;
 	}
 
@@ -319,7 +460,7 @@ unordered_map<string, Footballer> fileManipulation::parseSquad(Squad squadType, 
 	try {
 		userTeamsAndFootballerNames = splitByRegex(userIdMainSubSquads[squadType], regex);
 	}
-	catch (const std::exception&) {
+	catch (const exception&) {
 		//cout << "Found (0) Footballers in " << (userIdMainSubSquads.size() == 2 ? "SUBSTITUTION Squad" : "MAIN and SUBSTITUTION Squads") << " of User ID : (" << userIdMainSubSquads[0] << ")" << endl;
 		return {};
 	}
