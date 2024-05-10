@@ -389,50 +389,52 @@ void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch
 
 void Competition::UpdateFootballerPoints(list<Game>& GameWeek) //for both squads of the match for a game week
 {
-	Game game = GameWeek.front();
-	Teams* awayTeam = game.getAwayTeam();
-	Teams* homeTeam = game.getHomeTeam();
-	HighlightsOfTheMatch highlights;
-	string currentMOTM = game.getManOfTheMatch();
-	int NumOfMatchesPlayed = 0;
+	list<Game> tempGameWeek = GameWeek;
+	int Gamecounte = 0;
+	while (Gamecounte < 8) {
+
+		Game game = tempGameWeek.front();
+		Teams* awayTeam = game.getAwayTeam();
+		Teams* homeTeam = game.getHomeTeam();
+		HighlightsOfTheMatch highlights;
+		string currentMOTM = game.getManOfTheMatch();
+		int NumOfMatchesPlayed = 0;
 
 
-	game = GameWeek.front();
+
+		while (!game.getHighlightsOfTheMatch().empty()) {
+
+			//get higlights for one player 
+			highlights = game.getHighlightsOfTheMatch().top();
+
+			Competition::searchTeamInMatch(awayTeam, game, highlights);
+			Competition::searchTeamInMatch(homeTeam, game, highlights);
 
 
+			game.getHighlightsOfTheMatch().pop();
 
+		}
 
-	while (!game.getHighlightsOfTheMatch().empty()) {
+		//calculating the points for the man of the match
+		int countAwayTeam = awayTeam->getFootballPlayer().count(currentMOTM);
+		int countHomeTeam = homeTeam->getFootballPlayer().count(currentMOTM);
+		if (countAwayTeam > 0)
+		{
+			float currentMOTMPlayerPrice = awayTeam->getFootballPlayer().at(currentMOTM).GetPrice();
+			awayTeam->getFootballPlayer().at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
+			awayTeam->getFootballPlayer().at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
+		}
+		else
+		{
+			float currentMOTMPlayerPrice = homeTeam->getFootballPlayer().at(currentMOTM).GetPrice();
+			homeTeam->getFootballPlayer().at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
+			homeTeam->getFootballPlayer().at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
+		}
 
-		//get higlights for one player 
-		highlights = game.getHighlightsOfTheMatch().top();
-
-		Competition::searchTeamInMatch(awayTeam, game, highlights);
-		Competition::searchTeamInMatch(homeTeam, game, highlights);
-
-
-		game.getHighlightsOfTheMatch().pop();
-
+		//the end of one game
+		Gamecounte++;
+		tempGameWeek.pop_front();
 	}
-
-	////calculating the points for the man of the match
-	//int countAwayTeam = awayTeam.getFootballPlayer().count(currentMOTM);
-	//int countHomeTeam = homeTeam.getFootballPlayer().count(currentMOTM);
-	//if (countAwayTeam > 0)
-	//{
-	//	float currentMOTMPlayerPrice = awayTeam.getFootballPlayer().at(currentMOTM).GetPrice();
-	//	awayTeam.getFootballPlayer().at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-	//	awayTeam.getFootballPlayer().at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-	//}
-	//else
-	//{
-	//	float currentMOTMPlayerPrice = homeTeam.getFootballPlayer().at(currentMOTM).GetPrice();
-	//	homeTeam.getFootballPlayer().at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-	//	homeTeam.getFootballPlayer().at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-	//}
-
-
-
 }
 
 
