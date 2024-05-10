@@ -1,7 +1,9 @@
 #include "Competition.h"
 
-bool firsttime = false;
+bool firstTime = false;
 int GameIdcounter = 0;
+
+
 bool Competition::IsManOfTheMatch(string currentMOTM, string playerName)
 {
 	return (currentMOTM == playerName);
@@ -200,10 +202,10 @@ void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <
 	for (auto& user : *Users)
 	{
 		User* User = &user.second;
-		if (currentUser->GetUsername() == user.first && firsttime == false)
+		if (currentUser->GetUsername() == user.first && firstTime == false)
 		{
 			findPlayers(currentUser, "currentUser", team, gameRound);
-			firsttime = true;
+			firstTime = true;
 		}
 		else
 		{
@@ -363,6 +365,10 @@ void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch
 			string contributions = Highlights.getContributions();
 			string violation = Highlights.getViolation();
 
+			if (currentFootballerName == currentMOTM) {
+				tempPoints = MOTM_Bonus;
+			}
+
 			Competition::AddContributesPoints(currentUser, currentFootballer, contributions, status, tempPoints, team);
 			Competition::ReducePoints(currentUser, currentFootballer, violation, status, tempPoints); // for deducing redCards and yellowcards points
 			Competition::UpdateFootballerPrice(currentFootballer, tempPoints, team);
@@ -377,9 +383,9 @@ void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch
 void Competition::UpdateFootballerPoints(list<Game>* GameWeek) //for both squads of the match for a game week
 {
 	list<Game>* tempGameWeek = GameWeek;
-	int Gamecounte = 0;
+	int Gamecounter = 0;
 
-	while (Gamecounte < 8) {
+	while (Gamecounter < 8) {
 
 		Game game = tempGameWeek->front();
 		Teams* awayTeam = game.getAwayTeam();
@@ -403,24 +409,25 @@ void Competition::UpdateFootballerPoints(list<Game>* GameWeek) //for both squads
 
 		}
 
-		//calculating the points for the man of the match
-		int countAwayTeam = awayTeam->getFootballPlayer()->count(currentMOTM);
-		int countHomeTeam = homeTeam->getFootballPlayer()->count(currentMOTM);
-		if (countAwayTeam > 0)
-		{
-			float currentMOTMPlayerPrice = awayTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
-			awayTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-			awayTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-		}
-		else
-		{
-			float currentMOTMPlayerPrice = homeTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
-			homeTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-			homeTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-		}
+		////calculating the points for the man of the match
+		//int countAwayTeam = awayTeam->getFootballPlayer()->count(currentMOTM);
+		//int countHomeTeam = homeTeam->getFootballPlayer()->count(currentMOTM);
+		//if (countAwayTeam > 0)
+		//{
+		//	float currentMOTMPlayerPrice = awayTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
+		//	awayTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
+		//	awayTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
+		//}
+		//else
+		//{
+		//	float currentMOTMPlayerPrice = homeTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
+		//	homeTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
+		//	homeTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
+		//}
 
-		//the end of one game
-		Gamecounte++;
+		//the end of each game
+
+		Gamecounter++;
 		tempGameWeek->pop_front();
 	}
 }
