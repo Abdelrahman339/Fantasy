@@ -1,6 +1,5 @@
 #include "Game.h"
 #include<set>
-//#include "League.h"
 
 void Game::displayBorder(int type) {
 
@@ -20,17 +19,17 @@ void Game::displayBorder(int type) {
 
 void Game::displayTeamsAndScore(Game currentGame)
 {
-	string homeTeamName = currentGame.getHomeTeam().getName();
-	string awayTeamName = currentGame.getAwayTeam().getName();
+	string homeTeamName = currentGame.getHomeTeam()->getName();
+	string awayTeamName = currentGame.getAwayTeam()->getName();
 
 	int totalWidth = 86;
 
 	// Calculate padding for home team and away team
-	int paddingHome =( (totalWidth - 5) - homeTeamName.length() - awayTeamName.length()) / 2;
+	int paddingHome = ((totalWidth - 5) - homeTeamName.length() - awayTeamName.length()) / 2;
 	int paddingAway = totalWidth - 5 - homeTeamName.length() - awayTeamName.length() - paddingHome;
 
 
-	cout << right << setw(paddingHome) <<"# " << homeTeamName << "  " << currentGame.getScore() << " " <<" # " << awayTeamName << endl;
+	cout << right << setw(paddingHome) << "# " << homeTeamName << "  " << currentGame.getScore() << " " << " # " << awayTeamName << endl;
 
 }
 
@@ -127,7 +126,7 @@ void Game::displayPlayerHighlights(Game game) {
 
 				// Check if the generated minute is already in the set if it is then it will generate a new minute
 				while (generatedMinutes.find(GoalMinute) != generatedMinutes.end()) {
-					GoalMinute = dis(gen); 
+					GoalMinute = dis(gen);
 				}
 				generatedMinutes.insert(GoalMinute);
 
@@ -155,14 +154,14 @@ void Game::displayPlayerHighlights(Game game) {
 }
 
 
-void Game::displayGameOverview(queue <Game> currentGame) {
+void Game::displayGameOverview(Game currentGame) {
 
-	Game game = currentGame.front();
+	Game game = currentGame;
 
 
 	system("cls");
 	Game::displayBorder(1);
-	cout <<"Game-week : " << game.getRound() << right << setw(35) << "Full-time" << endl;
+	cout << "Game-week : " << game.getRound() << right << setw(35) << "Full-time" << endl;
 	cout << "\n";
 	displayTeamsAndScore(game);
 	Game::displayBorder(2);
@@ -175,6 +174,5 @@ void Game::displayGameOverview(queue <Game> currentGame) {
 	displayStatisitcs(game);
 	Game::displayBorder(1);
 
-	currentGame.pop();
 }
 

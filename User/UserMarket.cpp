@@ -1,14 +1,13 @@
 #include <deque>
 #include <stack>
 #include <set>
-
 #include "Competition.h"
 #include "User.h"
 
 
 using namespace std;
 
-void User::Market(User& currentUser, vector <TheLeague> leagues)
+void User::Market(User* currentUser, vector <TheLeague> leagues)
 {
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << spacing(60, ' ') << "             Fatntasy Market" << endl;
@@ -18,47 +17,48 @@ void User::Market(User& currentUser, vector <TheLeague> leagues)
 	Format343(TopPlayer, "Top Player");
 	cout << endl << endl << endl;
 
-	int choice = 0;
+invlaidMarket:
+	string choice;
 
-invalid:
 	cout << spacing(60, ' ') << "1-search. 2-Choose Top player. 3-Sell your players. 4-Go back." << endl;
 	cout << spacing(60, ' '); cin >> choice;
-	if (choice == 1) {
+	if (choice == "1") {
 		cout << spacing(60, ' '); search(currentUser, leagues);
 		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
-	else if (choice == 2) {
+	else if (choice == "2") {
 		cout << spacing(60, ' '); showtopFootballers(TopPlayer, currentUser, leagues);
 		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
-	else if (choice == 3) {
+	else if (choice == "3") {
 		cout << spacing(60, ' '); system("pause"); system("cls");
 		cout << spacing(60, ' '); string FootballerName;
-		cout << spacing(60, ' '); Format343(currentUser.GetMainSquad(), "Player");
+		cout << spacing(60, ' '); Format343(currentUser->GetMainSquad(), "Player");
 		cout << spacing(60, ' '); cout << endl << endl << endl;
-		cout << spacing(60, ' '); showSubstitutions(currentUser.GetSubstitutionSquad());
+		cout << spacing(60, ' '); showSubstitutions(currentUser->GetSubstitutionSquad());
 		cout << spacing(60, ' '); cout << endl << endl;
 
 		cout << spacing(60, ' '); cout << "Enter Footballer name that you want to sell." << endl;
 		cout << spacing(60, ' '); getline(cin >> ws, FootballerName);
 		cout << spacing(60, ' '); sell(currentUser, TopPlayer, FootballerName);
-		cout << spacing(60, ' '); fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
+		cout << spacing(60, ' '); fromSubtoMain(currentUser->GetMainSquad(), currentUser->GetSubstitutionSquad());
 		cout << spacing(60, ' '); system("cls");
 		cout << spacing(60, ' '); Market(currentUser, leagues);
 	}
-	else if (choice == 4) {
+	else if (choice == "4") {
 		system("pause"); system("cls");
 		return;
 	}
 	else {
-		cout << spacing(60, ' '); cout << "Invalid input.Please try again." << endl;
-		goto invalid;
+		cout << "invalid input.Please try again ";
+		goto invlaidMarket;
 	}
+
 };
 
-void User::showtopFootballers(unordered_map<string, Footballer> TopPlayer, User& currentUser, vector<TheLeague> Leageus)
+void User::showtopFootballers(unordered_map<string, Footballer> TopPlayer, User* currentUser, vector<TheLeague> Leageus)
 {
 	string footballerName;
 	int choice;
@@ -77,7 +77,7 @@ invalid:
 		Footballer targetFootballer;
 		Teams footballerTeam;
 
-		targetFootballer = returnPlayer(footballerName, currentUser, "buy", Leageus, footballerTeam);
+		targetFootballer = returnPlayer(footballerName, *currentUser, "buy", Leageus, footballerTeam);
 
 		//checking if the object of footballer is empty or not 
 		if (!targetFootballer.GetName().empty())
@@ -103,15 +103,15 @@ invalid:
 	invalid_Footballer_name:
 		cout << "Enter the name of the player you want to Replace" << endl;
 		getline(cin >> ws, footballerName);
-		targetFootballer = returnPlayer(footballerName, currentUser, "buy", Leageus, team);
+		targetFootballer = returnPlayer(footballerName, *currentUser, "buy", Leageus, team);
 		if (!targetFootballer.GetName().empty())
 		{
 
-			Format442(currentUser.GetMainSquad(), "Player");
+			Format442(currentUser->GetMainSquad(), "Player");
 
 			cout << endl;
 
-			showSubstitutions(currentUser.GetSubstitutionSquad());
+			showSubstitutions(currentUser->GetSubstitutionSquad());
 
 			cout << endl << endl;
 
@@ -137,7 +137,7 @@ invalid:
 
 
 
-void User::search(User& currentUser, vector<TheLeague>  leagues)
+void User::search(User* currentUser, vector<TheLeague>  leagues)
 {
 	// all the variables declartion
 	int ans;
@@ -158,7 +158,7 @@ invalid:
 
 	//function typos start here to check if the user enterd any wrong Player name.after this function is done it return a object of type footballer
 	int choice;
-	targetFootballer = returnPlayer(search, currentUser, "buy", leagues, footballerTeam);
+	targetFootballer = returnPlayer(search, *currentUser, "buy", leagues, footballerTeam);
 
 	//checking if the object of footballer is empty or not 
 	if (!targetFootballer.GetName().empty())
@@ -183,7 +183,7 @@ invalid:
 		case 1:
 			cout << "Enter the name of the player you want to show information about" << endl;
 			getline(cin >> ws, footballerName);
-			targetFootballer = returnPlayer(footballerName, currentUser, "buy", leagues, footballerTeam);
+			targetFootballer = returnPlayer(footballerName, *currentUser, "buy", leagues, footballerTeam);
 
 			//checking if the object of footballer is empty or not 
 			if (!targetFootballer.GetName().empty())
@@ -200,15 +200,15 @@ invalid:
 		invalid_Footballer_name:
 			cout << "Enter the name of the player you want to Replace" << endl;
 			getline(cin >> ws, footballerName);
-			targetFootballer = returnPlayer(footballerName, currentUser, "buy", leagues, footballerTeam);
+			targetFootballer = returnPlayer(footballerName, *currentUser, "buy", leagues, footballerTeam);
 			if (!targetFootballer.GetName().empty())
 			{
 
-				Format442(currentUser.GetMainSquad(), "Player");
+				Format442(currentUser->GetMainSquad(), "Player");
 
 				cout << endl;
 
-				showSubstitutions(currentUser.GetSubstitutionSquad());
+				showSubstitutions(currentUser->GetSubstitutionSquad());
 
 				cout << endl << endl;
 
@@ -317,12 +317,12 @@ Teams User::findTeam(vector<TheLeague> leagues, string TeamName)
 
 
 
-bool User::sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, string footballerName) {
+bool User::sell(User* currentUser, unordered_map<string, Footballer> TopPlayer, string footballerName) {
 
 
 	char ans;
 	Teams TeamName;
-	string playerExist = User::avoidTypos(footballerName, currentUser, "sell", {}, TeamName);
+	string playerExist = User::avoidTypos(footballerName, *currentUser, "sell", {}, TeamName);
 
 
 
@@ -399,17 +399,17 @@ bool User::sell(User& currentUser, unordered_map<string, Footballer> TopPlayer, 
 
 
 
-void User::sellFunction(User& currentUser, string footballerName, string status)
+void User::sellFunction(User* currentUser, string footballerName, string status)
 {
 	unordered_map<string, Footballer>* squad;
 	if (status == "main")
 	{
-		squad = &currentUser.GetMainSquad();
+		squad = &currentUser->GetMainSquad();
 	}
 
 	else
 	{
-		squad = &currentUser.GetSubstitutionSquad();
+		squad = &currentUser->GetSubstitutionSquad();
 	}
 
 	cout << "Player sold successfully.." << endl;
@@ -418,7 +418,7 @@ void User::sellFunction(User& currentUser, string footballerName, string status)
 
 	squad->erase(footballerName);
 
-	currentUser.addBalance(FootballerPrice);
+	currentUser->addBalance(FootballerPrice);
 
 }
 ;
@@ -427,7 +427,7 @@ void User::sellFunction(User& currentUser, string footballerName, string status)
 
 
 
-void User::buy(User& currentUser, vector<TheLeague> Leagues) {
+void User::buy(User* currentUser, vector<TheLeague> Leagues) {
 
 	// all used variables
 	string footballerName;
@@ -440,7 +440,7 @@ void User::buy(User& currentUser, vector<TheLeague> Leagues) {
 invalid:
 	cout << "Enter the name of your wanted player to buy.\n";
 	getline(cin >> ws, footballerName);
-	playerExist = User::avoidTypos(footballerName, currentUser, "buing", Leagues, PlayerTeam);
+	playerExist = User::avoidTypos(footballerName, *currentUser, "buing", Leagues, PlayerTeam);
 
 
 	//the user enterd the name of the player correctlly 
@@ -515,10 +515,10 @@ invalid:
 }
 
 
-void User::buyFunction(User& currentUser, Footballer footballer)
+void User::buyFunction(User* currentUser, Footballer footballer)
 {
 	float FootballerPrice = footballer.GetPrice();
-	float currentBalance = currentUser.GetBalance();
+	float currentBalance = currentUser->GetBalance();
 
 	if (!checkBalance(currentBalance, FootballerPrice))
 	{
@@ -526,8 +526,8 @@ void User::buyFunction(User& currentUser, Footballer footballer)
 		cout << "you don't have enough money to buy this player." << endl;
 		return;
 	}
-	if (currentUser.SetFootballer(footballer)) {
-		currentUser.addBalance(-FootballerPrice);
+	if (currentUser->SetFootballer(footballer)) {
+		currentUser->addBalance(-FootballerPrice);
 		cout << "Player bought successfully." << endl;
 	}
 };
@@ -544,7 +544,7 @@ bool User::checkBalance(float& currentUserBalance, float& footballerPrice)
 
 }
 
-void User::replace(User& currentUser, Footballer wantedFootballer) {
+void User::replace(User* currentUser, Footballer wantedFootballer) {
 
 
 	string TeamFootballerName = wantedFootballer.GetName();
@@ -560,7 +560,7 @@ invalidSquad:
 	getline(cin >> ws, UserFootballerName);
 
 	Footballer TeamFootballer = wantedFootballer;
-	string existPlayer = avoidTypos(UserFootballerName, currentUser, "sell", {}, team);
+	string existPlayer = avoidTypos(UserFootballerName, *currentUser, "sell", {}, team);
 
 
 	if (existPlayer == "existMain")
@@ -630,15 +630,15 @@ invalidSquad:
 
 }
 
-void User::replaceFunction(User& currentUser, string UserFootballerName, Footballer TeamFootballer, string status)
+void User::replaceFunction(User* currentUser, string UserFootballerName, Footballer TeamFootballer, string status)
 {
 	Footballer UserFootballer;
 	if (status == "Main")
 	{
-		UserFootballer = currentUser.GetMainSquad().at(UserFootballerName);
+		UserFootballer = currentUser->GetMainSquad().at(UserFootballerName);
 	}
 	else {
-		UserFootballer = currentUser.GetSubstitutionSquad().at(UserFootballerName);
+		UserFootballer = currentUser->GetSubstitutionSquad().at(UserFootballerName);
 
 	}
 
@@ -647,13 +647,13 @@ void User::replaceFunction(User& currentUser, string UserFootballerName, Footbal
 	if (cost > 0)
 	{
 		cout << "The cost of replacement will be:" << cost << "$ and will added to your account" << endl;
-		currentUser.addBalance(cost);
-		currentUser.GetMainSquad().erase(UserFootballerName);
-		currentUser.SetFootballer(TeamFootballer);
+		currentUser->addBalance(cost);
+		currentUser->GetMainSquad().erase(UserFootballerName);
+		currentUser->SetFootballer(TeamFootballer);
 	}
 	else
 	{
-		float userBalance = currentUser.GetBalance();
+		float userBalance = currentUser->GetBalance();
 		cout << "The cost of replacement will be:" << abs(cost) << "$ and will deduct from your account" << endl;
 		cout << "Are you sure you want to continue?(y/n)\n";
 		char ans;
@@ -664,9 +664,9 @@ void User::replaceFunction(User& currentUser, string UserFootballerName, Footbal
 
 			if (checkBalance(userBalance, cost))
 			{
-				currentUser.addBalance(cost);
-				currentUser.GetMainSquad().erase(UserFootballerName);
-				currentUser.SetFootballer(TeamFootballer);
+				currentUser->addBalance(cost);
+				currentUser->GetMainSquad().erase(UserFootballerName);
+				currentUser->SetFootballer(TeamFootballer);
 			}
 			else
 			{
@@ -688,7 +688,7 @@ void User::replaceFunction(User& currentUser, string UserFootballerName, Footbal
 
 
 
-void User::PlayerFunction(Footballer& targetFootballer, User& currentUser)
+void User::PlayerFunction(Footballer& targetFootballer, User* currentUser)
 {
 	int choice;
 invalidOption:
@@ -703,9 +703,9 @@ invalidOption:
 	case 2:
 		system("cls");
 		cout << "your fantasy squad" << endl;
-		squadFormat(2, currentUser.GetMainSquad());
+		squadFormat(2, currentUser->GetMainSquad());
 		cout << "\n\n\ ";
-		showSubstitutions(currentUser.GetSubstitutionSquad());
+		showSubstitutions(currentUser->GetSubstitutionSquad());
 		cout << "\n\n\ ";
 
 

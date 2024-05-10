@@ -35,7 +35,7 @@ protected:
 	int GameId;
 
 public:
-	void static displayGameOverview(queue<Game>currentGame);
+	void static displayGameOverview(Game currentGame);
 	void static displayTeamsAndScore(Game currentGame);
 	void static displayBorder(int type);
 	void static displayPlayerHighlights(Game CurrentGame);
@@ -65,8 +65,8 @@ public:
 	///////////// getters ///////////////////
 	/////////////////////////////////////////
 
-	Teams getAwayTeam();
-	Teams getHomeTeam();
+	Teams* getAwayTeam();
+	Teams* getHomeTeam();
 	string getScore();
 	string getManOfTheMatch();
 	string getStatistics();

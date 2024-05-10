@@ -211,15 +211,17 @@ void User::fromSubtoMain(unordered_map<string, Footballer>& mainSquad, unordered
 
 
 
-void User::ShowSquad(User& currentUser) {
+void User::ShowSquad(User* currentUser) {
 	int choice;
-	unordered_map <string, Footballer> MainSquad = currentUser.GetMainSquad();
-	unordered_map <string, Footballer> SubstitutionSquad = currentUser.GetSubstitutionSquad();
+	unordered_map <string, Footballer> MainSquad = currentUser->GetMainSquad();
+	unordered_map <string, Footballer> SubstitutionSquad = currentUser->GetSubstitutionSquad();
 
 	cout << spacing(60, ' ') << "**Your fantasy squad**" << endl;
-	cout << spacing(60, ' '); squadFormat(formatchoice, MainSquad);
+	cout << spacing(60, ' '); 
+	squadFormat(formatchoice, MainSquad);
 	cout << "\n\n\ ";
-	cout << spacing(60, ' '); showSubstitutions(SubstitutionSquad);
+	cout << spacing(60, ' '); 
+	showSubstitutions(SubstitutionSquad);
 	cout << "\n\n\ ";
 choice:
 	cout << spacing(60, ' ') << "1-Show information about your players\n2-Change your format\n3-Substitution\n4-Go back " << endl;
@@ -236,7 +238,7 @@ choice:
 
 		getline(cin >> ws, footballerName);
 
-		string existPlayer = avoidTypos(footballerName, currentUser, "sell", { TheLeague() }, team);
+		string existPlayer = avoidTypos(footballerName, *currentUser, "sell", { TheLeague() }, team);
 
 
 
@@ -257,7 +259,7 @@ choice:
 				case 1:
 
 					sellFunction(currentUser, footballerName, "main");
-					fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
+					fromSubtoMain(currentUser->GetMainSquad(), currentUser->GetSubstitutionSquad());
 					ShowSquad(currentUser);
 					return;
 					break;
@@ -328,7 +330,7 @@ choice:
 						case 1:
 
 							sellFunction(currentUser, existPlayer, "main");
-							fromSubtoMain(currentUser.GetMainSquad(), currentUser.GetSubstitutionSquad());
+							fromSubtoMain(currentUser->GetMainSquad(), currentUser->GetSubstitutionSquad());
 							ShowSquad(currentUser);
 							return;
 							break;
@@ -450,7 +452,7 @@ choice:
 
 
 void User::showPlayerInfo(Footballer footballer, string status) {
-	cout<<right;
+	cout << right;
 	cout << "--------------------------------------------------------------------------------" << endl;
 	cout << "Name:" << footballer.GetName() << endl;
 	cout << "Age:" << footballer.GetAge() << endl;
@@ -472,7 +474,7 @@ void User::showPlayerInfo(Footballer footballer, string status) {
 }
 
 
-void User::Substitution(User& currentUser) {
+void User::Substitution(User* currentUser) {
 	char ans;
 	string PlayerName1;
 	string PlayerName2;
@@ -488,7 +490,7 @@ invalid_main:
 	cin >> PlayerName1;
 
 	//checking if the user entered a correct footballer name or not
-	existPlayer = avoidTypos(PlayerName1, currentUser, "sell", { TheLeague() }, team);
+	existPlayer = avoidTypos(PlayerName1, *currentUser, "sell", { TheLeague() }, team);
 
 
 	//the user entered a valid footballer name
@@ -496,7 +498,7 @@ invalid_main:
 	//check if the player entered from the main squad or not
 	if (existPlayer == "existMain")
 	{
-		tempPlayer = currentUser.GetMainSquad().at(PlayerName1);
+		tempPlayer = currentUser->GetMainSquad().at(PlayerName1);
 	}
 
 	//the user enterd a wrong footballer name
@@ -510,7 +512,7 @@ invalid_main:
 			cin >> ans;
 			if (ans == 'y')
 			{
-				tempPlayer = currentUser.GetMainSquad().at(existPlayer);
+				tempPlayer = currentUser->GetMainSquad().at(existPlayer);
 			}
 			else if (ans == 'n') {
 				cout << "Plese enter a valid footballer name." << endl;
@@ -542,7 +544,7 @@ invalid_Sub:
 	cin >> PlayerName2;
 
 
-	existPlayer = avoidTypos(PlayerName2, currentUser, "sell", {}, team);
+	existPlayer = avoidTypos(PlayerName2, *currentUser, "sell", {}, team);
 	//checking if the player enterd a player from the substitution squad
 
 	//the user enterd the name correctlly
@@ -588,31 +590,31 @@ invalid_Sub:
 	ShowSquad(currentUser);
 }
 
-void User::SubstituteFunction(User& currentUser, string subFootballer, Footballer mainFootballer)
+void User::SubstituteFunction(User* currentUser, string subFootballer, Footballer mainFootballer)
 {
 
-	Footballer Subplayer = currentUser.GetSubstitutionSquad().at(subFootballer);
-	currentUser.GetMainSquad().erase(mainFootballer.GetName());
-	currentUser.GetMainSquad().insert_or_assign(Subplayer.GetName(), Subplayer);
+	Footballer Subplayer = currentUser->GetSubstitutionSquad().at(subFootballer);
+	currentUser->GetMainSquad().erase(mainFootballer.GetName());
+	currentUser->GetMainSquad().insert_or_assign(Subplayer.GetName(), Subplayer);
 
-	currentUser.GetSubstitutionSquad().erase(Subplayer.GetName());
-	currentUser.GetSubstitutionSquad().insert_or_assign(mainFootballer.GetName(), mainFootballer);
+	currentUser->GetSubstitutionSquad().erase(Subplayer.GetName());
+	currentUser->GetSubstitutionSquad().insert_or_assign(mainFootballer.GetName(), mainFootballer);
 };
 
-void User::profile(User& currentUser, unordered_map<string, User>& Users) {
+void User::profile(User* currentUser, unordered_map<string, User>* Users) {
 	int choice;
 	cout << "\n\n\n\n\n\n\n";
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 	cout << spacing(60, ' ') << "             **User profile**" << endl;
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-	cout << spacing(60, ' ') << "Name:\t\t" << currentUser.GetFullName() << endl;;
-	cout << spacing(60, ' ') << "Username:\t\t" << currentUser.GetUsername() << endl;
-	cout << spacing(60, ' ') << "Email Address:\t\t" << currentUser.GetEmail() << endl;
-	cout << spacing(60, ' ') << "Phone number:\t\t" << currentUser.GetPhoneNumber() << endl;
-	cout << spacing(60, ' ') << "Password:\t\t" << currentUser.GetPassword() << endl;
-	cout << spacing(60, ' ') << "Id:\t\t" << currentUser.GetId() << endl;
-	cout << spacing(60, ' ') << "Balance:\t\t" << currentUser.GetBalance() << endl;
-	cout << spacing(60, ' ') << "Points:\t\t" << currentUser.GetPoints() << endl;
+	cout << spacing(60, ' ') << "Name:\t\t" << currentUser->GetFullName() << endl;;
+	cout << spacing(60, ' ') << "Username:\t\t" << currentUser->GetUsername() << endl;
+	cout << spacing(60, ' ') << "Email Address:\t\t" << currentUser->GetEmail() << endl;
+	cout << spacing(60, ' ') << "Phone number:\t\t" << currentUser->GetPhoneNumber() << endl;
+	cout << spacing(60, ' ') << "Password:\t\t" << currentUser->GetPassword() << endl;
+	cout << spacing(60, ' ') << "Id:\t\t" << currentUser->GetId() << endl;
+	cout << spacing(60, ' ') << "Balance:\t\t" << currentUser->GetBalance() << endl;
+	cout << spacing(60, ' ') << "Points:\t\t" << currentUser->GetPoints() << endl;
 	cout << spacing(60, ' ') << "--------------------------------------------------------------------------------\n" << endl;
 	cout << spacing(60, ' ') << "1-Edit information." << endl;
 	cout << spacing(60, ' ') << "2-Go back" << endl;
@@ -627,7 +629,7 @@ void User::profile(User& currentUser, unordered_map<string, User>& Users) {
 	}
 };
 
-void User::editInfo(User& currentUser, unordered_map<string, User>& Users) {
+void User::editInfo(User* currentUser, unordered_map<string, User>* Users) {
 	int choice;
 invalid:
 	cout << spacing(60, ' ') << "What info you want to update:" << endl;
@@ -641,7 +643,7 @@ invalid:
 	if (choice == 1)
 	{
 
-		UserValidations::signupinfo(&currentUser, "new Fullname", UserValidations::fullnameCheck, &User::SetFullName);
+		UserValidations::signupinfo(currentUser, "new Fullname", UserValidations::fullnameCheck, &User::SetFullName);
 		cout << spacing(60, ' ') << "full name updated successfully" << endl;
 		system("pause");
 		system("cls");
@@ -649,11 +651,10 @@ invalid:
 	}
 	else if (choice == 2)
 	{
-		User oldUser = currentUser;
-		UserValidations::usernameCheck(Users, currentUser);
-		string newUserName = currentUser.GetUsername();
-		Users.erase(oldUser.GetUsername());
-		Users.insert_or_assign(newUserName, currentUser);
+		//User oldUser = *currentUser;
+		//UserValidations::usernameCheck(*Users, *currentUser);
+		//Users->erase(oldUser.GetUsername());
+		//Users->insert_or_assign(currentUser->GetUsername(), currentUser);
 
 		cout << "Username updated successfully" << endl;
 		system("pause");
@@ -662,7 +663,7 @@ invalid:
 	}
 	else if (choice == 3)
 	{
-		UserValidations::signupinfo(&currentUser, "new EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
+		UserValidations::signupinfo(currentUser, "new EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
 		cout << "EmailAddress updated successfully" << endl;
 		system("pause");
 		system("cls");
@@ -671,7 +672,7 @@ invalid:
 	else if (choice == 4)
 	{
 
-		UserValidations::signupinfo(&currentUser, "new PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
+		UserValidations::signupinfo(currentUser, "new PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
 		cout << "PhoneNumber updated successfully" << endl;
 		system("pause");
 		system("cls");
@@ -680,7 +681,7 @@ invalid:
 
 	else if (choice == 5)
 	{
-		UserValidations::signupinfo(&currentUser, "new Password", UserValidations::passwordCheck, &User::SetPassword);
+		UserValidations::signupinfo(currentUser, "new Password", UserValidations::passwordCheck, &User::SetPassword);
 		cout << "Password updated successfully" << endl;
 		system("pause");
 		system("cls");
@@ -747,7 +748,7 @@ void User::Format433(unordered_map<string, Footballer> Squad, string squadName) 
 
 void User::Format343(unordered_map<string, Footballer> Squad, string squadName) {
 
-	vector <string>MainSquad = ToVector(Squad);
+	vector <string> MainSquad = ToVector(Squad);
 	while (MainSquad.size() < 11)
 	{
 		MainSquad.push_back("XXXXXX");
