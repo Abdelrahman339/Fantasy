@@ -28,7 +28,7 @@ void User::play(list<Game>* allGames, User* currentUser, unordered_map<string, U
 	stack<string>oldUserTeams = GetUserTeams(currentUser);
 	FilteringTeams(*allGames, currentUser, oldUserTeams, "Team");
 	int choice;
-	char ans;
+	char ans = ' ';
 	queue <Game>UserGames = currentUser->GetUserGames();
 	Teams team;
 invalid:
@@ -39,42 +39,49 @@ invalid:
 	cin >> choice;
 	if (choice == 1)
 	{
-		User::showCurrentMatch(UserGames);
-		cout << " ready to play the current match? (y/n)" << endl;
-		cin >> ans;
-		if (ans == 'y')
+		bool seasonEnded = showCurrentMatch(UserGames);
+
+		if (seasonEnded)
 		{
-			if (firstPlay == false)
+			cout << " ready to play the current match? (y/n)" << endl;
+			cin >> ans;
+			if (ans == 'y')
 			{
-				Game::displayGameOverview(UserGames.front());
-				Competition::updateAllUserPoints(Users, *allGames, currentUser);
-				firstPlay = true;
+				if (firstPlay == false)
+				{
+					Game::displayGameOverview(UserGames.front());
+					int gameid = currentUser->GetUserGames().front().getGameId();
+					Competition::updateAllUserPoints(Users, *allGames, currentUser);
+					Competition::deletefromList(*allGames, gameid);
+					firstPlay = true;
+				}
+				else
+				{
+					Teams* team = nullptr;
+					currentRound = currentUser->GetUserGames().front().getRound();
+					int gameid = currentUser->GetUserGames().front().getGameId();
+					Game::displayGameOverview(UserGames.front());
+					Competition::findPlayers(currentUser, "currentUser", team, currentRound);
+
+					if (currentRound != oldGameround)
+					{
+						Competition::updateAllUserPoints(Users, *allGames, currentUser);
+						Competition::deleteallGameRound(allGames);
+						oldGameround = currentRound;
+					}
+					//delete the game form the list
+					Competition::deletefromList(*allGames, gameid);
+				}
+				system("pause");
+				system("cls");
+				return;
 			}
 			else
 			{
-				Teams* team = nullptr;
-				currentRound = currentUser->GetUserGames().front().getRound();
-				int gameid = currentUser->GetUserGames().front().getGameId();
-				Game::displayGameOverview(UserGames.front());
-				Competition::findPlayers(currentUser, "CurrentUser", team, currentRound);
-
-				//delete form the list
-				Competition::deletefromList(allGames, gameid);
-
-				if (currentRound != oldGameround)
-				{
-					Competition::deleteallGameRound(allGames);
-					oldGameround = currentRound;
-				}
+				system("pause");
+				system("cls");
+				return;
 			}
-			if (currentRound != oldGameround)
-			{
-				Competition::updateAllUserPoints(Users, *allGames, currentUser);
-
-			}
-			system("pause");
-			system("cls");
-			return;
 		}
 		else if (ans == 'n')
 		{
@@ -94,18 +101,19 @@ invalid:
 };
 
 
-void User::showCurrentMatch(queue<Game>& UserGames)
+bool User::showCurrentMatch(queue<Game>& UserGames)
 {
 	if (UserGames.size() == 0)
 	{
-		cout << "The season not started yet!" << endl;
+		cout << spacing(30, ' ') << "##The season not started yet!##" << endl;
+		return false;
 	}
 	else
 	{
 		cout << spacing(30, ' ') << " Current match " << endl;
 		cout << spacing(30, ' ') << UserGames.front().getHomeTeam()->getName() << "   " << UserGames.front().getAwayTeam()->getName() << endl;
 		cout << spacing(30, ' ') << "round:" << UserGames.front().getRound() << endl;
-
+		return true;
 	}
 }
 

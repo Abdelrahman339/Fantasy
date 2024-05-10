@@ -1,5 +1,6 @@
 #include "Competition.h"
 
+bool firsttime = false;
 int GameIdcounter = 0;
 bool Competition::IsManOfTheMatch(string currentMOTM, string playerName)
 {
@@ -199,7 +200,7 @@ void Competition::addGoalsAssistPoints(string contributes, User* currentUser, Fo
 }
 
 
-void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <Game> allGames, User *currentUser)
+void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <Game> allGames, User* currentUser)
 {
 
 	int gameRound = currentUser->GetUserGames().front().getRound();
@@ -207,9 +208,10 @@ void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <
 	for (auto& user : *Users)
 	{
 		User* User = &user.second;
-		if (currentUser->GetUsername() == user.first)
+		if (currentUser->GetUsername() == user.first && firsttime == false)
 		{
 			findPlayers(currentUser, "currentUser", team, gameRound);
+			firsttime = true;
 		}
 		else
 		{
@@ -282,13 +284,13 @@ void Competition::updatecurrentUserPoint(Game currentGame, User* currentUser)
 	}
 }
 
-void Competition::deletefromList(list<Game>* allGames, int gameid)
+void Competition::deletefromList(list<Game>& allGames, int gameid)
 {
 	GameIdcounter++;
-	for (auto i = allGames->begin(); i != allGames->end(); i++)
+	for (auto i = allGames.begin(); i != allGames.end(); i++)
 	{
 		if (gameid == i->getGameId()) {
-			allGames->erase(i);
+			allGames.erase(i);
 		}
 	}
 }

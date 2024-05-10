@@ -92,13 +92,13 @@ vector<User> User::sortingUsers(vector<User> TopUsers) {
 
 	sort(TopUsers.begin(), TopUsers.end(), compareUsersByPoints);
 
-	vector<User>top5users;
+	vector<User>top3users;
 
-	for (int i = 0; i < 3; i++)
+	for (int i = 0; i < TopUsers.size(); i++)
 	{
-		top5users.push_back(TopUsers[i]);
+		top3users.push_back(TopUsers[i]);
 	}
-	return top5users;
+	return top3users;
 };
 
 
@@ -114,7 +114,16 @@ void User::showTopUsers(unordered_map<string, User> Users) {
 	vector<User> users;
 	users = moveTovector(Users);
 	vector<User>topUsers;
-	topUsers = sortingUsers(users);
+	try
+	{
+
+		topUsers = sortingUsers(users);
+	}
+	catch (const std::exception&)
+	{
+		cout << "The season didnt start yet!" << endl;
+		return;
+	}
 
 
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;

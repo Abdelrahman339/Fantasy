@@ -19,10 +19,13 @@ User Substitution Footballer Name 3
 Manchester City
 Ederson
 Phil Foden
-
 ----------------
 2
 --------
 Manchester City
 Ederson
+----
+Atletico Madrid
+Alvaro Morata
+Antoine Griezmann
 ----------------
