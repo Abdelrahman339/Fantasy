@@ -153,9 +153,11 @@ void User::endOfSeasonScreen(list<Game>* allGames, unordered_map<string, User>Us
 		cout << "\n\n\n";
 		cout << spacing(60, ' ') << "congratulations to our first rank winner!!!" << endl;
 
-		cout << spacing(60, ' ') << spacing(topUser.GetUsername().size() + 4, '*');
-		cout << spacing(20, ' ') << "* " << topUser.GetUsername() << " *" << endl;
-		cout << spacing(60, ' ') << spacing(topUser.GetUsername().size() + 4, '*');
+		cout << spacing(60, ' ') << "##################################################" << "\n\n";
+		cout << spacing(85, ' ') << "* " << topUser.GetUsername() << " *" << endl;
+		cout << spacing(60, ' ') << "##################################################" << "\n\n";
+
+
 		system("pause");
 		system("cls");
 	}

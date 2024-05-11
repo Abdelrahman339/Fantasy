@@ -77,7 +77,7 @@ None
 Alessandro Bastoni
 Assists: 1
 None
----
+----
 Nicolo Barella
 None
 Yellow Card
@@ -121,11 +121,11 @@ None
 Ben Chilwell
 Assists: 1
 None
----
+----
 Luis Diaz
 Goals: 1
 None
----
+----
 Mohamed Salah
 Assists: 1
 None
@@ -151,7 +151,7 @@ None
 James Maddison
 Assists: 2
 None
----
+----
 Cristian Romero
 None
 Yellow Card
@@ -213,19 +213,19 @@ None
 Yellow Card
 ----
 Stefan Savic
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Mario Hermoso
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Axel Witsel
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Jan Oblak
-CleanSheets
+CleanSheets: 1
 None
 ----
 Stefan Savic
@@ -233,7 +233,7 @@ None
 Red Card
 ----
 Jose Maria Gimenez
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Thomas Lemar
@@ -283,9 +283,9 @@ None
 Yellow Card
 ----------------
 10
--------
+--------
 Yann Sommer
-CleanSheets
+CleanSheets: 1
 None
 ----
 Leandro Paredes
@@ -313,19 +313,19 @@ Goals: 1
 None
 ----
 Federico Dimarco
-Goals: 1 & CleanSheets
+Goals: 1 & CleanSheets: 1
 None
 ----
 Alessandro Bastoni
-CleanSheets
+CleanSheets: 1
 None
 ----
 Matteo Darmian
-CleanSheets
+CleanSheets: 1
 None
 ----
 Francesco Acerbi
-CleanSheets
+CleanSheets: 1
 None
 ----------------
 11
@@ -335,7 +335,7 @@ None
 Yellow Card
 ----
 Bremer
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Federico Gatti
@@ -345,7 +345,7 @@ None
 Andrea Cambiaso
 Assists: 1
 None
----
+----
 Giovanni Di Lorenzo
 None
 Yellow Card
@@ -363,22 +363,23 @@ None
 Yellow Card
 ----
 Wojciech Szczesny
-CleanSheets
+CleanSheets: 1
 None
 ----
 Danilo
-CleanSheets
+CleanSheets: 1
 None
 ----
 Federico Gatti
-CleanSheets
+CleanSheets: 1
 None
 ----
 Federico Chiesa
-CleanSheets
+CleanSheets: 1
 None
 ----------------
 12
+--------
 Mctominay
 None
 Yellow Card
@@ -402,7 +403,7 @@ Yellow Card
 Timo Werner
 Assists: 1
 None
----
+----
 Pedro Porro
 Goals: 1 & Assists: 2
 None
@@ -416,7 +417,7 @@ Yellow Card
 Conor Gallagher
 Assists: 1
 None
----
+----
 Palmer
 Goals: 1
 Yellow Card
@@ -456,7 +457,7 @@ None
 Bernardo Silva
 Assists: 2
 None
----
+----
 Walker
 None
 Yellow Card
@@ -517,22 +518,20 @@ Yellow Card
 ----------------
 15
 --------
-Real Madrid
---------
 Courtois
-CleanSheets
+CleanSheets: 1
 None
 ----
 Carvajal
-CleanSheets
+CleanSheets: 1
 None
----
+----
 Antonio Rudiger
-CleanSheets
+CleanSheets: 1
 None
 ----
 Nacho
-CleanSheets
+CleanSheets: 1
 None
 ----
 Ferland Mendy
@@ -550,7 +549,7 @@ None
 Federico Valverde
 Assists: 1
 None
----
+----
 Vinicius Junior
 Goals: 1 & Assists: 2
 None
@@ -582,7 +581,7 @@ None
 Yellow Card
 ----
 Jules Kounde
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Ferran Torres
@@ -598,61 +597,61 @@ Goals: 1
 None
 ----
 Inaki Pena
-CleanSheets
+CleanSheets: 1
 None
 ----
 Andreas Christensen
-CleanSheets
+CleanSheets: 1
 None
 ----
 Ronald Araujo
-CleanSheets
+CleanSheets: 1
 None
 ----
 Alejandro Balde
-CleanSheets
+CleanSheets: 1
 None
 ----------------
 17
 --------
 Marcos Acuna
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Bono
-CleanSheets
+CleanSheets: 1
 None
 ----
 Gonzalo Montiel
-CleanSheets
+CleanSheets: 1
 None
 ----
 Sergio Ramos
-CleanSheets
+CleanSheets: 1
 None
 ----
 Jesus Navas
-CleanSheets
+CleanSheets: 1
 None
 ----
 Giorgi Mamardashvili
-CleanSheets
+CleanSheets: 1
 None
 ----
 Thierry Correia
-CleanSheets
+CleanSheets: 1
 None
 ----
 Gabriel Paulista
-CleanSheets
+CleanSheets: 1
 None
 ----
 Cristhian Mosquera
-CleanSheets
+CleanSheets: 1
 None
 ----
 Yarek Gasiorowski
-CleanSheets
+CleanSheets: 1
 None
 ----------------
 18
@@ -668,7 +667,7 @@ None
 Federico Chiesa
 Assists: 1
 None
----
+----
 Andrea Cambiaso
 None
 Yellow Card
@@ -680,27 +679,27 @@ None
 Marcus Thuram
 Assists: 1
 None
----
-Adrien Rabiot
+----
+Marcus Thuram
 None
 Yellow Card
 ----------------
 19
 --------
 Mile Svilar
-CleanSheets
+CleanSheets: 1
 None
 ----
 Angelino
-CleanSheets
+CleanSheets: 1
 None
 ----
 Diego Llorente
-CleanSheets
+CleanSheets: 1
 None
 ----
 Evan N Dicka
-CleanSheets
+CleanSheets: 1
 None
 ----
 Tommaso Baldanzi
@@ -728,7 +727,7 @@ None
 Yellow Card
 ----
 Rasmus Kristensen
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Leandro Paredes
@@ -758,27 +757,27 @@ Red Card
 20
 --------
 Onana
-CleanSheets
+CleanSheets: 1
 None
 ----
 Varane
-CleanSheets
+CleanSheets: 1
 None
 ----
 Jonny Evans
-CleanSheets
+CleanSheets: 1
 None
 ----
 LindelOf
-CleanSheets
+CleanSheets: 1
 None
 ----
 van Dijk
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Alexander Arnold
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Bruno Fernandes
@@ -798,25 +797,25 @@ None
 Yellow Card
 ----
 Diogo Dalot
-CleanSheets
+CleanSheets: 1
 Red Card
 ----
 Alisson Becker
-CleanSheets
+CleanSheets: 1
 None
 ----
 Konate
-CleanSheets
+CleanSheets: 1
 None
 ----
 Robertson
-CleanSheets
+CleanSheets: 1
 None
 ----------------
 21
 --------
 Ederson
-CleanSheets
+CleanSheets: 1
 None
 ----
 Iyenoma Destiny Udogie
@@ -828,33 +827,33 @@ None
 Yellow Card
 ----
 John Stones
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Ruben Dias
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Walker
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Ake
-Goals: 1 & CleanSheets
+Goals: 1 & CleanSheets: 1
 None
 ----------------
 22
 --------
 Raya
-cleanSheets
+CleanSheets: 1
 None
 ----
 Gabriel Magalhaes
-CleanSheets
+CleanSheets: 1
 None
 ----
 Oleksandr Zinchenko
-CleanSheets
+CleanSheets: 1
 None
 ----
 Ben White
@@ -866,21 +865,21 @@ Goals: 2
 None
 ----
 Saliba 
-Goals: 1 & CleanSheets
+Goals: 1 & CleanSheets: 1
 Yellow Card
 ----
 Martin Odegaard
 Assists: 2
 None
----
+----
 Rice
 Assists: 1
 None
----
+----
 Bukayo Saka
 Assists: 1
 None
----
+----
 Reece James
 None
 Yellow Card
@@ -914,19 +913,19 @@ None
 24
 --------
 Inaki Pena
-CleanSheets
+CleanSheets: 1
 None
 ----
 Andreas Christensen
-CleanSheets
+CleanSheets: 1
 None
 ----
 Ronald Araujo
-CleanSheets
+CleanSheets: 1
 None
 ----
 Jules Kounde
-CleanSheets
+CleanSheets: 1
 None
 ----
 Ilkay Gundogan
@@ -934,7 +933,7 @@ None
 Yellow Card
 ----
 Alejandro Balde
-CleanSheets
+CleanSheets: 1
 Yellow Card
 ----
 Robert Lewandowski

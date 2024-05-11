@@ -164,15 +164,16 @@ invalid:
 	targetFootballer = returnPlayer(search, *currentUser, "buy", leagues, footballerTeam);
 
 	//checking if the object of footballer is empty or not 
-	if (!targetFootballer->GetName().empty())
+	if (targetFootballer != nullptr)
 	{
 		PlayerFunction(targetFootballer, currentUser);
 		return;
 	}
 
 
+
 	//checking if the find team return a team or a empty team
-	if (!Wantedteam->getName().empty())
+	else if (Wantedteam != nullptr)
 	{
 	invalid_input:
 		int choice;
@@ -658,7 +659,7 @@ void User::replaceFunction(User* currentUser, string UserFootballerName, Footbal
 			currentUser->GetMainSquad().erase(UserFootballerName);
 			currentUser->SetFootballer(TeamFootballer);
 			cout << "\n\n\n";
-			cout << spacing(60, ' ') << "Player Replaced successfully"<<endl;
+			cout << spacing(60, ' ') << "Player Replaced successfully" << endl;
 			system("pause");
 			system("cls");
 			break;
@@ -686,7 +687,7 @@ void User::replaceFunction(User* currentUser, string UserFootballerName, Footbal
 				currentUser->GetMainSquad().erase(UserFootballerName);
 				currentUser->SetFootballer(TeamFootballer);
 				cout << "\n\n\n";
-				cout << spacing(60, ' ') << "Player Replaced successfully"<<endl;
+				cout << spacing(60, ' ') << "Player Replaced successfully" << endl;
 				system("pause");
 				system("cls");
 			}

@@ -52,7 +52,7 @@ invalid:
 					Game::displayGameOverview(UserGames.front());
 					int gameid = currentUser->GetUserGames().front().getGameId();
 					Competition::updateAllUserPoints(Users, *allGames, currentUser);
-					Competition::UpdateFootballerPoints(allGames);
+					Competition::UpdateFootballerPoints(allGames,1);
 					Competition::deletefromList(*allGames, gameid);
 					firstPlay = true;
 				}
@@ -67,8 +67,7 @@ invalid:
 					if (currentRound != oldGameround)
 					{
 						Competition::updateAllUserPoints(Users, *allGames, currentUser);
-						Competition::UpdateFootballerPoints(allGames);
-						Competition::deleteallGameRound(allGames);
+						Competition::UpdateFootballerPoints(allGames,currentRound);
 						oldGameround = currentRound;
 					}
 					//delete the game form the list
@@ -106,7 +105,7 @@ bool User::showCurrentMatch(queue<Game>& UserGames, list<Game>* allgames)
 	if (UserGames.size() == 0)
 	{
 		cout << spacing(30, ' ') << "##The season not started yet!##" << endl;
-		Competition::deleteallGameRound(allgames);
+		Competition::deleteallGameRound(allgames,3);
 		system("pause");
 		system("cls");
 		return false;

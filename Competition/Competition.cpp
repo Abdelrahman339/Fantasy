@@ -74,7 +74,7 @@ void Competition::ReducePoints(User* currentUser, Footballer* TargetedFootballer
 
 }
 
-void Competition::AddContributesPoints(User* currentUser, Footballer* TargetedFootballer, string contributes, string status, int& tempPoints, Teams* team)
+void Competition::AddContributesPoints(User* currentUser, Footballer* TargetedFootballer, string contributes, string status, int& tempPoints, Teams* team, string motm)
 {
 	//"goals 5 & assists 6"
 	regex Goal_Assist_pattern(R"(&)");
@@ -86,22 +86,22 @@ void Competition::AddContributesPoints(User* currentUser, Footballer* TargetedFo
 	regex CleanSheets(R"(CleanSheets)");
 	if (regex_search(contributes, Goal_Assist_pattern)) { // if the player scord and did assist
 
-		addGoalsAssistPoints(contributes, currentUser, TargetedFootballer, status, tempPoints, team);
+		addGoalsAssistPoints(contributes, currentUser, TargetedFootballer, status, tempPoints, team, motm);
 	}
 	// the player ethier scored a goal or did assist
 	else if (regex_search(contributes, Goalpattern))
 	{
-		addPoints(contributes, currentUser, TargetedFootballer, Competition::goalPoints, status, tempPoints);
+		addPoints(contributes, currentUser, TargetedFootballer, Competition::goalPoints, status, tempPoints, motm);
 
 	}
 	else if (regex_search(contributes, Assistpattern))
 	{
-		addPoints(contributes, currentUser, TargetedFootballer, Competition::assistPoints, status, tempPoints);
+		addPoints(contributes, currentUser, TargetedFootballer, Competition::assistPoints, status, tempPoints, motm);
 	}
 	else if (regex_search(contributes, CleanSheets))
 	{
 
-		addPoints(contributes, currentUser, TargetedFootballer, Competition::cleanSheetPoints, status, tempPoints);
+		addPoints(contributes, currentUser, TargetedFootballer, Competition::cleanSheetPoints, status, tempPoints, motm);
 
 	}
 	//the player didnt do any contributes in the match
@@ -109,7 +109,14 @@ void Competition::AddContributesPoints(User* currentUser, Footballer* TargetedFo
 	{
 		if (status == "User")
 		{
-			currentUser->AddPoints(-2);
+			if (TargetedFootballer->GetName() == motm)
+			{
+				currentUser->AddPoints(3);
+			}
+			else
+			{
+				currentUser->AddPoints(-2);
+			}
 		}
 		else {
 			TargetedFootballer->AddTotalpoints(-2);
@@ -119,7 +126,7 @@ void Competition::AddContributesPoints(User* currentUser, Footballer* TargetedFo
 }
 
 
-void Competition::addPoints(string contributes, User* currentUser, Footballer* TargetedFootballer, int numPerpoints, string status, int& tempPoints)
+void Competition::addPoints(string contributes, User* currentUser, Footballer* TargetedFootballer, int numPerpoints, string status, int& tempPoints, string motm)
 {
 	int numberOfcontributes = 0;
 	regex pattern(R"(\d+)");
@@ -148,6 +155,10 @@ void Competition::addPoints(string contributes, User* currentUser, Footballer* T
 
 	}
 	else {
+		if (TargetedFootballer->GetName() == motm)
+		{
+			numberOfcontributes += 3;
+		}
 		currentUser->AddPoints(numPerpoints * numberOfcontributes);
 		currentUser->addBalance(200 * numberOfcontributes);
 	}
@@ -155,7 +166,7 @@ void Competition::addPoints(string contributes, User* currentUser, Footballer* T
 
 
 
-void Competition::addGoalsAssistPoints(string contributes, User* currentUser, Footballer* TargetedFootballer, string status, int& tempPoints, Teams* team)
+void Competition::addGoalsAssistPoints(string contributes, User* currentUser, Footballer* TargetedFootballer, string status, int& tempPoints, Teams* team, string motm)
 {
 	regex pattern(R"(\d+)");
 
@@ -187,6 +198,10 @@ void Competition::addGoalsAssistPoints(string contributes, User* currentUser, Fo
 
 	}
 	else {
+		if (TargetedFootballer->GetName() == motm)
+		{
+			totalPoints += 3;
+		}
 		currentUser->AddPoints(totalPoints);
 		currentUser->addBalance(totalPoints * 3);
 	}
@@ -207,6 +222,10 @@ void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <
 			findPlayers(currentUser, "currentUser", team, gameRound);
 			firstTime = true;
 		}
+		else if (currentUser->GetUsername() == user.first)
+		{
+			continue;
+		}
 		else
 		{
 
@@ -220,6 +239,7 @@ void Competition::updateAllUserPoints(unordered_map<string, User>* Users, list <
 void Competition::findPlayers(User* currentUser, string status, Teams* team, int round)
 {
 	int tempPoints = 0;
+
 	Game currentGame;
 	if (status == "currentUser")
 	{
@@ -229,21 +249,23 @@ void Competition::findPlayers(User* currentUser, string status, Teams* team, int
 	}
 	else
 	{
+		queue<Game>tempUserGames = currentUser->GetUserGames();
 
-		while (!currentUser->GetUserGames().empty())
+		while (!tempUserGames.empty())
 		{
-			currentGame = currentUser->GetUserGames().front();
+
+			currentGame = tempUserGames.front();
 
 			if (currentGame.getRound() != round)
 			{
-				currentUser->GetUserGames().pop();
+				tempUserGames.pop();
 				continue;
 			}
 
 			updatecurrentUserPoint(currentGame, currentUser);
 
 			//The end of the match
-			currentUser->GetUserGames().pop();
+			tempUserGames.pop();
 		}
 	}
 
@@ -257,7 +279,9 @@ void Competition::updatecurrentUserPoint(Game currentGame, User* currentUser)
 	while (!currentGame.getHighlightsOfTheMatch().empty())
 	{
 
+
 		string currentPlayerinMatch = *currentGame.getHighlightsOfTheMatch().top().getName();
+		string motm = currentGame.getManOfTheMatch();
 		for (auto& kv : currentUser->GetMainSquad()) {
 
 			//get the data from the game
@@ -267,7 +291,7 @@ void Competition::updatecurrentUserPoint(Game currentGame, User* currentUser)
 
 			if (footballerName == currentPlayerinMatch)
 			{
-				AddContributesPoints(currentUser, kv.second, contributes, "User", tempPoints, team);
+				AddContributesPoints(currentUser, kv.second, contributes, "User", tempPoints, team, motm);
 				ReducePoints(currentUser, kv.second, violation, "User", tempPoints);
 
 			}
@@ -285,31 +309,16 @@ void Competition::deletefromList(list<Game>& allGames, int gameid)
 	{
 		if (gameid == i->getGameId()) {
 			allGames.erase(i);
+			return;
 		}
 	}
 }
 
-void Competition::deleteallGameRound(list<Game>* allgames)
+void Competition::deleteallGameRound(list<Game>* allgames, int gameround)
 {
-	auto j = allgames->begin();
-	for (int i = 0; i < 8 - GameIdcounter; i++)
-	{
-		allgames->erase(j);
-		j++;
-
-	}
-	GameIdcounter = 0;
+	allgames->clear();
 }
 
-//void Competition::showAllGameHighlights(queue<Game>Usergames, list <Game>& allGame)
-//{
-//	char ans;
-//	cout << "Highlights of the week" << endl;
-//	for (Game game : allGame) {
-//		cout << game.getAwayTeam().getName() << User::spacing(10, ' ') << game.getHomeTeam().getName() << endl;
-//		cout << game.getScore() << endl;
-//	}
-//}
 
 void Competition::UpdateFootballerPrice(Footballer* player, int tempPoints, Teams* team) // for all the players
 {
@@ -365,13 +374,10 @@ void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch
 			string contributions = Highlights.getContributions();
 			string violation = Highlights.getViolation();
 
-			if (currentFootballerName == currentMOTM) {
-				tempPoints = MOTM_Bonus;
-			}
-
-			Competition::AddContributesPoints(currentUser, currentFootballer, contributions, status, tempPoints, team);
+			Competition::AddContributesPoints(currentUser, currentFootballer, contributions, status, tempPoints, team, currentMOTM);
 			Competition::ReducePoints(currentUser, currentFootballer, violation, status, tempPoints); // for deducing redCards and yellowcards points
 			Competition::UpdateFootballerPrice(currentFootballer, tempPoints, team);
+			break;
 		}
 
 
@@ -380,14 +386,27 @@ void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch
 
 }
 
-void Competition::UpdateFootballerPoints(list<Game>* GameWeek) //for both squads of the match for a game week
+void Competition::UpdateFootballerPoints(list<Game>* GameWeek, int currentround) //for both squads of the match for a game week
 {
-	list<Game>* tempGameWeek = GameWeek;
+	list<Game> tempGameWeek;
+	for (auto i = GameWeek->begin(); i != GameWeek->end(); ++i)
+	{
+		Game game = *i;
+		if (game.getRound() == currentround)
+		{
+			tempGameWeek.push_back(game);
+		}
+		if (tempGameWeek.size() == 8)
+		{
+			break;
+		}
+	}
+
 	int Gamecounter = 0;
 
-	while (Gamecounter < 8) {
+	while (!tempGameWeek.empty()) {
 
-		Game game = tempGameWeek->front();
+		Game game = tempGameWeek.front();
 		Teams* awayTeam = game.getAwayTeam();
 		Teams* homeTeam = game.getHomeTeam();
 		HighlightsOfTheMatch highlights;
@@ -409,26 +428,29 @@ void Competition::UpdateFootballerPoints(list<Game>* GameWeek) //for both squads
 
 		}
 
-		////calculating the points for the man of the match
-		//int countAwayTeam = awayTeam->getFootballPlayer()->count(currentMOTM);
-		//int countHomeTeam = homeTeam->getFootballPlayer()->count(currentMOTM);
-		//if (countAwayTeam > 0)
-		//{
-		//	float currentMOTMPlayerPrice = awayTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
-		//	awayTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-		//	awayTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-		//}
-		//else
-		//{
-		//	float currentMOTMPlayerPrice = homeTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
-		//	homeTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-		//	homeTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-		//}
+		//calculating the points for the man of the match
+		int countAwayTeam = awayTeam->getFootballPlayer()->count(currentMOTM);
+		int countHomeTeam = homeTeam->getFootballPlayer()->count(currentMOTM);
+		if (countAwayTeam > 0)
+		{
+			float currentMOTMPlayerPrice = awayTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
+			awayTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
+			awayTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
+		}
+		else if (countHomeTeam > 0)
+		{
+			float currentMOTMPlayerPrice = homeTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
+			homeTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
+			homeTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
+		}
+		else {
+
+			cout << "Man of the match error" << endl;
+		}
 
 		//the end of each game
+		tempGameWeek.pop_front();
 
-		Gamecounter++;
-		tempGameWeek->pop_front();
 	}
 }
 
