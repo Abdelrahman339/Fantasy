@@ -532,6 +532,7 @@ void User::buyFunction(User* currentUser, Footballer* footballer)
 		cout << "\n\n\n\n";
 
 		cout << spacing(40, ' ') << "Player bought successfully." << endl;
+		cout <<"Your Current Balance : "<< currentUser->GetBalance() << endl;
 		system("pause");
 		system("cls");
 
