@@ -4,10 +4,6 @@ bool firstTime = false;
 int GameIdcounter = 0;
 
 
-bool Competition::IsManOfTheMatch(string currentMOTM, string playerName)
-{
-	return (currentMOTM == playerName);
-}
 
 
 
@@ -179,7 +175,7 @@ void Competition::addGoalsAssistPoints(string contributes, User* currentUser, Fo
 
 	if (status == "footballer") {
 
-		//TargetedFootballer.AddTotalpoints(totalPoints);
+	
 		team->getFootballPlayer()->at(TargetedFootballer->GetName()).AddTotalpoints(totalPoints);
 		team->getFootballPlayer()->at(TargetedFootballer->GetName()).SetTotalGoals(TargetedFootballer->GetTotalGoals() + goalsnum);
 		team->getFootballPlayer()->at(TargetedFootballer->GetName()).SetTotalAssists(TargetedFootballer->GetTotalAssists() + assistsnum);
@@ -408,23 +404,6 @@ void Competition::UpdateFootballerPoints(list<Game>* GameWeek) //for both squads
 			game.getHighlightsOfTheMatch().pop();
 
 		}
-
-		////calculating the points for the man of the match
-		//int countAwayTeam = awayTeam->getFootballPlayer()->count(currentMOTM);
-		//int countHomeTeam = homeTeam->getFootballPlayer()->count(currentMOTM);
-		//if (countAwayTeam > 0)
-		//{
-		//	float currentMOTMPlayerPrice = awayTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
-		//	awayTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-		//	awayTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-		//}
-		//else
-		//{
-		//	float currentMOTMPlayerPrice = homeTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
-		//	homeTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-		//	homeTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-		//}
-
 		//the end of each game
 
 		Gamecounter++;

@@ -529,7 +529,8 @@ void User::buyFunction(User* currentUser, Footballer* footballer)
 	}
 	if (currentUser->SetFootballer(footballer)) {
 		currentUser->addBalance(-FootballerPrice);
-		cout << "Player bought successfully." << endl;
+		cout << "Player bought successfully! " << endl;
+		cout <<"Your Current balance : "<< currentUser->GetBalance() << endl;
 	}
 };
 
