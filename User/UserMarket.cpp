@@ -721,7 +721,7 @@ void User::PlayerFunction(Footballer* targetFootballer, User* currentUser)
 {
 	int choice;
 invalidOption:
-	User::showPlayerInfo(*targetFootballer, "market");
+	User::showPlayerInfo(*targetFootballer);
 	cout << "1-buy the player\n2-Replace the player\n3-Go back" << endl;
 	cin >> choice;
 	switch (choice)

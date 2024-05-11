@@ -268,7 +268,7 @@ choice:
 		if (existPlayer == "existMain")
 		{
 			//the player is from main squad
-			showPlayerInfo(*MainSquad.at(footballerName), "User");
+			showPlayerInfo(*MainSquad.at(footballerName));
 			do
 			{
 				cout << "1-sell this player\n2-Go back " << endl;
@@ -296,7 +296,7 @@ choice:
 
 		//player is from sub squad
 		else if (existPlayer == "existSub") {
-			showPlayerInfo(*SubstitutionSquad.at(footballerName), "User");
+			showPlayerInfo(*SubstitutionSquad.at(footballerName));
 
 			do
 			{
@@ -338,7 +338,7 @@ choice:
 				cin >> ans;
 				if (ans == 'y')
 				{
-					showPlayerInfo(*MainSquad.at(existPlayer), "User");
+					showPlayerInfo(*MainSquad.at(existPlayer));
 
 					do
 					{
@@ -381,7 +381,7 @@ choice:
 				if (ans == 'y')
 				{
 
-					showPlayerInfo(*SubstitutionSquad.at(existPlayer), "User");
+					showPlayerInfo(*SubstitutionSquad.at(existPlayer));
 					do
 					{
 						cout << "1-sell this player\n2-Go back " << endl;
@@ -478,14 +478,11 @@ choice:
 }
 
 
-void User::showPlayerInfo(Footballer footballer, string status) {
+void User::showPlayerInfo(Footballer footballer) {
 	cout << right;
 	cout << "--------------------------------------------------------------------------------" << endl;
 	cout << "Name:" << footballer.GetName() << endl;
 	cout << "Age:" << footballer.GetAge() << endl;
-	if (status == "User") {
-		cout << "Captain:" << footballer.GetCaptain() << endl;
-	}
 	cout << "Position:" << footballer.GetPosition() << endl;
 	cout << "Price:" << footballer.GetPrice() << endl;
 	cout << "Team:" << footballer.GetTeam() << endl;

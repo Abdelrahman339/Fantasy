@@ -134,7 +134,7 @@ public:
 	int  static Formatdistance(string name, int space, bool remaining, string prev);
 	void static ShowSquad(User* currentUser);
 
-	void static showPlayerInfo(Footballer footballer, string status);
+	void static showPlayerInfo(Footballer footballer);
 	void static Substitution(User* currentUser);
 	void static SubstituteFunction(User* currentUser, string subFootballer, Footballer* mainFootballer);
 	///////////////////////////////////////////////////////////////////////////////////
