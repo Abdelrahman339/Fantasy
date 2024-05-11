@@ -104,6 +104,7 @@ public:
 
 	pair<string, Teams> static GetPlayerName_Team(vector <TheLeague> allLeagues, User currentUser, string FootballerName);
 
+	vector<string> static ToVector(unordered_map<string, Footballer>*& UserSquad);
 	vector<string> static ToVector(unordered_map<string, Footballer*>& UserSquad);
 
 	void static fromSubtoMain(unordered_map<string, Footballer*>* mainSquad, unordered_map<string, Footballer*>* SubSquad);
@@ -125,13 +126,15 @@ public:
 
 	void static squadFormat(int choice, unordered_map<string, Footballer*>& squad);
 	void static Format433(unordered_map<string, Footballer*>& squad, string squadName);
+
+	void static Format343(unordered_map<string, Footballer>* squad, string squadName);
 	void static Format343(unordered_map<string, Footballer*>& squad, string squadName);
 	void static Format442(unordered_map<string, Footballer*>& squad, string squadName);
 	void static showSubstitutions(unordered_map<string, Footballer*>& squad);
 	int  static Formatdistance(string name, int space, bool remaining, string prev);
 	void static ShowSquad(User* currentUser);
 
-	void static showPlayerInfo(Footballer footballer, string status);
+	void static showPlayerInfo(Footballer footballer);
 	void static Substitution(User* currentUser);
 	void static SubstituteFunction(User* currentUser, string subFootballer, Footballer* mainFootballer);
 	///////////////////////////////////////////////////////////////////////////////////
@@ -144,7 +147,7 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	void static Market(User* currentUser, vector<TheLeague>& leageus);
 
-	bool static sell(User* currentUser, unordered_map<string, Footballer*> TopPlayer, string footballerName);
+	bool static sell(User* currentUser, string footballerName);
 	void static sellFunction(User* currentUser, string footballerName, string stauts);
 	void static buy(User* currentUser, vector<TheLeague> leagues);
 	void static buyFunction(User* currentUser, Footballer* footballer);
@@ -190,7 +193,7 @@ public:
 
 	vector <Footballer> static TopFootballersinLeague(vector<Footballer*>* Footballers); // this function takes a vector of all players in the TheLeague and return just the top 5 players .
 
-	void static toUnordredMap(unordered_map<string, Footballer*>& topPlayers, vector<Footballer>& top5players); // store the 3 vectors of top 5 players in each leageu into one single unordred map 
+	unordered_map<string, Footballer*> static toUnordredMap(vector<Footballer>& top5players); // store the 3 vectors of top 5 players in each leageu into one single unordred map 
 
 	void static TopFootballers(unordered_map<string, Footballer*>* topPlayers, vector <TheLeague>& leageus);// this function used to return unordered map of top players in leageus (5 players per TheLeague).
 

@@ -18,7 +18,14 @@ User Substitution Footballer Name 3
 --------
 Manchester City
 Ederson
-Phil Foden
+----
+Atletico Madrid
+Alvaro Morata
+Antoine Griezmann
+Jan Oblak
+----
+Real Madrid
+Vinicius Junior
 ----------------
 2
 --------
@@ -28,4 +35,8 @@ Ederson
 Atletico Madrid
 Alvaro Morata
 Antoine Griezmann
+Jan Oblak
+----
+Real Madrid
+Vinicius Junior
 ----------------
