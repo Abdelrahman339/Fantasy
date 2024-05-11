@@ -78,7 +78,7 @@ void Competition::AddContributesPoints(User* currentUser, Footballer* TargetedFo
 	regex Goalpattern(R"(Goal)");
 	//"assist 2"
 	regex Assistpattern(R"(Assist)");
-	//"Clean sheets"
+	//"CleanSheets"
 	regex CleanSheets(R"(CleanSheets)");
 	if (regex_search(contributes, Goal_Assist_pattern)) { // if the player scord and did assist
 

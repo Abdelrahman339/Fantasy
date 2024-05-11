@@ -660,11 +660,10 @@ void User::editInfo(User* currentUser, unordered_map<string, User>* Users) {
 invalid:
 	cout << spacing(60, ' ') << "What info you want to update:" << endl;
 	cout << spacing(60, ' ') << "1-Fullname" << endl;
-	cout << spacing(60, ' ') << "2-Username" << endl;
-	cout << spacing(60, ' ') << "3-Email Address" << endl;
-	cout << spacing(60, ' ') << "4-Phone number" << endl;
-	cout << spacing(60, ' ') << "5-Password" << endl;
-	cout << spacing(60, ' ') << "6-Go back" << endl;
+	cout << spacing(60, ' ') << "2-Email Address" << endl;
+	cout << spacing(60, ' ') << "3-Phone number" << endl;
+	cout << spacing(60, ' ') << "4-Password" << endl;
+	cout << spacing(60, ' ') << "5-Go back" << endl;
 	cin >> choice;
 	if (choice == 1)
 	{
@@ -677,28 +676,13 @@ invalid:
 	}
 	else if (choice == 2)
 	{
-		User newusername;
-		auto it = Users->find(currentUser->GetUsername());//old username
-		UserValidations::usernameCheck(Users, *currentUser);  //updated username
-
-		Users->insert({ currentUser->GetUsername(), *currentUser });   //update the username
-		newusername = *currentUser;
-		Users->erase(it);   //erasing old username
-
-		cout << "Username updated successfully" << endl;
-		system("pause");
-		system("cls");
-		profile(currentUser, Users);
-	}
-	else if (choice == 3)
-	{
 		UserValidations::signupinfo(currentUser, "new EmailAddress", UserValidations::emailAddressCheck, &User::SetEmail);
 		cout << "EmailAddress updated successfully" << endl;
 		system("pause");
 		system("cls");
 		profile(currentUser, Users);
 	}
-	else if (choice == 4)
+	else if (choice == 3)
 	{
 
 		UserValidations::signupinfo(currentUser, "new PhoneNumber", UserValidations::phoneNumberCheck, &User::SetPhoneNumber);
@@ -708,7 +692,7 @@ invalid:
 		profile(currentUser, Users);
 	}
 
-	else if (choice == 5)
+	else if (choice == 4)
 	{
 		UserValidations::signupinfo(currentUser, "new Password", UserValidations::passwordCheck, &User::SetPassword);
 		cout << "Password updated successfully" << endl;
@@ -716,7 +700,7 @@ invalid:
 		system("cls");
 		profile(currentUser, Users);
 	}
-	else if (choice == 6)
+	else if (choice == 5)
 	{
 		profile(currentUser, Users);
 	}
