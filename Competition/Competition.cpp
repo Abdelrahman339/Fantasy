@@ -370,6 +370,10 @@ void Competition::searchTeamInMatch(Teams* team, Game game, HighlightsOfTheMatch
 			string contributions = Highlights.getContributions();
 			string violation = Highlights.getViolation();
 
+			if (currentFootballerName == currentMOTM) {
+				tempPoints = MOTM_Bonus;
+			}
+
 			Competition::AddContributesPoints(currentUser, currentFootballer, contributions, status, tempPoints, team, currentMOTM);
 			Competition::ReducePoints(currentUser, currentFootballer, violation, status, tempPoints); // for deducing redCards and yellowcards points
 			Competition::UpdateFootballerPrice(currentFootballer, tempPoints, team);
@@ -398,7 +402,7 @@ void Competition::UpdateFootballerPoints(list<Game>* GameWeek, int currentround)
 		}
 	}
 
-	int Gamecounter = 0;
+
 
 	while (!tempGameWeek.empty()) {
 
@@ -424,25 +428,6 @@ void Competition::UpdateFootballerPoints(list<Game>* GameWeek, int currentround)
 
 		}
 
-		//calculating the points for the man of the match
-		int countAwayTeam = awayTeam->getFootballPlayer()->count(currentMOTM);
-		int countHomeTeam = homeTeam->getFootballPlayer()->count(currentMOTM);
-		if (countAwayTeam > 0)
-		{
-			float currentMOTMPlayerPrice = awayTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
-			awayTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-			awayTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-		}
-		else if (countHomeTeam > 0)
-		{
-			float currentMOTMPlayerPrice = homeTeam->getFootballPlayer()->at(currentMOTM).GetPrice();
-			homeTeam->getFootballPlayer()->at(currentMOTM).AddTotalpoints(Competition::MOTM_Bonus);
-			homeTeam->getFootballPlayer()->at(currentMOTM).SetPrice(currentMOTMPlayerPrice + 500.0f);
-		}
-		else {
-
-			cout << "Man of the match error" << endl;
-		}
 
 		//the end of each game
 		tempGameWeek.pop_front();
