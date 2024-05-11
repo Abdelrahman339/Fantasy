@@ -52,14 +52,19 @@ choice:
 	{
 		//Writing in files leagueData, teamsData, footballersOfTeam
 
-		fileManipulation::writeInfoInSpecificFile("leagueDataNew.txt", leagues);
-		fileManipulation::writeSampleDataInFile("teamsDataNew.txt");
-		fileManipulation::writeSampleDataInFile("footballersOfTeamNew.txt");
+		fileManipulation::writeInfoInSpecificFile("leagueData.txt", leagues);
+		fileManipulation::writeSampleDataInFile("teamsData.txt");
+		fileManipulation::writeSampleDataInFile("footballersOfTeam.txt");
 		for (auto& league : leagues) {
 			map<string, Teams*>* currentTeams = league.GetTeams();
-			fileManipulation::writeInfoInSpecificFile("teamsDataNew.txt", currentTeams);
-			fileManipulation::writeInfoInSpecificFile("footballersOfTeamNew.txt", currentTeams);
+			fileManipulation::writeInfoInSpecificFile("teamsData.txt", currentTeams);
+			fileManipulation::writeInfoInSpecificFile("footballersOfTeam.txt", currentTeams);
 		}
+
+		//writing in user data file
+		fileManipulation::writeUserdata("userData.txt", *Users);
+		fileManipulation::writeUserSquaddata("userSquads.txt", *Users);
+
 		system("exit");
 	}
 	else

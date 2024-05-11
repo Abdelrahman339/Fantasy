@@ -21,6 +21,7 @@ string TheLeague::checkStrLengthTeams(const string& str) {
 	}
 	return "";
 }
+
 //void League::updatePoints( list <Game> allgames) {
 //    // Update points based on games played
 //    for ( auto& game : allgames) {

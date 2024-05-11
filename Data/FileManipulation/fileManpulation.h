@@ -22,6 +22,9 @@ enum Squad {
 using namespace std;
 class fileManipulation {
 public:
+
+	void static writeUserSquaddata(string filename, unordered_map<string, User>allUsers);
+	void static writeUserdata(string filename, unordered_map<string, User>allUsers);
 	void static writeSampleDataInFile(string filename);
 	void static writeInfoInSpecificFile(string filename, vector<TheLeague>);
 

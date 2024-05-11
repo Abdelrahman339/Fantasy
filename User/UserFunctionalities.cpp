@@ -677,10 +677,13 @@ invalid:
 	}
 	else if (choice == 2)
 	{
-		//User oldUser = *currentUser;
-		//UserValidations::usernameCheck(*Users, *currentUser);
-		//Users->erase(oldUser.GetUsername());
-		//Users->insert_or_assign(currentUser->GetUsername(), currentUser);
+		User newusername;
+		auto it = Users->find(currentUser->GetUsername());//old username
+		UserValidations::usernameCheck(Users, *currentUser);  //updated username
+
+		Users->insert({ currentUser->GetUsername(), *currentUser });   //update the username
+		newusername = *currentUser;
+		Users->erase(it);   //erasing old username
 
 		cout << "Username updated successfully" << endl;
 		system("pause");

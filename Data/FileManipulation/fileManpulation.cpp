@@ -69,6 +69,123 @@ void fileManipulation::writeInfoInSpecificFile(string filename, vector<TheLeague
 		cerr << "Unable to open the file.\n";
 	}
 }
+void fileManipulation::writeUserSquaddata(string filename, unordered_map<string, User> allUsers)
+{
+	stringstream ss;
+	string currentDir = "Data/Files/";
+	filename = currentDir + filename;
+	ofstream file(filename);
+	if (file.is_open()) {
+		ss << "User ID\n";
+		ss << "--------\n";
+		ss << "Team Name\n";
+		ss << "User Main Footballer Name 1\n";
+		ss << "User Main Footballer Name 2\n";
+		ss << "----\n";
+		ss << "Team Name\n";
+		ss << "User Main Footballer Name 3\n";
+		ss << "--------\n";
+		ss << "Team Name\n";
+		ss << "User Substitution Footballer Name 1\n";
+		ss << "----\n";
+		ss << "Team Name\n";
+		ss << "User Substitution Footballer Name 2\n";
+		ss << "User Substitution Footballer Name 3\n";
+		ss << "----------------\n";
+		int i = 0;
+		for (auto& user : allUsers)
+		{
+			ss << user.second.GetId() << endl;
+			ss << "--------\n";
+			int j = 0;
+			for (auto& player : user.second.GetMainSquad())
+			{
+				ss << player.second->GetTeam() << endl;
+				ss << player.first << endl;
+				j++;
+				if (j != user.second.GetMainSquad().size())
+				{
+					ss << "----\n";
+
+				}
+			}
+			if (user.second.GetSubstitutionSquad().size() != 0)
+			{
+				ss << "--------\n";
+
+			}
+			int k = 0;
+			for (auto& player : user.second.GetSubstitutionSquad())
+			{
+				ss << player.second->GetTeam() << endl;
+				ss << player.first << endl;
+				k++;
+				if (k != user.second.GetSubstitutionSquad().size())
+				{
+					ss << "----\n";
+
+				}
+			}
+			i++;
+			if (i != allUsers.size())
+			{
+				ss << "----------------\n";
+			}
+		}
+		file << ss.str();
+
+		// Close the file
+		file.close();
+
+		cout << "User Data has been written to the file.\n";
+	}
+	else {
+		cerr << "Unable to open the file.\n";
+	}
+
+}
+void fileManipulation::writeUserdata(string filename, unordered_map<string, User>allUsers)
+{
+	stringstream ss;
+	string currentDir = "Data/Files/";
+	filename = currentDir + filename;
+	ofstream file(filename);
+	if (file.is_open()) {
+		ss << "int ID\n";
+		ss << "string FullName\n";
+		ss << "string Username\n";
+		ss << "string Email\n";
+		ss << "string Password\n";
+		ss << "string Phone Number\n";
+		ss << "int Rank\n";
+		ss << "int Points\n";
+		ss << "float Balance\n";
+		ss << "----\n";
+		for (auto& user : allUsers)
+		{
+			ss << user.second.GetId() << endl;
+			ss << user.second.GetFullName() << endl;
+			ss << user.second.GetUsername() << endl;
+			ss << user.second.GetEmail() << endl;
+			ss << user.second.GetPassword() << endl;
+			ss << user.second.GetPhoneNumber() << endl;
+			ss << user.second.GetPoints() << endl;
+			ss << user.second.GetBalance() << endl;
+			ss << user.second.getLastDatePlayedWheel() << endl;
+			ss << user.second.getNextSpinDate() << endl;
+			ss << "----\n";
+		}
+		file << ss.str();
+
+		// Close the file
+		file.close();
+
+		cout << "User Data has been written to the file.\n";
+	}
+	else {
+		cerr << "Unable to open the file.\n";
+	}
+}
 void fileManipulation::writeSampleDataInFile(string filename) {
 	stringstream ss;
 	string currentDir = "Data/Files/";
@@ -120,7 +237,7 @@ void fileManipulation::writeInfoInSpecificFile(string filename, map<string, Team
 	stringstream ss;
 	string currentDir = "Data/Files/";
 	filename = currentDir + filename;
-	ofstream file(filename,ios::app);
+	ofstream file(filename, ios::app);
 	if (file.is_open()) {
 		if (filename == currentDir + "teamsDataNew.txt") {
 			for (auto it = teams->begin(); it != teams->end(); ++it) {
