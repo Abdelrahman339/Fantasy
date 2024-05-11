@@ -185,22 +185,6 @@ public:
 	///////////////////////////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////////////////////////
 
-	///////////////////////////////////////////////////////////////////////////////////
-	//Top Footballers functions
-	///////////////////////////////////////////////////////////////////////////////////
-
-	void static GetAllFootballers(TheLeague& TheLeague, vector <Footballer*>* allPlayersLeageu);// this function used to stor all the players in the TheLeague in a single vector 
-
-	vector <Footballer> static TopFootballersinLeague(vector<Footballer*>* Footballers); // this function takes a vector of all players in the TheLeague and return just the top 5 players .
-
-	unordered_map<string, Footballer*> static toUnordredMap(vector<Footballer>& top5players); // store the 3 vectors of top 5 players in each leageu into one single unordred map 
-
-	void static TopFootballers(unordered_map<string, Footballer*>* topPlayers, vector <TheLeague>& leageus);// this function used to return unordered map of top players in leageus (5 players per TheLeague).
-
-	void static showtopFootballers(unordered_map<string, Footballer*> TopPlayer, User* currentUser, vector<TheLeague> Leageus);
-
-	bool static comparePlayersByPoints(Footballer* player1, Footballer* player2);
-
 	/////////////////////////////////////////////////////////////////////////////////////
 	//Top Users functions
 	////////////////////////////////////////////////////////////////////////////////////
