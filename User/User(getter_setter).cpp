@@ -130,6 +130,11 @@ string User::GetFullName()
 
 bool User::SetFootballer(Footballer* footballer)
 {
+	if (this->TheMainSquad.count(footballer->GetName()) > 0 || this->SubstitutionSquad.count(footballer->GetName()) > 0)
+	{
+		cout << "You have this player already!" << endl;
+		return false;
+	}
 	if (TheMainSquad.size() < 11)
 	{
 
@@ -238,7 +243,7 @@ void User::handleLuckyWheelResult(pair<string, pair<float, Footballer*>>* result
 		// Print footballer name and discounted price
 		cout << footballerName << endl;
 		cout << "Price before -> " << footballer->GetPrice() << "\n(Discounted) Price -> " << discountedPrice << endl;
-		cout << "1-Buy\n2-Replace\n3-Go back";
+		cout << "1-Buy\n2-Replace\n3-Go back" << endl;
 		cin >> choice;
 		if (choice == "1")
 		{
