@@ -532,7 +532,7 @@ void User::buyFunction(User* currentUser, Footballer* footballer)
 		cout << "\n\n\n\n";
 
 		cout << spacing(40, ' ') << "Player bought successfully." << endl;
-		cout <<"Your Current Balance : "<< currentUser->GetBalance() << endl;
+		cout << spacing(40, ' ') << "Your Current Balance : "<< currentUser->GetBalance() << endl;
 		system("pause");
 		system("cls");
 
@@ -665,6 +665,7 @@ void User::replaceFunction(User* currentUser, string UserFootballerName, Footbal
 			currentUser->SetFootballer(TeamFootballer);
 			cout << "\n\n\n";
 			cout << spacing(60, ' ') << "Player Replaced successfully" << endl;
+			cout << spacing(40, ' ') << "Your Current Balance : " << currentUser->GetBalance() << endl;
 			system("pause");
 			system("cls");
 			break;
