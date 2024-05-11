@@ -22,10 +22,11 @@ enum Squad {
 using namespace std;
 class fileManipulation {
 public:
+	void static writeSampleDataInFile(string filename);
 	void static writeInfoInSpecificFile(string filename, vector<TheLeague>);
 
-	void static writeInfoInSpecificFile(string filename, map<string, unordered_map<string, Footballer>>);
-	void static writeInfoInSpecificFile(string filename, map<string, Teams>); 
+	//void static writeInfoInSpecificFile(string filename, map<string, Teams*>*);
+	void static writeInfoInSpecificFile(string filename, map<string, Teams*>*);
 	vector<TheLeague> static getLeagueData(map<string, Teams>& allTeams);
 	list<Game> static getGamesData(map<string, Teams>& teams);
 	void static getTeamsData(map<string, unordered_map<string, Footballer>>& footballersOfTeam, map<string, Teams>& parsedTeams);

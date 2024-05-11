@@ -29,7 +29,7 @@ public:
 
 	//players
 	void static handlePlayersUpdate(unordered_map<string, Footballer>* players, string oldName);
-	string static checkStrLengthFootballers(string strs);
+	string static checkStrLength(string strs);
 	static Footballer* handleFootballerExistance(unordered_map<string, Footballer>* players, string playerName);
 
 	void static FootballerMenu(map<string, Teams*>* teams);
@@ -42,7 +42,7 @@ public:
 	void static handleTeamsUpdate(map<string, Teams*>* teams, string oldName);
 
 	void static TeamMenu(vector<TheLeague>& leagues);
-	static map<string, Teams*>*  ModifyTeams(map<string, Teams*>* teams);
+	static map<string, Teams*>* ModifyTeams(map<string, Teams*>* teams);
 	void static displayTeamsForSpecificLeague(TheLeague& league);
 	//leagues
 	static TheLeague* handleLeagueExistance(vector<TheLeague>& leagues, string leagueName);

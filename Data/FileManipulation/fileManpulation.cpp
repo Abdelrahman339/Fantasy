@@ -43,12 +43,8 @@ void fileManipulation::writeInfoInSpecificFile(string filename, vector<TheLeague
 	ofstream file(filename);
 	if (file.is_open()) {
 		stringstream ss;
-		ss << "Name of Team (Unique)\n";
-		ss << "league\n";
-		ss << "Points\n";
-		ss << "Number of Wins\n";
-		ss << "Number of Losses\n";
-		ss << "Number of Draws\n";
+		ss << "League Name (Unique)\n";
+		ss << "Teams Names(Prefered to delete if name doesn't end with - )\n";
 		ss << "----\n";
 		for (auto it = leagues.begin(); it != leagues.end(); ++it) {
 			ss << it->getLeagueName() << "\n";
@@ -73,95 +69,103 @@ void fileManipulation::writeInfoInSpecificFile(string filename, vector<TheLeague
 		cerr << "Unable to open the file.\n";
 	}
 }
-void fileManipulation::writeInfoInSpecificFile(string filename, map<string, Teams> teams) {
-	//teamsDataNew.txt
-
+void fileManipulation::writeSampleDataInFile(string filename) {
+	stringstream ss;
 	string currentDir = "Data/Files/";
 	filename = currentDir + filename;
-
 	ofstream file(filename);
 	if (file.is_open()) {
-		stringstream ss;
-		ss << "Name of Team (Unique)\n";
-		ss << "league\n";
-		ss << "Points\n";
-		ss << "Number of Wins\n";
-		ss << "Number of Losses\n";
-		ss << "Number of Draws\n";
-		ss << "----\n";
-		for (auto it = teams.begin(); it != teams.end(); ++it) {
-			ss << it->first << "\n";
-			ss << it->second.getPoints() << "\n";
-			ss << it->second.getwins() << "\n";
-			ss << it->second.getlose() << "\n";
-			ss << it->second.getdraw() << "\n";
-			if (next(it) != teams.end()) {
-				ss << "----\n";
-			}
+		if (filename == currentDir + "teamsDataNew.txt") {
+			ss << "Name of Team (Unique)\n";
+			ss << "league\n";
+			ss << "Points\n";
+			ss << "Number of Wins\n";
+			ss << "Number of Losses\n";
+			ss << "Number of Draws\n";
+			ss << "----\n";
 		}
-		// Write the content string to the file
-		file << ss.str();
-
-		// Close the file
-		file.close();
-
-		cout << "Data has been written to the file.\n";
-	}
-	else {
-		cerr << "Unable to open the file.\n";
-	}
-}
-void fileManipulation::writeInfoInSpecificFile(string filename, map<string, unordered_map<string, Footballer>> footballersOfTeam) {
-	string currentDir = "Data/Files/";
-	filename = currentDir + filename;
-
-	ofstream file(filename);
-	if (file.is_open()) {
-		stringstream ss;
-
-		ss << "Name of Team\n";
-		ss << "--------\n";
-		for (int i = 0; i < 2; i++) {
-			ss << "Name (Unique)\n";
-			ss << "Age\n";
-			ss << "Position\n";
-			ss << "Price in market\n";
-			ss << "Rating\n";
-			ss << "Total Goals\n";
-			ss << "Total Assists\n";
-			ss << "Total RedCards\n";
-			ss << "Total YellowCards\n";
-			ss << "Total Cleansheets\n";
-			ss << "Total Points\n----\n";
-		}
-		ss << "----------------\n";
-
-
-		for (auto it = footballersOfTeam.begin(); it != footballersOfTeam.end(); ++it) {
-			ss << it->first << "\n";
+		else {
+			ss << "Name of Team\n";
 			ss << "--------\n";
-			// Create an iterator for the inner unordered map
-			for (auto inner_it = it->second.begin(); inner_it != it->second.end(); ++inner_it) {
-
-				// Access footballer details using inner_it->second
-				ss << inner_it->first << "\n";
-				ss << inner_it->second.GetAge() << "\n";
-				ss << inner_it->second.GetPosition() << "\n";
-				ss << inner_it->second.GetPrice() << "\n";
-				ss << inner_it->second.GetRating() << "\n";
-				ss << inner_it->second.GetTotalGoals() << "\n";
-				ss << inner_it->second.GetTotalAssists() << "\n";
-				ss << inner_it->second.GetTotalRedCard() << "\n";
-				ss << inner_it->second.GetTotalYellowCard() << "\n";
-				ss << inner_it->second.GetTotalCleansheets() << "\n";
-				ss << inner_it->second.GetTotalpoints() << "\n";
-				if (next(inner_it) != it->second.end()) {
+			for (int i = 0; i < 2; i++) {
+				ss << "Name (Unique)\n";
+				ss << "Age\n";
+				ss << "Position\n";
+				ss << "Price in market\n";
+				ss << "Rating\n";
+				ss << "Total Goals\n";
+				ss << "Total Assists\n";
+				ss << "Total RedCards\n";
+				ss << "Total YellowCards\n";
+				ss << "Total Cleansheets\n";
+				ss << "Total Points\n";
+				if ((i + 1) < 2) {
 					ss << "----\n";
 				}
 			}
-			ss << "----------------\n";
 		}
-		// Write the content string to the file
+		file << ss.str();
+
+		// Close the file
+		file.close();
+
+		cout << "Data has been written to the file.\n";
+	}
+	else {
+		cerr << "Unable to open the file.\n";
+	}
+}
+void fileManipulation::writeInfoInSpecificFile(string filename, map<string, Teams*>* teams) {
+	//teamsDataNew.txt
+	stringstream ss;
+	string currentDir = "Data/Files/";
+	filename = currentDir + filename;
+	ofstream file(filename,ios::app);
+	if (file.is_open()) {
+		if (filename == currentDir + "teamsDataNew.txt") {
+			for (auto it = teams->begin(); it != teams->end(); ++it) {
+				ss << it->first << "\n";
+				ss << it->second->getPoints() << "\n";
+				ss << it->second->getwins() << "\n";
+				ss << it->second->getlose() << "\n";
+				ss << it->second->getdraw() << "\n";
+				if (next(it) != teams->end()) {
+					ss << "----\n";
+				}
+			}
+			// Write the content string to the file
+
+
+		}
+		else {
+			for (auto it = teams->begin(); it != teams->end(); ++it) {
+				string teamName = it->first;
+				ss << teamName << "\n";
+				ss << "--------\n";
+				unordered_map<string, Footballer>* footballersOfTeam = it->second->getFootballPlayer();
+				for (auto inner_it = footballersOfTeam->begin(); inner_it != footballersOfTeam->end(); ++inner_it) {
+					string playerName = inner_it->second.GetName();
+					Footballer currentFootballer = inner_it->second;
+					ss << playerName << "\n";
+					ss << currentFootballer.GetAge() << "\n";
+					ss << currentFootballer.GetPosition() << "\n";
+					ss << currentFootballer.GetPrice() << "\n";
+					ss << currentFootballer.GetRating() << "\n";
+					ss << currentFootballer.GetTotalGoals() << "\n";
+					ss << currentFootballer.GetTotalAssists() << "\n";
+					ss << currentFootballer.GetTotalRedCard() << "\n";
+					ss << currentFootballer.GetTotalYellowCard() << "\n";
+					ss << currentFootballer.GetTotalCleansheets() << "\n";
+					ss << currentFootballer.GetTotalpoints() << "\n";
+					if (next(inner_it) != footballersOfTeam->end()) {
+						ss << "----\n";
+					}
+				}
+				if (next(it) != teams->end()) {
+					ss << "----------------\n";
+				}
+			}
+		}
 		file << ss.str();
 
 		// Close the file
@@ -174,6 +178,73 @@ void fileManipulation::writeInfoInSpecificFile(string filename, map<string, unor
 	}
 
 }
+
+//void fileManipulation::writeInfoInSpecificFile(string filename, map<string,Teams*>* team) {
+//	string currentDir = "Data/Files/";
+//	filename = currentDir + filename;
+//
+//	ofstream file(filename);
+//	if (file.is_open()) {
+//		stringstream ss;
+//
+//		ss << "Name of Team\n";
+//		ss << "--------\n";
+//		for (int i = 0; i < 2; i++) {
+//			ss << "Name (Unique)\n";
+//			ss << "Age\n";
+//			ss << "Position\n";
+//			ss << "Price in market\n";
+//			ss << "Rating\n";
+//			ss << "Total Goals\n";
+//			ss << "Total Assists\n";
+//			ss << "Total RedCards\n";
+//			ss << "Total YellowCards\n";
+//			ss << "Total Cleansheets\n";
+//			ss << "Total Points\n";
+//			if ((i + 1) < 2) {
+//				ss << "----\n";
+//			}
+//		}
+//		ss << "----------------\n";
+//
+//
+//		for (auto it = footballersOfTeam->begin(); it != footballersOfTeam->end(); ++it) {
+//			Footballer currentFootballer = it->second;
+//			ss << currentFootballer.GetTeam() << "\n";
+//			ss << "--------\n";
+//			// Create an iterator for the inner unordered map
+//			for (auto inner_it = footballersOfTeam->begin(); inner_it != footballersOfTeam->end(); ++inner_it) {
+//				currentFootballer = inner_it->second;
+//				ss << it->first << "\n";
+//				ss << currentFootballer.GetAge() << "\n";
+//				ss << currentFootballer.GetPosition() << "\n";
+//				ss << currentFootballer.GetPrice() << "\n";
+//				ss << currentFootballer.GetRating() << "\n";
+//				ss << currentFootballer.GetTotalGoals() << "\n";
+//				ss << currentFootballer.GetTotalAssists() << "\n";
+//				ss << currentFootballer.GetTotalRedCard() << "\n";
+//				ss << currentFootballer.GetTotalYellowCard() << "\n";
+//				ss << currentFootballer.GetTotalCleansheets() << "\n";
+//				ss << currentFootballer.GetTotalpoints() << "\n";
+//				if (next(it) != footballersOfTeam->end()) {
+//					ss << "----\n";
+//				}
+//			}
+//			ss << "----------------\n";
+//		}
+//		// Write the content string to the file
+//		file << ss.str();
+//
+//		// Close the file
+//		file.close();
+//
+//		cout << "Data has been written to the file.\n";
+//	}
+//	else {
+//		cerr << "Unable to open the file.\n";
+//	}
+//
+//}
 
 vector<TheLeague> fileManipulation::getLeagueData(map<string, Teams>& allTeams) {
 	string filename = "leagueData.txt";

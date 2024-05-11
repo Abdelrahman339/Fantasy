@@ -5,6 +5,7 @@
 #include "UserValidations.h"
 #include "User.h"
 #include "LuckyWheel.h"
+#include <fileManpulation.h>
 
 using namespace std;
 bool loginstat = false;
@@ -49,6 +50,16 @@ choice:
 	}
 	else if (choice == 4)
 	{
+		//Writing in files leagueData, teamsData, footballersOfTeam
+
+		fileManipulation::writeInfoInSpecificFile("leagueDataNew.txt", leagues);
+		fileManipulation::writeSampleDataInFile("teamsDataNew.txt");
+		fileManipulation::writeSampleDataInFile("footballersOfTeamNew.txt");
+		for (auto& league : leagues) {
+			map<string, Teams*>* currentTeams = league.GetTeams();
+			fileManipulation::writeInfoInSpecificFile("teamsDataNew.txt", currentTeams);
+			fileManipulation::writeInfoInSpecificFile("footballersOfTeamNew.txt", currentTeams);
+		}
 		system("exit");
 	}
 	else

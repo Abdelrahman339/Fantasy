@@ -1,0 +1,100 @@
+Name of Team (Unique)
+league
+Points
+Number of Wins
+Number of Losses
+Number of Draws
+----
+Arsenal
+80
+25
+5
+5
+----
+Chelsea
+48
+13
+11
+9
+----
+Liverpool
+75
+22
+4
+9
+----
+Manchester City
+79
+24
+3
+7
+----
+Manchester United
+54
+16
+12
+6
+----
+Tottenham Hotspur
+60
+18
+9
+6
+Atletico Madrid
+64
+20
+9
+4
+----
+Barcelona
+70
+21
+4
+7
+----
+Girona
+71
+22
+6
+5
+----
+Real Madrid
+84
+26
+1
+6
+----
+Sevilla
+37
+9
+13
+10
+----
+Valencia
+47
+13
+11
+8
+AS Roma
+59
+17
+9
+8
+----
+Inter Milan
+70
+21
+6
+7
+----
+Juventus
+65
+18
+5
+11
+----
+Napoli
+50
+13
+10
+11

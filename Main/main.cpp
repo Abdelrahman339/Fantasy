@@ -25,11 +25,7 @@ int main() {
 	//leagueTeams->erase("Arsenal");
 	//footballer->SetPrice(34.0f);
 	
-	//Writing in files leagueData, teamsData, footballersOfTeam
-
-	/*fileManipulation::writeInfoInSpecificFile("leagueDataNew.txt", leagues);
-	fileManipulation::writeInfoInSpecificFile("teamsDataNew.txt", allTeams);
-	fileManipulation::writeInfoInSpecificFile("footballersOfTeamNew.txt", footballersOfTeam);*/
+	
 
 	////Get Games now Done!==> USAGE
 	list<Game> games = fileManipulation::getGamesData(allTeams);
