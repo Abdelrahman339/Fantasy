@@ -224,6 +224,8 @@ invalid:
 			return;
 			break;
 		case 4:
+			system("pause");
+			system("cls");
 			return;
 		default:
 			cout << "Enter a valid option" << endl;
