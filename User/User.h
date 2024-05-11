@@ -104,6 +104,7 @@ public:
 
 	pair<string, Teams> static GetPlayerName_Team(vector <TheLeague> allLeagues, User currentUser, string FootballerName);
 
+	vector<string> static ToVector(unordered_map<string, Footballer>*& UserSquad);
 	vector<string> static ToVector(unordered_map<string, Footballer*>& UserSquad);
 
 	void static fromSubtoMain(unordered_map<string, Footballer*>* mainSquad, unordered_map<string, Footballer*>* SubSquad);
@@ -125,6 +126,8 @@ public:
 
 	void static squadFormat(int choice, unordered_map<string, Footballer*>& squad);
 	void static Format433(unordered_map<string, Footballer*>& squad, string squadName);
+
+	void static Format343(unordered_map<string, Footballer>* squad, string squadName);
 	void static Format343(unordered_map<string, Footballer*>& squad, string squadName);
 	void static Format442(unordered_map<string, Footballer*>& squad, string squadName);
 	void static showSubstitutions(unordered_map<string, Footballer*>& squad);

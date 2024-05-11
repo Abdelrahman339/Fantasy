@@ -83,7 +83,7 @@ invalid:
 		targetFootballer = returnPlayer(footballerName, *currentUser, "buy", Leageus, footballerTeam);
 
 		//checking if the object of footballer is empty or not 
-		if (!targetFootballer->GetName().empty())
+		if (targetFootballer!=nullptr)
 		{
 			PlayerFunction(targetFootballer, currentUser);
 			Market(currentUser, Leageus);
@@ -107,7 +107,7 @@ invalid:
 		cout << "Enter the name of the player you want to Replace" << endl;
 		getline(cin >> ws, footballerName);
 		targetFootballer = returnPlayer(footballerName, *currentUser, "buy", Leageus, team);
-		if (!targetFootballer->GetName().empty())
+		if (targetFootballer!=nullptr)
 		{
 
 			Format442(currentUser->GetMainSquad(), "Player");
@@ -179,7 +179,7 @@ invalid:
 		int choice;
 		string footballerName;
 		// Make OverLoaded Method or convert unordered_map<string, Footballer*> to unordered_map<string, Footballer>*
-		//User::Format343(Wantedteam->getFootballPlayer(), Wantedteam->getName());
+		User::Format343(Wantedteam->getFootballPlayer(), Wantedteam->getName());
 		cout << endl;
 		cout << "1- show information about player\n2-buy player\n3-replace player\n4-go back" << endl;
 		cin >> choice;
@@ -191,7 +191,7 @@ invalid:
 			targetFootballer = returnPlayer(footballerName, *currentUser, "buy", leagues, footballerTeam);
 
 			//checking if the object of footballer is empty or not 
-			if (!targetFootballer->GetName().empty())
+			if (targetFootballer!=nullptr)
 			{
 				PlayerFunction(targetFootballer, currentUser);
 				goto invalid_input;
@@ -206,7 +206,7 @@ invalid:
 			cout << "Enter the name of the player you want to Replace" << endl;
 			getline(cin >> ws, footballerName);
 			targetFootballer = returnPlayer(footballerName, *currentUser, "buy", leagues, footballerTeam);
-			if (!targetFootballer->GetName().empty())
+			if (targetFootballer!=nullptr)
 			{
 
 				Format442(currentUser->GetMainSquad(), "Player");
@@ -530,7 +530,12 @@ void User::buyFunction(User* currentUser, Footballer* footballer)
 	}
 	if (currentUser->SetFootballer(footballer)) {
 		currentUser->addBalance(-FootballerPrice);
-		cout << "Player bought successfully." << endl;
+		cout << "\n\n\n\n";
+
+		cout << spacing(40, ' ') << "Player bought successfully." << endl;
+		system("pause");
+		system("cls");
+
 	}
 };
 

@@ -20,7 +20,7 @@ choice:
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << "\n\n\n";
 	cout << spacing(60, ' ') << "**It's time for another season of fantasy football glory!**" << "\n\n\n";
 	cout << spacing(60, ' ') << "Let's start!" << endl;
-	//cout << spacing(60, ' '); Admin::PauseAndClear();
+	cout << spacing(60, ' '); system("pause"); system("cls");
 	cout << "\n\n\n\n\n\n";
 	cout << spacing(60, ' ') << "1-Admin   2-Login   3-Sign up   4-Exit" << endl;
 	cout << spacing(60, ' ') << "Enter your option" << endl;
@@ -29,7 +29,7 @@ choice:
 	{
 		cout << spacing(60, ' '); Admin::PauseAndClear();
 		Admin::CheckAdmin(*Users, leagues);
-		//homePage(Users, leagues, allGames);
+		homePage(Users, leagues, allGames);
 		goto choice;
 	}
 	else if (choice == 2)

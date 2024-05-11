@@ -29,7 +29,7 @@ public:
 
 	//players
 	void static handlePlayersUpdate(unordered_map<string, Footballer>* players, string oldName);
-	string static checkStrLengthFootballers(string strs);
+	string static checkStrLength(string strs);
 	static Footballer* handleFootballerExistance(unordered_map<string, Footballer>* players, string playerName);
 
 	void static FootballerMenu(map<string, Teams*>* teams);

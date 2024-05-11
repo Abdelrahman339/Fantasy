@@ -1,4 +1,5 @@
 ﻿#include <iostream>
+#include "Admin.h"
 #include "User.h"
 #include "UserValidations.h"
 #include <algorithm>
@@ -177,6 +178,19 @@ string User::typosChecking(string SearchName, T dataReference)
 
 
 
+
+vector<string> User::ToVector(unordered_map<string, Footballer>*& UserSquad)
+{
+	vector<string> Squad;
+
+	for (auto& kv : *UserSquad)
+	{
+		Squad.push_back(kv.second.GetName());
+	}
+
+	return Squad;
+
+}
 
 vector<string> User::ToVector(unordered_map<string, Footballer*>& map)
 {
@@ -500,7 +514,7 @@ invalid_main:
 	cout << spacing(60, ' ') << "             Substitution";
 	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
-	cout << spacing(60, ' ')<< "Choose player from your main squad to change him (Use the Name)" << endl;
+	cout << spacing(60, ' ') << "Choose player from your main squad to change him (Use the Name)" << endl;
 	cin >> PlayerName1;
 
 	//checking if the user entered a correct footballer name or not
@@ -599,7 +613,7 @@ invalid_Sub:
 	}
 
 	cout << "\n\n\n";
-	cout <<spacing(60,' ') << "**Player in your main squad now**" << endl;
+	cout << spacing(60, ' ') << "**Player in your main squad now**" << endl;
 	system("pause");
 	system("cls");
 	ShowSquad(currentUser);
@@ -619,18 +633,18 @@ void User::SubstituteFunction(User* currentUser, string subFootballer, Footballe
 void User::profile(User* currentUser, unordered_map<string, User>* Users) {
 	int choice;
 	cout << "\n\n\n\n\n\n\n";
-	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-	cout << spacing(60, ' ') << "             **User profile**" << endl;
-	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
-	cout << spacing(60, ' ') << "Name:\t\t" << currentUser->GetFullName() << endl;;
-	cout << spacing(60, ' ') << "Username:\t\t" << currentUser->GetUsername() << endl;
-	cout << spacing(60, ' ') << "Email Address:\t\t" << currentUser->GetEmail() << endl;
-	cout << spacing(60, ' ') << "Phone number:\t\t" << currentUser->GetPhoneNumber() << endl;
-	cout << spacing(60, ' ') << "Password:\t\t" << currentUser->GetPassword() << endl;
-	cout << spacing(60, ' ') << "Id:\t\t" << currentUser->GetId() << endl;
-	cout << spacing(60, ' ') << "Balance:\t\t" << currentUser->GetBalance() << endl;
-	cout << spacing(60, ' ') << "Points:\t\t" << currentUser->GetPoints() << endl;
-	cout << spacing(60, ' ') << "--------------------------------------------------------------------------------\n" << endl;
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << spacing(60, ' ') << "                    User profile" << endl;
+	cout << spacing(60, ' ') << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
+	cout << spacing(60, ' ') << "Name\t" << Admin::checkStrLength("Name") << currentUser->GetFullName() << endl;;
+	cout << spacing(60, ' ') << "Username\t\t" << Admin::checkStrLength("Username") << currentUser->GetUsername() << endl;
+	cout << spacing(60, ' ') << "Email Address\t" << Admin::checkStrLength("Email Address") << currentUser->GetEmail() << endl;
+	cout << spacing(60, ' ') << "Phone number\t" << Admin::checkStrLength("Phone number") << currentUser->GetPhoneNumber() << endl;
+	cout << spacing(60, ' ') << "Password\t\t" << Admin::checkStrLength("Password") << currentUser->GetPassword() << endl;
+	cout << spacing(60, ' ') << "Id\t\t" << Admin::checkStrLength("Id") << currentUser->GetId() << endl;
+	cout << spacing(60, ' ') << "Balance\t" << Admin::checkStrLength("Balance") << currentUser->GetBalance() << endl;
+	cout << spacing(60, ' ') << "Points\t" << Admin::checkStrLength("Points") << currentUser->GetPoints() << endl;
+	cout << spacing(60, ' ') << "--------------------------------------------------\n" << endl;
 	cout << spacing(60, ' ') << "1-Edit information." << endl;
 	cout << spacing(60, ' ') << "2-Go back" << endl;
 	cin >> choice;
@@ -712,7 +726,7 @@ invalid:
 	}
 };
 
-void User::squadFormat(int choice, unordered_map<string, Footballer*>&  squad) {
+void User::squadFormat(int choice, unordered_map<string, Footballer*>& squad) {
 	if (choice == 1)
 	{
 		User::Format343(squad, "Player");
@@ -738,6 +752,7 @@ void User::Format433(unordered_map<string, Footballer*>& Squad, string squadName
 		MainSquad.push_back("XXXXXX");
 	}
 
+
 	cout << User::spacing(70, ' ') << "                    " << squadName << endl;
 	cout << User::spacing(70, ' ') << "_____________    _____________    _____________" << "\n\n\n\n\n";
 
@@ -762,6 +777,30 @@ void User::Format433(unordered_map<string, Footballer*>& Squad, string squadName
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+void User::Format343(unordered_map<string, Footballer>* squad, string squadName)
+{
+	vector <string> MainSquad = ToVector(squad);
+	while (MainSquad.size() < 11)
+	{
+		MainSquad.push_back("XXXXXX");
+	}
+
+	cout << User::spacing(70, ' ') << "                    " << squadName << endl;
+	cout << User::spacing(70, ' ') << "_____________    _____________    _____________" << "\n\n\n\n";
+
+	cout << User::spacing(74, ' '); cout << User::spacing(User::Formatdistance(MainSquad[8], 0, false, MainSquad[8]), ' ') << "9"; cout << User::spacing(User::Formatdistance(MainSquad[9], 12, true, MainSquad[8]), ' ') << "10"; cout << User::spacing(User::Formatdistance(MainSquad[10], 12, true, MainSquad[9]), ' ') << "11" << endl;
+	cout << User::spacing(74, ' '); cout << MainSquad[8] << User::spacing(13, ' ') << MainSquad[9] << User::spacing(13, ' ') << MainSquad[10] << "\n\n";
+
+	cout << User::spacing(User::Formatdistance(MainSquad[4], 55, false, MainSquad[4]), ' ') << "5"; cout << User::spacing(20, ' '); cout << User::spacing(User::Formatdistance(MainSquad[5], 0, true, MainSquad[4]), ' ') << "6"; cout << User::spacing(User::Formatdistance(MainSquad[6], 13, true, MainSquad[5]), ' ') << "7"; cout << User::spacing(User::Formatdistance(MainSquad[7], 13, true, MainSquad[6]), ' ') << "8" << endl;
+	cout << User::spacing(55, ' ') << MainSquad[4]; cout << User::spacing(20, ' '); cout << MainSquad[5] << User::spacing(13, ' ') << MainSquad[6] << User::spacing(13, ' ') << MainSquad[7] << endl << endl;
+
+	cout << User::spacing(74, ' '); cout << User::spacing(User::Formatdistance(MainSquad[1], 0, false, MainSquad[1]), ' ') << "2"; cout << User::spacing(User::Formatdistance(MainSquad[2], 13, true, MainSquad[1]), ' ') << "3"; cout << User::spacing(User::Formatdistance(MainSquad[3], 13, true, MainSquad[2]), ' ') << "4" << endl;
+	cout << User::spacing(74, ' '); cout << MainSquad[1] << User::spacing(13, ' ') << MainSquad[2] << User::spacing(13, ' ') << MainSquad[3] << "\n\n";
+
+	cout << User::spacing(70, ' '); cout << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << "1" << User::spacing(User::Formatdistance(MainSquad[0], 25, false, MainSquad[0]), ' ') << endl;
+	cout << User::spacing(70, ' '); cout << User::spacing(25, ' ') << MainSquad[0] << User::spacing(25, ' ');
+}
 
 void User::Format343(unordered_map<string, Footballer*>& Squad, string squadName) {
 
@@ -822,15 +861,16 @@ void User::Format442(unordered_map<string, Footballer*>& Squad, string squadName
 
 
 
-void User::showSubstitutions(unordered_map<string, Footballer*>& Squad)
+void User::showSubstitutions(unordered_map<string, Footballer*>& SubSquad)
 {
 
-	vector <string>substitutionList = ToVector(Squad);
+	vector <string>substitutionList = ToVector(SubSquad);
 
 
 	cout << User::spacing(60, ' ') << "                   substitutions" << endl;
 	cout << User::spacing(60, ' ') << "_____________     ________________    _____________" << "\n\n\n";
 	cout << User::spacing(40, ' ');
+
 	if (substitutionList.empty())
 	{
 		cout << spacing(40, ' ') << "No substitution" << endl;
@@ -870,43 +910,3 @@ int User::Formatdistance(string name, int space, bool remaining, string prev) {
 
 
 
-
-
-
-
-
-
-//#include <iostream>
-//#include <vector>
-//#include "User.h"
-//using namespace std;
-//int main() {
-//
-//	vector <string> players = { "Courtois","Carvajal","Rudiger","Tchouameni","Mendy","Camavinga","Kroos","Bellingham","Valverde","Rodrygo","Vinicius" };
-//	vector <string> players2 = { "Stegen","Koundé","Araújo","Cubarsí","Cancelo","Pedri","Gündoğan","Frenkie ","Lamine ","Lewandowski","Raphinha" };
-//
-//
-//
-//	cout << "\n\n\n";
-//	cout << User::spacing(20, ' '); cout << "              10                  11 " << endl;
-//	cout << User::spacing(20, ' '); cout << "            Rodrygo            Vinicius  \n" << endl;
-//
-//	cout << User::spacing(20, ' '); cout << "   6                 7                8                  9         " << endl;
-//	cout << User::spacing(20, ' '); cout << "Camavinga          Kroos          Bellingham          Valverde        \n\n" << endl;
-//
-//	cout << User::spacing(20, ' '); cout << "   2                 3                 4                 5            " << endl;
-//	cout << User::spacing(20, ' '); cout << "Carvajal          Rudiger          Tchouameni          Mendy\n\n" << endl;
-//
-//	cout << User::spacing(20, ' '); cout << "                            1              " << endl;
-//	cout << User::spacing(20, ' '); cout << "                         Courtois                    " << endl;
-//	cout << User::spacing(110, '*') << endl << endl;
-//	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//	User user;
-//	user.Format442(players2);
-//	cout << endl;
-//	cout << User::spacing(110, '*') << endl << endl;
-//	user.Format343(players2);
-//	cout << endl;
-//	cout << User::spacing(110, '*') << endl << endl;
-//	user.Format433(players2);
-//}
