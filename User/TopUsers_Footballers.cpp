@@ -3,64 +3,83 @@
 
 
 
-void User::GetAllFootballers(TheLeague& TheLeague, vector <Footballer*>* allPlayersLeageu) {
-	// looping on all teams in the TheLeague
-	for (auto& currentTeam : *TheLeague.GetTeams()) {
-
-		//loop through all players in the team
-		for (auto& currentPlayer : *currentTeam.second->getFootballPlayer()) {
-			Footballer* footballer = &currentPlayer.second;
-			//add the player in the vector of players
-			allPlayersLeageu->push_back(footballer);
-		}
-	}
-
-}
-vector<Footballer> User::TopFootballersinLeague(vector<Footballer*>* Footballers)
-{
-	vector<Footballer> top5players;
-	sort(Footballers->begin(), Footballers->end(), comparePlayersByPoints);
-	for (int i = 0; i < 5; i++)
-	{
-		top5players.push_back(*Footballers->at(i));
-	}
-	return top5players;
-}
-
-
-void User::toUnordredMap(unordered_map<string, Footballer*>& topPlayers, vector<Footballer>& top5players)
-{
-	for (auto& player : top5players) {
-		Footballer* footballer = &player;
-		topPlayers.insert_or_assign(footballer->GetName(), footballer);
-	}
-}
-
-
-void User::TopFootballers(unordered_map<string, Footballer*>* topPlayers, vector<TheLeague>& leageus)
-{
-	vector <Footballer*>* allPlayersinLeague = new vector <Footballer*>();
-	vector<Footballer> top5;
-
-	for (int i = 0; i < leageus.size(); i++)
-	{
-		GetAllFootballers(leageus[i], allPlayersinLeague);
-		top5 = TopFootballersinLeague(allPlayersinLeague);
-		toUnordredMap(*topPlayers, top5);
-		allPlayersinLeague = new vector <Footballer*>();
-	}
-};
-
-
-
-
-
-
-
-bool User::comparePlayersByPoints(Footballer* player1, Footballer* player2) {
-	return player1->GetTotalpoints() > player2->GetTotalpoints();
-}
-
+//void User::GetAllFootballers(TheLeague& TheLeague, vector <Footballer*>* allPlayersLeageu) {
+//	// looping on all teams in the TheLeague
+//	for (auto& currentTeam : *TheLeague.GetTeams()) {
+//
+//		//loop through all players in the team
+//		for (auto& currentPlayer : *currentTeam.second->getFootballPlayer()) {
+//			Footballer* footballer = &currentPlayer.second;
+//			//add the player in the vector of players
+//			allPlayersLeageu->push_back(footballer);
+//		}
+//	}
+//
+//}
+//vector<Footballer> User::TopFootballersinLeague(vector<Footballer*>* Footballers)
+//{
+//	vector<Footballer> top5players;
+//	sort(Footballers->begin(), Footballers->end(), comparePlayersByPoints);
+//	for (int i = 0; i < 5; i++)
+//	{
+//		top5players.push_back(*Footballers->at(i));
+//	}
+//	return top5players;
+//}
+//
+//
+//unordered_map<string, Footballer*>User::toUnordredMap(vector<Footballer>& top5players)
+//{
+//	unordered_map<string, Footballer*> topPlayers;
+//	for (auto& player : top5players) {
+//		Footballer* footballer = &player;
+//		topPlayers.insert_or_assign(footballer->GetName(), footballer);
+//	}
+//	return topPlayers;
+//}
+//
+//
+//void User::TopFootballers(unordered_map<string, Footballer*>* topPlayers, vector<TheLeague>& leageus)
+//{
+//	unordered_map<string, Footballer*> topPlayersleague1;
+//	unordered_map<string, Footballer*> topPlayersleague2;
+//	unordered_map<string, Footballer*> topPlayersleague3;
+//	vector <Footballer*>* allPlayersinLeague = new vector <Footballer*>();
+//	vector<Footballer> top5;
+//
+//	for (int i = 0; i < leageus.size(); i++)
+//	{
+//		GetAllFootballers(leageus[i], allPlayersinLeague);
+//		top5 = TopFootballersinLeague(allPlayersinLeague);
+//		if (i == 0)
+//		{
+//			topPlayersleague1 = toUnordredMap(top5);
+//
+//		}
+//		else if (i == 1) {
+//			topPlayersleague2 = toUnordredMap(top5);
+//		}
+//		else {
+//			topPlayersleague3 = toUnordredMap(top5);
+//		}
+//		allPlayersinLeague = new vector <Footballer*>();
+//	}
+//	topPlayers->insert(topPlayersleague1.begin(), topPlayersleague1.end());
+//	topPlayers->insert(topPlayersleague2.begin(), topPlayersleague2.end());
+//	topPlayers->insert(topPlayersleague3.begin(), topPlayersleague3.end());
+//
+//};
+//
+//
+//
+//
+//
+//
+//
+//bool User::comparePlayersByPoints(Footballer* player1, Footballer* player2) {
+//	return player1->GetTotalpoints() > player2->GetTotalpoints();
+//}
+//
 
 
 
@@ -153,9 +172,11 @@ void User::endOfSeasonScreen(list<Game>* allGames, unordered_map<string, User>Us
 		cout << "\n\n\n";
 		cout << spacing(60, ' ') << "congratulations to our first rank winner!!!" << endl;
 
-		cout << spacing(60, ' ') << spacing(topUser.GetUsername().size() + 4, '*');
-		cout << spacing(20, ' ') << "* " << topUser.GetUsername() << " *" << endl;
-		cout << spacing(60, ' ') << spacing(topUser.GetUsername().size() + 4, '*');
+		cout << spacing(60, ' ') << "##################################################" << "\n\n";
+		cout << spacing(85, ' ') << "* " << topUser.GetUsername() << " *" << endl;
+		cout << spacing(60, ' ') << "##################################################" << "\n\n";
+
+
 		system("pause");
 		system("cls");
 	}

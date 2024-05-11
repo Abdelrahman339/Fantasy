@@ -131,7 +131,8 @@ void Admin::DisplayAllUsers(unordered_map<string, User>& Users)
 	cout << "------------------------------------------------" << endl;
 	for (auto it = Users.begin(); it != Users.end(); ++it)
 	{
-		cout << counter + 1 << "\t|" << Users.at(it->first).GetFullName() << "  \t\t  |" << it->first << endl;
+		User currentUser = Users.at(it->first);
+		cout << counter + 1 << "\t" << currentUser.GetFullName() << "\t" << checkStrLength(currentUser.GetFullName()) << it->first << endl;
 		counter++;
 	}
 	cout << "------------------------------------------------" << endl;
@@ -752,7 +753,7 @@ void Admin::DisplayFootballersForSpecificTeam(Teams& selectedTeam) {
 	cout << string(60,'-') << endl;
 	cout << "\t  Name" << User::spacing(15, ' ') << "\tPosition" << User::spacing(15, ' ') << "\tPrice" << endl << endl;
 	for (it; it != players->end(); ++it) {
-		cout << "\t" << it->second.GetName() << "\t" << checkStrLengthFootballers(it->first) << it->second.GetPosition() << "\t" << checkStrLengthFootballers(it->second.GetPosition()) << it->second.GetPrice() << endl;
+		cout << "\t" << it->second.GetName() << "\t" << checkStrLength(it->first) << it->second.GetPosition() << "\t" << checkStrLength(it->second.GetPosition()) << it->second.GetPrice() << endl;
 	}
 	cout << string(60, '-') << endl;
 }
@@ -912,7 +913,7 @@ void Admin::handlePlayersUpdate(unordered_map<string, Footballer>* players, stri
 	}
 }
 
-string Admin::checkStrLengthFootballers(string str) {
+string Admin::checkStrLength(string str) {
 	if (str.length() < 16 && str.length() >= 8) {
 		return "\t";
 	}
